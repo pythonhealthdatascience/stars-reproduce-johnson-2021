@@ -2,13 +2,13 @@
 title: "Day 1"
 author: "Amy Heather"
 date: "2024-07-31"
-categories: [setup, read, scope]
+categories: [setup]
 bibliography: ../../../quarto_site/references.bib
 ---
 
 ::: {.callout-note}
 
-Set-up repository, read article, and planned scope. Total time used: Xh Xm (X%)
+Set-up repository. Total time used: Xh Xm (X%)
 
 :::
 
@@ -23,6 +23,24 @@ Set-up repository, read article, and planned scope. Total time used: Xh Xm (X%)
     * `_quarto.yml`
 * Set up site on GitHub pages (`quarto publish gh-pages`)
 
+## 16.34-16.46: Upload code
+
+The article states that code is available at <http://resp.core.ubc.ca/software/caseDetection>. That website then states that the code and R markdown file are available at <https://github.com/KateJohnson/epicR/tree/closed_cohort>.
+
+Note: That is a link to a specific branch, `closed_cohort`. The repository is forked from epicR, and all code from the authors for this study is in that branch.
+
+The last commit to that branch was 22nd February 2020. However, this is prior to publication. The article was:
+
+* Accepted 30th September 2020
+* Published 2nd November 2020
+* In an issue in March 2020
+
+In some of the commits, I can see that it does add beneficial information relating to the reproduction - e.g. [commit 202ae95](https://github.com/KateJohnson/epicR/commit/202ae95487af3570ae6e1e7eddf7001e4199877b#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5) in February 2020, which provides additional instructions in the README.
+
+Most of the commits are in February 2020. If I go to the commit prior to that, which was 17th November 2019, it is much less clear with no README instructions and the code for the study within the EpicR `R/` directory.
+
+Feel I need to get a second opinion on what code to use for this study, due to the volume of commits, and the fact that they are prior to the issue date, but past the publication date.
+
 ## Timings
 
 ```{python}
@@ -35,8 +53,8 @@ used_to_date = 0
 
 # Times from today
 times = [
-    ('10.00', '10.20'),
-    ('10.20', '10.33')]
+    ('15.46', '16.06'),
+    ('16.34', '16.46')]
 
 calculate_times(used_to_date, times)
 ```
