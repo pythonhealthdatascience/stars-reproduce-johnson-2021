@@ -46,7 +46,7 @@
     "href": "logbook/posts/2024_07_31/index.html",
     "title": "Day 1",
     "section": "",
-    "text": "Note\n\n\n\nSet-up repository, read article, and planned scope. Total time used: Xh Xm (X%)"
+    "text": "Note\n\n\n\nSet-up repository. Total time used: Xh Xm (X%)"
   },
   {
     "objectID": "logbook/posts/2024_07_31/index.html#set-up-repository",
@@ -56,11 +56,18 @@
     "text": "15.46-16.06: Set-up repository\n\nCreate repository from template\nSet up environment\nModified template files:\n\nREADME.md\nquarto site index.qmd\nCITATION.cff\n_quarto.yml\n\nSet up site on GitHub pages (quarto publish gh-pages)"
   },
   {
+    "objectID": "logbook/posts/2024_07_31/index.html#upload-code",
+    "href": "logbook/posts/2024_07_31/index.html#upload-code",
+    "title": "Day 1",
+    "section": "16.34-16.46: Upload code",
+    "text": "16.34-16.46: Upload code\nThe article states that code is available at http://resp.core.ubc.ca/software/caseDetection. That website then states that the code and R markdown file are available at https://github.com/KateJohnson/epicR/tree/closed_cohort.\nNote: That is a link to a specific branch, closed_cohort. The repository is forked from epicR, and all code from the authors for this study is in that branch.\nThe last commit to that branch was 22nd February 2020. However, this is prior to publication. The article was:\n\nAccepted 30th September 2020\nPublished 2nd November 2020\nIn an issue in March 2020\n\nIn some of the commits, I can see that it does add beneficial information relating to the reproduction - e.g. commit 202ae95 in February 2020, which provides additional instructions in the README.\nMost of the commits are in February 2020. If I go to the commit prior to that, which was 17th November 2019, it is much less clear with no README instructions and the code for the study within the EpicR R/ directory.\nFeel I need to get a second opinion on what code to use for this study, due to the volume of commits, and the fact that they are prior to the issue date, but past the publication date."
+  },
+  {
     "objectID": "logbook/posts/2024_07_31/index.html#timings",
     "href": "logbook/posts/2024_07_31/index.html#timings",
     "title": "Day 1",
     "section": "Timings",
-    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 0\n\n# Times from today\ntimes = [\n    ('10.00', '10.20'),\n    ('10.20', '10.33')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 33m, or 0h 33m\nTotal used to date: 33m, or 0h 33m\nTime remaining: 2367m, or 39h 27m\nUsed 1.4% of 40 hours max"
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 0\n\n# Times from today\ntimes = [\n    ('15.46', '16.06'),\n    ('16.34', '16.46')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 32m, or 0h 32m\nTotal used to date: 32m, or 0h 32m\nTime remaining: 2368m, or 39h 28m\nUsed 1.3% of 40 hours max"
   },
   {
     "objectID": "CONTRIBUTING.html",
@@ -326,7 +333,7 @@
     "href": "logbook/logbook.html",
     "title": "Logbook",
     "section": "",
-    "text": "These diary entries record daily progress in reproduction of the study, providing a transparent and detailed record of work.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1\n\n\n\n\n\n\nsetup\n\n\nread\n\n\nscope\n\n\n\n\n\n\n\n\n\nJul 31, 2024\n\n\nAmy Heather\n\n\n\n\n\n\nNo matching items"
+    "text": "These diary entries record daily progress in reproduction of the study, providing a transparent and detailed record of work.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1\n\n\n\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nJul 31, 2024\n\n\nAmy Heather\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -361,7 +368,7 @@
     "href": "index.html#citation",
     "title": "Reproducing Johnson et al. 2021",
     "section": "Citation",
-    "text": "Citation\nAPA:\nHeather A., Monks T., Harper A., Mustafee N., Mayne A. (2024). Template for computational reproducibility assessments on STARS (version 1.0.4). URL: https://github.com/pythonhealthdatascience/stars_reproduction_template\nSee CITATION.cff and citation_bibtex.bib for alternative formats."
+    "text": "Citation\nAPA:\nHeather A., Monks T., Harper A. (2024). STARS: Computational reproducibility of Johnson et al. 2021 (version 0.1.0). URL: https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021\nSee CITATION.cff and citation_bibtex.bib for alternative formats."
   },
   {
     "objectID": "index.html#license",

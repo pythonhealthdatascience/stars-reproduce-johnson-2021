@@ -202,8 +202,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <h1 class="title">Day 1</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">setup</div>
-                <div class="quarto-category">read</div>
-                <div class="quarto-category">scope</div>
               </div>
                   </div>
   </div>
@@ -238,6 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#set-up-repository" id="toc-set-up-repository" class="nav-link active" data-scroll-target="#set-up-repository">15.46-16.06: Set-up repository</a></li>
+  <li><a href="#upload-code" id="toc-upload-code" class="nav-link" data-scroll-target="#upload-code">16.34-16.46: Upload code</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_07_31/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -259,7 +258,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Set-up repository, read article, and planned scope. Total time used: Xh Xm (X%)</p>
+<p>Set-up repository. Total time used: Xh Xm (X%)</p>
 </div>
 </div>
 <section id="set-up-repository" class="level2">
@@ -277,9 +276,23 @@ Note
 <li>Set up site on GitHub pages (<code>quarto publish gh-pages</code>)</li>
 </ul>
 </section>
+<section id="upload-code" class="level2">
+<h2 class="anchored" data-anchor-id="upload-code">16.34-16.46: Upload code</h2>
+<p>The article states that code is available at <a href="http://resp.core.ubc.ca/software/caseDetection" class="uri">http://resp.core.ubc.ca/software/caseDetection</a>. That website then states that the code and R markdown file are available at <a href="https://github.com/KateJohnson/epicR/tree/closed_cohort" class="uri">https://github.com/KateJohnson/epicR/tree/closed_cohort</a>.</p>
+<p>Note: That is a link to a specific branch, <code>closed_cohort</code>. The repository is forked from epicR, and all code from the authors for this study is in that branch.</p>
+<p>The last commit to that branch was 22nd February 2020. However, this is prior to publication. The article was:</p>
+<ul>
+<li>Accepted 30th September 2020</li>
+<li>Published 2nd November 2020</li>
+<li>In an issue in March 2020</li>
+</ul>
+<p>In some of the commits, I can see that it does add beneficial information relating to the reproduction - e.g.&nbsp;<a href="https://github.com/KateJohnson/epicR/commit/202ae95487af3570ae6e1e7eddf7001e4199877b#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5">commit 202ae95</a> in February 2020, which provides additional instructions in the README.</p>
+<p>Most of the commits are in February 2020. If I go to the commit prior to that, which was 17th November 2019, it is much less clear with no README instructions and the code for the study within the EpicR <code>R/</code> directory.</p>
+<p>Feel I need to get a second opinion on what code to use for this study, due to the volume of commits, and the fact that they are prior to the issue date, but past the publication date.</p>
+</section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="5ab0eb04" class="cell" data-execution_count="1">
+<div id="218f4294" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -289,15 +302,15 @@ Note
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.00'</span>, <span class="st">'10.20'</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.20'</span>, <span class="st">'10.33'</span>)]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.46'</span>, <span class="st">'16.06'</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'16.34'</span>, <span class="st">'16.46'</span>)]</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 33m, or 0h 33m
-Total used to date: 33m, or 0h 33m
-Time remaining: 2367m, or 39h 27m
-Used 1.4% of 40 hours max</code></pre>
+<pre><code>Time spent today: 32m, or 0h 32m
+Total used to date: 32m, or 0h 32m
+Time remaining: 2368m, or 39h 28m
+Used 1.3% of 40 hours max</code></pre>
 </div>
 </div>
 
