@@ -1,0 +1,42 @@
+---
+title: "Day 1"
+author: "Amy Heather"
+date: "2024-07-31"
+categories: [setup, read, scope]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+Set-up repository, read article, and planned scope. Total time used: Xh Xm (X%)
+
+:::
+
+## 15.46-16.06: Set-up repository
+
+* Create repository from template
+* Set up environment
+* Modified template files:
+    * `README.md`
+    * quarto site `index.qmd`
+    * `CITATION.cff`
+    * `_quarto.yml`
+* Set up site on GitHub pages (`quarto publish gh-pages`)
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 0
+
+# Times from today
+times = [
+    ('10.00', '10.20'),
+    ('10.20', '10.33')]
+
+calculate_times(used_to_date, times)
+```
