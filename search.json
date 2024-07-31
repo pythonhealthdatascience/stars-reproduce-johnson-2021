@@ -42,30 +42,23 @@
     "text": "Contributors: Amy Heather, with review of the protocol and associated artefacts (such as this template) from Tom Monks, Alison Harper and Nav Mustafee\nInitial release of template repository. 🌱"
   },
   {
-    "objectID": "logbook/posts/year_month_date/index.html",
-    "href": "logbook/posts/year_month_date/index.html",
-    "title": "Day X",
+    "objectID": "logbook/posts/2024_07_31/index.html",
+    "href": "logbook/posts/2024_07_31/index.html",
+    "title": "Day 1",
     "section": "",
-    "text": "Note\n\n\n\nOne sentence summary of the days work. Total time used: Xh Xm (X%)"
+    "text": "Note\n\n\n\nSet-up repository, read article, and planned scope. Total time used: Xh Xm (X%)"
   },
   {
-    "objectID": "logbook/posts/year_month_date/index.html#task-a",
-    "href": "logbook/posts/year_month_date/index.html#task-a",
-    "title": "Day X",
-    "section": "10.00-10.20: Task A",
-    "text": "10.00-10.20: Task A\nDescription of work and various accompanying details.\n\n\n\n\n\n\nHighlight\n\n\n\nYou can use callouts to highlight particular thoughts or learnings."
+    "objectID": "logbook/posts/2024_07_31/index.html#set-up-repository",
+    "href": "logbook/posts/2024_07_31/index.html#set-up-repository",
+    "title": "Day 1",
+    "section": "15.46-16.06: Set-up repository",
+    "text": "15.46-16.06: Set-up repository\n\nCreate repository from template\nSet up environment\nModified template files:\n\nREADME.md\nquarto site index.qmd\nCITATION.cff\n_quarto.yml\n\nSet up site on GitHub pages (quarto publish gh-pages)"
   },
   {
-    "objectID": "logbook/posts/year_month_date/index.html#task-b",
-    "href": "logbook/posts/year_month_date/index.html#task-b",
-    "title": "Day X",
-    "section": "10.20-10.33: Task B",
-    "text": "10.20-10.33: Task B\nMore notes.\n\n\n\n\n\n\nCollapsible callout\n\n\n\n\n\nCan use these to help keep repository organised if you are adding lots of notes for a particular task (e.g. notes from read through of paper)."
-  },
-  {
-    "objectID": "logbook/posts/year_month_date/index.html#timings",
-    "href": "logbook/posts/year_month_date/index.html#timings",
-    "title": "Day X",
+    "objectID": "logbook/posts/2024_07_31/index.html#timings",
+    "href": "logbook/posts/2024_07_31/index.html#timings",
+    "title": "Day 1",
     "section": "Timings",
     "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 0\n\n# Times from today\ntimes = [\n    ('10.00', '10.20'),\n    ('10.20', '10.33')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 33m, or 0h 33m\nTotal used to date: 33m, or 0h 33m\nTime remaining: 2367m, or 39h 27m\nUsed 1.4% of 40 hours max"
   },
@@ -333,7 +326,7 @@
     "href": "logbook/logbook.html",
     "title": "Logbook",
     "section": "",
-    "text": "These diary entries record daily progress in reproduction of the study, providing a transparent and detailed record of work.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay X\n\n\n\n\n\n\nsetup\n\n\nread\n\n\nscope\n\n\nreproduce\n\n\nguidelines\n\n\nreport\n\n\ncompendium\n\n\n\n\n\n\n\n\n\nDec 25, 2024\n\n\nResearcher Name\n\n\n\n\n\n\nNo matching items"
+    "text": "These diary entries record daily progress in reproduction of the study, providing a transparent and detailed record of work.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1\n\n\n\n\n\n\nsetup\n\n\nread\n\n\nscope\n\n\n\n\n\n\n\n\n\nJul 31, 2024\n\n\nAmy Heather\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
