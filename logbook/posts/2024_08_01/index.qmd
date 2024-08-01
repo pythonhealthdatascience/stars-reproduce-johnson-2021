@@ -28,6 +28,21 @@ RE: my uncertainty yesterday as to uploading code with commits more recent than 
 
 As such, I then uploaded a copy of the relevant branch of the repository to `original_study/`.
 
+## 10.50-10.52: Update license
+
+Switch to GNU General Public License version 3 to match original study. The [requirements of this license](https://fossa.com/blog/open-source-software-licenses-101-gpl-v3/) are to:
+
+* Include a copy of the full license
+* State all significant changes made to the software
+* Make the original source code available when distributing binaries based on that work
+* Include a copy of the original copyright notice
+
+It allows the code to be changed and distributed to others (as long as release under GPL v3 also).
+
+## 10.53-11.01: Complete page about original study and license
+
+As cannot upload anything from the study, just provided links.
+
 ## Timings
 
 ```{python}
@@ -42,7 +57,9 @@ used_to_date = 0
 times = [
     ('09.44', '09.48'),
     ('09.52', '09.56'),
-    ('10.38', '10.47')]
+    ('10.38', '10.47'),
+    ('10.50', '10.52'),
+    ('10.53', '11.01')]
 
 calculate_times(used_to_date, times)
 ```
