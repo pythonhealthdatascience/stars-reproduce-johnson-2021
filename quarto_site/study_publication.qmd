@@ -3,27 +3,28 @@ title: "Publication"
 bibliography: references.bib
 ---
 
-<!-- TODO: Remove this warning once filled out page -->
-**Please note: This is a template page and has not yet been completed**
-
-<!-- TODO: Add citation from .bib file i.e. @study_word_year -->
+@johnson_cost_2021
 
 ## Code and data
 
-<!-- TODO: Add link to folder in repository -->
-View at: <[Link]>
+View at: <https://github.com/KateJohnson/epicR/tree/closed_cohort>
 
 ## Journal article
 
-<!-- TODO: Embed article PDF - e.g.
-<iframe width="100%" height="800" src="../original_study/article.pdf"></iframe>
+The article does not provide permissions to reshare, so cannot be uploaded.
 
-Unless the article is behind the paywall and no open-access version is available - in which case, just provide link to it -->
+If you wish to view this article, please navigate to: <https://doi.org/10.1007/s40258-020-00616-2>.
 
 ## Supplementary materials
 
-<!-- TODO: Embed supplementary PDF (if relevant) -->
+The article has one supplementary material, which is a word document with seven sections:
 
-## Sources
+1. "Development and validation of the symptom module
+2. Development and validation of the primary care visits module
+3. Development and validation of the diagnosis module
+4. Development of the case module
+5. Development and validation of the treatment module
+6. Results of the preferred case detection scenario
+7. Results of the sensivity analysis for discount rate"
 
-<!-- TODO: Add links for where the above were sourced from -->
+This can likewise be viewed at <https://doi.org/10.1007/s40258-020-00616-2>.
