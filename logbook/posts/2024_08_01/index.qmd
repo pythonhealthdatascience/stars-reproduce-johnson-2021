@@ -1,0 +1,48 @@
+---
+title: "Day 2"
+author: "Amy Heather"
+date: "2024-08-01"
+categories: [setup]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+TBC. Total time used: Xh Xm (X%)
+
+:::
+
+## 09.44-09.48, 09.52-09.56: Upload journal article and artefacts
+
+The article is published at <https://link.springer.com/article/10.1007/s40258-020-00616-2>. I could not identify a copyright statement, but it links to RightsLink to request permission to reuse content (which requires payment).
+
+Found the article on ProQuest - <https://uoelibrary.idm.oclc.org/login?url=https://www.proquest.com/scholarly-journals/cost-effectiveness-case-detection-strategies/docview/2493869343/se-2?accountid=10792> - which states copyright pringer Nature B.V. Mar 2021.
+
+Also identified a conference abstract on the same topic <https://www.valueinhealthjournal.com/article/S1098-3015(20)31530-8/fulltext>.
+
+As such, it appears I would not have permissions to upload this article or any images from the article to this repository. As I cannot identify a green open-access version of the article, I will just be able to include cited text quotations.
+
+## 10.38-10.47: Consensus on upload of code
+
+RE: my uncertainty yesterday as to uploading code with commits more recent than the publication date, I discussed this with Tom, and we agreed that I should take a similar approach to as we do when we make environments for projects without them: start with the latest version of the code, and then if things don't work, potentially go back in the commit history to help resolve it.
+
+As such, I then uploaded a copy of the relevant branch of the repository to `original_study/`.
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 0
+
+# Times from today
+times = [
+    ('09.44', '09.48'),
+    ('09.52', '09.56'),
+    ('10.38', '10.47')]
+
+calculate_times(used_to_date, times)
+```
