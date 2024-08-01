@@ -43,6 +43,26 @@ It allows the code to be changed and distributed to others (as long as release u
 
 As cannot upload anything from the study, just provided links.
 
+## 11.09-11.22, 11.29-11.38, 12.04-12.24: Read the article and outline scope
+
+Read through the article and identified scope as:
+
+* Table 3
+* Figure 3
+* Supp Appendix 6 (Figure)
+* Figure 4
+* Supp Appendix 7 (Figure)
+
+There was one section of text not explicitly in the tables or figures, but it is an easy calculation from the values in Table 3, and so I feel the reproduction of Table 3 encompasses it. This was:
+
+> "This scenario (S1a) was associated with an incremental cost of $188 and an incremental effectiveness of 0.009 QALYs per eligible patient relative to the CDQ ≥ 16.5 points among ever smokers at 5-year intervals (S3b), resulting in an ICER of $22,044/QALY."
+> 
+> * This is just calculated from the table - $2438 - $2250 = $188
+> * 12.560 - 12.552 = 0.008 (likely rounding related)
+> * ICER = 188 / 0.008 = $23,500/QALY
+
+I outlined this on the `scope.qmd` page.
+
 ## Timings
 
 ```{python}
@@ -59,7 +79,10 @@ times = [
     ('09.52', '09.56'),
     ('10.38', '10.47'),
     ('10.50', '10.52'),
-    ('10.53', '11.01')]
+    ('10.53', '11.01'),
+    ('11.09', '11.22'),
+    ('11.29', '11.38'),
+    ('12.04', '12.24')]
 
 calculate_times(used_to_date, times)
 ```
