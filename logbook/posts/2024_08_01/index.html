@@ -239,6 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#consensus-on-upload-of-code" id="toc-consensus-on-upload-of-code" class="nav-link" data-scroll-target="#consensus-on-upload-of-code">10.38-10.47: Consensus on upload of code</a></li>
   <li><a href="#update-license" id="toc-update-license" class="nav-link" data-scroll-target="#update-license">10.50-10.52: Update license</a></li>
   <li><a href="#complete-page-about-original-study-and-license" id="toc-complete-page-about-original-study-and-license" class="nav-link" data-scroll-target="#complete-page-about-original-study-and-license">10.53-11.01: Complete page about original study and license</a></li>
+  <li><a href="#read-the-article-and-outline-scope" id="toc-read-the-article-and-outline-scope" class="nav-link" data-scroll-target="#read-the-article-and-outline-scope">11.09-11.22, 11.29-11.38, 12.04-12.24: Read the article and outline scope</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_01/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -290,9 +291,30 @@ Note
 <h2 class="anchored" data-anchor-id="complete-page-about-original-study-and-license">10.53-11.01: Complete page about original study and license</h2>
 <p>As cannot upload anything from the study, just provided links.</p>
 </section>
+<section id="read-the-article-and-outline-scope" class="level2">
+<h2 class="anchored" data-anchor-id="read-the-article-and-outline-scope">11.09-11.22, 11.29-11.38, 12.04-12.24: Read the article and outline scope</h2>
+<p>Read through the article and identified scope as:</p>
+<ul>
+<li>Table 3</li>
+<li>Figure 3</li>
+<li>Supp Appendix 6 (Figure)</li>
+<li>Figure 4</li>
+<li>Supp Appendix 7 (Figure)</li>
+</ul>
+<p>There was one section of text not explicitly in the tables or figures, but it is an easy calculation from the values in Table 3, and so I feel the reproduction of Table 3 encompasses it. This was:</p>
+<blockquote class="blockquote">
+<p>“This scenario (S1a) was associated with an incremental cost of $188 and an incremental effectiveness of 0.009 QALYs per eligible patient relative to the CDQ ≥ 16.5 points among ever smokers at 5-year intervals (S3b), resulting in an ICER of $22,044/QALY.”</p>
+<ul>
+<li>This is just calculated from the table - $2438 - $2250 = $188</li>
+<li>12.560 - 12.552 = 0.008 (likely rounding related)</li>
+<li>ICER = 188 / 0.008 = $23,500/QALY</li>
+</ul>
+</blockquote>
+<p>I outlined this on the <code>scope.qmd</code> page.</p>
+</section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="61bccfd5" class="cell" data-execution_count="1">
+<div id="d3a5895b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -306,14 +328,17 @@ Note
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.52'</span>, <span class="st">'09.56'</span>),</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.38'</span>, <span class="st">'10.47'</span>),</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.50'</span>, <span class="st">'10.52'</span>),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.53'</span>, <span class="st">'11.01'</span>)]</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.53'</span>, <span class="st">'11.01'</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.09'</span>, <span class="st">'11.22'</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.29'</span>, <span class="st">'11.38'</span>),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'12.04'</span>, <span class="st">'12.24'</span>)]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 27m, or 0h 27m
-Total used to date: 27m, or 0h 27m
-Time remaining: 2373m, or 39h 33m
-Used 1.1% of 40 hours max</code></pre>
+<pre><code>Time spent today: 69m, or 1h 9m
+Total used to date: 69m, or 1h 9m
+Time remaining: 2331m, or 38h 51m
+Used 2.9% of 40 hours max</code></pre>
 </div>
 </div>
 
