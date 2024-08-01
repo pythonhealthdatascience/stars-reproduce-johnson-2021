@@ -237,6 +237,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#upload-journal-article-and-artefacts" id="toc-upload-journal-article-and-artefacts" class="nav-link active" data-scroll-target="#upload-journal-article-and-artefacts">09.44-09.48, 09.52-09.56: Upload journal article and artefacts</a></li>
   <li><a href="#consensus-on-upload-of-code" id="toc-consensus-on-upload-of-code" class="nav-link" data-scroll-target="#consensus-on-upload-of-code">10.38-10.47: Consensus on upload of code</a></li>
+  <li><a href="#update-license" id="toc-update-license" class="nav-link" data-scroll-target="#update-license">10.50-10.52: Update license</a></li>
+  <li><a href="#complete-page-about-original-study-and-license" id="toc-complete-page-about-original-study-and-license" class="nav-link" data-scroll-target="#complete-page-about-original-study-and-license">10.53-11.01: Complete page about original study and license</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_01/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -273,9 +275,24 @@ Note
 <p>RE: my uncertainty yesterday as to uploading code with commits more recent than the publication date, I discussed this with Tom, and we agreed that I should take a similar approach to as we do when we make environments for projects without them: start with the latest version of the code, and then if things don’t work, potentially go back in the commit history to help resolve it.</p>
 <p>As such, I then uploaded a copy of the relevant branch of the repository to <code>original_study/</code>.</p>
 </section>
+<section id="update-license" class="level2">
+<h2 class="anchored" data-anchor-id="update-license">10.50-10.52: Update license</h2>
+<p>Switch to GNU General Public License version 3 to match original study. The <a href="https://fossa.com/blog/open-source-software-licenses-101-gpl-v3/">requirements of this license</a> are to:</p>
+<ul>
+<li>Include a copy of the full license</li>
+<li>State all significant changes made to the software</li>
+<li>Make the original source code available when distributing binaries based on that work</li>
+<li>Include a copy of the original copyright notice</li>
+</ul>
+<p>It allows the code to be changed and distributed to others (as long as release under GPL v3 also).</p>
+</section>
+<section id="complete-page-about-original-study-and-license" class="level2">
+<h2 class="anchored" data-anchor-id="complete-page-about-original-study-and-license">10.53-11.01: Complete page about original study and license</h2>
+<p>As cannot upload anything from the study, just provided links.</p>
+</section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="2a8b42de" class="cell" data-execution_count="1">
+<div id="61bccfd5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -287,14 +304,16 @@ Note
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.44'</span>, <span class="st">'09.48'</span>),</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.52'</span>, <span class="st">'09.56'</span>),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.38'</span>, <span class="st">'10.47'</span>)]</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.38'</span>, <span class="st">'10.47'</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.50'</span>, <span class="st">'10.52'</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.53'</span>, <span class="st">'11.01'</span>)]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 17m, or 0h 17m
-Total used to date: 17m, or 0h 17m
-Time remaining: 2383m, or 39h 43m
-Used 0.7% of 40 hours max</code></pre>
+<pre><code>Time spent today: 27m, or 0h 27m
+Total used to date: 27m, or 0h 27m
+Time remaining: 2373m, or 39h 33m
+Used 1.1% of 40 hours max</code></pre>
 </div>
 </div>
 
@@ -731,7 +750,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../../../CHANGELOG.html">
+    <a class="nav-link" href="../../../CHANGELOG.md">
 <p>Changelog</p>
 </a>
   </li>  
@@ -741,7 +760,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../../../CONTRIBUTING.html">
+    <a class="nav-link" href="../../../CONTRIBUTING.md">
 <p>Contributing</p>
 </a>
   </li>  
