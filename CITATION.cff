@@ -33,8 +33,7 @@ abstract: >-
   of Case Detection Strategies for the Early Detection of COPD. Applied Health
   Economics and Health Policy 19, p203-215 (2021).
   https://doi.org/10.1007/s40258-020-00616-2.
-# TODO: Update license if not using MIT
-license: MIT
+license: GPL-3.0
 # TODO: Manually update with each GitHub release (start with 0.1.0)
 version: '0.1.0'
 date-released: '2024-08-01'

@@ -82,11 +82,9 @@ If you wish to cite this repository, please refer to the citation file `CITATION
 
 ## License
 
-<!-- TODO: Add license name and link -->
-This repository is licensed under the [license and link to file].
+This repository is licensed under the [GNU General Public License v3.0](https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/blob/main/LICENSE).
 
-<!-- TODO: Add license name and link (e.g. "who also licensed their work under the [MIT License](link)") -->
-This is aligned with the original study, who [license and link to file].
+This is aligned with the original study, who also licensed their work under the [GNU General Public License v3.0](https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/blob/main/original_study/epicR-closed_cohort/LICENSE).
 
 ## Funding
 
