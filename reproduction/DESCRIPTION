@@ -25,9 +25,9 @@ Imports:
     dplyr,
     survival,
     survminer,
-    jsonlite
+    jsonlite,
+    devtools
 Suggests:
     testthat
 Remotes:
     cran/rredis@1.7.0
-    
