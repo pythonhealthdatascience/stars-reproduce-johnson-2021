@@ -2,13 +2,13 @@
 title: "Day 2"
 author: "Amy Heather"
 date: "2024-08-01"
-categories: [setup]
+categories: [setup, read, scope]
 bibliography: ../../../quarto_site/references.bib
 ---
 
 ::: {.callout-note}
 
-TBC. Total time used: Xh Xm (X%)
+Upload materials, read article, and define scope. Total time used: 1h 41m (4.2%)
 
 :::
 
@@ -63,6 +63,8 @@ There was one section of text not explicitly in the tables or figures, but it is
 
 I outlined this on the `scope.qmd` page.
 
+Tom later emailed to confirm he was likewise happy with this scope.
+
 ## Timings
 
 ```{python}
@@ -71,7 +73,7 @@ sys.path.append('../')
 from timings import calculate_times
 
 # Minutes used prior to today
-used_to_date = 0
+used_to_date = 32
 
 # Times from today
 times = [

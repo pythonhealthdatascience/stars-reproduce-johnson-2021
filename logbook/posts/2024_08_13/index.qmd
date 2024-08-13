@@ -1,0 +1,91 @@
+---
+title: "Day 3"
+author: "Amy Heather"
+date: "2024-08-13"
+categories: [reproduce]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+TBC. Total time used: TBCh TBCm (TBC%)
+
+:::
+
+## 15.33-15.53, 15.57-16.00: Browse code and set up environment
+
+The study uses the `EPIC` model, with the repository forked from that package and then with code for this particular analysis using that model added - I think, all to `casedetection/`. I can see that `casedetection/Case_Detection_Results.md` has similar tables and figures to the scope (table 3, figure 3).
+
+The README has an additional section titled **Case Detection Analysis** with instructions to perform the analysis. It suggests to install the branch as a package or to clone the repository, then copy the code from `Case_Detection_results.Rmd` and `Case_Detection_Results_5yrs.Rmd`, and knit it. It warns that the run time is about 16 hours for each script, and states that the analysis was conducted using **R version 3.5.3**.
+
+Following the procedure as I have done for previous R projects that I am reproducing, I will initially try to do so using the latest version of R and packages, and then attempt to backdate if there are issues.
+
+There is a `DESCRIPTION` file with required packages for EPIC - since it uses that model, I'm assuming this to likewise be the basis for the environment for this reproduction. I created a `DESCRIPTION` file with the `depends`, `packages` and `suggests` from that, and used it to set-up renv, so:
+
+* `renv::init(bare=TRUE)`
+* `renv::install()` - but "Error: package 'rredis' is not available"
+  * On [CRAN page](https://cran.r-project.org/web/packages/rredis/index.html) can see that the package was removed from CRAN and archived on 2022-03-21, but [can access archive] (https://cran.r-project.org/src/contrib/Archive/rredis/).
+  * Installed remotes - `renv::install("remotes")`
+  * Used that to install the latest version of rredis in the CRAN archive - `remotes::install_version("rredis", "1.7.0")`
+  * Add the installation of that version via remotes to DESCRIPTION
+  * Deleted current renv (so I could test that DESCRIPTION was set up correct with remotes). So, `renv::deactivate()`, delete `renv/`, `renv::init(bare=TRUE)`, `renv::install()`
+* `renv::snapshot()`
+
+## 16.01-16.41: Import epicR
+
+Initially, I tried adding epicR to the environment, and then running the .Rmd file. To DESCRIPTION I tried:
+
+* `KateJohnson/epicR@closed_cohort`
+* `git::https://github.com/KateJohnson/epicR.git@closed_cohort`
+* `url::https://github.com/KateJohnson/epicR/archive/refs/heads/closed_cohort.zip`
+* `github::KateJohnson/epicR@c239c55a700f9e97869c16d530080a354ec631568`
+* `github::KateJohnson/epicR@c239c55a`
+* `github::KateJohnson/epicR.git@closed_cohort`
+
+However, these did not work. The final three found the package, but then had error code 22.
+
+I then just did manual installation following the instructions provided (`remotes::install_github('KateJohnson/epicR', ref="closed_cohort")`), which had error message that dependency rredis is not available. Hence, it seems I'll need to just use it as a local package anyway. 
+
+Tried to figure the simplest way to install the package, whilst having a simpler folder layout. Figured the simplest might be to use `devtools::load_all()` to load a local folder as a package. I add `devtools` to `DESCRIPTION` then re-ran `renv::install()` and `renv::snapshot()`.
+
+I copied the package into a folder, but amended its DESCRIPTION file so that rredis is installed using remotes. In the `.Rmd` file, I then `devtools::load_all("./epicR")`. However, this had an error:
+
+```
+RWarning: ── Conflicts ───────────────────────────────────── epicR conflicts
+──
+✖ `Cget_agent_events` masks `epicR::Cget_agent_events()`.
+✖ `Cget_all_events` masks `epicR::Cget_all_events()`.
+✖ `Cget_all_events_matrix` masks `epicR::Cget_all_events_matrix()`.
+  … and more.
+ℹ Did you accidentally source a file rather than using `load_all()`?
+  Run `rm(list = c("Cget_agent_events", "Cget_all_events",
+  "Cget_all_events_matrix", "Cget_event", "Cget_events_by_type",
+  "Cget_inputs", "Cget_n_events", "Cget_output", "Cget_output_ex",
+  "Cget_runtime_stats", "Cget_settings", "Cget_smith",
+  "Cset_input_var", "Cset_settings_var", "get_sample_output",
+  "mvrnormArma"))` to remove the conflicts.
+```
+
+Despite that though, it seemed to have worked?
+
+I then add some additional dependencies from the `.Rmd` to DESCRIPTION and to the renv.
+
+## 
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 101
+
+# Times from today
+times = [
+    ('15.33', '15.53'),
+    ('15.57', '16.00')]
+
+calculate_times(used_to_date, times)
+```
