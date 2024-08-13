@@ -1,0 +1,33 @@
+Title: Computational reproducibility assessment of Johnson et al. 2021
+Depends:
+    R (>= 3.5.0)
+Imports:
+    remotes,
+    Rcpp (>= 1.0.0),
+    RcppArmadillo(>= 0.9.2),
+    graphics,
+    stats,
+    ggplot2(>= 3.1.0),
+    ggthemes,
+    sqldf,
+    gsubfn,
+    proto,
+    RSQLite,
+    tcltk,
+    DBI,
+    chron,
+    readr,
+    openxlsx,
+    reshape2,
+    scales,
+    tibble,
+    tidyr,
+    dplyr,
+    survival,
+    survminer,
+    jsonlite
+Suggests:
+    testthat
+Remotes:
+    cran/rredis@1.7.0
+    
