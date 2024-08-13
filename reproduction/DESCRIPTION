@@ -26,7 +26,10 @@ Imports:
     survival,
     survminer,
     jsonlite,
-    devtools
+    devtools,
+    tidyverse,
+    knitr,
+    kableExtra
 Suggests:
     testthat
 Remotes:
