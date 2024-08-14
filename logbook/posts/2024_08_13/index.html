@@ -140,6 +140,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../../quarto_site/reproduction_readme.html">
  <span class="dropdown-text">README</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../quarto_site/show_reproduction.html">
+ <span class="dropdown-text">Main analysis</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -237,7 +241,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#browse-code-and-set-up-environment" id="toc-browse-code-and-set-up-environment" class="nav-link active" data-scroll-target="#browse-code-and-set-up-environment">15.33-15.53, 15.57-16.00: Browse code and set up environment</a></li>
   <li><a href="#import-epicr" id="toc-import-epicr" class="nav-link" data-scroll-target="#import-epicr">16.01-16.41: Import epicR</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_13/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -259,7 +262,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>TBC. Total time used: TBCh TBCm (TBC%)</p>
+<p>Set up environment and import package. Total time used: 2h 44m (6.8%)</p>
 </div>
 </div>
 <section id="browse-code-and-set-up-environment" class="level2">
@@ -309,15 +312,12 @@ Note
   "Cget_runtime_stats", "Cget_settings", "Cget_smith",
   "Cset_input_var", "Cset_settings_var", "get_sample_output",
   "mvrnormArma"))` to remove the conflicts.</code></pre>
-<p>Despite that though, it seemed to have worked?</p>
+<p>Despite that though, it seemed to have worked.</p>
 <p>I then add some additional dependencies from the <code>.Rmd</code> to DESCRIPTION and to the renv.</p>
-</section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="931b206d" class="cell" data-execution_count="1">
+<div id="9785d7e1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -328,14 +328,15 @@ Note
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.33'</span>, <span class="st">'15.53'</span>),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.57'</span>, <span class="st">'16.00'</span>)]</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.57'</span>, <span class="st">'16.00'</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'16.01'</span>, <span class="st">'16.41'</span>)]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 23m, or 0h 23m
-Total used to date: 124m, or 2h 4m
-Time remaining: 2276m, or 37h 56m
-Used 5.2% of 40 hours max</code></pre>
+<pre><code>Time spent today: 63m, or 1h 3m
+Total used to date: 164m, or 2h 44m
+Time remaining: 2236m, or 37h 16m
+Used 6.8% of 40 hours max</code></pre>
 </div>
 </div>
 

@@ -35,46 +35,74 @@
     "text": "Sources\nNational Information Standards Organisation (NISO) (NISO Reproducibility Badging and Definitions Working Group (2021))\n\n“Open Research Objects (ORO)”\n“Open Research Objects - All (ORO-A)”\n“Results Reproduced (ROR-R)”\n\nAssociation for Computing Machinery (ACM) (Association for Computing Machinery (ACM) (2020))\n\n“Artifacts Available”\n“Artifacts Evaluated - Functional”\n“Artifacts Evaluated - Resuable”\n“Results Reproduced”\n\nCenter for Open Science (COS) (Blohowiak et al. (2023))\n\n“Open Code”\n\nInstitute of Electrical and Electronics Engineers (IEEE) (Institute of Electrical and Electronics Engineers (IEEE) (n.d.))\n\n“Code Available”\n“Code Reviewed”\n“Code Reproducible”\n\nPsychological Science (Hardwicke and Vazire (2023) and Association for Psychological Science (APS) (2023))\n\n“Computational Reproducibility”"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Reproducing Johnson et al. 2021",
+    "objectID": "quarto_site/reproduction_readme.html",
+    "href": "quarto_site/reproduction_readme.html",
+    "title": "README for reproduction",
     "section": "",
-    "text": "This book captures the reproduction of:\n\nJohnson, K.M., Sadatsafavi, M., Adibi, A., Lynd, L., Harrison, M., Tavakoli, H., Sin, D., Bryan, S. Cost Effectiveness of Case Detection Strategies for the Early Detection of COPD. Applied Health Economics and Health Policy 19, p203-215 (2021). https://doi.org/10.1007/s40258-020-00616-2.\n\nUse the navigation bar above to view:\n\nOriginal study - the original study article and associated artefacts.\nReproduction - code and documentation from reproduction of the model.\nEvaluation - describes model reproduction success and compares original study against guidelines for sharing research, criteria for journal reproducibility guidelines, and article reporting guidelines.\nLogbook - chronological entries detailing reproduction work.\nSummary - summary of the computational reproducibility assessment."
+    "text": "Please note: This is a template README and has not yet been completed\n\n\n\nTBC\n\n\n\nTBC\n\n\n\n\n\nTBC\n\n\n\nTBC\n\n\n\nTBC\n\n\n\n\nTBC\n\n\n\n\nTBC\n\n\n\nTBC"
   },
   {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "Reproducing Johnson et al. 2021",
+    "objectID": "quarto_site/reproduction_readme.html#model-summary",
+    "href": "quarto_site/reproduction_readme.html#model-summary",
+    "title": "README for reproduction",
     "section": "",
-    "text": "This book captures the reproduction of:\n\nJohnson, K.M., Sadatsafavi, M., Adibi, A., Lynd, L., Harrison, M., Tavakoli, H., Sin, D., Bryan, S. Cost Effectiveness of Case Detection Strategies for the Early Detection of COPD. Applied Health Economics and Health Policy 19, p203-215 (2021). https://doi.org/10.1007/s40258-020-00616-2.\n\nUse the navigation bar above to view:\n\nOriginal study - the original study article and associated artefacts.\nReproduction - code and documentation from reproduction of the model.\nEvaluation - describes model reproduction success and compares original study against guidelines for sharing research, criteria for journal reproducibility guidelines, and article reporting guidelines.\nLogbook - chronological entries detailing reproduction work.\nSummary - summary of the computational reproducibility assessment."
+    "text": "TBC"
   },
   {
-    "objectID": "index.html#project-team",
-    "href": "index.html#project-team",
-    "title": "Reproducing Johnson et al. 2021",
-    "section": "Project team",
-    "text": "Project team\n\n\nConducting this reproduction:\n\nAmy Heather \n\nProviding support during the reproduction:\n\nThomas Monks \nAlison Harper \n\nOther members of the team on STARS:\n\nNavonil Mustafee \nAndrew Mayne"
+    "objectID": "quarto_site/reproduction_readme.html#scope-of-the-reproduction",
+    "href": "quarto_site/reproduction_readme.html#scope-of-the-reproduction",
+    "title": "README for reproduction",
+    "section": "",
+    "text": "TBC"
   },
   {
-    "objectID": "index.html#protocol",
-    "href": "index.html#protocol",
-    "title": "Reproducing Johnson et al. 2021",
-    "section": "Protocol",
-    "text": "Protocol\nThe protocol for this work is summarised in the diagram below and archived on Zenodo:\n\nHeather, A., Monks, T., Harper, A., Mustafee, N., & Mayne, A. (2024). Protocol for assessing the computational reproducibility of discrete-event simulation models on STARS. Zenodo. https://doi.org/10.5281/zenodo.12179846.\n\n\n\n\nWorkflow for computational reproducibility assessment"
+    "objectID": "quarto_site/reproduction_readme.html#reproducing-these-results",
+    "href": "quarto_site/reproduction_readme.html#reproducing-these-results",
+    "title": "README for reproduction",
+    "section": "",
+    "text": "TBC\n\n\n\nTBC\n\n\n\nTBC"
   },
   {
-    "objectID": "index.html#citation",
-    "href": "index.html#citation",
-    "title": "Reproducing Johnson et al. 2021",
-    "section": "Citation",
-    "text": "Citation\nAPA:\nHeather A., Monks T., Harper A. (2024). STARS: Computational reproducibility of Johnson et al. 2021 (version 0.1.0). URL: https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021\nSee CITATION.cff and citation_bibtex.bib for alternative formats."
+    "objectID": "quarto_site/reproduction_readme.html#reproduction-specs-and-runtime",
+    "href": "quarto_site/reproduction_readme.html#reproduction-specs-and-runtime",
+    "title": "README for reproduction",
+    "section": "",
+    "text": "TBC"
   },
   {
-    "objectID": "index.html#license",
-    "href": "index.html#license",
-    "title": "Reproducing Johnson et al. 2021",
-    "section": "License",
-    "text": "License\nSee License page."
+    "objectID": "quarto_site/reproduction_readme.html#citation",
+    "href": "quarto_site/reproduction_readme.html#citation",
+    "title": "README for reproduction",
+    "section": "",
+    "text": "TBC"
+  },
+  {
+    "objectID": "quarto_site/reproduction_readme.html#license",
+    "href": "quarto_site/reproduction_readme.html#license",
+    "title": "README for reproduction",
+    "section": "",
+    "text": "TBC"
+  },
+  {
+    "objectID": "logbook/posts/2024_08_14/index.html",
+    "href": "logbook/posts/2024_08_14/index.html",
+    "title": "Day 4",
+    "section": "",
+    "text": "Note\n\n\n\nTBC. Total time used: -h -m (-%)"
+  },
+  {
+    "objectID": "logbook/posts/2024_08_14/index.html#run-model",
+    "href": "logbook/posts/2024_08_14/index.html#run-model",
+    "title": "Day 4",
+    "section": "09.27-09.52, 10.20-10.21: Run model",
+    "text": "09.27-09.52, 10.20-10.21: Run model\nHelpfully, we know to expect that this has a long run time from their README:\n\n“Note: The analysis version of these results simulates 100 million agents, which will take ~16 hours to run for each script. The published analysis was conducted using R Version 3.5.3”\n\nGiven this warning, I tried running it with fewer agents:\nsettings$n_base_agents &lt;- 5e+3\nOn my machine, I tried it with increasing numbers of agents, but it consistently returned results of 0 / 1 / NaN:\n\n5000 (a minute to run)\n50,000 (2.4 minutes to run)\n500,000 (18.2 minutes to run)\n\nUnfortunately I can’t currently access our remote higher spec machine, which would’ve allowed me to run these quicker."
+  },
+  {
+    "objectID": "logbook/posts/2024_08_14/index.html#timings",
+    "href": "logbook/posts/2024_08_14/index.html#timings",
+    "title": "Day 4",
+    "section": "Timings",
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 164\n\n# Times from today\ntimes = [\n    ('09.27', '09.52'),\n    ('10.20', '10.21')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 26m, or 0h 26m\nTotal used to date: 190m, or 3h 10m\nTime remaining: 2210m, or 36h 50m\nUsed 7.9% of 40 hours max"
   },
   {
     "objectID": "logbook/posts/2024_08_01/index.html",
@@ -158,7 +186,7 @@
     "href": "logbook/logbook.html",
     "title": "Logbook",
     "section": "",
-    "text": "These diary entries record daily progress in reproduction of the study, providing a transparent and detailed record of work.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nAug 13, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 2\n\n\n\n\n\n\nsetup\n\n\nread\n\n\nscope\n\n\n\n\n\n\n\n\n\nAug 1, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1\n\n\n\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nJul 31, 2024\n\n\nAmy Heather\n\n\n\n\n\n\nNo matching items"
+    "text": "These diary entries record daily progress in reproduction of the study, providing a transparent and detailed record of work.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nAug 14, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nAug 13, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 2\n\n\n\n\n\n\nsetup\n\n\nread\n\n\nscope\n\n\n\n\n\n\n\n\n\nAug 1, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1\n\n\n\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nJul 31, 2024\n\n\nAmy Heather\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "evaluation/reporting.html",
@@ -291,7 +319,7 @@
     "href": "logbook/posts/2024_08_13/index.html",
     "title": "Day 3",
     "section": "",
-    "text": "Note\n\n\n\nTBC. Total time used: TBCh TBCm (TBC%)"
+    "text": "Note\n\n\n\nSet up environment and import package. Total time used: 2h 44m (6.8%)"
   },
   {
     "objectID": "logbook/posts/2024_08_13/index.html#browse-code-and-set-up-environment",
@@ -305,63 +333,112 @@
     "href": "logbook/posts/2024_08_13/index.html#import-epicr",
     "title": "Day 3",
     "section": "16.01-16.41: Import epicR",
-    "text": "16.01-16.41: Import epicR\nInitially, I tried adding epicR to the environment, and then running the .Rmd file. To DESCRIPTION I tried:\n\nKateJohnson/epicR@closed_cohort\ngit::https://github.com/KateJohnson/epicR.git@closed_cohort\nurl::https://github.com/KateJohnson/epicR/archive/refs/heads/closed_cohort.zip\ngithub::KateJohnson/epicR@c239c55a700f9e97869c16d530080a354ec631568\ngithub::KateJohnson/epicR@c239c55a\ngithub::KateJohnson/epicR.git@closed_cohort\n\nHowever, these did not work. The final three found the package, but then had error code 22.\nI then just did manual installation following the instructions provided (remotes::install_github('KateJohnson/epicR', ref=\"closed_cohort\")), which had error message that dependency rredis is not available. Hence, it seems I’ll need to just use it as a local package anyway.\nTried to figure the simplest way to install the package, whilst having a simpler folder layout. Figured the simplest might be to use devtools::load_all() to load a local folder as a package. I add devtools to DESCRIPTION then re-ran renv::install() and renv::snapshot().\nI copied the package into a folder, but amended its DESCRIPTION file so that rredis is installed using remotes. In the .Rmd file, I then devtools::load_all(\"./epicR\"). However, this had an error:\nRWarning: ── Conflicts ───────────────────────────────────── epicR conflicts\n──\n✖ `Cget_agent_events` masks `epicR::Cget_agent_events()`.\n✖ `Cget_all_events` masks `epicR::Cget_all_events()`.\n✖ `Cget_all_events_matrix` masks `epicR::Cget_all_events_matrix()`.\n  … and more.\nℹ Did you accidentally source a file rather than using `load_all()`?\n  Run `rm(list = c(\"Cget_agent_events\", \"Cget_all_events\",\n  \"Cget_all_events_matrix\", \"Cget_event\", \"Cget_events_by_type\",\n  \"Cget_inputs\", \"Cget_n_events\", \"Cget_output\", \"Cget_output_ex\",\n  \"Cget_runtime_stats\", \"Cget_settings\", \"Cget_smith\",\n  \"Cset_input_var\", \"Cset_settings_var\", \"get_sample_output\",\n  \"mvrnormArma\"))` to remove the conflicts.\nDespite that though, it seemed to have worked?\nI then add some additional dependencies from the .Rmd to DESCRIPTION and to the renv."
+    "text": "16.01-16.41: Import epicR\nInitially, I tried adding epicR to the environment, and then running the .Rmd file. To DESCRIPTION I tried:\n\nKateJohnson/epicR@closed_cohort\ngit::https://github.com/KateJohnson/epicR.git@closed_cohort\nurl::https://github.com/KateJohnson/epicR/archive/refs/heads/closed_cohort.zip\ngithub::KateJohnson/epicR@c239c55a700f9e97869c16d530080a354ec631568\ngithub::KateJohnson/epicR@c239c55a\ngithub::KateJohnson/epicR.git@closed_cohort\n\nHowever, these did not work. The final three found the package, but then had error code 22.\nI then just did manual installation following the instructions provided (remotes::install_github('KateJohnson/epicR', ref=\"closed_cohort\")), which had error message that dependency rredis is not available. Hence, it seems I’ll need to just use it as a local package anyway.\nTried to figure the simplest way to install the package, whilst having a simpler folder layout. Figured the simplest might be to use devtools::load_all() to load a local folder as a package. I add devtools to DESCRIPTION then re-ran renv::install() and renv::snapshot().\nI copied the package into a folder, but amended its DESCRIPTION file so that rredis is installed using remotes. In the .Rmd file, I then devtools::load_all(\"./epicR\"). However, this had an error:\nRWarning: ── Conflicts ───────────────────────────────────── epicR conflicts\n──\n✖ `Cget_agent_events` masks `epicR::Cget_agent_events()`.\n✖ `Cget_all_events` masks `epicR::Cget_all_events()`.\n✖ `Cget_all_events_matrix` masks `epicR::Cget_all_events_matrix()`.\n  … and more.\nℹ Did you accidentally source a file rather than using `load_all()`?\n  Run `rm(list = c(\"Cget_agent_events\", \"Cget_all_events\",\n  \"Cget_all_events_matrix\", \"Cget_event\", \"Cget_events_by_type\",\n  \"Cget_inputs\", \"Cget_n_events\", \"Cget_output\", \"Cget_output_ex\",\n  \"Cget_runtime_stats\", \"Cget_settings\", \"Cget_smith\",\n  \"Cset_input_var\", \"Cset_settings_var\", \"get_sample_output\",\n  \"mvrnormArma\"))` to remove the conflicts.\nDespite that though, it seemed to have worked.\nI then add some additional dependencies from the .Rmd to DESCRIPTION and to the renv."
   },
   {
     "objectID": "logbook/posts/2024_08_13/index.html#timings",
     "href": "logbook/posts/2024_08_13/index.html#timings",
     "title": "Day 3",
     "section": "Timings",
-    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 101\n\n# Times from today\ntimes = [\n    ('15.33', '15.53'),\n    ('15.57', '16.00')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 23m, or 0h 23m\nTotal used to date: 124m, or 2h 4m\nTime remaining: 2276m, or 37h 56m\nUsed 5.2% of 40 hours max"
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 101\n\n# Times from today\ntimes = [\n    ('15.33', '15.53'),\n    ('15.57', '16.00'),\n    ('16.01', '16.41')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 63m, or 1h 3m\nTotal used to date: 164m, or 2h 44m\nTime remaining: 2236m, or 37h 16m\nUsed 6.8% of 40 hours max"
   },
   {
-    "objectID": "quarto_site/reproduction_readme.html",
-    "href": "quarto_site/reproduction_readme.html",
-    "title": "README for reproduction",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Reproducing Johnson et al. 2021",
     "section": "",
-    "text": "Please note: This is a template README and has not yet been completed\n\n\n\nTBC\n\n\n\nTBC\n\n\n\n\n\nTBC\n\n\n\nTBC\n\n\n\nTBC\n\n\n\n\nTBC\n\n\n\n\nTBC\n\n\n\nTBC"
+    "text": "This book captures the reproduction of:\n\nJohnson, K.M., Sadatsafavi, M., Adibi, A., Lynd, L., Harrison, M., Tavakoli, H., Sin, D., Bryan, S. Cost Effectiveness of Case Detection Strategies for the Early Detection of COPD. Applied Health Economics and Health Policy 19, p203-215 (2021). https://doi.org/10.1007/s40258-020-00616-2.\n\nUse the navigation bar above to view:\n\nOriginal study - the original study article and associated artefacts.\nReproduction - code and documentation from reproduction of the model.\nEvaluation - describes model reproduction success and compares original study against guidelines for sharing research, criteria for journal reproducibility guidelines, and article reporting guidelines.\nLogbook - chronological entries detailing reproduction work.\nSummary - summary of the computational reproducibility assessment."
   },
   {
-    "objectID": "quarto_site/reproduction_readme.html#model-summary",
-    "href": "quarto_site/reproduction_readme.html#model-summary",
-    "title": "README for reproduction",
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "Reproducing Johnson et al. 2021",
     "section": "",
-    "text": "TBC"
+    "text": "This book captures the reproduction of:\n\nJohnson, K.M., Sadatsafavi, M., Adibi, A., Lynd, L., Harrison, M., Tavakoli, H., Sin, D., Bryan, S. Cost Effectiveness of Case Detection Strategies for the Early Detection of COPD. Applied Health Economics and Health Policy 19, p203-215 (2021). https://doi.org/10.1007/s40258-020-00616-2.\n\nUse the navigation bar above to view:\n\nOriginal study - the original study article and associated artefacts.\nReproduction - code and documentation from reproduction of the model.\nEvaluation - describes model reproduction success and compares original study against guidelines for sharing research, criteria for journal reproducibility guidelines, and article reporting guidelines.\nLogbook - chronological entries detailing reproduction work.\nSummary - summary of the computational reproducibility assessment."
   },
   {
-    "objectID": "quarto_site/reproduction_readme.html#scope-of-the-reproduction",
-    "href": "quarto_site/reproduction_readme.html#scope-of-the-reproduction",
-    "title": "README for reproduction",
-    "section": "",
-    "text": "TBC"
+    "objectID": "index.html#project-team",
+    "href": "index.html#project-team",
+    "title": "Reproducing Johnson et al. 2021",
+    "section": "Project team",
+    "text": "Project team\n\n\nConducting this reproduction:\n\nAmy Heather \n\nProviding support during the reproduction:\n\nThomas Monks \nAlison Harper \n\nOther members of the team on STARS:\n\nNavonil Mustafee \nAndrew Mayne"
   },
   {
-    "objectID": "quarto_site/reproduction_readme.html#reproducing-these-results",
-    "href": "quarto_site/reproduction_readme.html#reproducing-these-results",
-    "title": "README for reproduction",
-    "section": "",
-    "text": "TBC\n\n\n\nTBC\n\n\n\nTBC"
+    "objectID": "index.html#protocol",
+    "href": "index.html#protocol",
+    "title": "Reproducing Johnson et al. 2021",
+    "section": "Protocol",
+    "text": "Protocol\nThe protocol for this work is summarised in the diagram below and archived on Zenodo:\n\nHeather, A., Monks, T., Harper, A., Mustafee, N., & Mayne, A. (2024). Protocol for assessing the computational reproducibility of discrete-event simulation models on STARS. Zenodo. https://doi.org/10.5281/zenodo.12179846.\n\n\n\n\nWorkflow for computational reproducibility assessment"
   },
   {
-    "objectID": "quarto_site/reproduction_readme.html#reproduction-specs-and-runtime",
-    "href": "quarto_site/reproduction_readme.html#reproduction-specs-and-runtime",
-    "title": "README for reproduction",
-    "section": "",
-    "text": "TBC"
+    "objectID": "index.html#citation",
+    "href": "index.html#citation",
+    "title": "Reproducing Johnson et al. 2021",
+    "section": "Citation",
+    "text": "Citation\nAPA:\nHeather A., Monks T., Harper A. (2024). STARS: Computational reproducibility of Johnson et al. 2021 (version 0.1.0). URL: https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021\nSee CITATION.cff and citation_bibtex.bib for alternative formats."
   },
   {
-    "objectID": "quarto_site/reproduction_readme.html#citation",
-    "href": "quarto_site/reproduction_readme.html#citation",
-    "title": "README for reproduction",
-    "section": "",
-    "text": "TBC"
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "Reproducing Johnson et al. 2021",
+    "section": "License",
+    "text": "License\nSee License page."
   },
   {
-    "objectID": "quarto_site/reproduction_readme.html#license",
-    "href": "quarto_site/reproduction_readme.html#license",
-    "title": "README for reproduction",
+    "objectID": "quarto_site/show_reproduction.html",
+    "href": "quarto_site/show_reproduction.html",
+    "title": "Main analysis",
     "section": "",
-    "text": "TBC"
+    "text": "## \n## &gt; errors&lt;-c(\n## +   ERR_INCORRECT_SETTING_VARIABLE=-1,\n## +   ERR_INCORRECT_VECTOR_SIZE=-2,\n## +   ERR_INCORRECT_INPUT_VAR=-3,\n## +   ERR_EVENT_STACK_FULL=-4,\n## +   .... [TRUNCATED] \n## \n## &gt; record_mode&lt;-c(\n## +   record_mode_none=0,\n## +   record_mode_agent=1,\n## +   record_mode_event=2,\n## +   record_mode_some_event=3\n## + )\n## \n## &gt; agent_creation_mode&lt;-c(\n## +   agent_creation_mode_one=0,\n## +   agent_creation_mode_all=1,\n## +   agent_creation_mode_pre=2\n## + )\n## \n## &gt; medication_classes&lt;-c(\n## +   MED_CLASS_SABA=1,\n## +   MED_CLASS_LABA=2,\n## +   MED_CLASS_LAMA=4,\n## +   MED_CLASS_ICS=8,\n## +   MED_CLASS_MACRO=16\n## + )\n## \n## &gt; events&lt;-c(\n## +     event_start=0,\n## +     event_fixed=1,\n## +     event_birthday=2,\n## +     event_smoking_change=3,\n## +     event_COPD=4,\n## +     event_exacerbat .... [TRUNCATED]\n\n## Initializing the session\n\n## [1] 0\nGlobal inputs:\n\nMedication adherence is 0.7\nSmoking adherence is 0.7\nCost discounting: 0.015\nQALY discounting: 0.015\nTime horizon: 20\nThe WTP threshold for NMB is 50000\n\nCase detection inputs:\n\nCase detection occurs at 3 year intervals.\nAn outpatient diagnosis costs 61.18\nThe utility gain due to symptom relief from treatment is 0.0367\n\n\n\nAll patients are eligible. The cost of case detection is:\n\n\n\nNone\nCDQ17\nFlowMeter\nFlowMeter_CDQ\n\n\n\n\n0\n11.56\n30.46\n42.01\n\n\n\n\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nAgents\nPatientYears\nCopdPYs\nNCaseDetections\nDiagnosedPYs\nOverdiagnosedPYs\nSABA\nLAMA\nLAMALABA\nICSLAMALABA\nMild\nModerate\nSevere\nVerySevere\nMildPY\nModeratePY\nSeverePY\nVerySeverePY\nNoCOPD\nGOLD1\nGOLD2\nGOLD3\nGOLD4\nCost\nCostpAgent\nQALY\nQALYpAgent\nNMB\nIncrementalCosts\nIncrementalQALY\nICER\nIncrementalNMB\n\n\n\n\nS1NoCD\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\n0\n0\nNaN\n0\n\n\nS1NoCD2\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\n0\n0\nNaN\n0\n\n\nS1NoCDAvg\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\n0\n0\nNaN\n0\n\n\nS1a\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1b\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1c\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\nTreatment rate: SABA is expressed per all patient-years, LAMA, LAMA/LABA, ICS/LAMA/LABA are per COPD patient-years Exacerbations: Total exacerbations and rate per COPD patient-year: GOLD Stage: Cumulative patient-years Cost/QALY: Total cost and QALYs NMB: Net Monetary Benefit is calculated as QALY per patient-year * Lamba - Cost per patient-year\n\n\n\n\n\nPatients with symptoms at year 1 are eligible. The cost of case detection is:\n## Initializing the session\n\n## [1] 0\n\n\n\nNone\nFlowMeter\n\n\n\n\n0\n24.33\n\n\n\n\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nAgents\nPatientYears\nCopdPYs\nNCaseDetections\nDiagnosedPYs\nOverdiagnosedPYs\nSABA\nLAMA\nLAMALABA\nICSLAMALABA\nMild\nModerate\nSevere\nVerySevere\nMildPY\nModeratePY\nSeverePY\nVerySeverePY\nNoCOPD\nGOLD1\nGOLD2\nGOLD3\nGOLD4\nCost\nCostpAgent\nQALY\nQALYpAgent\nNMB\nIncrementalCosts\nIncrementalQALY\nICER\nIncrementalNMB\n\n\n\n\nS2NoCD\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\n0\n0\nNaN\n0\n\n\nS2a\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\nTreatment rate: SABA is expressed per all patient-years, LAMA, LAMA/LABA, ICS/LAMA/LABA are per COPD patient-years Exacerbations: Total exacerbations and rate per COPD patient-year: GOLD Stage: Cumulative patient-years Cost/QALY: Total cost and QALYs NMB: Net Monetary Benefit is calculated as QALY per patient-year * Lamba - Cost per patient-year\n\n\n\n\n\nEver smokers ≥50 years of age are eligible. The cost of case detection is:\n## Initializing the session\n\n## [1] 0\n\n\n\nNone\nCDQ195\nCDQ165\nFlowMeter\nFlowMeter_CDQ\n\n\n\n\n0\n11.56\n11.56\n24.33\n42.01\n\n\n\n\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nAgents\nPatientYears\nCopdPYs\nNCaseDetections\nDiagnosedPYs\nOverdiagnosedPYs\nSABA\nLAMA\nLAMALABA\nICSLAMALABA\nMild\nModerate\nSevere\nVerySevere\nMildPY\nModeratePY\nSeverePY\nVerySeverePY\nNoCOPD\nGOLD1\nGOLD2\nGOLD3\nGOLD4\nCost\nCostpAgent\nQALY\nQALYpAgent\nNMB\nIncrementalCosts\nIncrementalQALY\nICER\nIncrementalNMB\n\n\n\n\nS3NoCD\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\n0\n0\nNaN\n0\n\n\nS3a\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3b\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3c\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3d\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\nTreatment rate: SABA is expressed per all patient-years, LAMA, LAMA/LABA, ICS/LAMA/LABA are per COPD patient-years Exacerbations: Total exacerbations and rate per COPD patient-year GOLD Stage: Cumulative patient-years Cost/QALY: Total cost and QALYs NMB: Net Monetary Benefit is calculated as QALY per patient-year * Lamba - Cost per patient-year\n\n\n\n\n\nOrdered by descending Net Monetary Benefit\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nAgents\nCost\nCostpAgent\nQALY\nQALYpAgent\nICER\nIncrementalNMB\n\n\n\n\nS1NoCD\n0\n0\nNaN\n0\nNaN\nNaN\n0\n\n\nS2NoCD\n0\n0\nNaN\n0\nNaN\nNaN\n0\n\n\nS3NoCD\n0\n0\nNaN\n0\nNaN\nNaN\n0\n\n\nS1a\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS1b\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS1c\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS2a\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS3a\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS3b\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS3c\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS3d\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\n\n\n\n\n\nAdjusted to the total population\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nAgents\nPropAgents\nCost\nCostpAgent\nCostpAgentExcluded\nCostpAgentAll\nQALY\nQALYpAgent\nQALYpAgentExcluded\nQALYpAgentAll\nIncrementalCosts\nIncrementalQALY\nICERAdj\nICER\nINMB\n\n\n\n\nS1NoCDAvg\n0\n1\n0\nNaN\n0\nNaN\n0\nNaN\n0\nNaN\n0\n0\nNaN\nNaN\nNaN\n\n\nS1a\n0\n1\n0\nNaN\n0\nNaN\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1b\n0\n1\n0\nNaN\n0\nNaN\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1c\n0\n1\n0\nNaN\n0\nNaN\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS2NoCD\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\n0\n0\nNaN\nNaN\nNaN\n\n\nS2a\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3NoCD\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\n0\n0\nNaN\nNaN\nNaN\n\n\nS3a\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3b\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3c\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3d\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\n## Warning: Removed 8 rows containing missing values or values outside the scale range\n## (`geom_point()`).\n\n## Warning: Removed 8 rows containing missing values or values outside the scale range\n## (`geom_text()`).\n\n\n\n\nAdjusted to the total population\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nPropAgents\nProppPatientYears\nProppCopdPYs\nSABAAll\nLAMAAll\nLAMALABAAll\nICSLAMALABAAll\nMildpAgentAll\nModeratepAgentAll\nSeverepAgentAll\nVerySeverepAgentAll\nNoCOPDpPYAll\nGOLD1pPYAll\nGOLD2pPYAll\nGOLD3pPYAll\nGOLD4pPYAll\nDiagnosedpPYAll\n\n\n\n\nS1NoCDAvg\n1\n1\n1\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1a\n1\n1\n1\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1b\n1\n1\n1\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1c\n1\n1\n1\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS2NoCD\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS2a\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3NoCD\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3a\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3b\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3c\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3d\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\n\n\n\nRun time for this notebook:\nend.time &lt;- Sys.time()\ntime.taken &lt;- end.time - start.time\ntime.taken\n## Time difference of 18.16696 mins"
+  },
+  {
+    "objectID": "quarto_site/show_reproduction.html#s1-all-patients-scenario",
+    "href": "quarto_site/show_reproduction.html#s1-all-patients-scenario",
+    "title": "Main analysis",
+    "section": "",
+    "text": "All patients are eligible. The cost of case detection is:\n\n\n\nNone\nCDQ17\nFlowMeter\nFlowMeter_CDQ\n\n\n\n\n0\n11.56\n30.46\n42.01\n\n\n\n\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nAgents\nPatientYears\nCopdPYs\nNCaseDetections\nDiagnosedPYs\nOverdiagnosedPYs\nSABA\nLAMA\nLAMALABA\nICSLAMALABA\nMild\nModerate\nSevere\nVerySevere\nMildPY\nModeratePY\nSeverePY\nVerySeverePY\nNoCOPD\nGOLD1\nGOLD2\nGOLD3\nGOLD4\nCost\nCostpAgent\nQALY\nQALYpAgent\nNMB\nIncrementalCosts\nIncrementalQALY\nICER\nIncrementalNMB\n\n\n\n\nS1NoCD\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\n0\n0\nNaN\n0\n\n\nS1NoCD2\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\n0\n0\nNaN\n0\n\n\nS1NoCDAvg\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\n0\n0\nNaN\n0\n\n\nS1a\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1b\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1c\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\nTreatment rate: SABA is expressed per all patient-years, LAMA, LAMA/LABA, ICS/LAMA/LABA are per COPD patient-years Exacerbations: Total exacerbations and rate per COPD patient-year: GOLD Stage: Cumulative patient-years Cost/QALY: Total cost and QALYs NMB: Net Monetary Benefit is calculated as QALY per patient-year * Lamba - Cost per patient-year"
+  },
+  {
+    "objectID": "quarto_site/show_reproduction.html#s2-symptomatic-patients-scenario",
+    "href": "quarto_site/show_reproduction.html#s2-symptomatic-patients-scenario",
+    "title": "Main analysis",
+    "section": "",
+    "text": "Patients with symptoms at year 1 are eligible. The cost of case detection is:\n## Initializing the session\n\n## [1] 0\n\n\n\nNone\nFlowMeter\n\n\n\n\n0\n24.33\n\n\n\n\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nAgents\nPatientYears\nCopdPYs\nNCaseDetections\nDiagnosedPYs\nOverdiagnosedPYs\nSABA\nLAMA\nLAMALABA\nICSLAMALABA\nMild\nModerate\nSevere\nVerySevere\nMildPY\nModeratePY\nSeverePY\nVerySeverePY\nNoCOPD\nGOLD1\nGOLD2\nGOLD3\nGOLD4\nCost\nCostpAgent\nQALY\nQALYpAgent\nNMB\nIncrementalCosts\nIncrementalQALY\nICER\nIncrementalNMB\n\n\n\n\nS2NoCD\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\n0\n0\nNaN\n0\n\n\nS2a\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\nTreatment rate: SABA is expressed per all patient-years, LAMA, LAMA/LABA, ICS/LAMA/LABA are per COPD patient-years Exacerbations: Total exacerbations and rate per COPD patient-year: GOLD Stage: Cumulative patient-years Cost/QALY: Total cost and QALYs NMB: Net Monetary Benefit is calculated as QALY per patient-year * Lamba - Cost per patient-year"
+  },
+  {
+    "objectID": "quarto_site/show_reproduction.html#s3-smoking-history-scenario",
+    "href": "quarto_site/show_reproduction.html#s3-smoking-history-scenario",
+    "title": "Main analysis",
+    "section": "",
+    "text": "Ever smokers ≥50 years of age are eligible. The cost of case detection is:\n## Initializing the session\n\n## [1] 0\n\n\n\nNone\nCDQ195\nCDQ165\nFlowMeter\nFlowMeter_CDQ\n\n\n\n\n0\n11.56\n11.56\n24.33\n42.01\n\n\n\n\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n## Initializing the session\n\n## [1] 0\n\n## [1] 0\n\n## Terminating the session\n\n## [1] 0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nAgents\nPatientYears\nCopdPYs\nNCaseDetections\nDiagnosedPYs\nOverdiagnosedPYs\nSABA\nLAMA\nLAMALABA\nICSLAMALABA\nMild\nModerate\nSevere\nVerySevere\nMildPY\nModeratePY\nSeverePY\nVerySeverePY\nNoCOPD\nGOLD1\nGOLD2\nGOLD3\nGOLD4\nCost\nCostpAgent\nQALY\nQALYpAgent\nNMB\nIncrementalCosts\nIncrementalQALY\nICER\nIncrementalNMB\n\n\n\n\nS3NoCD\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\n0\n0\nNaN\n0\n\n\nS3a\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3b\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3c\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3d\n0\n0\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\n0\n0\n0\n0\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\nTreatment rate: SABA is expressed per all patient-years, LAMA, LAMA/LABA, ICS/LAMA/LABA are per COPD patient-years Exacerbations: Total exacerbations and rate per COPD patient-year GOLD Stage: Cumulative patient-years Cost/QALY: Total cost and QALYs NMB: Net Monetary Benefit is calculated as QALY per patient-year * Lamba - Cost per patient-year"
+  },
+  {
+    "objectID": "quarto_site/show_reproduction.html#all-scenarios",
+    "href": "quarto_site/show_reproduction.html#all-scenarios",
+    "title": "Main analysis",
+    "section": "",
+    "text": "Ordered by descending Net Monetary Benefit\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nAgents\nCost\nCostpAgent\nQALY\nQALYpAgent\nICER\nIncrementalNMB\n\n\n\n\nS1NoCD\n0\n0\nNaN\n0\nNaN\nNaN\n0\n\n\nS2NoCD\n0\n0\nNaN\n0\nNaN\nNaN\n0\n\n\nS3NoCD\n0\n0\nNaN\n0\nNaN\nNaN\n0\n\n\nS1a\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS1b\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS1c\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS2a\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS3a\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS3b\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS3c\n0\n0\nNaN\n0\nNaN\nNaN\nNaN\n\n\nS3d\n0\n0\nNaN\n0\nNaN\nNaN\nNaN"
+  },
+  {
+    "objectID": "quarto_site/show_reproduction.html#cost-effectiveness-plane",
+    "href": "quarto_site/show_reproduction.html#cost-effectiveness-plane",
+    "title": "Main analysis",
+    "section": "",
+    "text": "Adjusted to the total population\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nAgents\nPropAgents\nCost\nCostpAgent\nCostpAgentExcluded\nCostpAgentAll\nQALY\nQALYpAgent\nQALYpAgentExcluded\nQALYpAgentAll\nIncrementalCosts\nIncrementalQALY\nICERAdj\nICER\nINMB\n\n\n\n\nS1NoCDAvg\n0\n1\n0\nNaN\n0\nNaN\n0\nNaN\n0\nNaN\n0\n0\nNaN\nNaN\nNaN\n\n\nS1a\n0\n1\n0\nNaN\n0\nNaN\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1b\n0\n1\n0\nNaN\n0\nNaN\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1c\n0\n1\n0\nNaN\n0\nNaN\n0\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS2NoCD\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\n0\n0\nNaN\nNaN\nNaN\n\n\nS2a\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3NoCD\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\n0\n0\nNaN\nNaN\nNaN\n\n\nS3a\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3b\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3c\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3d\n0\nNaN\n0\nNaN\nNaN\nNaN\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n\n## Warning: Removed 8 rows containing missing values or values outside the scale range\n## (`geom_point()`).\n\n## Warning: Removed 8 rows containing missing values or values outside the scale range\n## (`geom_text()`)."
+  },
+  {
+    "objectID": "quarto_site/show_reproduction.html#clinical-results-for-all-scenarios",
+    "href": "quarto_site/show_reproduction.html#clinical-results-for-all-scenarios",
+    "title": "Main analysis",
+    "section": "",
+    "text": "Adjusted to the total population\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScenario\nPropAgents\nProppPatientYears\nProppCopdPYs\nSABAAll\nLAMAAll\nLAMALABAAll\nICSLAMALABAAll\nMildpAgentAll\nModeratepAgentAll\nSeverepAgentAll\nVerySeverepAgentAll\nNoCOPDpPYAll\nGOLD1pPYAll\nGOLD2pPYAll\nGOLD3pPYAll\nGOLD4pPYAll\nDiagnosedpPYAll\n\n\n\n\nS1NoCDAvg\n1\n1\n1\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1a\n1\n1\n1\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1b\n1\n1\n1\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS1c\n1\n1\n1\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS2NoCD\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS2a\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3NoCD\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3a\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3b\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3c\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nS3d\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN"
+  },
+  {
+    "objectID": "quarto_site/show_reproduction.html#time-elapsed",
+    "href": "quarto_site/show_reproduction.html#time-elapsed",
+    "title": "Main analysis",
+    "section": "",
+    "text": "Run time for this notebook:\nend.time &lt;- Sys.time()\ntime.taken &lt;- end.time - start.time\ntime.taken\n## Time difference of 18.16696 mins"
   },
   {
     "objectID": "evaluation/reproduction_success.html",
