@@ -1,0 +1,51 @@
+---
+title: "Day 4"
+author: "Amy Heather"
+date: "2024-08-14"
+categories: [reproduce]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+TBC. Total time used: -h -m (-%)
+
+:::
+
+## 09.27-09.52, 10.20-10.21: Run model
+
+Helpfully, we know to expect that this has a long run time from their README:
+
+> "Note: The analysis version of these results simulates 100 million agents, which will take ~16 hours to run for each script. The published analysis was conducted using R Version 3.5.3"
+
+Given this warning, I tried running it with fewer agents:
+
+```
+settings$n_base_agents <- 5e+3
+```
+
+On my machine, I tried it with increasing numbers of agents, but it consistently returned results of 0 / 1 / NaN:
+
+* 5000 (a  minute to run)
+* 50,000 (2.4 minutes to run)
+* 500,000 (18.2 minutes to run)
+
+Unfortunately I can't currently access our remote higher spec machine, which would've allowed me to run these quicker.
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 164
+
+# Times from today
+times = [
+    ('09.27', '09.52'),
+    ('10.20', '10.21')]
+
+calculate_times(used_to_date, times)
+```

@@ -8,7 +8,7 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
-TBC. Total time used: TBCh TBCm (TBC%)
+Set up environment and import package. Total time used: 2h 44m (6.8%)
 
 :::
 
@@ -66,11 +66,9 @@ RWarning: ── Conflicts ─────────────────�
   "mvrnormArma"))` to remove the conflicts.
 ```
 
-Despite that though, it seemed to have worked?
+Despite that though, it seemed to have worked.
 
 I then add some additional dependencies from the `.Rmd` to DESCRIPTION and to the renv.
-
-## 
 
 ## Timings
 
@@ -85,7 +83,8 @@ used_to_date = 101
 # Times from today
 times = [
     ('15.33', '15.53'),
-    ('15.57', '16.00')]
+    ('15.57', '16.00'),
+    ('16.01', '16.41')]
 
 calculate_times(used_to_date, times)
 ```
