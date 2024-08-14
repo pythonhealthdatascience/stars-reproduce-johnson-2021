@@ -4,18 +4,20 @@ output: github_document
 keep.md: true
 ---
 
-```{r}
-devtools::load_all("../epicR")
-```
-
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Start timer
+start.time <- Sys.time()
+
 set.seed(333) #333 is the analysis seed
-# library(epicR)
+
+# Load local package epicR (this simulates the use of library())
+devtools::load_all("../epicR")
+
+# Load other required packages
 library(tidyverse)
 library(knitr)
 library(kableExtra)
 ```
-
 
 ```{r global settings, echo=FALSE}
 record_mode<-c(
@@ -26,7 +28,10 @@ record_mode<-c(
   
 settings <- get_default_settings()
 settings$record_mode <- record_mode["record_mode_none"]
-settings$n_base_agents <- 50e+6 # change number of agents here: 100e+6 is used in the analysis
+
+# CHANGE: Reduced from 50 million (50e+6/5e+7) / 100 million (1e+8)
+settings$n_base_agents <- 5e+5
+
 lambda=50000 # change WTP threshold here
   
 init_session(settings = settings)
@@ -1526,4 +1531,12 @@ clinical.results.tab <- select(clinical.results, Scenario, PropAgents, ProppPati
 kable(clinical.results.tab) 
 ```
 
+## Time elapsed
 
+Run time for this notebook:
+
+```{r runtime}
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+time.taken
+```
