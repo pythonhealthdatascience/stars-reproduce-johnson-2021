@@ -8,7 +8,7 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
-Fixed my loading of epicR so get model results! Experiemented with agent numbers. Total time used: -h -m (-%)
+Fixed my loading of epicR so get model results! Experiemented with agent numbers. Total time used: 6h 11m (15.5%)
 
 :::
 
@@ -181,7 +181,7 @@ Looking at `Case_Detection_Results.Rmd`, there are 12 scenarios, and then anothe
 
 I figured I could try running the whole thing with 500,000 to begin with, but up it to 1 million or 5 million if needed, but that 50 million probably wasn't necessary (as anticipate will likely be able to get similar enough results with lower numbers).
 
-## 15.26-15.38, 15.58-16.08, 16.18-X: Running the full original script
+## 15.26-15.38, 15.58-16.08, 16.18-16.53: Running the full original script
 
 I re-copied the original script and only made the following amendments before running:
 
@@ -208,6 +208,8 @@ pd.read_csv('clinicalresults_5e5.csv')
 
 ![CEplot](CEplot-1_5e5.png)
 
+I initially focused on sall, and reworking it to be more similar to Table 3. Whilst doing this, I assumed that S1NoCD was S0, as the values were closest and as it was the first (as opposed to S2NoCD or S3NoCD).
+
 ## Timings
 
 ```{python}
@@ -225,8 +227,12 @@ times = [
     ('11.48', '12.00'),
     ('12.01', '12.24'),
     ('12.25', '12.30'),
-    ('14.08', '14.53')]
-#TODO: Finish adding times, from 15.10 onwards
+    ('14.08', '14.53'),
+    ('15.10', '15.14'),
+    ('15.20', '15.25'),
+    ('15.26', '15.38'),
+    ('15.58', '16.08'),
+    ('16.18', '16.53')]
 
 calculate_times(used_to_date, times)
 ```
