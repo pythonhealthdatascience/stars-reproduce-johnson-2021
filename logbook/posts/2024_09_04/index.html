@@ -246,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#reviewing-results-from-50e6" id="toc-reviewing-results-from-50e6" class="nav-link" data-scroll-target="#reviewing-results-from-50e6">11.29-11.34, 11.48-12.00: Reviewing results from 50e+6</a></li>
   <li><a href="#basic-run-of-epicr-to-resolve-the-0-results-issue" id="toc-basic-run-of-epicr-to-resolve-the-0-results-issue" class="nav-link" data-scroll-target="#basic-run-of-epicr-to-resolve-the-0-results-issue">12.01-12.24: Basic run of epicR to resolve the “0” results issue</a></li>
   <li><a href="#fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" id="toc-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" class="nav-link" data-scroll-target="#fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents">12.25-12.30, 14.08-14.53, 15.10-15.14, 15.20-15.25: Fixing my mini analysis and returning to lower numbers of agents</a></li>
-  <li><a href="#x-running-the-full-original-script" id="toc-x-running-the-full-original-script" class="nav-link" data-scroll-target="#x-running-the-full-original-script">15.26-X: Running the full original script</a></li>
+  <li><a href="#running-the-full-original-script" id="toc-running-the-full-original-script" class="nav-link" data-scroll-target="#running-the-full-original-script">15.26-15.38, 15.58-16.08, 16.18-16.53: Running the full original script</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_04/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -268,7 +268,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Fixed my loading of epicR so get model results! Experiemented with agent numbers. Total time used: -h -m (-%)</p>
+<p>Fixed my loading of epicR so get model results! Experiemented with agent numbers. Total time used: 6h 11m (15.5%)</p>
 </div>
 </div>
 <section id="returning-to-run-the-model" class="level2">
@@ -284,7 +284,7 @@ Rscript -e "rmarkdown::render('scripts/Mini_Analysis.Rmd')"</code></pre>
 <section id="reviewing-results-from-50e6" class="level2">
 <h2 class="anchored" data-anchor-id="reviewing-results-from-50e6">11.29-11.34, 11.48-12.00: Reviewing results from 50e+6</h2>
 <p>This ran in 1.642896 hours (1 hour 38 minutes). The result was still wrong though:</p>
-<div id="fc612e50" class="cell" data-execution_count="1">
+<div id="7b7dd7bb" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'mini_analysis_50e6.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
@@ -393,7 +393,7 @@ terminate_session()</code></pre>
 <li>5 million (5e6) (27.3 minutes local, 10.0 minutes remote)</li>
 </ul>
 <p>And it was quicker than before too! (17s vs 2.4m, 2.6m vs 18.2m).</p>
-<div id="d0b0f94d" class="cell" data-execution_count="2">
+<div id="c5e16a0c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Import results</span></span>
@@ -599,7 +599,7 @@ terminate_session()</code></pre>
 </ul></li>
 </ul>
 <p>I filtered to those columns, and add the results from <code>Case_Detection_Results.md</code>…</p>
-<div id="3dc6fc59" class="cell" data-execution_count="3">
+<div id="316a8ee1" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to columns not influenced by agent number</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> df_s1nocd[[</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'SABA'</span>, <span class="st">'LAMA'</span>, <span class="st">'LAMALABA'</span>, <span class="st">'ICSLAMALABA'</span>, <span class="st">'MildPY'</span>,<span class="st">'ModeratePY'</span>, <span class="st">'SeverePY'</span>,</span>
@@ -741,42 +741,715 @@ terminate_session()</code></pre>
 <p>Looking at <code>Case_Detection_Results.Rmd</code>, there are 12 scenarios, and then another 12 for 5 years, so a total of 24.</p>
 <p>I figured I could try running the whole thing with 500,000 to begin with, but up it to 1 million or 5 million if needed, but that 50 million probably wasn’t necessary (as anticipate will likely be able to get similar enough results with lower numbers).</p>
 </section>
-<section id="x-running-the-full-original-script" class="level2">
-<h2 class="anchored" data-anchor-id="x-running-the-full-original-script">15.26-X: Running the full original script</h2>
+<section id="running-the-full-original-script" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-full-original-script">15.26-15.38, 15.58-16.08, 16.18-16.53: Running the full original script</h2>
 <p>I re-copied the original script and only made the following amendments before running:</p>
 <ul>
 <li>Altering import of epicR</li>
 <li>Adding a timer</li>
-<li>Reducing agent number from 50e6 to 5e5</li>
+<li>Reducing agent number from <strong>50e6</strong> (50 million) to <strong>5e5</strong> (500 thousand)</li>
 <li>Saving results tables to csv files</li>
 </ul>
+<p>Then ran on remote machine. It took a bit of tweaking to correct the saving into outputs folder and get right paths, as I got the path wrong, and then it wouldn’t work before had made “outputs” folder.</p>
+<p>Finishing this, I got five results tables (saved to csv).</p>
+<div id="0db54a40" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'sall_5e5.csv'</span>).sort_values(by<span class="op">=</span><span class="st">'Scenario'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Scenario</th>
+<th data-quarto-table-cell-role="th">Agents</th>
+<th data-quarto-table-cell-role="th">Cost</th>
+<th data-quarto-table-cell-role="th">CostpAgent</th>
+<th data-quarto-table-cell-role="th">QALY</th>
+<th data-quarto-table-cell-role="th">QALYpAgent</th>
+<th data-quarto-table-cell-role="th">ICER</th>
+<th data-quarto-table-cell-role="th">IncrementalNMB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>S1NoCD</td>
+<td>371579</td>
+<td>7.985673e+08</td>
+<td>2149.118458</td>
+<td>4.660359e+06</td>
+<td>12.542042</td>
+<td>NaN</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>S1a</td>
+<td>371902</td>
+<td>9.004813e+08</td>
+<td>2421.286568</td>
+<td>4.670660e+06</td>
+<td>12.558846</td>
+<td>16195.977030</td>
+<td>568.065578</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>S1b</td>
+<td>372140</td>
+<td>8.821882e+08</td>
+<td>2370.581549</td>
+<td>4.668622e+06</td>
+<td>12.545338</td>
+<td>67189.317529</td>
+<td>-56.657807</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>S1c</td>
+<td>371919</td>
+<td>8.780531e+08</td>
+<td>2360.871744</td>
+<td>4.668922e+06</td>
+<td>12.553600</td>
+<td>18321.203589</td>
+<td>366.138021</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">7</td>
+<td>S2NoCD</td>
+<td>219759</td>
+<td>5.923556e+08</td>
+<td>2695.478273</td>
+<td>2.696622e+06</td>
+<td>12.270813</td>
+<td>NaN</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>S2a</td>
+<td>221233</td>
+<td>6.444787e+08</td>
+<td>2913.121915</td>
+<td>2.718304e+06</td>
+<td>12.287065</td>
+<td>13391.766206</td>
+<td>594.958813</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>S3NoCD</td>
+<td>172154</td>
+<td>4.944031e+08</td>
+<td>2871.865595</td>
+<td>1.934054e+06</td>
+<td>11.234440</td>
+<td>NaN</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>S3a</td>
+<td>172660</td>
+<td>5.270176e+08</td>
+<td>3052.343287</td>
+<td>1.941269e+06</td>
+<td>11.243307</td>
+<td>20354.541872</td>
+<td>262.857493</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>S3b</td>
+<td>172336</td>
+<td>5.420539e+08</td>
+<td>3145.331710</td>
+<td>1.937179e+06</td>
+<td>11.240712</td>
+<td>43606.186231</td>
+<td>40.097325</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">0</td>
+<td>S3c</td>
+<td>172314</td>
+<td>5.350466e+08</td>
+<td>3105.067680</td>
+<td>1.939341e+06</td>
+<td>11.254689</td>
+<td>11516.850740</td>
+<td>779.236513</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9</td>
+<td>S3d</td>
+<td>172882</td>
+<td>5.427277e+08</td>
+<td>3139.295863</td>
+<td>1.943060e+06</td>
+<td>11.239224</td>
+<td>55904.120380</td>
+<td>-28.243723</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="f5b91168" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'ceplane_5e5.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Scenario</th>
+<th data-quarto-table-cell-role="th">Agents</th>
+<th data-quarto-table-cell-role="th">PropAgents</th>
+<th data-quarto-table-cell-role="th">Cost</th>
+<th data-quarto-table-cell-role="th">CostpAgent</th>
+<th data-quarto-table-cell-role="th">CostpAgentExcluded</th>
+<th data-quarto-table-cell-role="th">CostpAgentAll</th>
+<th data-quarto-table-cell-role="th">QALY</th>
+<th data-quarto-table-cell-role="th">QALYpAgent</th>
+<th data-quarto-table-cell-role="th">QALYpAgentExcluded</th>
+<th data-quarto-table-cell-role="th">QALYpAgentAll</th>
+<th data-quarto-table-cell-role="th">IncrementalCosts</th>
+<th data-quarto-table-cell-role="th">IncrementalQALY</th>
+<th data-quarto-table-cell-role="th">ICERAdj</th>
+<th data-quarto-table-cell-role="th">ICER</th>
+<th data-quarto-table-cell-role="th">INMB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>S1NoCDAvg</td>
+<td>371714</td>
+<td>1.000000</td>
+<td>8.009440e+08</td>
+<td>2154.731836</td>
+<td>0.000000</td>
+<td>2154.731836</td>
+<td>4.662659e+06</td>
+<td>12.543673</td>
+<td>0.000000</td>
+<td>12.543673</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>S1a</td>
+<td>371902</td>
+<td>1.000000</td>
+<td>9.004813e+08</td>
+<td>2421.286568</td>
+<td>0.000000</td>
+<td>2421.286568</td>
+<td>4.670660e+06</td>
+<td>12.558846</td>
+<td>0.000000</td>
+<td>12.558846</td>
+<td>266.554732</td>
+<td>0.015174</td>
+<td>17566.697170</td>
+<td>16195.977030</td>
+<td>492.138634</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>S1b</td>
+<td>372140</td>
+<td>1.000000</td>
+<td>8.821882e+08</td>
+<td>2370.581549</td>
+<td>0.000000</td>
+<td>2370.581549</td>
+<td>4.668622e+06</td>
+<td>12.545338</td>
+<td>0.000000</td>
+<td>12.545338</td>
+<td>215.849713</td>
+<td>0.001665</td>
+<td>129616.172631</td>
+<td>67189.317529</td>
+<td>-132.584751</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>S1c</td>
+<td>371919</td>
+<td>1.000000</td>
+<td>8.780531e+08</td>
+<td>2360.871744</td>
+<td>0.000000</td>
+<td>2360.871744</td>
+<td>4.668922e+06</td>
+<td>12.553600</td>
+<td>0.000000</td>
+<td>12.553600</td>
+<td>206.139907</td>
+<td>0.009927</td>
+<td>20765.538289</td>
+<td>18321.203589</td>
+<td>290.211077</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>S2NoCD</td>
+<td>219759</td>
+<td>0.591205</td>
+<td>5.923556e+08</td>
+<td>2695.478273</td>
+<td>1372.698365</td>
+<td>2154.731836</td>
+<td>2.696622e+06</td>
+<td>12.270813</td>
+<td>12.938285</td>
+<td>12.543673</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>S2a</td>
+<td>221233</td>
+<td>0.595170</td>
+<td>6.444787e+08</td>
+<td>2913.121915</td>
+<td>1372.698365</td>
+<td>2289.512160</td>
+<td>2.718304e+06</td>
+<td>12.287065</td>
+<td>12.938285</td>
+<td>12.550698</td>
+<td>134.780324</td>
+<td>0.007026</td>
+<td>19183.267805</td>
+<td>13391.766206</td>
+<td>216.516247</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>S3NoCD</td>
+<td>172154</td>
+<td>0.463136</td>
+<td>4.944031e+08</td>
+<td>2871.865595</td>
+<td>1536.083584</td>
+<td>2154.731836</td>
+<td>1.934054e+06</td>
+<td>11.234440</td>
+<td>13.673105</td>
+<td>12.543673</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>S3a</td>
+<td>172660</td>
+<td>0.464497</td>
+<td>5.270176e+08</td>
+<td>3052.343287</td>
+<td>1536.083584</td>
+<td>2240.381513</td>
+<td>1.941269e+06</td>
+<td>11.243307</td>
+<td>13.673105</td>
+<td>12.544471</td>
+<td>85.649677</td>
+<td>0.000799</td>
+<td>107210.068856</td>
+<td>20354.541872</td>
+<td>-45.704885</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>S3b</td>
+<td>172336</td>
+<td>0.463625</td>
+<td>5.420539e+08</td>
+<td>3145.331710</td>
+<td>1536.083584</td>
+<td>2282.171665</td>
+<td>1.937179e+06</td>
+<td>11.240712</td>
+<td>13.673105</td>
+<td>12.545386</td>
+<td>127.439829</td>
+<td>0.001713</td>
+<td>74374.399669</td>
+<td>43606.186231</td>
+<td>-41.765303</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>S3c</td>
+<td>172314</td>
+<td>0.463566</td>
+<td>5.350466e+08</td>
+<td>3105.067680</td>
+<td>1536.083584</td>
+<td>2263.411383</td>
+<td>1.939341e+06</td>
+<td>11.254689</td>
+<td>13.673105</td>
+<td>12.552009</td>
+<td>108.679547</td>
+<td>0.008337</td>
+<td>13035.890064</td>
+<td>11516.850740</td>
+<td>308.167889</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>S3d</td>
+<td>172882</td>
+<td>0.465094</td>
+<td>5.427277e+08</td>
+<td>3139.295863</td>
+<td>1536.083584</td>
+<td>2281.728207</td>
+<td>1.943060e+06</td>
+<td>11.239224</td>
+<td>13.673105</td>
+<td>12.541121</td>
+<td>126.996370</td>
+<td>-0.002551</td>
+<td>-49778.541469</td>
+<td>55904.120380</td>
+<td>-254.557732</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="b1debc33" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'clinicalresults_5e5.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Scenario</th>
+<th data-quarto-table-cell-role="th">PropAgents</th>
+<th data-quarto-table-cell-role="th">ProppPatientYears</th>
+<th data-quarto-table-cell-role="th">ProppCopdPYs</th>
+<th data-quarto-table-cell-role="th">SABAAll</th>
+<th data-quarto-table-cell-role="th">LAMAAll</th>
+<th data-quarto-table-cell-role="th">LAMALABAAll</th>
+<th data-quarto-table-cell-role="th">ICSLAMALABAAll</th>
+<th data-quarto-table-cell-role="th">MildpAgentAll</th>
+<th data-quarto-table-cell-role="th">ModeratepAgentAll</th>
+<th data-quarto-table-cell-role="th">SeverepAgentAll</th>
+<th data-quarto-table-cell-role="th">VerySeverepAgentAll</th>
+<th data-quarto-table-cell-role="th">NoCOPDpPYAll</th>
+<th data-quarto-table-cell-role="th">GOLD1pPYAll</th>
+<th data-quarto-table-cell-role="th">GOLD2pPYAll</th>
+<th data-quarto-table-cell-role="th">GOLD3pPYAll</th>
+<th data-quarto-table-cell-role="th">GOLD4pPYAll</th>
+<th data-quarto-table-cell-role="th">DiagnosedpPYAll</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>S1NoCDAvg</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.019067</td>
+<td>0.136964</td>
+<td>0.152488</td>
+<td>0.081139</td>
+<td>0.411860</td>
+<td>0.077802</td>
+<td>0.130921</td>
+<td>0.011304</td>
+<td>0.842808</td>
+<td>0.046012</td>
+<td>0.048997</td>
+<td>0.010899</td>
+<td>0.001925</td>
+<td>0.187126</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>S1a</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.026545</td>
+<td>0.157022</td>
+<td>0.308491</td>
+<td>0.092651</td>
+<td>0.399933</td>
+<td>0.075006</td>
+<td>0.126251</td>
+<td>0.010954</td>
+<td>0.841922</td>
+<td>0.046363</td>
+<td>0.049408</td>
+<td>0.011021</td>
+<td>0.001948</td>
+<td>0.464262</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>S1b</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.021459</td>
+<td>0.149159</td>
+<td>0.241721</td>
+<td>0.088141</td>
+<td>0.404149</td>
+<td>0.077388</td>
+<td>0.129586</td>
+<td>0.011345</td>
+<td>0.842348</td>
+<td>0.046148</td>
+<td>0.049331</td>
+<td>0.010965</td>
+<td>0.001861</td>
+<td>0.333770</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>S1c</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.020317</td>
+<td>0.144204</td>
+<td>0.214241</td>
+<td>0.085843</td>
+<td>0.405836</td>
+<td>0.075828</td>
+<td>0.127832</td>
+<td>0.010900</td>
+<td>0.843357</td>
+<td>0.045779</td>
+<td>0.048706</td>
+<td>0.010946</td>
+<td>0.001846</td>
+<td>0.290201</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>S2NoCD</td>
+<td>0.591205</td>
+<td>0.580239</td>
+<td>0.708846</td>
+<td>0.019067</td>
+<td>0.136964</td>
+<td>0.152488</td>
+<td>0.081139</td>
+<td>0.411860</td>
+<td>0.077802</td>
+<td>0.130921</td>
+<td>0.011304</td>
+<td>0.842808</td>
+<td>0.046012</td>
+<td>0.048997</td>
+<td>0.010899</td>
+<td>0.001925</td>
+<td>0.187126</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>S2a</td>
+<td>0.595170</td>
+<td>0.584381</td>
+<td>0.711030</td>
+<td>0.022459</td>
+<td>0.150276</td>
+<td>0.233361</td>
+<td>0.090027</td>
+<td>0.402526</td>
+<td>0.077061</td>
+<td>0.129553</td>
+<td>0.010940</td>
+<td>0.842892</td>
+<td>0.046209</td>
+<td>0.048552</td>
+<td>0.011044</td>
+<td>0.001959</td>
+<td>0.315256</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>S3NoCD</td>
+<td>0.463136</td>
+<td>0.415130</td>
+<td>0.587070</td>
+<td>0.019067</td>
+<td>0.136964</td>
+<td>0.152488</td>
+<td>0.081139</td>
+<td>0.411860</td>
+<td>0.077802</td>
+<td>0.130921</td>
+<td>0.011304</td>
+<td>0.842808</td>
+<td>0.046012</td>
+<td>0.048997</td>
+<td>0.010899</td>
+<td>0.001925</td>
+<td>0.187126</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>S3a</td>
+<td>0.464497</td>
+<td>0.416543</td>
+<td>0.589477</td>
+<td>0.020197</td>
+<td>0.140746</td>
+<td>0.182354</td>
+<td>0.084633</td>
+<td>0.411228</td>
+<td>0.078085</td>
+<td>0.130900</td>
+<td>0.011011</td>
+<td>0.842680</td>
+<td>0.045921</td>
+<td>0.049123</td>
+<td>0.010895</td>
+<td>0.002053</td>
+<td>0.232586</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>S3b</td>
+<td>0.463625</td>
+<td>0.415283</td>
+<td>0.585001</td>
+<td>0.022672</td>
+<td>0.148789</td>
+<td>0.234355</td>
+<td>0.088940</td>
+<td>0.400451</td>
+<td>0.076676</td>
+<td>0.128972</td>
+<td>0.011083</td>
+<td>0.843023</td>
+<td>0.045768</td>
+<td>0.049076</td>
+<td>0.010821</td>
+<td>0.001914</td>
+<td>0.318064</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>S3c</td>
+<td>0.463566</td>
+<td>0.415885</td>
+<td>0.582899</td>
+<td>0.021257</td>
+<td>0.146624</td>
+<td>0.211534</td>
+<td>0.088250</td>
+<td>0.404950</td>
+<td>0.078611</td>
+<td>0.131189</td>
+<td>0.011164</td>
+<td>0.843306</td>
+<td>0.045817</td>
+<td>0.048867</td>
+<td>0.010668</td>
+<td>0.001974</td>
+<td>0.277774</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>S3d</td>
+<td>0.465094</td>
+<td>0.416844</td>
+<td>0.590338</td>
+<td>0.020732</td>
+<td>0.144100</td>
+<td>0.197982</td>
+<td>0.085758</td>
+<td>0.407402</td>
+<td>0.078907</td>
+<td>0.131801</td>
+<td>0.011216</td>
+<td>0.842570</td>
+<td>0.045941</td>
+<td>0.049306</td>
+<td>0.010897</td>
+<td>0.001906</td>
+<td>0.255943</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="CEplot-1_5e5.png" class="img-fluid figure-img"></p>
+<figcaption>CEplot</figcaption>
+</figure>
+</div>
+<p>I initially focused on sall, and reworking it to be more similar to Table 3. Whilst doing this, I assumed that S1NoCD was S0, as the values were closest and as it was the first (as opposed to S2NoCD or S3NoCD).</p>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="49948b13" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">193</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.19'</span>, <span class="st">'09.41'</span>),</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.29'</span>, <span class="st">'11.34'</span>),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.48'</span>, <span class="st">'12.00'</span>),</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'12.01'</span>, <span class="st">'12.24'</span>),</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'12.25'</span>, <span class="st">'12.30'</span>),</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'14.08'</span>, <span class="st">'14.53'</span>)]</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: Finish adding times, from 15.10 onwards</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="30d7834c" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">193</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.19'</span>, <span class="st">'09.41'</span>),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.29'</span>, <span class="st">'11.34'</span>),</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.48'</span>, <span class="st">'12.00'</span>),</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'12.01'</span>, <span class="st">'12.24'</span>),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'12.25'</span>, <span class="st">'12.30'</span>),</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'14.08'</span>, <span class="st">'14.53'</span>),</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.10'</span>, <span class="st">'15.14'</span>),</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.20'</span>, <span class="st">'15.25'</span>),</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.26'</span>, <span class="st">'15.38'</span>),</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.58'</span>, <span class="st">'16.08'</span>),</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'16.18'</span>, <span class="st">'16.53'</span>)]</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 112m, or 1h 52m
-Total used to date: 305m, or 5h 5m
-Time remaining: 2095m, or 34h 55m
-Used 12.7% of 40 hours max</code></pre>
+<pre><code>Time spent today: 178m, or 2h 58m
+Total used to date: 371m, or 6h 11m
+Time remaining: 2029m, or 33h 49m
+Used 15.5% of 40 hours max</code></pre>
 </div>
 </div>
 
