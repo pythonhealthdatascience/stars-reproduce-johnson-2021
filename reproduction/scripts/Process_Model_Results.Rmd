@@ -1,0 +1,55 @@
+---
+title: "Process Model Results"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: github_document
+keep.md: true
+---
+
+This file processes the model results so they match up as closely as possible to those in the publication.
+
+```{r}
+library(dplyr)
+```
+
+## Table 3
+
+```{r}
+sall <- read.csv("../outputs/sall.csv")
+
+sall %>%
+  # Remove scenarios 2 and 3 with no case detection
+  filter(!(Scenario == "S2NoCD" | Scenario == "S3NoCD" | Scenario == "S2b")) %>%
+  # Add testing interval for all excep S1NoCD
+  mutate("Interval" = ifelse(Scenario!="S1NoCD", "3 years", NA)) %>%
+  # Remove INMB for S1NoCD
+  mutate(IncrementalNMB = ifelse(Scenario!="S1NoCD", IncrementalNMB, NA)) %>%
+  # Round columns
+  mutate(CostpAgent = paste0("$", round(CostpAgent, 0))) %>%
+  mutate(QALYpAgent = round(QALYpAgent, 3)) %>%
+  mutate(ICER = round(ICER, 0)) %>%
+  # Get INMB ranking
+  mutate(Ranking = min_rank(desc(IncrementalNMB))) %>%
+  mutate(INMBRank = ifelse(
+    Scenario!="S1NoCD",
+    paste0(round(IncrementalNMB, 0), "(", Ranking, ")"),
+    NA)) %>%
+  # Arrange and relabel the scenarios
+  arrange(Scenario) %>%
+  mutate(Scenario = recode(Scenario,
+                           "S1NoCD" = "S0: No case detection",
+                           "S1a" = "(S1a) CDQ ≥ 17 points",
+                           "S1b" = "(S1b) Screening spirometry",
+                           "S1c" = "(S1c) CDQ + screening spirometry",
+                           "S2a" = "(S2a) Screening spirometry",
+                           "S3a" = "(S3a) CDQ ≥ 19.5 points",
+                           "S3b" = "(S3b) CDQ ≥ 16.5 points",
+                           "S3c" = "(S3c) Screening spirometry",
+                           "S3d" = "(S3d) CDQ + screening spirometry")) %>%
+  # Select, reorder and relabel columns
+  select(Scenario, Interval, CostpAgent, QALYpAgent, ICER, INMBRank) %>%
+  rename("Testing interval" = Interval,
+         "Costs ($/patient)" = CostpAgent,
+         "QALYs (QALYs/patient)" = QALYpAgent,
+         "ICER ($/QALY)" = ICER,
+         "INMB (ranking)" = INMBRank)
+```
