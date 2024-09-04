@@ -181,14 +181,32 @@ Looking at `Case_Detection_Results.Rmd`, there are 12 scenarios, and then anothe
 
 I figured I could try running the whole thing with 500,000 to begin with, but up it to 1 million or 5 million if needed, but that 50 million probably wasn't necessary (as anticipate will likely be able to get similar enough results with lower numbers).
 
-## 15.26-X: Running the full original script
+## 15.26-15.38, 15.58-16.08, 16.18-X: Running the full original script
 
 I re-copied the original script and only made the following amendments before running:
 
 * Altering import of epicR
 * Adding a timer
-* Reducing agent number from 50e6 to 5e5
+* Reducing agent number from **50e6** (50 million) to **5e5** (500 thousand)
 * Saving results tables to csv files
+
+Then ran on remote machine. It took a bit of tweaking to correct the saving into outputs folder and get right paths, as I got the path wrong, and then it wouldn't work before had made "outputs" folder.
+
+Finishing this, I got five results tables (saved to csv).
+
+```{python}
+pd.read_csv('sall_5e5.csv').sort_values(by='Scenario')
+```
+
+```{python}
+pd.read_csv('ceplane_5e5.csv')
+```
+
+```{python}
+pd.read_csv('clinicalresults_5e5.csv')
+```
+
+![CEplot](CEplot-1_5e5.png)
 
 ## Timings
 
