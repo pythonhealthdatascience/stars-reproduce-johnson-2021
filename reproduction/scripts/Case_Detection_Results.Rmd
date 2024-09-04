@@ -34,7 +34,7 @@ library(kableExtra)
 
 ```{r}
 # CHANGE: Add save paths (will see later, we also add lines to save to csv)
-outputs <- "../outputs"
+outputs <- "../outputs/"
 files <- list(
   s1 = "s1.csv",
   s2 = "s2.csv",
