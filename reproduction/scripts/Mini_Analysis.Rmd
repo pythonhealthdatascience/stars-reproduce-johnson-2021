@@ -5,15 +5,23 @@ keep.md: true
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Start timer
-start.time <- Sys.time()
-
-set.seed(333) #333 is the analysis seed
-
-# Load local package epicR (this simulates the use of library())
+# Load local package epicR
 devtools::load_all("../epicR")
 
-# Load other required packages
+# Clear environment as want to use library(epicR) below, which will use the
+# devtools loaded library, but want to clear any other bits load_all() brought
+# in and just work with that package from a "clean slate".
+rm(list=ls())
+```
+
+```{r}
+# Start timer
+start.time <- Sys.time()
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+set.seed(333) #333 is the analysis seed
+library(epicR)
 library(tidyverse)
 library(knitr)
 library(kableExtra)
@@ -28,7 +36,7 @@ record_mode<-c(
   
 settings <- get_default_settings()
 settings$record_mode <- record_mode["record_mode_none"]
-settings$n_base_agents <- 50e+6 # change number of agents here: 100e+6 is used in the analysis
+settings$n_base_agents <- 5000
 lambda=50000 # change WTP threshold here
   
 init_session(settings = settings)
