@@ -85,13 +85,31 @@ Warning: ── Conflicts ──────────────────
 
 I found that, if I ran the whole script just with the local `devtools::load_all("../epicR")`, it would appear to run but give results like 0. If however I cleared the environment and then ran `library(epicR)` below the `load_all()` statement, it would run and give actual results. I'm presuming this relates to the conflicts message above. I understand that, when I clear the environment, I'm removing objects, states and data that might have come with load_all() but keeping the package itself, so I am just left with a "clean slate" with the package.
 
-## 12.25-12.30: Fixing my Mini_Analysis and returning to lower numbers of agents.
+## 12.25-12.30, 14.08-X: Fixing my mini analysis and returning to lower numbers of agents
 
 I removed the `Basic_Model.Rmd` and returned to `Mini_Analysis.Rmd`, adding the new workflow of clearing the environment and reloading the library. I returned to running it with fewer numbers of agents. This output results - hurrah!
 
+As I'd tried before, ran:
+
+* 5000 (5e3)
+* 50,000 (5e4) (17 seconds)
+* 500,000 (5e5) (2.6 minutes)
+
+And it was quicker than before too! (17s vs 2.4m, 2.6m vs 18.2m).
+
 ```{python}
 import pandas as pd
-pd.read_csv('mini_analysis_fixed_5000.csv')
+
+# Import results
+df5e3 = pd.read_csv('mini_analysis_fixed_5e3.csv').rename(index={0: '5e3'})
+
+df5e4 = pd.read_csv('mini_analysis_fixed_5e4.csv').rename(index={0: '5e4'})
+
+df5e5 = pd.read_csv('mini_analysis_fixed_5e5.csv').rename(index={0: '5e5'})
+
+# Combine into a single dataframe and show
+df_s1nocd = pd.concat([df5e3, df5e4, df5e5])
+df_s1nocd
 ```
 
 ## Timings
