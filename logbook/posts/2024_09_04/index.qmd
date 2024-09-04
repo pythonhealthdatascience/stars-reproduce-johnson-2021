@@ -8,7 +8,7 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
-TBC. Total time used: -h -m (-%)
+Fixed my loading of epicR so get model results! Experiemented with agent numbers. Total time used: -h -m (-%)
 
 :::
 
@@ -85,15 +85,17 @@ Warning: ── Conflicts ──────────────────
 
 I found that, if I ran the whole script just with the local `devtools::load_all("../epicR")`, it would appear to run but give results like 0. If however I cleared the environment and then ran `library(epicR)` below the `load_all()` statement, it would run and give actual results. I'm presuming this relates to the conflicts message above. I understand that, when I clear the environment, I'm removing objects, states and data that might have come with load_all() but keeping the package itself, so I am just left with a "clean slate" with the package.
 
-## 12.25-12.30, 14.08-X: Fixing my mini analysis and returning to lower numbers of agents
+## 12.25-12.30, 14.08-14.53, 15.10-15.14, 15.20-15.25: Fixing my mini analysis and returning to lower numbers of agents
 
 I removed the `Basic_Model.Rmd` and returned to `Mini_Analysis.Rmd`, adding the new workflow of clearing the environment and reloading the library. I returned to running it with fewer numbers of agents. This output results - hurrah!
 
-As I'd tried before, ran:
+As I'd tried before, ran these (either on local machine or more high powered remote machine):
 
 * 5000 (5e3)
-* 50,000 (5e4) (17 seconds)
-* 500,000 (5e5) (2.6 minutes)
+* 50,000 (5e4) (17 seconds local, 7.2 seconds remote)
+* 500,000 (5e5) (2.6 minutes local, 1.0 minutes remote)
+* 1 million (1e6) (4.7 minutes local, 2.0 minutes remote)
+* 5 million (5e6) (27.3 minutes local, 10.0 minutes remote)
 
 And it was quicker than before too! (17s vs 2.4m, 2.6m vs 18.2m).
 
@@ -107,10 +109,86 @@ df5e4 = pd.read_csv('mini_analysis_fixed_5e4.csv').rename(index={0: '5e4'})
 
 df5e5 = pd.read_csv('mini_analysis_fixed_5e5.csv').rename(index={0: '5e5'})
 
+df1e6 = pd.read_csv('mini_analysis_fixed_1e6.csv').rename(index={0: '1e6'})
+
+df5e6 = pd.read_csv('mini_analysis_fixed_5e6.csv').rename(index={0: '5e6'})
+
 # Combine into a single dataframe and show
-df_s1nocd = pd.concat([df5e3, df5e4, df5e5])
+df_s1nocd = pd.concat([df5e3, df5e4, df5e5, df1e6, df5e6])
 df_s1nocd
 ```
+
+Can't calculate ICER as need incremental costs and qalys, and those need S1a, S1b and S1c to make incrementalcosts, incrementalqaly and incrementalnmb, since they compare against S1NoCD.
+
+Comparing against S1NoCD from `Case_Detection_Results.md`:
+
+* Some columns are different as their numbers depend on number of agents:
+  * Agents
+  * PatientYears
+  * CopdPYs
+  * NCaseDetections
+  * DiagnosedPYs
+  * OverdiagnosedPYs
+  * Mild, Moderate, Severe, VerySevere
+  * NoCOPD
+  * GOLD1, GOLD2, GOLD3, GOLD4
+  * Cost
+  * QALY
+* But some are clearly processed and so should look at these to see if same results:
+  * SABA
+  * LAMA
+  * LAMALABA
+  * ICSLAMALABA
+  * MildPY, ModeratePY, SeverePY, VerySeverePY
+  * CostpAgent
+  * QALYpAgent
+  * NMB
+
+I filtered to those columns, and add the results from `Case_Detection_Results.md`...
+
+```{python}
+# Filter to columns not influenced by agent number
+s1 = df_s1nocd[[
+  'SABA', 'LAMA', 'LAMALABA', 'ICSLAMALABA', 'MildPY','ModeratePY', 'SeverePY',
+  'VerySeverePY', 'CostpAgent', 'QALYpAgent', 'NMB']]
+
+# Add original results to dataframe
+original = {
+  'SABA': 0.017,
+  'LAMA': 0.135,
+  'LAMALABA': 0.151,
+  'ICSLAMALABA': 0.080,
+  'MildPY': 0.217,
+  'ModeratePY': 0.041,
+  'SeverePY': 0.068,
+  'VerySeverePY': 0.006,
+  'CostpAgent': 2150.057,
+  'QALYpAgent': 12.544,
+  'NMB': 625073.2
+}
+original_row = pd.DataFrame(original, index=['original'])
+s1 = pd.concat([s1, original_row])
+
+# View dataframe, rounding to 3dp (as they present it in original)
+round(s1, 3)
+```
+
+We can see that many columns look very similar between them. However, for MildPY, CostpAgent, QALYpAgent and NMB, the result 5e5 is markedly better than 5e4.
+
+I then add 1 million (1e6) and 5 million (5e6) (already done above). And this looked pretty similar to 500,000 (5e5).
+
+Looking at `Case_Detection_Results.Rmd`, there are 12 scenarios, and then another 12 for 5 years, so a total of 24.
+
+I figured I could try running the whole thing with 500,000 to begin with, but up it to 1 million or 5 million if needed, but that 50 million probably wasn't necessary (as anticipate will likely be able to get similar enough results with lower numbers).
+
+## 15.26-X: Running the full original script
+
+I re-copied the original script and only made the following amendments before running:
+
+* Altering import of epicR
+* Adding a timer
+* Reducing agent number from 50e6 to 5e5
+* Saving results tables to csv files
 
 ## Timings
 
@@ -127,7 +205,10 @@ times = [
     ('09.19', '09.41'),
     ('11.29', '11.34'),
     ('11.48', '12.00'),
-    ('12.01', '12.24')]
+    ('12.01', '12.24'),
+    ('12.25', '12.30'),
+    ('14.08', '14.53')]
+#TODO: Finish adding times, from 15.10 onwards
 
 calculate_times(used_to_date, times)
 ```
