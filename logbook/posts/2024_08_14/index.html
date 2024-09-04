@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#run-model" id="toc-run-model" class="nav-link active" data-scroll-target="#run-model">09.27-09.52, 10.20-10.21: Run model</a></li>
+  <li><a href="#run-model" id="toc-run-model" class="nav-link active" data-scroll-target="#run-model">09.27-09.52, 10.20-10.21, 10.40-10.43: Run model</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_14/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -261,11 +261,11 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>TBC. Total time used: -h -m (-%)</p>
+<p>Attempted to run model with fewer agents but results 0/1/NaN so paused until have access to higher powered machine in a few weeks. Total time used: 3h 13m (8.0%)</p>
 </div>
 </div>
 <section id="run-model" class="level2">
-<h2 class="anchored" data-anchor-id="run-model">09.27-09.52, 10.20-10.21: Run model</h2>
+<h2 class="anchored" data-anchor-id="run-model">09.27-09.52, 10.20-10.21, 10.40-10.43: Run model</h2>
 <p>Helpfully, we know to expect that this has a long run time from their README:</p>
 <blockquote class="blockquote">
 <p>“Note: The analysis version of these results simulates 100 million agents, which will take ~16 hours to run for each script. The published analysis was conducted using R Version 3.5.3”</p>
@@ -279,10 +279,11 @@ Note
 <li>500,000 (18.2 minutes to run)</li>
 </ul>
 <p>Unfortunately I can’t currently access our remote higher spec machine, which would’ve allowed me to run these quicker.</p>
+<p>I created an <code>.Rmd</code> file with only the first scenario, but set to 100 million agents as in the original analysis.</p>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="5e306a3f" class="cell" data-execution_count="1">
+<div id="116844a2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -293,14 +294,15 @@ Note
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.27'</span>, <span class="st">'09.52'</span>),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.20'</span>, <span class="st">'10.21'</span>)]</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.20'</span>, <span class="st">'10.21'</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.40'</span>, <span class="st">'10.43'</span>)]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 26m, or 0h 26m
-Total used to date: 190m, or 3h 10m
-Time remaining: 2210m, or 36h 50m
-Used 7.9% of 40 hours max</code></pre>
+<pre><code>Time spent today: 29m, or 0h 29m
+Total used to date: 193m, or 3h 13m
+Time remaining: 2207m, or 36h 47m
+Used 8.0% of 40 hours max</code></pre>
 </div>
 </div>
 
