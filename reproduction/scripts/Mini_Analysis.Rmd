@@ -36,7 +36,7 @@ record_mode<-c(
   
 settings <- get_default_settings()
 settings$record_mode <- record_mode["record_mode_none"]
-settings$n_base_agents <- 5000
+settings$n_base_agents <- 50e6
 lambda=50000 # change WTP threshold here
   
 init_session(settings = settings)
@@ -162,6 +162,9 @@ payoffs$NMB <- (payoffs$QALYpAgent)*lambda - (payoffs$CostpAgent)
 s1NoCD <- cbind(base, meds, exac, exacPY, gold, payoffs)
 ```
 
+```{r preview, echo=FALSE}
+s1NoCD
+```
 
 ```{r save, echo=FALSE}
 write.csv(s1NoCD, "mini_analysis.csv", row.names=FALSE)
