@@ -245,7 +245,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#returning-to-run-the-model" id="toc-returning-to-run-the-model" class="nav-link active" data-scroll-target="#returning-to-run-the-model">09.19-09.41: Returning to run the model</a></li>
   <li><a href="#reviewing-results-from-50e6" id="toc-reviewing-results-from-50e6" class="nav-link" data-scroll-target="#reviewing-results-from-50e6">11.29-11.34, 11.48-12.00: Reviewing results from 50e+6</a></li>
   <li><a href="#basic-run-of-epicr-to-resolve-the-0-results-issue" id="toc-basic-run-of-epicr-to-resolve-the-0-results-issue" class="nav-link" data-scroll-target="#basic-run-of-epicr-to-resolve-the-0-results-issue">12.01-12.24: Basic run of epicR to resolve the “0” results issue</a></li>
-  <li><a href="#x-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" id="toc-x-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" class="nav-link" data-scroll-target="#x-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents">12.25-12.30, 14.08-X: Fixing my mini analysis and returning to lower numbers of agents</a></li>
+  <li><a href="#fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" id="toc-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" class="nav-link" data-scroll-target="#fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents">12.25-12.30, 14.08-14.53, 15.10-15.14, 15.20-15.25: Fixing my mini analysis and returning to lower numbers of agents</a></li>
+  <li><a href="#x-running-the-full-original-script" id="toc-x-running-the-full-original-script" class="nav-link" data-scroll-target="#x-running-the-full-original-script">15.26-X: Running the full original script</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_04/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -267,7 +268,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>TBC. Total time used: -h -m (-%)</p>
+<p>Fixed my loading of epicR so get model results! Experiemented with agent numbers. Total time used: -h -m (-%)</p>
 </div>
 </div>
 <section id="returning-to-run-the-model" class="level2">
@@ -283,7 +284,7 @@ Rscript -e "rmarkdown::render('scripts/Mini_Analysis.Rmd')"</code></pre>
 <section id="reviewing-results-from-50e6" class="level2">
 <h2 class="anchored" data-anchor-id="reviewing-results-from-50e6">11.29-11.34, 11.48-12.00: Reviewing results from 50e+6</h2>
 <p>This ran in 1.642896 hours (1 hour 38 minutes). The result was still wrong though:</p>
-<div id="e2dbc762" class="cell" data-execution_count="1">
+<div id="fc612e50" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'mini_analysis_50e6.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
@@ -380,17 +381,19 @@ terminate_session()</code></pre>
   remove the conflicts.</code></pre>
 <p>I found that, if I ran the whole script just with the local <code>devtools::load_all("../epicR")</code>, it would appear to run but give results like 0. If however I cleared the environment and then ran <code>library(epicR)</code> below the <code>load_all()</code> statement, it would run and give actual results. I’m presuming this relates to the conflicts message above. I understand that, when I clear the environment, I’m removing objects, states and data that might have come with load_all() but keeping the package itself, so I am just left with a “clean slate” with the package.</p>
 </section>
-<section id="x-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" class="level2">
-<h2 class="anchored" data-anchor-id="x-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents">12.25-12.30, 14.08-X: Fixing my mini analysis and returning to lower numbers of agents</h2>
+<section id="fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" class="level2">
+<h2 class="anchored" data-anchor-id="fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents">12.25-12.30, 14.08-14.53, 15.10-15.14, 15.20-15.25: Fixing my mini analysis and returning to lower numbers of agents</h2>
 <p>I removed the <code>Basic_Model.Rmd</code> and returned to <code>Mini_Analysis.Rmd</code>, adding the new workflow of clearing the environment and reloading the library. I returned to running it with fewer numbers of agents. This output results - hurrah!</p>
-<p>As I’d tried before, ran:</p>
+<p>As I’d tried before, ran these (either on local machine or more high powered remote machine):</p>
 <ul>
 <li>5000 (5e3)</li>
-<li>50,000 (5e4) (17 seconds)</li>
-<li>500,000 (5e5) (2.6 minutes)</li>
+<li>50,000 (5e4) (17 seconds local, 7.2 seconds remote)</li>
+<li>500,000 (5e5) (2.6 minutes local, 1.0 minutes remote)</li>
+<li>1 million (1e6) (4.7 minutes local, 2.0 minutes remote)</li>
+<li>5 million (5e6) (27.3 minutes local, 10.0 minutes remote)</li>
 </ul>
 <p>And it was quicker than before too! (17s vs 2.4m, 2.6m vs 18.2m).</p>
-<div id="ccf1d3b6" class="cell" data-execution_count="2">
+<div id="d0b0f94d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Import results</span></span>
@@ -400,9 +403,13 @@ terminate_session()</code></pre>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df5e5 <span class="op">=</span> pd.read_csv(<span class="st">'mini_analysis_fixed_5e5.csv'</span>).rename(index<span class="op">=</span>{<span class="dv">0</span>: <span class="st">'5e5'</span>})</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into a single dataframe and show</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>df_s1nocd <span class="op">=</span> pd.concat([df5e3, df5e4, df5e5])</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>df_s1nocd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>df1e6 <span class="op">=</span> pd.read_csv(<span class="st">'mini_analysis_fixed_1e6.csv'</span>).rename(index<span class="op">=</span>{<span class="dv">0</span>: <span class="st">'1e6'</span>})</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>df5e6 <span class="op">=</span> pd.read_csv(<span class="st">'mini_analysis_fixed_5e6.csv'</span>).rename(index<span class="op">=</span>{<span class="dv">0</span>: <span class="st">'5e6'</span>})</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into a single dataframe and show</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>df_s1nocd <span class="op">=</span> pd.concat([df5e3, df5e4, df5e5, df1e6, df5e6])</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>df_s1nocd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
@@ -440,9 +447,9 @@ terminate_session()</code></pre>
 <td>S1NoCD</td>
 <td>3696</td>
 <td>6.233997e+04</td>
-<td>7457.940354</td>
+<td>7.457940e+03</td>
 <td>18933</td>
-<td>1396.639717</td>
+<td>1.396640e+03</td>
 <td>1387</td>
 <td>0.017348</td>
 <td>0.118369</td>
@@ -464,9 +471,9 @@ terminate_session()</code></pre>
 <td>S1NoCD</td>
 <td>37129</td>
 <td>6.235741e+05</td>
-<td>70946.604827</td>
+<td>7.094660e+04</td>
 <td>190251</td>
-<td>13229.094311</td>
+<td>1.322909e+04</td>
 <td>13394</td>
 <td>0.017161</td>
 <td>0.134433</td>
@@ -488,9 +495,9 @@ terminate_session()</code></pre>
 <td>S1NoCD</td>
 <td>371579</td>
 <td>6.251100e+06</td>
-<td>706693.304957</td>
+<td>7.066933e+05</td>
 <td>1907271</td>
-<td>131040.869357</td>
+<td>1.310409e+05</td>
 <td>133904</td>
 <td>0.017192</td>
 <td>0.136018</td>
@@ -507,37 +514,269 @@ terminate_session()</code></pre>
 <td>12.542042</td>
 <td>624952.967972</td>
 </tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1e6</td>
+<td>S1NoCD</td>
+<td>743128</td>
+<td>1.249876e+07</td>
+<td>1.421786e+06</td>
+<td>3814132</td>
+<td>2.622621e+05</td>
+<td>267345</td>
+<td>0.017119</td>
+<td>0.135762</td>
+<td>0.151370</td>
+<td>...</td>
+<td>10529668</td>
+<td>577647</td>
+<td>613813</td>
+<td>136603</td>
+<td>24218</td>
+<td>1.600396e+09</td>
+<td>2153.593806</td>
+<td>9.317379e+06</td>
+<td>12.538055</td>
+<td>624749.138617</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5e6</td>
+<td>S1NoCD</td>
+<td>3718120</td>
+<td>6.256653e+07</td>
+<td>7.114655e+06</td>
+<td>19087564</td>
+<td>1.318087e+06</td>
+<td>1336660</td>
+<td>0.017180</td>
+<td>0.135601</td>
+<td>0.151460</td>
+<td>...</td>
+<td>52712576</td>
+<td>2886521</td>
+<td>3074656</td>
+<td>685563</td>
+<td>119768</td>
+<td>7.978907e+09</td>
+<td>2145.951883</td>
+<td>4.663988e+07</td>
+<td>12.543942</td>
+<td>625051.169501</td>
+</tr>
 </tbody>
 </table>
 
-<p>3 rows × 29 columns</p>
+<p>5 rows × 29 columns</p>
 </div>
 </div>
 </div>
+<p>Can’t calculate ICER as need incremental costs and qalys, and those need S1a, S1b and S1c to make incrementalcosts, incrementalqaly and incrementalnmb, since they compare against S1NoCD.</p>
+<p>Comparing against S1NoCD from <code>Case_Detection_Results.md</code>:</p>
+<ul>
+<li>Some columns are different as their numbers depend on number of agents:
+<ul>
+<li>Agents</li>
+<li>PatientYears</li>
+<li>CopdPYs</li>
+<li>NCaseDetections</li>
+<li>DiagnosedPYs</li>
+<li>OverdiagnosedPYs</li>
+<li>Mild, Moderate, Severe, VerySevere</li>
+<li>NoCOPD</li>
+<li>GOLD1, GOLD2, GOLD3, GOLD4</li>
+<li>Cost</li>
+<li>QALY</li>
+</ul></li>
+<li>But some are clearly processed and so should look at these to see if same results:
+<ul>
+<li>SABA</li>
+<li>LAMA</li>
+<li>LAMALABA</li>
+<li>ICSLAMALABA</li>
+<li>MildPY, ModeratePY, SeverePY, VerySeverePY</li>
+<li>CostpAgent</li>
+<li>QALYpAgent</li>
+<li>NMB</li>
+</ul></li>
+</ul>
+<p>I filtered to those columns, and add the results from <code>Case_Detection_Results.md</code>…</p>
+<div id="3dc6fc59" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to columns not influenced by agent number</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> df_s1nocd[[</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'SABA'</span>, <span class="st">'LAMA'</span>, <span class="st">'LAMALABA'</span>, <span class="st">'ICSLAMALABA'</span>, <span class="st">'MildPY'</span>,<span class="st">'ModeratePY'</span>, <span class="st">'SeverePY'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'VerySeverePY'</span>, <span class="st">'CostpAgent'</span>, <span class="st">'QALYpAgent'</span>, <span class="st">'NMB'</span>]]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add original results to dataframe</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>original <span class="op">=</span> {</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'SABA'</span>: <span class="fl">0.017</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'LAMA'</span>: <span class="fl">0.135</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'LAMALABA'</span>: <span class="fl">0.151</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ICSLAMALABA'</span>: <span class="fl">0.080</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'MildPY'</span>: <span class="fl">0.217</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ModeratePY'</span>: <span class="fl">0.041</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">'SeverePY'</span>: <span class="fl">0.068</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">'VerySeverePY'</span>: <span class="fl">0.006</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">'CostpAgent'</span>: <span class="fl">2150.057</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">'QALYpAgent'</span>: <span class="fl">12.544</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">'NMB'</span>: <span class="fl">625073.2</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>original_row <span class="op">=</span> pd.DataFrame(original, index<span class="op">=</span>[<span class="st">'original'</span>])</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> pd.concat([s1, original_row])</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># View dataframe, rounding to 3dp (as they present it in original)</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(s1, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">SABA</th>
+<th data-quarto-table-cell-role="th">LAMA</th>
+<th data-quarto-table-cell-role="th">LAMALABA</th>
+<th data-quarto-table-cell-role="th">ICSLAMALABA</th>
+<th data-quarto-table-cell-role="th">MildPY</th>
+<th data-quarto-table-cell-role="th">ModeratePY</th>
+<th data-quarto-table-cell-role="th">SeverePY</th>
+<th data-quarto-table-cell-role="th">VerySeverePY</th>
+<th data-quarto-table-cell-role="th">CostpAgent</th>
+<th data-quarto-table-cell-role="th">QALYpAgent</th>
+<th data-quarto-table-cell-role="th">NMB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5e3</td>
+<td>0.017</td>
+<td>0.118</td>
+<td>0.148</td>
+<td>0.076</td>
+<td>0.233</td>
+<td>0.035</td>
+<td>0.062</td>
+<td>0.006</td>
+<td>2183.990</td>
+<td>12.562</td>
+<td>625900.833</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5e4</td>
+<td>0.017</td>
+<td>0.134</td>
+<td>0.153</td>
+<td>0.081</td>
+<td>0.212</td>
+<td>0.039</td>
+<td>0.067</td>
+<td>0.006</td>
+<td>2124.363</td>
+<td>12.522</td>
+<td>623956.371</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5e5</td>
+<td>0.017</td>
+<td>0.136</td>
+<td>0.152</td>
+<td>0.081</td>
+<td>0.215</td>
+<td>0.041</td>
+<td>0.069</td>
+<td>0.006</td>
+<td>2149.118</td>
+<td>12.542</td>
+<td>624952.968</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1e6</td>
+<td>0.017</td>
+<td>0.136</td>
+<td>0.151</td>
+<td>0.080</td>
+<td>0.216</td>
+<td>0.041</td>
+<td>0.068</td>
+<td>0.006</td>
+<td>2153.594</td>
+<td>12.538</td>
+<td>624749.139</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5e6</td>
+<td>0.017</td>
+<td>0.136</td>
+<td>0.151</td>
+<td>0.080</td>
+<td>0.217</td>
+<td>0.041</td>
+<td>0.068</td>
+<td>0.006</td>
+<td>2145.952</td>
+<td>12.544</td>
+<td>625051.170</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">original</td>
+<td>0.017</td>
+<td>0.135</td>
+<td>0.151</td>
+<td>0.080</td>
+<td>0.217</td>
+<td>0.041</td>
+<td>0.068</td>
+<td>0.006</td>
+<td>2150.057</td>
+<td>12.544</td>
+<td>625073.200</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>We can see that many columns look very similar between them. However, for MildPY, CostpAgent, QALYpAgent and NMB, the result 5e5 is markedly better than 5e4.</p>
+<p>I then add 1 million (1e6) and 5 million (5e6) (already done above). And this looked pretty similar to 500,000 (5e5).</p>
+<p>Looking at <code>Case_Detection_Results.Rmd</code>, there are 12 scenarios, and then another 12 for 5 years, so a total of 24.</p>
+<p>I figured I could try running the whole thing with 500,000 to begin with, but up it to 1 million or 5 million if needed, but that 50 million probably wasn’t necessary (as anticipate will likely be able to get similar enough results with lower numbers).</p>
+</section>
+<section id="x-running-the-full-original-script" class="level2">
+<h2 class="anchored" data-anchor-id="x-running-the-full-original-script">15.26-X: Running the full original script</h2>
+<p>I re-copied the original script and only made the following amendments before running:</p>
+<ul>
+<li>Altering import of epicR</li>
+<li>Adding a timer</li>
+<li>Reducing agent number from 50e6 to 5e5</li>
+<li>Saving results tables to csv files</li>
+</ul>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="c16e8bf3" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">193</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.19'</span>, <span class="st">'09.41'</span>),</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.29'</span>, <span class="st">'11.34'</span>),</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.48'</span>, <span class="st">'12.00'</span>),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'12.01'</span>, <span class="st">'12.24'</span>)]</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="49948b13" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">193</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.19'</span>, <span class="st">'09.41'</span>),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.29'</span>, <span class="st">'11.34'</span>),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.48'</span>, <span class="st">'12.00'</span>),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'12.01'</span>, <span class="st">'12.24'</span>),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'12.25'</span>, <span class="st">'12.30'</span>),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'14.08'</span>, <span class="st">'14.53'</span>)]</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: Finish adding times, from 15.10 onwards</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 62m, or 1h 2m
-Total used to date: 255m, or 4h 15m
-Time remaining: 2145m, or 35h 45m
-Used 10.6% of 40 hours max</code></pre>
+<pre><code>Time spent today: 112m, or 1h 52m
+Total used to date: 305m, or 5h 5m
+Time remaining: 2095m, or 34h 55m
+Used 12.7% of 40 hours max</code></pre>
 </div>
 </div>
 
