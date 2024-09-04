@@ -12,13 +12,87 @@ TBC. Total time used: -h -m (-%)
 
 :::
 
-## 09.19-X: Returning to run the model
+## 09.19-09.41: Returning to run the model
 
 Did a quick review of my prior logbook entries to get back up to speed. Will be trying to run `Mini_Analysis.Rmd`, which I had created previously and contains only scenario S1NoCD and saves the result to csv (whilst the full script `Case_Detection_Results.Rmd` contains many more scenarios. I had previously reduced the number of agents (`settings$n_base_agents <- `) to try and run on my local machine but this just returned 0/1/NaN, so I will now be trying with the full number of agents.
 
 In `Case_Detection_Results.Rmd`, it sets `settings$n_base_agents <- 50e+6` but has comment "change number of agents here: 100e+6 is used in the analysis".
 
-I initially tried to run `Mini_Analysis.Rmd` with 50e+6. I logged into the remote computer, cloned the GitHub repository
+I decided to start with trying `Mini_Analysis.Rmd` with 50e+6. I logged into the remote computer, cloned the GitHub repository, then ran the following:
+
+```
+cd stars-reproduce-johnson-2021/reproduction
+Rscript -e "renv::restore()"
+Rscript -e "rmarkdown::render('scripts/Mini_Analysis.Rmd')"
+```
+
+This however returned an error that pandoc was required, so I ran `sudo apt install pandoc` then tried again. This then successfully rendered the `.Rmd`. I initially did 5000 agents to make sure it worked and output correctly, and then the original 50e+6 as mentioned.
+
+## 11.29-11.34, 11.48-12.00: Reviewing results from 50e+6
+
+This ran in 1.642896 hours (1 hour 38 minutes). The result was still wrong though:
+
+```{python}
+import pandas as pd
+pd.read_csv('mini_analysis_50e6.csv')
+```
+
+From the Case_Retection_Results.md in their repository, I can see that I should be getting numbers like 37195539 agents, 625946560 patient years, 71206641 CopdPYs, and so on.
+
+I'm sceptical that increasing to 100e+6 would fix that issue, as their notebooks appear to have been run with 50e+6, as I did.
+
+I double-checked the code in Mini_Analysis.md, but was satisfied that this matched up with theirs, with the only changes being to import epicR from the local folder, and to add a timer, and not having some processing of the table (but that would make no difference here, as numbers 0 and NaN).
+
+I'm presuming the issue therefore is in the `epicR` package I have, but I'm rather unsure on where to start, or where the issue might be!
+
+## 12.01-12.24: Basic run of epicR to resolve the "0" results issue
+
+As I starting point, I tried following the instructions available for running epicR generally (and not this specific study), to see if I could get it working and printing some results for a random basic scenario.
+
+On <https://github.com/resplab/epicR>, they give code for running epicR with default settings:
+
+```
+library(epicR)
+init_session()
+run()
+Cget_output()
+terminate_session()
+```
+
+And the default inputs viewed with:
+
+```
+input <- get_input()
+```
+
+However, I later realised this was a newer function in epicR and not in the version we have.
+
+I loaded my local epicR package, although without warning=False, realised it had a warning:
+
+```
+Warning: ── Conflicts ───────────────────────────────────────────────────────────────────────────────── epicR conflicts
+──
+✖ `Cget_agent_events` masks `epicR::Cget_agent_events()`.
+✖ `Cget_all_events` masks `epicR::Cget_all_events()`.
+✖ `Cget_all_events_matrix` masks `epicR::Cget_all_events_matrix()`.
+  … and more.
+ℹ Did you accidentally source a file rather than using `load_all()`?
+  Run `rm(list = c("Cget_agent_events", "Cget_all_events", "Cget_all_events_matrix", "Cget_event",
+  "Cget_events_by_type", "Cget_inputs", "Cget_n_events", "Cget_output", "Cget_output_ex", "Cget_runtime_stats",
+  "Cget_settings", "Cget_smith", "Cset_input_var", "Cset_settings_var", "get_sample_output", "mvrnormArma"))` to
+  remove the conflicts.
+```
+
+I found that, if I ran the whole script just with the local `devtools::load_all("../epicR")`, it would appear to run but give results like 0. If however I cleared the environment and then ran `library(epicR)` below the `load_all()` statement, it would run and give actual results. I'm presuming this relates to the conflicts message above. I understand that, when I clear the environment, I'm removing objects, states and data that might have come with load_all() but keeping the package itself, so I am just left with a "clean slate" with the package.
+
+## 12.25-12.30: Fixing my Mini_Analysis and returning to lower numbers of agents.
+
+I removed the `Basic_Model.Rmd` and returned to `Mini_Analysis.Rmd`, adding the new workflow of clearing the environment and reloading the library. I returned to running it with fewer numbers of agents. This output results - hurrah!
+
+```{python}
+import pandas as pd
+pd.read_csv('mini_analysis_fixed_5000.csv')
+```
 
 ## Timings
 
@@ -31,8 +105,11 @@ from timings import calculate_times
 used_to_date = 193
 
 # Times from today
-#times = [
-#    ('', '')]
+times = [
+    ('09.19', '09.41'),
+    ('11.29', '11.34'),
+    ('11.48', '12.00'),
+    ('12.01', '12.24')]
 
 calculate_times(used_to_date, times)
 ```
