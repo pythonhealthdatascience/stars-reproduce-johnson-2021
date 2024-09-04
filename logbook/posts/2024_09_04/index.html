@@ -245,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#returning-to-run-the-model" id="toc-returning-to-run-the-model" class="nav-link active" data-scroll-target="#returning-to-run-the-model">09.19-09.41: Returning to run the model</a></li>
   <li><a href="#reviewing-results-from-50e6" id="toc-reviewing-results-from-50e6" class="nav-link" data-scroll-target="#reviewing-results-from-50e6">11.29-11.34, 11.48-12.00: Reviewing results from 50e+6</a></li>
   <li><a href="#basic-run-of-epicr-to-resolve-the-0-results-issue" id="toc-basic-run-of-epicr-to-resolve-the-0-results-issue" class="nav-link" data-scroll-target="#basic-run-of-epicr-to-resolve-the-0-results-issue">12.01-12.24: Basic run of epicR to resolve the “0” results issue</a></li>
-  <li><a href="#fixing-my-mini_analysis-and-returning-to-lower-numbers-of-agents." id="toc-fixing-my-mini_analysis-and-returning-to-lower-numbers-of-agents." class="nav-link" data-scroll-target="#fixing-my-mini_analysis-and-returning-to-lower-numbers-of-agents.">12.25-12.30: Fixing my Mini_Analysis and returning to lower numbers of agents.</a></li>
+  <li><a href="#x-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" id="toc-x-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" class="nav-link" data-scroll-target="#x-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents">12.25-12.30, 14.08-X: Fixing my mini analysis and returning to lower numbers of agents</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_04/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -283,7 +283,7 @@ Rscript -e "rmarkdown::render('scripts/Mini_Analysis.Rmd')"</code></pre>
 <section id="reviewing-results-from-50e6" class="level2">
 <h2 class="anchored" data-anchor-id="reviewing-results-from-50e6">11.29-11.34, 11.48-12.00: Reviewing results from 50e+6</h2>
 <p>This ran in 1.642896 hours (1 hour 38 minutes). The result was still wrong though:</p>
-<div id="55e11c98" class="cell" data-execution_count="1">
+<div id="e2dbc762" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'mini_analysis_50e6.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
@@ -380,12 +380,29 @@ terminate_session()</code></pre>
   remove the conflicts.</code></pre>
 <p>I found that, if I ran the whole script just with the local <code>devtools::load_all("../epicR")</code>, it would appear to run but give results like 0. If however I cleared the environment and then ran <code>library(epicR)</code> below the <code>load_all()</code> statement, it would run and give actual results. I’m presuming this relates to the conflicts message above. I understand that, when I clear the environment, I’m removing objects, states and data that might have come with load_all() but keeping the package itself, so I am just left with a “clean slate” with the package.</p>
 </section>
-<section id="fixing-my-mini_analysis-and-returning-to-lower-numbers-of-agents." class="level2">
-<h2 class="anchored" data-anchor-id="fixing-my-mini_analysis-and-returning-to-lower-numbers-of-agents.">12.25-12.30: Fixing my Mini_Analysis and returning to lower numbers of agents.</h2>
+<section id="x-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents" class="level2">
+<h2 class="anchored" data-anchor-id="x-fixing-my-mini-analysis-and-returning-to-lower-numbers-of-agents">12.25-12.30, 14.08-X: Fixing my mini analysis and returning to lower numbers of agents</h2>
 <p>I removed the <code>Basic_Model.Rmd</code> and returned to <code>Mini_Analysis.Rmd</code>, adding the new workflow of clearing the environment and reloading the library. I returned to running it with fewer numbers of agents. This output results - hurrah!</p>
-<div id="3575b504" class="cell" data-execution_count="2">
+<p>As I’d tried before, ran:</p>
+<ul>
+<li>5000 (5e3)</li>
+<li>50,000 (5e4) (17 seconds)</li>
+<li>500,000 (5e5) (2.6 minutes)</li>
+</ul>
+<p>And it was quicker than before too! (17s vs 2.4m, 2.6m vs 18.2m).</p>
+<div id="ccf1d3b6" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'mini_analysis_fixed_5000.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Import results</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df5e3 <span class="op">=</span> pd.read_csv(<span class="st">'mini_analysis_fixed_5e3.csv'</span>).rename(index<span class="op">=</span>{<span class="dv">0</span>: <span class="st">'5e3'</span>})</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df5e4 <span class="op">=</span> pd.read_csv(<span class="st">'mini_analysis_fixed_5e4.csv'</span>).rename(index<span class="op">=</span>{<span class="dv">0</span>: <span class="st">'5e4'</span>})</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df5e5 <span class="op">=</span> pd.read_csv(<span class="st">'mini_analysis_fixed_5e5.csv'</span>).rename(index<span class="op">=</span>{<span class="dv">0</span>: <span class="st">'5e5'</span>})</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine into a single dataframe and show</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>df_s1nocd <span class="op">=</span> pd.concat([df5e3, df5e4, df5e5])</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>df_s1nocd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
@@ -419,10 +436,10 @@ terminate_session()</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
+<td data-quarto-table-cell-role="th">5e3</td>
 <td>S1NoCD</td>
 <td>3696</td>
-<td>62339.972779</td>
+<td>6.233997e+04</td>
 <td>7457.940354</td>
 <td>18933</td>
 <td>1396.639717</td>
@@ -438,21 +455,69 @@ terminate_session()</code></pre>
 <td>178</td>
 <td>8.072027e+06</td>
 <td>2183.990032</td>
-<td>46428.030095</td>
+<td>4.642803e+04</td>
 <td>12.561696</td>
 <td>625900.832686</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5e4</td>
+<td>S1NoCD</td>
+<td>37129</td>
+<td>6.235741e+05</td>
+<td>70946.604827</td>
+<td>190251</td>
+<td>13229.094311</td>
+<td>13394</td>
+<td>0.017161</td>
+<td>0.134433</td>
+<td>0.152504</td>
+<td>...</td>
+<td>525258</td>
+<td>29237</td>
+<td>30306</td>
+<td>6618</td>
+<td>1303</td>
+<td>7.887546e+07</td>
+<td>2124.362691</td>
+<td>4.649150e+05</td>
+<td>12.521615</td>
+<td>623956.370519</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5e5</td>
+<td>S1NoCD</td>
+<td>371579</td>
+<td>6.251100e+06</td>
+<td>706693.304957</td>
+<td>1907271</td>
+<td>131040.869357</td>
+<td>133904</td>
+<td>0.017192</td>
+<td>0.136018</td>
+<td>0.151516</td>
+<td>...</td>
+<td>5270314</td>
+<td>287267</td>
+<td>304912</td>
+<td>67938</td>
+<td>12088</td>
+<td>7.985673e+08</td>
+<td>2149.118458</td>
+<td>4.660359e+06</td>
+<td>12.542042</td>
+<td>624952.967972</td>
 </tr>
 </tbody>
 </table>
 
-<p>1 rows × 29 columns</p>
+<p>3 rows × 29 columns</p>
 </div>
 </div>
 </div>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="28b13c8d" class="cell" data-execution_count="3">
+<div id="c16e8bf3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
