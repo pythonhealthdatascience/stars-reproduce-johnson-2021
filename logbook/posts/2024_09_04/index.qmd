@@ -1,0 +1,38 @@
+---
+title: "Day 5"
+author: "Amy Heather"
+date: "2024-09-04"
+categories: [reproduce]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+TBC. Total time used: -h -m (-%)
+
+:::
+
+## 09.19-X: Returning to run the model
+
+Did a quick review of my prior logbook entries to get back up to speed. Will be trying to run `Mini_Analysis.Rmd`, which I had created previously and contains only scenario S1NoCD and saves the result to csv (whilst the full script `Case_Detection_Results.Rmd` contains many more scenarios. I had previously reduced the number of agents (`settings$n_base_agents <- `) to try and run on my local machine but this just returned 0/1/NaN, so I will now be trying with the full number of agents.
+
+In `Case_Detection_Results.Rmd`, it sets `settings$n_base_agents <- 50e+6` but has comment "change number of agents here: 100e+6 is used in the analysis".
+
+I initially tried to run `Mini_Analysis.Rmd` with 50e+6. I logged into the remote computer, cloned the GitHub repository
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 193
+
+# Times from today
+#times = [
+#    ('', '')]
+
+calculate_times(used_to_date, times)
+```

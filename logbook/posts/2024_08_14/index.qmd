@@ -8,11 +8,11 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
-TBC. Total time used: -h -m (-%)
+Attempted to run model with fewer agents but results 0/1/NaN so paused until have access to higher powered machine in a few weeks. Total time used: 3h 13m (8.0%)
 
 :::
 
-## 09.27-09.52, 10.20-10.21: Run model
+## 09.27-09.52, 10.20-10.21, 10.40-10.43: Run model
 
 Helpfully, we know to expect that this has a long run time from their README:
 
@@ -32,6 +32,8 @@ On my machine, I tried it with increasing numbers of agents, but it consistently
 
 Unfortunately I can't currently access our remote higher spec machine, which would've allowed me to run these quicker.
 
+I created an `.Rmd` file with only the first scenario, but set to 100 million agents as in the original analysis.
+
 ## Timings
 
 ```{python}
@@ -45,7 +47,8 @@ used_to_date = 164
 # Times from today
 times = [
     ('09.27', '09.52'),
-    ('10.20', '10.21')]
+    ('10.20', '10.21'),
+    ('10.40', '10.43')]
 
 calculate_times(used_to_date, times)
 ```
