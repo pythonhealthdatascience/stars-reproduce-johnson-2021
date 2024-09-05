@@ -57,11 +57,11 @@ Combine, organise and modify results as per paper.
 ceplane <- rbind(ceplane_3y, ceplane_5y) %>%
   # Remove scenarios 2 and 3 with no case detection, and scenario 2b
   filter(!(Scenario %in% c("S2NoCD", "S3NoCD", "S2b"))) %>%
-  # Remove S1NoCD from 5 years, then set interval of S1NoCD to NA
-  filter(!(Scenario == "S1NoCD" & Interval == "5 years")) %>%
-  mutate(Interval = ifelse(Scenario == "S1NoCD", NA, Interval)) %>%
-  # Remove INMB for S1NoCD
-  mutate(INMB = ifelse(Scenario!="S1NoCD", INMB, NA)) %>%
+  # Remove S1NoCDAvg from 5 years, then set interval of S1NoCDAvg to NA
+  filter(!(Scenario == "S1NoCDAvg" & Interval == "5 years")) %>%
+  mutate(Interval = ifelse(Scenario == "S1NoCDAvg", NA, Interval)) %>%
+  # Remove INMB for S1NoCDAvg
+  mutate(INMB = ifelse(Scenario!="S1NoCDAvg", INMB, NA)) %>%
   # Get INMB ranking
   mutate(Ranking = min_rank(desc(INMB)))
 
@@ -78,13 +78,13 @@ ceplane_pretty <- ceplane %>%
   mutate(ICER = round(ICER, 0)) %>%
   # Create INMB and rank column
   mutate(INMBRank = ifelse(
-    Scenario!="S1NoCD",
+    Scenario!="S1NoCDAvg",
     paste0(round(INMB, 0), "(", Ranking, ")"),
     NA)) %>%
   # Arrange and relabel the scenarios
   arrange(Scenario) %>%
   mutate(Scenario = recode(Scenario,
-                           "S1NoCD" = "S0: No case detection",
+                           "S1NoCDAvg" = "S0: No case detection",
                            "S1a" = "(S1a) CDQ ≥ 17 points",
                            "S1b" = "(S1b) Screening spirometry",
                            "S1c" = "(S1c) CDQ + screening spirometry",
@@ -105,15 +105,15 @@ ceplane_pretty <- ceplane %>%
 ceplane_pretty
 ```
 
-Compare against paper.
+### Compare between our results, the paper, and their repository
 
 Prepare our model results...
 
 ```{r}
 # Prepare sall model results to combine with original table
 ceplane_prep <- ceplane %>%
-  # Replace S1NoCD with S0
-  mutate(Scenario = replace(Scenario, Scenario == "S1NoCD", "S0")) %>%
+  # Replace S1NoCDAvg with S0
+  mutate(Scenario = replace(Scenario, Scenario == "S1NoCDAvg", "S0")) %>%
   # Round columns
   mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
   mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
@@ -142,8 +142,12 @@ paper_tab3_prep
 
 ```{r}
 original_ceplane_prep <- original_ceplane %>%
-  # Replace S1NoCD with S0
-  mutate(Scenario = replace(Scenario, Scenario == "S1NoCD", "S0")) %>%
+  # Replace "NA" string with actual NaN for the interval
+  mutate(Interval = replace(Interval, Interval == "NA", NA_character_)) %>%
+  # Remove scenarios 2 and 3 with no case detection, and scenario 2b
+  filter(!(Scenario %in% c("S2NoCD", "S3NoCD", "S2b"))) %>%
+  # Replace S1NoCDAvg with S0
+  mutate(Scenario = replace(Scenario, Scenario == "S1NoCDAvg", "S0")) %>%
   # Round columns
   mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
   mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
@@ -209,6 +213,9 @@ column_pairs <- list(
 ceplane_compare <- column_pairs %>%
   purrr::map(~ calc_diff_perc(ceplane_combine, .x[1], .x[2], .x[3], .x[4])) %>%
   purrr::reduce(left_join, by = c("Scenario", "Interval"))
+
+# Remove duplicates
+ceplane_compare <- ceplane_compare[!duplicated(ceplane_compare), ]
 
 # Save to csv and view
 write.csv(ceplane_compare, paths$tab3_compare, row.names=FALSE)
