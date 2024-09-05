@@ -8,7 +8,7 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
-Fixed my loading of epicR so get model results! Experiemented with agent numbers. Total time used: 6h 11m (15.5%)
+Fixed my loading of epicR so get model results! Experiemented with agent numbers and started Table 3. Total time used: 6h 11m (15.5%)
 
 :::
 
