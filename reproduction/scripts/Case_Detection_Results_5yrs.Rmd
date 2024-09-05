@@ -6,6 +6,25 @@ keep.md: true
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# CHANGE: Altered import to use local package rather than installing epicR
+# into the r environment with renv
+
+# Load local package epicR
+devtools::load_all("../epicR")
+
+# Clear environment as want to use library(epicR) below, which will use the
+# devtools loaded library, but want to clear any other bits load_all() brought
+# in and just work with that package from a "clean slate".
+rm(list=ls())
+```
+
+```{r}
+# CHANGE: Add a timer (will see addition below to print time too)
+# Start timer
+start.time <- Sys.time()
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 set.seed(333) #333 is the analysis seed
 library(epicR)
 library(tidyverse)
@@ -13,6 +32,21 @@ library(knitr)
 library(kableExtra)
 ```
 
+```{r}
+# CHANGE: Add save paths (will see later, we also add lines to save to csv)
+outputs <- "../outputs/"
+files <- list(
+  s1 = "s1_5y.csv",
+  s2 = "s2_5y.csv",
+  s3 = "s3_5y.csv",
+  sall = "sall_5y.csv",
+  ceplane = "ceplane_5y.csv",
+  clinical = "clinicalresults_5y.csv"
+)
+
+# Apply file.path to each element in list to create path to file in outputs
+paths <- lapply(files, function(filename) file.path(outputs, filename))
+```
 
 ```{r global settings, echo=FALSE}
 record_mode<-c(
@@ -23,7 +57,9 @@ record_mode<-c(
   
 settings <- get_default_settings()
 settings$record_mode <- record_mode["record_mode_none"]
-settings$n_base_agents <- 50e+6 # change number of agents here: 100e+6 is used in the analysis
+# CHANGE: Using fewer agents than original script (50e6) or stated number used
+# for publication (100e6)
+settings$n_base_agents <- 5e5
 lambda=50000 # change WTP threshold here
   
 init_session(settings = settings)
@@ -541,6 +577,8 @@ s1$IncrementalNMB <- c(0, 0, 0,
                          s1[s1$Scenario=="S1c","NMB"] - s1[s1$Scenario=="S1NoCD","NMB"])
 
 kable(s1, digits=3) 
+
+write.csv(s1, paths$s1, row.names=FALSE)
 ```
 
 *Treatment rate:* SABA is expressed per all patient-years, LAMA, LAMA/LABA, ICS/LAMA/LABA are per COPD patient-years
@@ -754,6 +792,8 @@ S2$ICER <- S2$IncrementalCosts/S2$IncrementalQALY
 S2$IncrementalNMB <- c(0, S2[S2$Scenario=="S2a","NMB"] - S2[S2$Scenario=="S2NoCD","NMB"])
 
 kable(S2, digits=3)
+
+write.csv(S2, paths$s2, row.names=FALSE)
 ```
 
 *Treatment rate:* SABA is expressed per all patient-years, LAMA, LAMA/LABA, ICS/LAMA/LABA are per COPD patient-years
@@ -1251,7 +1291,9 @@ s3$IncrementalNMB <- c(0,
                          s3[s3$Scenario=="S3c","NMB"] - s3[s3$Scenario=="S3NoCD","NMB"],
                          s3[s3$Scenario=="S3d","NMB"] - s3[s3$Scenario=="S3NoCD","NMB"])
 
-kable(s3, digits=3) 
+kable(s3, digits=3)
+
+write.csv(s3, paths$s3, row.names=FALSE)
 ```
 
 *Treatment rate:* SABA is expressed per all patient-years, LAMA, LAMA/LABA, ICS/LAMA/LABA are per COPD patient-years
@@ -1274,6 +1316,8 @@ sall.tab <- sall %>%
                   arrange(desc(IncrementalNMB))
 
 kable(sall.tab, digits=3) 
+
+write.csv(sall.tab, paths$sall, row.names=FALSE)
 ```
 
 ---
@@ -1332,6 +1376,8 @@ ceplane$INMB <- ceplane$NMB - ceplane[ceplane$Scenario=="S1NoCDAvg","NMB"]
 ceplane <- select(ceplane, Scenario, Agents, PropAgents, Cost, CostpAgent, CostpAgentExcluded, CostpAgentAll, QALY, QALYpAgent, QALYpAgentExcluded, QALYpAgentAll, IncrementalCosts, IncrementalQALY, ICERAdj, ICER, INMB)
 
 kable(ceplane) 
+
+write.csv(ceplane, paths$ceplane, row.names=FALSE)
 ```
 
 
@@ -1519,7 +1565,17 @@ clinical.results <-
 
 clinical.results.tab <- select(clinical.results, Scenario, PropAgents, ProppPatientYears, ProppCopdPYs, SABAAll, LAMAAll, LAMALABAAll, ICSLAMALABAAll, MildpAgentAll, ModeratepAgentAll, SeverepAgentAll, VerySeverepAgentAll, NoCOPDpPYAll, GOLD1pPYAll, GOLD2pPYAll, GOLD3pPYAll, GOLD4pPYAll, DiagnosedpPYAll)
 
-kable(clinical.results.tab) 
+kable(clinical.results.tab)
+
+write.csv(clinical.results.tab, paths$clinical, row.names=FALSE)
 ```
 
+## Time elapsed
 
+Run time for this notebook:
+
+```{r runtime}
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+time.taken
+```
