@@ -20,21 +20,28 @@ paths <- list(
   # Model results
   sall_3y = "../outputs/sall.csv",
   sall_5y = "../outputs/sall_5y.csv",
+  ceplane_3y = "../outputs/ceplane.csv",
+  ceplane_5y = "../outputs/ceplane_5y.csv",
 
-  # Origianl study results
+  # Original study results
   paper_tab3 = "../../original_study/tab3.csv",
   original_sall = "../../original_study/sall.csv",
+  original_ceplane = "../../original_study/ceplane.csv",
 
   # Outputs from this .Rmd file
-  sall_compare = "../outputs/sall_compare_to_paper.csv"
+  tab3_compare = "../outputs/tab3_compare_to_original.csv"
 )
 ```
 
 ```{r}
 sall_3y <- read.csv(paths$sall_3y) %>% mutate("Interval" = "3 years")
 sall_5y <- read.csv(paths$sall_5y) %>% mutate("Interval" = "5 years")
+ceplane_3y <- read.csv(paths$ceplane_3y) %>% mutate("Interval" = "3 years")
+ceplane_5y <- read.csv(paths$ceplane_5y) %>% mutate("Interval" = "5 years")
+
 paper_tab3 <- read.csv(paths$paper_tab3)
 original_sall <- read.csv(paths$original_sall)
+original_ceplane <- read.csv(paths$original_ceplane)
 ```
 
 ## Table 3
@@ -42,39 +49,39 @@ original_sall <- read.csv(paths$original_sall)
 Preview the results.
 
 ```{r}
-rbind(sall_3y, sall_5y) %>%
+rbind(ceplane_3y, ceplane_5y) %>%
   arrange(Scenario)
 ```
 
 Combine, organise and modify results as per paper.
 
 ```{r}
-sall <- rbind(sall_3y, sall_5y) %>%
+ceplane <- rbind(ceplane_3y, ceplane_5y) %>%
   # Remove scenarios 2 and 3 with no case detection, and scenario 2b
   filter(!(Scenario %in% c("S2NoCD", "S3NoCD", "S2b"))) %>%
   # Remove S1NoCD from 5 years, then set interval of S1NoCD to NA
   filter(!(Scenario == "S1NoCD" & Interval == "5 years")) %>%
   mutate(Interval = ifelse(Scenario == "S1NoCD", NA, Interval)) %>%
   # Remove INMB for S1NoCD
-  mutate(IncrementalNMB = ifelse(Scenario!="S1NoCD", IncrementalNMB, NA)) %>%
+  mutate(INMB = ifelse(Scenario!="S1NoCD", INMB, NA)) %>%
   # Get INMB ranking
-  mutate(Ranking = min_rank(desc(IncrementalNMB)))
+  mutate(Ranking = min_rank(desc(INMB)))
 
-sall
+ceplane
 ```
 
 Reformat to match paper.
 
 ```{r}
-sall_pretty <- sall %>%
+ceplane_pretty <- ceplane %>%
   # Round columns
-  mutate(CostpAgent = paste0("$", round(CostpAgent, 0))) %>%
-  mutate(QALYpAgent = round(QALYpAgent, 3)) %>%
+  mutate(CostpAgentAll = paste0("$", round(CostpAgentAll, 0))) %>%
+  mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
   mutate(ICER = round(ICER, 0)) %>%
   # Create INMB and rank column
   mutate(INMBRank = ifelse(
     Scenario!="S1NoCD",
-    paste0(round(IncrementalNMB, 0), "(", Ranking, ")"),
+    paste0(round(INMB, 0), "(", Ranking, ")"),
     NA)) %>%
   # Arrange and relabel the scenarios
   arrange(Scenario) %>%
@@ -89,34 +96,38 @@ sall_pretty <- sall %>%
                            "S3c" = "(S3c) Screening spirometry",
                            "S3d" = "(S3d) CDQ + screening spirometry")) %>%
   # Select, reorder and relabel columns
-  select(Scenario, Interval, CostpAgent, QALYpAgent, ICER, INMBRank) %>%
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICER, INMBRank) %>%
   rename("Testing interval" = Interval,
-         "Costs ($/patient)" = CostpAgent,
-         "QALYs (QALYs/patient)" = QALYpAgent,
+         "Costs ($/patient)" = CostpAgentAll,
+         "QALYs (QALYs/patient)" = QALYpAgentAll,
          "ICER ($/QALY)" = ICER,
          "INMB (ranking)" = INMBRank)
 
 # Preview dataframe
-sall_pretty
+ceplane_pretty
 ```
 
 Compare against paper.
 
+Prepare our model results...
+
 ```{r}
 # Prepare sall model results to combine with original table
-sall_prep <- sall %>%
+ceplane_prep <- ceplane %>%
   # Replace S1NoCD with S0
   mutate(Scenario = replace(Scenario, Scenario == "S1NoCD", "S0")) %>%
   # Round columns
-  mutate(CostpAgent = round(CostpAgent, 0)) %>%
-  mutate(QALYpAgent = round(QALYpAgent, 3)) %>%
+  mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
+  mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
   mutate(ICER = round(ICER, 0)) %>%
-  mutate(IncrementalNMB = round(IncrementalNMB, 0)) %>%
+  mutate(INMB = round(INMB, 0)) %>%
   # Select relevant columns
-  select(Scenario, Interval, CostpAgent, QALYpAgent, ICER, IncrementalNMB, Ranking)
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICER, INMB, Ranking)
 
-sall_prep
+ceplane_prep
 ```
+
+Prepare results from the paper...
 
 ```{r}
 # Convert costs to numeric
@@ -132,22 +143,23 @@ paper_tab3_prep
 ```
 
 ```{r}
-original_sall_prep <- original_sall %>%
+original_ceplane_prep <- original_ceplane %>%
   # Replace S1NoCD with S0
   mutate(Scenario = replace(Scenario, Scenario == "S1NoCD", "S0")) %>%
   # Round columns
-  mutate(CostpAgent = round(CostpAgent, 0)) %>%
-  mutate(QALYpAgent = round(QALYpAgent, 3)) %>%
+  mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
+  mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
   mutate(ICER = round(ICER, 0)) %>%
-  mutate(IncrementalNMB = round(IncrementalNMB, 0)) %>%
+  mutate(INMB = round(INMB, 0)) %>%
   # Select relevant columns
-  select(Scenario, Interval, CostpAgent, QALYpAgent, ICER, IncrementalNMB)
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICER, INMB)
 
 # Append "_repo" to columns (except Scenario and Interval)
-icol <- which(names(original_sall_prep) %in% c("Scenario", "Interval"))
-colnames(original_sall_prep)[-icol] <- paste(colnames(original_sall_prep)[-icol], "repo", sep = "_")
+icol <- which(names(original_ceplane_prep) %in% c("Scenario", "Interval"))
+colnames(original_ceplane_prep)[-icol] <- paste(
+  colnames(original_ceplane_prep)[-icol], "repo", sep = "_")
 
-original_sall_prep
+original_ceplane_prep
 ```
 
 ```{r}
@@ -163,44 +175,44 @@ calc_diff_perc <- function(df, our_res, paper_res, repo_res, prefix) {
   #' @return Dataframe with the column pair, results, scenario and interval
 
   # Create column names for differences
-  paperdiff <- paste0(prefix, "PaperDiff")
-  paperperc <- paste0(prefix, "PaperPerc")
+  mydiff <- paste0(prefix, "MyDiff")
+  myperc <- paste0(prefix, "MyPerc")
   repodiff <- paste0(prefix, "RepoDiff")
   repoperc <- paste0(prefix, "RepoPerc")
 
   # Calculate the difference and percentage difference between col1 and col2
   df %>%
     mutate(
-      !!sym(diff) := !!sym(our_res) - !!sym(paper_res),
-      !!sym(paperperc) := scales::percent(round(!!sym(paperdiff) / !!sym(paper_res), 3)),
-      !!sym(repodiff) := !!sym(our_res) - !!sym(repo_res),
+      !!sym(mydiff) := !!sym(paper_res) - !!sym(our_res),
+      !!sym(myperc) := scales::percent(round(!!sym(mydiff) / !!sym(our_res), 3)),
+      !!sym(repodiff) := !!sym(paper_res) - !!sym(repo_res),
       !!sym(repoperc) := scales::percent(round(!!sym(repodiff) / !!sym(repo_res), 3))
     ) %>%
     # Select only those columns, as well as Scenario and Interval
     select(Scenario, Interval,
-           !!sym(our_res), !!sym(paper_res), !!sym(repo_res),
-           !!sym(paperdiff), !!sym(repodiff),
-           !!sym(paperperc), !!sym(repoperc))
+           !!sym(paper_res), !!sym(our_res), !!sym(repo_res),
+           !!sym(mydiff), !!sym(myperc),
+           !!sym(repodiff), !!sym(repoperc))
 }
 
 # Combine the model and paper results
-sall_combine <- merge(sall_prep, paper_tab3_prep, by=c("Scenario", "Interval")) %>%
-  merge(original_sall_prep, by=c("Scenario", "Interval"))
+ceplane_combine <- merge(ceplane_prep, paper_tab3_prep, by=c("Scenario", "Interval")) %>%
+  merge(original_ceplane_prep, by=c("Scenario", "Interval"))
 
 # Define the pairs of columns to compare and the prefix to use for their comparison
 column_pairs <- list(
-  c("CostpAgent", "CostpAgent_paper", "CostpAgent_repo", "Cost"),
-  c("QALYpAgent", "QALYpAgent_paper", "QALYpAgent_repo", "QALY"),
+  c("CostpAgentAll", "CostpAgent_paper", "CostpAgentAll_repo", "Cost"),
+  c("QALYpAgentAll", "QALYpAgent_paper", "QALYpAgentAll_repo", "QALY"),
   c("ICER", "ICER_paper", "ICER_repo", "ICER"),
-  c("IncrementalNMB", "IncrementalNMB_paper", "IncrementalNMB_repo", "INMB")
+  c("INMB", "IncrementalNMB_paper", "INMB_repo", "INMB")
 )
 
 # Combine model and paper results and apply the function for each pair of columns
-sall_compare <- column_pairs %>%
-  purrr::map(~ calc_diff_perc(sall_combine, .x[1], .x[2], .x[3], .x[4])) %>%
+ceplane_compare <- column_pairs %>%
+  purrr::map(~ calc_diff_perc(ceplane_combine, .x[1], .x[2], .x[3], .x[4])) %>%
   purrr::reduce(left_join, by = c("Scenario", "Interval"))
 
 # Save to csv and view
-write.csv(sall_compare, paths$sall_compare, row.names=FALSE)
-sall_compare
+write.csv(ceplane_compare, paths$tab3_compare, row.names=FALSE)
+ceplane_compare
 ```
