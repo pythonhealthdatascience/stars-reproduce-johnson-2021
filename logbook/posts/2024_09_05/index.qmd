@@ -8,7 +8,7 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
--. Total time used: -h -m (-%)
+Troubleshooting table 3. Total time used: 9h 36m (24.0%)
 
 :::
 
@@ -55,7 +55,7 @@ pd.read_csv('sall_compare_to_paper_1e6.csv')
 
 This didn't have a big impact though, so it appears the issue may be elsewhere.
 
-## 13.13-13.25, 14.24-14.41, 14.58-15.44: Comparing against their markdown file and finding right columns
+## 13.13-13.25, 14.24-14.41, 14.58-16.00: Comparing against their markdown file and finding right columns
 
 The original repository included a markdown file from a run of this code. Instead of comparing against the paper, I tried comparing against those results, as that should definitely match up, and can tell us if this code as it is is running as expected or not.
 
@@ -124,10 +124,17 @@ This aligns with the table 3 caption from paper about symptomatic patients (scen
 
 > "The ‘All patients’ strategy encompassed the entire population of interest. 59% of the population was included in the ‘Symptomatic’ strategy, and 46% in the ‘Smoking history’ strategy. To maintain a constant reference population, per patient costs and QALYs were adjusted to include patients not selected by the strategy. For the symptomatic strategy, the costs (and QALYs) shown are the sum of the costs (QALYs) of patients not included in the symptomatic strategy, and the costs (QALYs) of those included, weighted by the proportion in each group. The results of smoking history strategy were adjusted in the same fashion" @johnson_cost_2021
 
-I checked the GitHub commit history at <https://github.com/KateJohnson/epicR/commits/closed_cohort/> to see if I could spot any potential solutions there.
+## 16.02-16.21: Looking at ICER and INMB
 
-## 15.44-X: Troubleshooting ICER and INMB
+I tried to see if I was using the wrong ICER, or what might explain the difference.
 
+Looking at table 3 in the paper, if I were to calculate the ICER manually from change in costs over change in QALYs, I would get:
+
+```{python}
+(2438-2151)/(12.560-12.546)
+```
+
+This is different from 19,632, and more different than just rounding. I then realised that again, I might be using the wrong column...! As there is `ICERAdj`.
 
 ## Timings
 
@@ -147,7 +154,9 @@ times = [
     ('11.32', '11.36'),
     ('13.08', '13.10'),
     ('13.13', '13.25'),
-    ('14.24', '14.41')]
+    ('14.24', '14.41'),
+    ('14.58', '16.00'),
+    ('16.02', '16.21')]
 
 calculate_times(used_to_date, times)
 ```
