@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Amy Heather">
-<meta name="dcterms.date" content="2024-08-01">
+<meta name="dcterms.date" content="2024-09-05">
 
-<title>Day 2 – Reproducing Johnson et al.&nbsp;2021</title>
+<title>Day 6 – Reproducing Johnson et al.&nbsp;2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,7 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,6 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -203,11 +206,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Day 2</h1>
+      <h1 class="title">Day 6</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">setup</div>
-                <div class="quarto-category">read</div>
-                <div class="quarto-category">scope</div>
+                <div class="quarto-category">reproduce</div>
               </div>
                   </div>
   </div>
@@ -225,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 1, 2024</p>
+        <p class="date">September 5, 2024</p>
       </div>
     </div>
     
@@ -241,14 +242,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#upload-journal-article-and-artefacts" id="toc-upload-journal-article-and-artefacts" class="nav-link active" data-scroll-target="#upload-journal-article-and-artefacts">09.44-09.48, 09.52-09.56: Upload journal article and artefacts</a></li>
-  <li><a href="#consensus-on-upload-of-code" id="toc-consensus-on-upload-of-code" class="nav-link" data-scroll-target="#consensus-on-upload-of-code">10.38-10.47: Consensus on upload of code</a></li>
-  <li><a href="#update-license" id="toc-update-license" class="nav-link" data-scroll-target="#update-license">10.50-10.52: Update license</a></li>
-  <li><a href="#complete-page-about-original-study-and-license" id="toc-complete-page-about-original-study-and-license" class="nav-link" data-scroll-target="#complete-page-about-original-study-and-license">10.53-11.01: Complete page about original study and license</a></li>
-  <li><a href="#read-the-article-and-outline-scope" id="toc-read-the-article-and-outline-scope" class="nav-link" data-scroll-target="#read-the-article-and-outline-scope">11.09-11.22, 11.29-11.38, 12.04-12.24: Read the article and outline scope</a></li>
+  <li><a href="#running-5-years" id="toc-running-5-years" class="nav-link active" data-scroll-target="#running-5-years">09.28-09.38, 10.10-10.19: Running 5 years</a></li>
+  <li><a href="#resuming-table-3" id="toc-resuming-table-3" class="nav-link" data-scroll-target="#resuming-table-3">10.20-11.30: Resuming Table 3</a></li>
+  <li><a href="#x-trying-higher-agent-numbers" id="toc-x-trying-higher-agent-numbers" class="nav-link" data-scroll-target="#x-trying-higher-agent-numbers">11.32-X: Trying higher agent numbers</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_01/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_05/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -267,85 +266,511 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Upload materials, read article, and define scope. Total time used: 1h 41m (4.2%)</p>
+<p>-. Total time used: -h -m (-%)</p>
 </div>
 </div>
-<section id="upload-journal-article-and-artefacts" class="level2">
-<h2 class="anchored" data-anchor-id="upload-journal-article-and-artefacts">09.44-09.48, 09.52-09.56: Upload journal article and artefacts</h2>
-<p>The article is published at <a href="https://link.springer.com/article/10.1007/s40258-020-00616-2" class="uri">https://link.springer.com/article/10.1007/s40258-020-00616-2</a>. I could not identify a copyright statement, but it links to RightsLink to request permission to reuse content (which requires payment).</p>
-<p>Found the article on ProQuest - <a href="https://uoelibrary.idm.oclc.org/login?url=https://www.proquest.com/scholarly-journals/cost-effectiveness-case-detection-strategies/docview/2493869343/se-2?accountid=10792" class="uri">https://uoelibrary.idm.oclc.org/login?url=https://www.proquest.com/scholarly-journals/cost-effectiveness-case-detection-strategies/docview/2493869343/se-2?accountid=10792</a> - which states copyright pringer Nature B.V. Mar 2021.</p>
-<p>Also identified a conference abstract on the same topic <a href="https://www.valueinhealthjournal.com/article/S1098-3015(20)31530-8/fulltext" class="uri">https://www.valueinhealthjournal.com/article/S1098-3015(20)31530-8/fulltext</a>.</p>
-<p>As such, it appears I would not have permissions to upload this article or any images from the article to this repository. As I cannot identify a green open-access version of the article, I will just be able to include cited text quotations.</p>
+<section id="running-5-years" class="level2">
+<h2 class="anchored" data-anchor-id="running-5-years">09.28-09.38, 10.10-10.19: Running 5 years</h2>
+<p>Copied and modified <code>Case_Detection_Results_5yrs.Rmd</code> as I had for <code>Case_Detection_Results.Rmd</code> yesterday, and then ran that on the remote machine (8.6 minutes).</p>
+<pre><code>Rscript -e "rmarkdown::render('scripts/Case_Detection_Results_5yrs.Rmd')"</code></pre>
+<p>I’ve noted that the <code>CEplot-1.png</code> goes into a files/figure-gfm folder. I’ve add some code to change the default save location of images, moved the current images, and altered the section names.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reflection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Duplication between the two .Rmd files - would be easier if both controlled by a single script that could make the two outputs, else when making changes like this, have to carefully make to both files.</p>
+</div>
+</div>
 </section>
-<section id="consensus-on-upload-of-code" class="level2">
-<h2 class="anchored" data-anchor-id="consensus-on-upload-of-code">10.38-10.47: Consensus on upload of code</h2>
-<p>RE: my uncertainty yesterday as to uploading code with commits more recent than the publication date, I discussed this with Tom, and we agreed that I should take a similar approach to as we do when we make environments for projects without them: start with the latest version of the code, and then if things don’t work, potentially go back in the commit history to help resolve it.</p>
-<p>As such, I then uploaded a copy of the relevant branch of the repository to <code>original_study/</code>.</p>
+<section id="resuming-table-3" class="level2">
+<h2 class="anchored" data-anchor-id="resuming-table-3">10.20-11.30: Resuming Table 3</h2>
+<p>Add the 5 year results to Table 3 - still assuming that S0 is S1NoCD from 3 year (not from from 5 year or S2 or S3), as can’t spot an S0 anywhere.</p>
+<p>Due to size of table, it was difficult to just look between the two tables, so I converted and simplified Table 3 from the paper into a <code>.csv</code> file, and then appended that so I could calculate the differences.</p>
+<p>Although some things are similar (e.g.&nbsp;scenario 1 costs and QALYs), others are very different…</p>
+<div id="57828f5f" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'sall_compare_to_paper.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Scenario</th>
+<th data-quarto-table-cell-role="th">Interval</th>
+<th data-quarto-table-cell-role="th">CostpAgent</th>
+<th data-quarto-table-cell-role="th">CostpAgent_paper</th>
+<th data-quarto-table-cell-role="th">CostDiff</th>
+<th data-quarto-table-cell-role="th">CostPerc</th>
+<th data-quarto-table-cell-role="th">QALYpAgent</th>
+<th data-quarto-table-cell-role="th">QALYpAgent_paper</th>
+<th data-quarto-table-cell-role="th">QALYDiff</th>
+<th data-quarto-table-cell-role="th">QALYPerc</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">ICERDiff</th>
+<th data-quarto-table-cell-role="th">ICERPerc</th>
+<th data-quarto-table-cell-role="th">IncrementalNMB</th>
+<th data-quarto-table-cell-role="th">IncrementalNMB_paper</th>
+<th data-quarto-table-cell-role="th">INMBDiff</th>
+<th data-quarto-table-cell-role="th">INMBPerc</th>
+<th data-quarto-table-cell-role="th">Ranking</th>
+<th data-quarto-table-cell-role="th">Ranking_paper</th>
+<th data-quarto-table-cell-role="th">RankDiff</th>
+<th data-quarto-table-cell-role="th">RankPerc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>S0</td>
+<td>NaN</td>
+<td>2149</td>
+<td>2151</td>
+<td>-2</td>
+<td>-0.10%</td>
+<td>12.542</td>
+<td>12.546</td>
+<td>-0.004</td>
+<td>0.00%</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>S1a</td>
+<td>3 years</td>
+<td>2421</td>
+<td>2438</td>
+<td>-17</td>
+<td>-0.70%</td>
+<td>12.559</td>
+<td>12.560</td>
+<td>-0.001</td>
+<td>0.00%</td>
+<td>...</td>
+<td>-3436.0</td>
+<td>-17.5%</td>
+<td>568.0</td>
+<td>444.0</td>
+<td>124.0</td>
+<td>27.9%</td>
+<td>3.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>200.0%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>S1a</td>
+<td>5 years</td>
+<td>2354</td>
+<td>2356</td>
+<td>-2</td>
+<td>-0.10%</td>
+<td>12.555</td>
+<td>12.556</td>
+<td>-0.001</td>
+<td>0.00%</td>
+<td>...</td>
+<td>584.0</td>
+<td>2.9%</td>
+<td>280.0</td>
+<td>312.0</td>
+<td>-32.0</td>
+<td>-10.3%</td>
+<td>9.0</td>
+<td>2.0</td>
+<td>7.0</td>
+<td>350.0%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>S1b</td>
+<td>3 years</td>
+<td>2371</td>
+<td>2363</td>
+<td>8</td>
+<td>0.30%</td>
+<td>12.545</td>
+<td>12.554</td>
+<td>-0.009</td>
+<td>-0.10%</td>
+<td>...</td>
+<td>41295.0</td>
+<td>159.5%</td>
+<td>-57.0</td>
+<td>198.0</td>
+<td>-255.0</td>
+<td>-128.8%</td>
+<td>15.0</td>
+<td>6.0</td>
+<td>9.0</td>
+<td>150.0%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>S1b</td>
+<td>5 years</td>
+<td>2279</td>
+<td>2296</td>
+<td>-17</td>
+<td>-0.70%</td>
+<td>12.550</td>
+<td>12.552</td>
+<td>-0.002</td>
+<td>0.00%</td>
+<td>...</td>
+<td>2724.0</td>
+<td>11.7%</td>
+<td>111.0</td>
+<td>168.0</td>
+<td>-57.0</td>
+<td>-33.9%</td>
+<td>11.0</td>
+<td>8.0</td>
+<td>3.0</td>
+<td>37.5%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>S1c</td>
+<td>3 years</td>
+<td>2361</td>
+<td>2386</td>
+<td>-25</td>
+<td>-1.00%</td>
+<td>12.554</td>
+<td>12.551</td>
+<td>0.003</td>
+<td>0.00%</td>
+<td>...</td>
+<td>-28635.0</td>
+<td>-61.0%</td>
+<td>366.0</td>
+<td>15.0</td>
+<td>351.0</td>
+<td>2 340.0%</td>
+<td>8.0</td>
+<td>16.0</td>
+<td>-8.0</td>
+<td>-50.0%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>S1c</td>
+<td>5 years</td>
+<td>2316</td>
+<td>2313</td>
+<td>3</td>
+<td>0.10%</td>
+<td>12.550</td>
+<td>12.550</td>
+<td>0.000</td>
+<td>0.00%</td>
+<td>...</td>
+<td>-4655.0</td>
+<td>-12.0%</td>
+<td>73.0</td>
+<td>47.0</td>
+<td>26.0</td>
+<td>55.3%</td>
+<td>12.0</td>
+<td>15.0</td>
+<td>-3.0</td>
+<td>-20.0%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>S2a</td>
+<td>3 years</td>
+<td>2913</td>
+<td>2286</td>
+<td>627</td>
+<td>27.40%</td>
+<td>12.287</td>
+<td>12.553</td>
+<td>-0.266</td>
+<td>-2.10%</td>
+<td>...</td>
+<td>-5516.0</td>
+<td>-29.2%</td>
+<td>595.0</td>
+<td>223.0</td>
+<td>372.0</td>
+<td>166.8%</td>
+<td>2.0</td>
+<td>4.0</td>
+<td>-2.0</td>
+<td>-50.0%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>S2a</td>
+<td>5 years</td>
+<td>2858</td>
+<td>2246</td>
+<td>612</td>
+<td>27.20%</td>
+<td>12.283</td>
+<td>12.551</td>
+<td>-0.268</td>
+<td>-2.10%</td>
+<td>...</td>
+<td>-973.0</td>
+<td>-5.6%</td>
+<td>366.0</td>
+<td>176.0</td>
+<td>190.0</td>
+<td>108.0%</td>
+<td>7.0</td>
+<td>7.0</td>
+<td>0.0</td>
+<td>0.0%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>S3a</td>
+<td>3 years</td>
+<td>3052</td>
+<td>2234</td>
+<td>818</td>
+<td>36.60%</td>
+<td>11.243</td>
+<td>12.548</td>
+<td>-1.305</td>
+<td>-10.40%</td>
+<td>...</td>
+<td>-10011.0</td>
+<td>-33.0%</td>
+<td>263.0</td>
+<td>54.0</td>
+<td>209.0</td>
+<td>387.0%</td>
+<td>10.0</td>
+<td>14.0</td>
+<td>-4.0</td>
+<td>-28.6%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>S3a</td>
+<td>5 years</td>
+<td>3043</td>
+<td>2207</td>
+<td>836</td>
+<td>37.90%</td>
+<td>11.238</td>
+<td>12.548</td>
+<td>-1.310</td>
+<td>-10.40%</td>
+<td>...</td>
+<td>-9212.0</td>
+<td>-40.7%</td>
+<td>392.0</td>
+<td>68.0</td>
+<td>324.0</td>
+<td>476.5%</td>
+<td>6.0</td>
+<td>12.0</td>
+<td>-6.0</td>
+<td>-50.0%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>S3b</td>
+<td>3 years</td>
+<td>3145</td>
+<td>2292</td>
+<td>853</td>
+<td>37.20%</td>
+<td>11.241</td>
+<td>12.553</td>
+<td>-1.312</td>
+<td>-10.50%</td>
+<td>...</td>
+<td>25168.0</td>
+<td>136.5%</td>
+<td>40.0</td>
+<td>241.0</td>
+<td>-201.0</td>
+<td>-83.4%</td>
+<td>13.0</td>
+<td>3.0</td>
+<td>10.0</td>
+<td>333.3%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>S3b</td>
+<td>5 years</td>
+<td>3130</td>
+<td>2250</td>
+<td>880</td>
+<td>39.10%</td>
+<td>11.242</td>
+<td>12.552</td>
+<td>-1.310</td>
+<td>-10.40%</td>
+<td>...</td>
+<td>-72.0</td>
+<td>-0.4%</td>
+<td>483.0</td>
+<td>206.0</td>
+<td>277.0</td>
+<td>134.5%</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>0.0</td>
+<td>0.0%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>S3c</td>
+<td>3 years</td>
+<td>3105</td>
+<td>2256</td>
+<td>849</td>
+<td>37.60%</td>
+<td>11.255</td>
+<td>12.550</td>
+<td>-1.295</td>
+<td>-10.30%</td>
+<td>...</td>
+<td>-12455.0</td>
+<td>-52.0%</td>
+<td>779.0</td>
+<td>114.0</td>
+<td>665.0</td>
+<td>583.3%</td>
+<td>1.0</td>
+<td>9.0</td>
+<td>-8.0</td>
+<td>-88.9%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>S3c</td>
+<td>5 years</td>
+<td>3042</td>
+<td>2224</td>
+<td>818</td>
+<td>36.80%</td>
+<td>11.241</td>
+<td>12.549</td>
+<td>-1.308</td>
+<td>-10.40%</td>
+<td>...</td>
+<td>-9404.0</td>
+<td>-46.4%</td>
+<td>516.0</td>
+<td>107.0</td>
+<td>409.0</td>
+<td>382.2%</td>
+<td>4.0</td>
+<td>10.0</td>
+<td>-6.0</td>
+<td>-60.0%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>S3d</td>
+<td>3 years</td>
+<td>3139</td>
+<td>2263</td>
+<td>876</td>
+<td>38.70%</td>
+<td>11.239</td>
+<td>12.549</td>
+<td>-1.310</td>
+<td>-10.40%</td>
+<td>...</td>
+<td>27659.0</td>
+<td>97.9%</td>
+<td>-28.0</td>
+<td>86.0</td>
+<td>-114.0</td>
+<td>-132.6%</td>
+<td>14.0</td>
+<td>11.0</td>
+<td>3.0</td>
+<td>27.3%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>S3d</td>
+<td>5 years</td>
+<td>3045</td>
+<td>2227</td>
+<td>818</td>
+<td>36.70%</td>
+<td>11.228</td>
+<td>12.548</td>
+<td>-1.320</td>
+<td>-10.50%</td>
+<td>...</td>
+<td>-1006397.0</td>
+<td>-3 647.6%</td>
+<td>-154.0</td>
+<td>62.0</td>
+<td>-216.0</td>
+<td>-348.4%</td>
+<td>16.0</td>
+<td>13.0</td>
+<td>3.0</td>
+<td>23.1%</td>
+</tr>
+</tbody>
+</table>
+
+<p>17 rows × 22 columns</p>
+</div>
+</div>
+</div>
 </section>
-<section id="update-license" class="level2">
-<h2 class="anchored" data-anchor-id="update-license">10.50-10.52: Update license</h2>
-<p>Switch to GNU General Public License version 3 to match original study. The <a href="https://fossa.com/blog/open-source-software-licenses-101-gpl-v3/">requirements of this license</a> are to:</p>
-<ul>
-<li>Include a copy of the full license</li>
-<li>State all significant changes made to the software</li>
-<li>Make the original source code available when distributing binaries based on that work</li>
-<li>Include a copy of the original copyright notice</li>
-</ul>
-<p>It allows the code to be changed and distributed to others (as long as release under GPL v3 also).</p>
-</section>
-<section id="complete-page-about-original-study-and-license" class="level2">
-<h2 class="anchored" data-anchor-id="complete-page-about-original-study-and-license">10.53-11.01: Complete page about original study and license</h2>
-<p>As cannot upload anything from the study, just provided links.</p>
-</section>
-<section id="read-the-article-and-outline-scope" class="level2">
-<h2 class="anchored" data-anchor-id="read-the-article-and-outline-scope">11.09-11.22, 11.29-11.38, 12.04-12.24: Read the article and outline scope</h2>
-<p>Read through the article and identified scope as:</p>
-<ul>
-<li>Table 3</li>
-<li>Figure 3</li>
-<li>Supp Appendix 6 (Figure)</li>
-<li>Figure 4</li>
-<li>Supp Appendix 7 (Figure)</li>
-</ul>
-<p>There was one section of text not explicitly in the tables or figures, but it is an easy calculation from the values in Table 3, and so I feel the reproduction of Table 3 encompasses it. This was:</p>
-<blockquote class="blockquote">
-<p>“This scenario (S1a) was associated with an incremental cost of $188 and an incremental effectiveness of 0.009 QALYs per eligible patient relative to the CDQ ≥ 16.5 points among ever smokers at 5-year intervals (S3b), resulting in an ICER of $22,044/QALY.”</p>
-<ul>
-<li>This is just calculated from the table - $2438 - $2250 = $188</li>
-<li>12.560 - 12.552 = 0.008 (likely rounding related)</li>
-<li>ICER = 188 / 0.008 = $23,500/QALY</li>
-</ul>
-</blockquote>
-<p>I outlined this on the <code>scope.qmd</code> page.</p>
-<p>Tom later emailed to confirm he was likewise happy with this scope.</p>
+<section id="x-trying-higher-agent-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="x-trying-higher-agent-numbers">11.32-X: Trying higher agent numbers</h2>
+<p>Curious is this is due to the number of base agents, I re-ran with</p>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="9bc8db16" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">32</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.44'</span>, <span class="st">'09.48'</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.52'</span>, <span class="st">'09.56'</span>),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.38'</span>, <span class="st">'10.47'</span>),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.50'</span>, <span class="st">'10.52'</span>),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.53'</span>, <span class="st">'11.01'</span>),</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.09'</span>, <span class="st">'11.22'</span>),</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.29'</span>, <span class="st">'11.38'</span>),</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'12.04'</span>, <span class="st">'12.24'</span>)]</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="eec38138" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">371</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.28'</span>, <span class="st">'09.38'</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.10'</span>, <span class="st">'10.19'</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.20'</span>, <span class="st">'11.30'</span>)]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 69m, or 1h 9m
-Total used to date: 101m, or 1h 41m
-Time remaining: 2299m, or 38h 19m
-Used 4.2% of 40 hours max</code></pre>
+<pre><code>Time spent today: 89m, or 1h 29m
+Total used to date: 460m, or 7h 40m
+Time remaining: 1940m, or 32h 20m
+Used 19.2% of 40 hours max</code></pre>
 </div>
 </div>
 
@@ -797,7 +1222,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_01/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_05/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
