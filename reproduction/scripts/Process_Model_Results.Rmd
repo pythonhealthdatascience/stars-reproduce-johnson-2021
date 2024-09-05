@@ -1,34 +1,75 @@
 ---
 title: "Process Model Results"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: github_document
+output:
+  html_document:
+    df_print: paged
 keep.md: true
 ---
 
 This file processes the model results so they match up as closely as possible to those in the publication.
 
-```{r}
+```{r, message=FALSE}
 library(dplyr)
+```
+
+## Define file paths and import files
+
+```{r}
+paths <- list(
+  # Model results
+  sall_3y = "../outputs/sall.csv",
+  sall_5y = "../outputs/sall_5y.csv",
+
+  # Paper results
+  paper_tab3 = "../../original_study/tab3.csv",
+
+  # Outputs from this .Rmd file
+  sall_compare = "../outputs/sall_compare_to_paper.csv"
+)
+```
+
+```{r}
+sall_3y <- read.csv(paths$sall_3y) %>% mutate("Interval" = "3 years")
+sall_5y <- read.csv(paths$sall_5y) %>% mutate("Interval" = "5 years")
+paper_tab3 <- read.csv(paths$paper_tab3)
 ```
 
 ## Table 3
 
-```{r}
-sall <- read.csv("../outputs/sall.csv")
+Preview the results.
 
-sall %>%
-  # Remove scenarios 2 and 3 with no case detection
-  filter(!(Scenario == "S2NoCD" | Scenario == "S3NoCD" | Scenario == "S2b")) %>%
-  # Add testing interval for all excep S1NoCD
-  mutate("Interval" = ifelse(Scenario!="S1NoCD", "3 years", NA)) %>%
+```{r}
+rbind(sall_3y, sall_5y) %>%
+  arrange(Scenario)
+```
+
+Combine, organise and modify results as per paper.
+
+```{r}
+sall <- rbind(sall_3y, sall_5y) %>%
+  # Remove scenarios 2 and 3 with no case detection, and scenario 2b
+  filter(!(Scenario %in% c("S2NoCD", "S3NoCD", "S2b"))) %>%
+  # Remove S1NoCD from 5 years, then set interval of S1NoCD to NA
+  filter(!(Scenario == "S1NoCD" & Interval == "5 years")) %>%
+  mutate(Interval = ifelse(Scenario == "S1NoCD", NA, Interval)) %>%
   # Remove INMB for S1NoCD
   mutate(IncrementalNMB = ifelse(Scenario!="S1NoCD", IncrementalNMB, NA)) %>%
+  # Get INMB ranking
+  mutate(Ranking = min_rank(desc(IncrementalNMB)))
+
+sall
+```
+
+Reformat to match paper.
+
+```{r}
+sall_pretty <- sall %>%
   # Round columns
   mutate(CostpAgent = paste0("$", round(CostpAgent, 0))) %>%
   mutate(QALYpAgent = round(QALYpAgent, 3)) %>%
   mutate(ICER = round(ICER, 0)) %>%
-  # Get INMB ranking
-  mutate(Ranking = min_rank(desc(IncrementalNMB))) %>%
+  # Create INMB and rank column
   mutate(INMBRank = ifelse(
     Scenario!="S1NoCD",
     paste0(round(IncrementalNMB, 0), "(", Ranking, ")"),
@@ -52,4 +93,84 @@ sall %>%
          "QALYs (QALYs/patient)" = QALYpAgent,
          "ICER ($/QALY)" = ICER,
          "INMB (ranking)" = INMBRank)
+
+# Preview dataframe
+sall_pretty
+```
+
+Compare against paper.
+
+```{r}
+# Prepare sall model results to combine with original table
+sall_prep <- sall %>%
+  # Replace S1NoCD with S0
+  mutate(Scenario = replace(Scenario, Scenario == "S1NoCD", "S0")) %>%
+  # Round columns
+  mutate(CostpAgent = round(CostpAgent, 0)) %>%
+  mutate(QALYpAgent = round(QALYpAgent, 3)) %>%
+  mutate(ICER = round(ICER, 0)) %>%
+  mutate(IncrementalNMB = round(IncrementalNMB, 0)) %>%
+  # Select relevant columns
+  select(Scenario, Interval, CostpAgent, QALYpAgent, ICER, IncrementalNMB, Ranking)
+
+sall_prep
+```
+
+```{r}
+# Convert costs to numeric
+paper_tab3_prep <- paper_tab3 %>%
+  mutate(CostpAgent = readr::parse_number(CostpAgent))
+
+# Append "_paper" to columns (except Scenario and Interval)
+icol <- which(names(paper_tab3_prep) %in% c("Scenario", "Interval"))
+colnames(paper_tab3_prep)[-icol] <- paste(colnames(paper_tab3_prep)[-icol], "paper", sep = "_")
+
+# Preview dataframe
+paper_tab3_prep
+```
+
+```{r}
+calc_diff_perc <- function(df, col1, col2, prefix) {
+  #' Calculate the difference and percentage difference between two columns
+  #' 
+  #' @param df Dataframe containing columns
+  #' @param col1 Name of one of the columns
+  #' @param col2 Name of the other column
+  #' @param prefix String to prefix start of the result columns
+  #' 
+  #' @return Dataframe with the column pair, results, scenario and interval
+  # Create column names for differences
+  diff <- paste0(prefix, "Diff")
+  perc <- paste0(prefix, "Perc")
+
+  # Calculate the difference and percentage difference between col1 and col2
+  df %>%
+    mutate(
+      !!sym(diff) := !!sym(col1) - !!sym(col2),
+      !!sym(perc) := scales::percent(round(!!sym(diff) / !!sym(col2), 3))
+    ) %>%
+    # Select only those columns, as well as Scenario and Interval
+    select(Scenario, Interval, !!sym(col1), !!sym(col2), !!sym(diff), !!sym(perc))
+}
+
+# Combine the model and paper results
+sall_combine <- merge(sall_prep, paper_tab3_prep, by=c("Scenario", "Interval"))
+
+# Define the pairs of columns to compare and the prefix to use for their comparison
+column_pairs <- list(
+  c("CostpAgent", "CostpAgent_paper", "Cost"),
+  c("QALYpAgent", "QALYpAgent_paper", "QALY"),
+  c("ICER", "ICER_paper", "ICER"),
+  c("IncrementalNMB", "IncrementalNMB_paper", "INMB"),
+  c("Ranking", "Ranking_paper", "Rank")
+)
+
+# Combine model and paper results and apply the function for each pair of columns
+sall_compare <- column_pairs %>%
+  purrr::map(~ calc_diff_perc(sall_combine, .x[1], .x[2], .x[3])) %>%
+  purrr::reduce(left_join, by = c("Scenario", "Interval"))
+
+# Save to csv and view
+write.csv(sall_compare, paths$sall_compare, row.names=FALSE)
+sall_compare
 ```
