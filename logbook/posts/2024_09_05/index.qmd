@@ -39,12 +39,95 @@ Although some things are similar (e.g. scenario 1 costs and QALYs), others are v
 ```{python}
 import pandas as pd
 
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
+
 pd.read_csv('sall_compare_to_paper.csv')
 ```
 
-## 11.32-X: Trying higher agent numbers
+## 11.32-11.36, 13.08-13.10: Trying higher agent numbers
 
-Curious is this is due to the number of base agents, I re-ran with 
+Curious is this is due to the number of base agents, I re-ran with 1e6 base_agents (1 million) instead of 5e5 (500,000). On the remote machine, this took 17.1 + 17.1 = 34.2 minutes.
+
+```{python}
+pd.read_csv('sall_compare_to_paper_1e6.csv')
+```
+
+This didn't have a big impact though, so it appears the issue may be elsewhere.
+
+## 13.13-13.25, 14.24-14.41, 14.58-15.44: Comparing against their markdown file and finding right columns
+
+The original repository included a markdown file from a run of this code. Instead of comparing against the paper, I tried comparing against those results, as that should definitely match up, and can tell us if this code as it is is running as expected or not.
+
+I copied the sall tables from `Case_Detection_Results.md` and `Case_Detection_Results_5yrs.md` into a single `.csv` file, then add that to the comparison.
+
+Comparing the paper and repo against my results:
+
+```{python}
+pd.read_csv('sall_compare_1e6_to_mine.csv')
+```
+
+Comparing my results and the repo against the papers results:
+
+```{python}
+pd.read_csv('sall_compare_1e6_to_paper.csv')
+```
+
+I initially misunderstood this, and started troubleshooting, revisiting the installation instructions:
+
+```
+devtools::install_github('KateJohnson/epicR', ref="closed_cohort")
+```
+
+And how this fails because rredis has been removed from CRAN - hence, the method I had used instead, of loading the local folder as a package.
+
+```
+ERROR: dependency ‘rredis’ is not available for package ‘epicR’
+* removing ‘/home/amy/Documents/stars/stars-reproduce-johnson-2021/reproduction/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/epicR’
+Warning message:
+In i.p(...) :
+  installation of package ‘/tmp/RtmpuwIUmF/file723a23834b02/epicR_1.27.7.tar.gz’ had non-zero exit status
+```
+
+::: {.callout-tip}
+## Reflection
+
+Worth being aware of this for an R package, that dependencies becoming unavailable can make this installation method impossible.
+:::
+
+However, I then realised my mistake, and revisiting the tables, recognised that actually:
+
+* For costs and QALYS, my results and the respository results were very similar (and both were very different from the paper for scenarios 2 and 3)
+* For ICER and INMB, my results were very different to the repository for all scenarios, which were in term very different to the paper (i.e. none match!)
+
+This gives me assurance that I am getting the right results for costs and QALYs, but that likely there is a difference I hadn't noticed.
+
+I then wondered if perhaps I were looking at the wrong table from the `.md` file.
+
+::: {.callout-tip}
+## Reflection
+
+Having instructions in repository to guide me to the tables, or having labels in the .Rmd itself to say this was Table 3 and so on, would have been very helpful here, as it seems to be taking me a while to get my head around!
+:::
+
+The Cost Effectiveness Plane table is "adjusted to the total population". I made a `.csv` with the CEPlane from their `.md` and then modified `Process_Model_Results.Rmd` to use CEplane instead of sall.
+
+In that table, you can see `CostpAgentAll` comes out lower than `CostpAgent`, for example, which matches up to paper, so I used those "All" columns.
+
+This **resolved the issue for costs and QALYS**, which now both matched the paper:
+
+```{python}
+pd.read_csv('tab3_compare_to_original.csv')
+```
+
+This aligns with the table 3 caption from paper about symptomatic patients (scenario 2) and smoking history (scenario 3):
+
+> "The ‘All patients’ strategy encompassed the entire population of interest. 59% of the population was included in the ‘Symptomatic’ strategy, and 46% in the ‘Smoking history’ strategy. To maintain a constant reference population, per patient costs and QALYs were adjusted to include patients not selected by the strategy. For the symptomatic strategy, the costs (and QALYs) shown are the sum of the costs (QALYs) of patients not included in the symptomatic strategy, and the costs (QALYs) of those included, weighted by the proportion in each group. The results of smoking history strategy were adjusted in the same fashion" @johnson_cost_2021
+
+I checked the GitHub commit history at <https://github.com/KateJohnson/epicR/commits/closed_cohort/> to see if I could spot any potential solutions there.
+
+## 15.44-X: Troubleshooting ICER and INMB
+
 
 ## Timings
 
@@ -60,7 +143,13 @@ used_to_date = 371
 times = [
     ('09.28', '09.38'),
     ('10.10', '10.19'),
-    ('10.20', '11.30')]
+    ('10.20', '11.30'),
+    ('11.32', '11.36'),
+    ('13.08', '13.10'),
+    ('13.13', '13.25'),
+    ('14.24', '14.41')]
 
 calculate_times(used_to_date, times)
 ```
+
+## References
