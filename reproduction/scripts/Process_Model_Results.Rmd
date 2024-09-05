@@ -21,8 +21,9 @@ paths <- list(
   sall_3y = "../outputs/sall.csv",
   sall_5y = "../outputs/sall_5y.csv",
 
-  # Paper results
+  # Origianl study results
   paper_tab3 = "../../original_study/tab3.csv",
+  original_sall = "../../original_study/sall.csv",
 
   # Outputs from this .Rmd file
   sall_compare = "../outputs/sall_compare_to_paper.csv"
@@ -33,6 +34,7 @@ paths <- list(
 sall_3y <- read.csv(paths$sall_3y) %>% mutate("Interval" = "3 years")
 sall_5y <- read.csv(paths$sall_5y) %>% mutate("Interval" = "5 years")
 paper_tab3 <- read.csv(paths$paper_tab3)
+original_sall <- read.csv(paths$original_sall)
 ```
 
 ## Table 3
@@ -130,44 +132,72 @@ paper_tab3_prep
 ```
 
 ```{r}
-calc_diff_perc <- function(df, col1, col2, prefix) {
+original_sall_prep <- original_sall %>%
+  # Replace S1NoCD with S0
+  mutate(Scenario = replace(Scenario, Scenario == "S1NoCD", "S0")) %>%
+  # Round columns
+  mutate(CostpAgent = round(CostpAgent, 0)) %>%
+  mutate(QALYpAgent = round(QALYpAgent, 3)) %>%
+  mutate(ICER = round(ICER, 0)) %>%
+  mutate(IncrementalNMB = round(IncrementalNMB, 0)) %>%
+  # Select relevant columns
+  select(Scenario, Interval, CostpAgent, QALYpAgent, ICER, IncrementalNMB)
+
+# Append "_repo" to columns (except Scenario and Interval)
+icol <- which(names(original_sall_prep) %in% c("Scenario", "Interval"))
+colnames(original_sall_prep)[-icol] <- paste(colnames(original_sall_prep)[-icol], "repo", sep = "_")
+
+original_sall_prep
+```
+
+```{r}
+calc_diff_perc <- function(df, our_res, paper_res, repo_res, prefix) {
   #' Calculate the difference and percentage difference between two columns
   #' 
   #' @param df Dataframe containing columns
-  #' @param col1 Name of one of the columns
-  #' @param col2 Name of the other column
+  #' @param our_res Column with results from our run of the model
+  #' @param paper_res Column with results from the paper table 3
+  #' @param repo_res Column with results from the .md files in their repository
   #' @param prefix String to prefix start of the result columns
   #' 
   #' @return Dataframe with the column pair, results, scenario and interval
+
   # Create column names for differences
-  diff <- paste0(prefix, "Diff")
-  perc <- paste0(prefix, "Perc")
+  paperdiff <- paste0(prefix, "PaperDiff")
+  paperperc <- paste0(prefix, "PaperPerc")
+  repodiff <- paste0(prefix, "RepoDiff")
+  repoperc <- paste0(prefix, "RepoPerc")
 
   # Calculate the difference and percentage difference between col1 and col2
   df %>%
     mutate(
-      !!sym(diff) := !!sym(col1) - !!sym(col2),
-      !!sym(perc) := scales::percent(round(!!sym(diff) / !!sym(col2), 3))
+      !!sym(diff) := !!sym(our_res) - !!sym(paper_res),
+      !!sym(paperperc) := scales::percent(round(!!sym(paperdiff) / !!sym(paper_res), 3)),
+      !!sym(repodiff) := !!sym(our_res) - !!sym(repo_res),
+      !!sym(repoperc) := scales::percent(round(!!sym(repodiff) / !!sym(repo_res), 3))
     ) %>%
     # Select only those columns, as well as Scenario and Interval
-    select(Scenario, Interval, !!sym(col1), !!sym(col2), !!sym(diff), !!sym(perc))
+    select(Scenario, Interval,
+           !!sym(our_res), !!sym(paper_res), !!sym(repo_res),
+           !!sym(paperdiff), !!sym(repodiff),
+           !!sym(paperperc), !!sym(repoperc))
 }
 
 # Combine the model and paper results
-sall_combine <- merge(sall_prep, paper_tab3_prep, by=c("Scenario", "Interval"))
+sall_combine <- merge(sall_prep, paper_tab3_prep, by=c("Scenario", "Interval")) %>%
+  merge(original_sall_prep, by=c("Scenario", "Interval"))
 
 # Define the pairs of columns to compare and the prefix to use for their comparison
 column_pairs <- list(
-  c("CostpAgent", "CostpAgent_paper", "Cost"),
-  c("QALYpAgent", "QALYpAgent_paper", "QALY"),
-  c("ICER", "ICER_paper", "ICER"),
-  c("IncrementalNMB", "IncrementalNMB_paper", "INMB"),
-  c("Ranking", "Ranking_paper", "Rank")
+  c("CostpAgent", "CostpAgent_paper", "CostpAgent_repo", "Cost"),
+  c("QALYpAgent", "QALYpAgent_paper", "QALYpAgent_repo", "QALY"),
+  c("ICER", "ICER_paper", "ICER_repo", "ICER"),
+  c("IncrementalNMB", "IncrementalNMB_paper", "IncrementalNMB_repo", "INMB")
 )
 
 # Combine model and paper results and apply the function for each pair of columns
 sall_compare <- column_pairs %>%
-  purrr::map(~ calc_diff_perc(sall_combine, .x[1], .x[2], .x[3])) %>%
+  purrr::map(~ calc_diff_perc(sall_combine, .x[1], .x[2], .x[3], .x[4])) %>%
   purrr::reduce(left_join, by = c("Scenario", "Interval"))
 
 # Save to csv and view
