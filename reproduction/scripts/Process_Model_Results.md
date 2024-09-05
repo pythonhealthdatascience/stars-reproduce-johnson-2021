@@ -216,7 +216,7 @@ ceplane_pretty <- ceplane %>%
   # Round columns
   mutate(CostpAgentAll = paste0("$", round(CostpAgentAll, 0))) %>%
   mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
-  mutate(ICER = round(ICER, 0)) %>%
+  mutate(ICERAdj = round(ICERAdj, 0)) %>%
   # Create INMB and rank column
   mutate(INMBRank = ifelse(
     Scenario!="S1NoCDAvg",
@@ -235,11 +235,11 @@ ceplane_pretty <- ceplane %>%
                            "S3c" = "(S3c) Screening spirometry",
                            "S3d" = "(S3d) CDQ + screening spirometry")) %>%
   # Select, reorder and relabel columns
-  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICER, INMBRank) %>%
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMBRank) %>%
   rename("Testing interval" = Interval,
          "Costs ($/patient)" = CostpAgentAll,
          "QALYs (QALYs/patient)" = QALYpAgentAll,
-         "ICER ($/QALY)" = ICER,
+         "ICER ($/QALY)" = ICERAdj,
          "INMB (ranking)" = INMBRank)
 
 # Preview dataframe
@@ -266,22 +266,22 @@ ceplane_pretty
     ## 17 (S3d) CDQ + screening spirometry          5 years             $2222
     ##    QALYs (QALYs/patient) ICER ($/QALY) INMB (ranking)
     ## 1                 12.538            NA           <NA>
-    ## 2                 12.558         13791         703(2)
-    ## 3                 12.560          9740         868(1)
-    ## 4                 12.550         17035         386(9)
-    ## 5                 12.554         10380         637(4)
-    ## 6                 12.552         17438         433(7)
-    ## 7                 12.544         27839        142(14)
-    ## 8                 12.555          7853         703(3)
-    ## 9                 12.548          9106         418(8)
-    ## 10                12.551          7930         556(5)
-    ## 11                12.537        -80780       -126(16)
-    ## 12                12.550         14736         440(6)
-    ## 13                12.548         13430        366(10)
-    ## 14                12.545         14727        246(12)
-    ## 15                12.545         12968        251(11)
-    ## 16                12.545         19458        230(13)
-    ## 17                12.539        -38068        -42(15)
+    ## 2                 12.558         14171         703(2)
+    ## 3                 12.560          9472         868(1)
+    ## 4                 12.550         17774         386(9)
+    ## 5                 12.554         10003         637(4)
+    ## 6                 12.552         18103         433(7)
+    ## 7                 12.544         25522        142(14)
+    ## 8                 12.555          7905         703(3)
+    ## 9                 12.548          8318         418(8)
+    ## 10                12.551          5438         556(5)
+    ## 11                12.537        -54918       -126(16)
+    ## 12                12.550         10741         440(6)
+    ## 13                12.548         11234        366(10)
+    ## 14                12.545         12400        246(12)
+    ## 15                12.545         10507        251(11)
+    ## 16                12.545         13903        230(13)
+    ## 17                12.539        120888        -42(15)
 
 ### Compare between our results, the paper, and their repository
 
@@ -295,32 +295,32 @@ ceplane_prep <- ceplane %>%
   # Round columns
   mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
   mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
-  mutate(ICER = round(ICER, 0)) %>%
+  mutate(ICERAdj = round(ICERAdj, 0)) %>%
   mutate(INMB = round(INMB, 0)) %>%
   # Select relevant columns
-  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICER, INMB, Ranking)
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMB, Ranking)
 
 ceplane_prep
 ```
 
-    ##    Scenario Interval CostpAgentAll QALYpAgentAll   ICER INMB Ranking
-    ## 1        S0     <NA>          2152        12.538     NA   NA      NA
-    ## 2       S1a  3 years          2430        12.558  13791  703       2
-    ## 3       S1b  3 years          2365        12.550  17035  386       9
-    ## 4       S1c  3 years          2398        12.552  17438  433       7
-    ## 5       S2a  3 years          2284        12.555   7853  703       3
-    ## 6       S3a  3 years          2220        12.551   7930  556       5
-    ## 7       S3b  3 years          2273        12.550  14736  440       6
-    ## 8       S3c  3 years          2233        12.545  14727  246      12
-    ## 9       S3d  3 years          2241        12.545  19458  230      13
-    ## 10      S1a  5 years          2355        12.560   9740  868       1
-    ## 11      S1b  5 years          2311        12.554  10380  637       4
-    ## 12      S1c  5 years          2300        12.544  27839  142      14
-    ## 13      S2a  5 years          2235        12.548   9106  418       8
-    ## 14      S3a  5 years          2218        12.537 -80780 -126      16
-    ## 15      S3b  5 years          2258        12.548  13430  366      10
-    ## 16      S3c  5 years          2219        12.545  12968  251      11
-    ## 17      S3d  5 years          2222        12.539 -38068  -42      15
+    ##    Scenario Interval CostpAgentAll QALYpAgentAll ICERAdj INMB Ranking
+    ## 1        S0     <NA>          2152        12.538      NA   NA      NA
+    ## 2       S1a  3 years          2430        12.558   14171  703       2
+    ## 3       S1b  3 years          2365        12.550   17774  386       9
+    ## 4       S1c  3 years          2398        12.552   18103  433       7
+    ## 5       S2a  3 years          2284        12.555    7905  703       3
+    ## 6       S3a  3 years          2220        12.551    5438  556       5
+    ## 7       S3b  3 years          2273        12.550   10741  440       6
+    ## 8       S3c  3 years          2233        12.545   12400  246      12
+    ## 9       S3d  3 years          2241        12.545   13903  230      13
+    ## 10      S1a  5 years          2355        12.560    9472  868       1
+    ## 11      S1b  5 years          2311        12.554   10003  637       4
+    ## 12      S1c  5 years          2300        12.544   25522  142      14
+    ## 13      S2a  5 years          2235        12.548    8318  418       8
+    ## 14      S3a  5 years          2218        12.537  -54918 -126      16
+    ## 15      S3b  5 years          2258        12.548   11234  366      10
+    ## 16      S3c  5 years          2219        12.545   10507  251      11
+    ## 17      S3d  5 years          2222        12.539  120888  -42      15
 
 Prepare results from the paper…
 
@@ -385,10 +385,10 @@ original_ceplane_prep <- original_ceplane %>%
   # Round columns
   mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
   mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
-  mutate(ICER = round(ICER, 0)) %>%
+  mutate(ICERAdj = round(ICERAdj, 0)) %>%
   mutate(INMB = round(INMB, 0)) %>%
   # Select relevant columns
-  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICER, INMB)
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMB)
 
 # Append "_repo" to columns (except Scenario and Interval)
 icol <- which(names(original_ceplane_prep) %in% c("Scenario", "Interval"))
@@ -398,25 +398,44 @@ colnames(original_ceplane_prep)[-icol] <- paste(
 original_ceplane_prep
 ```
 
-    ##    Scenario Interval CostpAgentAll_repo QALYpAgentAll_repo ICER_repo INMB_repo
-    ## 1        S0     <NA>               2151             12.545        NA         0
-    ## 2       S1a  3 years               2439             12.560     18767       446
-    ## 3       S1b  3 years               2365             12.552     28168       131
-    ## 4       S1c  3 years               2386             12.551     37782        40
-    ## 5       S2a  3 years               2287             12.552     21840       186
-    ## 6       S3a  3 years               2232             12.548     34146        45
-    ## 7       S3b  3 years               2289             12.553     19575       243
-    ## 8       S3c  3 years               2255             12.550     21507       148
-    ## 9       S3d  3 years               2261             12.550     21157       124
-    ## 10       S0     <NA>               2151             12.545        NA         0
-    ## 11      S1a  5 years               2355             12.557     17603       411
-    ## 12      S1b  5 years               2298             12.551     29091       142
-    ## 13      S1c  5 years               2311             12.551     34119       110
-    ## 14      S2a  5 years               2245             12.550     19840       137
-    ## 15      S3a  5 years               2207             12.548     22117        67
-    ## 16      S3b  5 years               2248             12.551     17541       183
-    ## 17      S3c  5 years               2221             12.549     17870       113
-    ## 18      S3d  5 years               2226             12.548     25402        67
+    ##    Scenario Interval CostpAgentAll_repo QALYpAgentAll_repo ICERAdj_repo
+    ## 1        S0     <NA>               2151             12.545           NA
+    ## 2       S1a  3 years               2439             12.560        19665
+    ## 3       S1b  3 years               2365             12.552        31076
+    ## 4       S1c  3 years               2386             12.551        42697
+    ## 5       S2a  3 years               2287             12.552        21184
+    ## 6       S3a  3 years               2232             12.548        32247
+    ## 7       S3b  3 years               2289             12.553        18157
+    ## 8       S3c  3 years               2255             12.550        20700
+    ## 9       S3d  3 years               2261             12.550        23462
+    ## 10       S0     <NA>               2151             12.545           NA
+    ## 11      S1a  5 years               2355             12.557        16600
+    ## 12      S1b  5 years               2298             12.551        25501
+    ## 13      S1c  5 years               2311             12.551        29600
+    ## 14      S2a  5 years               2245             12.550        20394
+    ## 15      S3a  5 years               2207             12.548        22694
+    ## 16      S3b  5 years               2248             12.551        17325
+    ## 17      S3c  5 years               2221             12.549        19250
+    ## 18      S3d  5 years               2226             12.548        26517
+    ##    INMB_repo
+    ## 1          0
+    ## 2        446
+    ## 3        131
+    ## 4         40
+    ## 5        186
+    ## 6         45
+    ## 7        243
+    ## 8        148
+    ## 9        124
+    ## 10         0
+    ## 11       411
+    ## 12       142
+    ## 13       110
+    ## 14       137
+    ## 15        67
+    ## 16       183
+    ## 17       113
+    ## 18        67
 
 ``` r
 calc_diff_perc <- function(df, our_res, paper_res, repo_res, prefix) {
@@ -459,7 +478,7 @@ ceplane_combine <- merge(ceplane_prep, paper_tab3_prep, by=c("Scenario", "Interv
 column_pairs <- list(
   c("CostpAgentAll", "CostpAgent_paper", "CostpAgentAll_repo", "Cost"),
   c("QALYpAgentAll", "QALYpAgent_paper", "QALYpAgentAll_repo", "QALY"),
-  c("ICER", "ICER_paper", "ICER_repo", "ICER"),
+  c("ICERAdj", "ICER_paper", "ICERAdj_repo", "ICER"),
   c("INMB", "IncrementalNMB_paper", "INMB_repo", "INMB")
 )
 
@@ -530,57 +549,57 @@ ceplane_compare
     ## 30        12.545             12.549      0.004       0.0%        0.000
     ## 31        12.545             12.550      0.004       0.0%       -0.001
     ## 32        12.539             12.548      0.009       0.1%        0.000
-    ##    QALYRepoPerc ICER_paper   ICER ICER_repo ICERMyDiff ICERMyPerc ICERRepoDiff
-    ## 1            0%         NA     NA        NA         NA       <NA>           NA
-    ## 17           0%      19632  13791     18767       5841      42.4%          865
-    ## 18           0%      19847   9740     17603      10107     103.8%         2244
-    ## 19           0%      25894  17035     28168       8859      52.0%        -2274
-    ## 20           0%      23187  10380     29091      12807     123.4%        -5904
-    ## 21           0%      46956  17438     37782      29518     169.3%         9174
-    ## 22           0%      38673  27839     34119      10834      38.9%         4554
-    ## 23           0%      18908   7853     21840      11055     140.8%        -2932
-    ## 24           0%      17514   9106     19840       8408      92.3%        -2326
-    ## 25           0%      30366   7930     34146      22436     282.9%        -3780
-    ## 26           0%      22636 -80780     22117     103416    -128.0%          519
-    ## 27           0%      18438  14736     19575       3702      25.1%        -1137
-    ## 28           0%      16251  13430     17541       2821      21.0%        -1290
-    ## 29           0%      23972  14727     21507       9245      62.8%         2465
-    ## 30           0%      20278  12968     17870       7310      56.4%         2408
-    ## 31           0%      28245  19458     21157       8787      45.2%         7088
-    ## 32           0%      27591 -38068     25402      65659    -172.5%         2189
-    ##    ICERRepoPerc IncrementalNMB_paper INMB INMB_repo INMBMyDiff INMBMyPerc
-    ## 1          <NA>                   NA   NA         0         NA       <NA>
-    ## 17         4.6%                  444  703       446       -259     -36.8%
-    ## 18        12.7%                  312  868       411       -556     -64.1%
-    ## 19        -8.1%                  198  386       131       -188     -48.7%
-    ## 20       -20.3%                  168  637       142       -469     -73.6%
-    ## 21        24.3%                   15  433        40       -418     -96.5%
-    ## 22        13.3%                   47  142       110        -95     -66.9%
-    ## 23       -13.4%                  223  703       186       -480     -68.3%
-    ## 24       -11.7%                  176  418       137       -242     -57.9%
-    ## 25       -11.1%                   54  556        45       -502     -90.3%
-    ## 26         2.3%                   68 -126        67        194    -154.0%
-    ## 27        -5.8%                  241  440       243       -199     -45.2%
-    ## 28        -7.4%                  206  366       183       -160     -43.7%
-    ## 29        11.5%                  114  246       148       -132     -53.7%
-    ## 30        13.5%                  107  251       113       -144     -57.4%
-    ## 31        33.5%                   86  230       124       -144     -62.6%
-    ## 32         8.6%                   62  -42        67        104    -247.6%
-    ##    INMBRepoDiff INMBRepoPerc
-    ## 1            NA         <NA>
-    ## 17           -2       -0.40%
-    ## 18          -99      -24.10%
-    ## 19           67       51.10%
-    ## 20           26       18.30%
-    ## 21          -25      -62.50%
-    ## 22          -63      -57.30%
-    ## 23           37       19.90%
-    ## 24           39       28.50%
-    ## 25            9       20.00%
-    ## 26            1        1.50%
-    ## 27           -2       -0.80%
-    ## 28           23       12.60%
-    ## 29          -34      -23.00%
-    ## 30           -6       -5.30%
-    ## 31          -38      -30.60%
-    ## 32           -5       -7.50%
+    ##    QALYRepoPerc ICER_paper ICERAdj ICERAdj_repo ICERMyDiff ICERMyPerc
+    ## 1            0%         NA      NA           NA         NA       <NA>
+    ## 17           0%      19632   14171        19665       5461      38.5%
+    ## 18           0%      19847    9472        16600      10375     109.5%
+    ## 19           0%      25894   17774        31076       8120      45.7%
+    ## 20           0%      23187   10003        25501      13184     131.8%
+    ## 21           0%      46956   18103        42697      28853     159.4%
+    ## 22           0%      38673   25522        29600      13151      51.5%
+    ## 23           0%      18908    7905        21184      11003     139.2%
+    ## 24           0%      17514    8318        20394       9196     110.6%
+    ## 25           0%      30366    5438        32247      24928     458.4%
+    ## 26           0%      22636  -54918        22694      77554    -141.2%
+    ## 27           0%      18438   10741        18157       7697      71.7%
+    ## 28           0%      16251   11234        17325       5017      44.7%
+    ## 29           0%      23972   12400        20700      11572      93.3%
+    ## 30           0%      20278   10507        19250       9771      93.0%
+    ## 31           0%      28245   13903        23462      14342     103.2%
+    ## 32           0%      27591  120888        26517     -93297     -77.2%
+    ##    ICERRepoDiff ICERRepoPerc IncrementalNMB_paper INMB INMB_repo INMBMyDiff
+    ## 1            NA         <NA>                   NA   NA         0         NA
+    ## 17          -33        -0.2%                  444  703       446       -259
+    ## 18         3247        19.6%                  312  868       411       -556
+    ## 19        -5182       -16.7%                  198  386       131       -188
+    ## 20        -2314        -9.1%                  168  637       142       -469
+    ## 21         4259        10.0%                   15  433        40       -418
+    ## 22         9073        30.7%                   47  142       110        -95
+    ## 23        -2276       -10.7%                  223  703       186       -480
+    ## 24        -2880       -14.1%                  176  418       137       -242
+    ## 25        -1881        -5.8%                   54  556        45       -502
+    ## 26          -58        -0.3%                   68 -126        67        194
+    ## 27          281         1.5%                  241  440       243       -199
+    ## 28        -1074        -6.2%                  206  366       183       -160
+    ## 29         3272        15.8%                  114  246       148       -132
+    ## 30         1028         5.3%                  107  251       113       -144
+    ## 31         4783        20.4%                   86  230       124       -144
+    ## 32         1074         4.1%                   62  -42        67        104
+    ##    INMBMyPerc INMBRepoDiff INMBRepoPerc
+    ## 1        <NA>           NA         <NA>
+    ## 17     -36.8%           -2       -0.40%
+    ## 18     -64.1%          -99      -24.10%
+    ## 19     -48.7%           67       51.10%
+    ## 20     -73.6%           26       18.30%
+    ## 21     -96.5%          -25      -62.50%
+    ## 22     -66.9%          -63      -57.30%
+    ## 23     -68.3%           37       19.90%
+    ## 24     -57.9%           39       28.50%
+    ## 25     -90.3%            9       20.00%
+    ## 26    -154.0%            1        1.50%
+    ## 27     -45.2%           -2       -0.80%
+    ## 28     -43.7%           23       12.60%
+    ## 29     -53.7%          -34      -23.00%
+    ## 30     -57.4%           -6       -5.30%
+    ## 31     -62.6%          -38      -30.60%
+    ## 32    -247.6%           -5       -7.50%

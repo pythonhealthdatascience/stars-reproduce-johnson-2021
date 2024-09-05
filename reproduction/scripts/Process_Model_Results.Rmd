@@ -75,7 +75,7 @@ ceplane_pretty <- ceplane %>%
   # Round columns
   mutate(CostpAgentAll = paste0("$", round(CostpAgentAll, 0))) %>%
   mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
-  mutate(ICER = round(ICER, 0)) %>%
+  mutate(ICERAdj = round(ICERAdj, 0)) %>%
   # Create INMB and rank column
   mutate(INMBRank = ifelse(
     Scenario!="S1NoCDAvg",
@@ -94,11 +94,11 @@ ceplane_pretty <- ceplane %>%
                            "S3c" = "(S3c) Screening spirometry",
                            "S3d" = "(S3d) CDQ + screening spirometry")) %>%
   # Select, reorder and relabel columns
-  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICER, INMBRank) %>%
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMBRank) %>%
   rename("Testing interval" = Interval,
          "Costs ($/patient)" = CostpAgentAll,
          "QALYs (QALYs/patient)" = QALYpAgentAll,
-         "ICER ($/QALY)" = ICER,
+         "ICER ($/QALY)" = ICERAdj,
          "INMB (ranking)" = INMBRank)
 
 # Preview dataframe
@@ -117,10 +117,10 @@ ceplane_prep <- ceplane %>%
   # Round columns
   mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
   mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
-  mutate(ICER = round(ICER, 0)) %>%
+  mutate(ICERAdj = round(ICERAdj, 0)) %>%
   mutate(INMB = round(INMB, 0)) %>%
   # Select relevant columns
-  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICER, INMB, Ranking)
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMB, Ranking)
 
 ceplane_prep
 ```
@@ -151,10 +151,10 @@ original_ceplane_prep <- original_ceplane %>%
   # Round columns
   mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
   mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
-  mutate(ICER = round(ICER, 0)) %>%
+  mutate(ICERAdj = round(ICERAdj, 0)) %>%
   mutate(INMB = round(INMB, 0)) %>%
   # Select relevant columns
-  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICER, INMB)
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMB)
 
 # Append "_repo" to columns (except Scenario and Interval)
 icol <- which(names(original_ceplane_prep) %in% c("Scenario", "Interval"))
@@ -205,7 +205,7 @@ ceplane_combine <- merge(ceplane_prep, paper_tab3_prep, by=c("Scenario", "Interv
 column_pairs <- list(
   c("CostpAgentAll", "CostpAgent_paper", "CostpAgentAll_repo", "Cost"),
   c("QALYpAgentAll", "QALYpAgent_paper", "QALYpAgentAll_repo", "QALY"),
-  c("ICER", "ICER_paper", "ICER_repo", "ICER"),
+  c("ICERAdj", "ICER_paper", "ICERAdj_repo", "ICER"),
   c("INMB", "IncrementalNMB_paper", "INMB_repo", "INMB")
 )
 
