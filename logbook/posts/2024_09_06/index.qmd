@@ -8,7 +8,7 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
--. Total time used: -h -m (-%)
+Working on Table 3, Figure 3 and Appendix 6 (none yet reproduced). Total time used: -h -m (-%)
 
 :::
 
@@ -124,7 +124,7 @@ import pandas as pd
 pd.read_csv('s1NoCD_50mil.csv')
 ```
 
-## 13.30-X: Returning to appendix 6
+## 13.30-14.42: Returning to appendix 6
 
 I created the four figures. For the fourth, the transformation I'd done to make it reflect 1000 didn't seem to make sense for that one, but I wasn't quite sure what the data was or how to transform it.
 
@@ -141,14 +141,76 @@ I went to check my results, then realised there was an adjusted table of clinica
 ::: {.callout-tip}
 ## Reflection
 
-It's great that this was provided, and makes it much easier. This is partly my fault for not noticing that I should be using that table. However, as for the other parts of this reproduction, this might have been supported by more guidance on which tables produced which figures, or inclusion of code to produce that figure in the paper.
+It's great that this was provided, and makes it much easier. This is partly my fault for not noticing that I should be using that table. However, as for the other parts of this reproduction, this might have been supported by more guidance on which tables produced which figures, or inclusion of code to produce that figure in the paper. And, I wasn't sure what to multiply for these either in the end (see below).
 :::
 
 I realised that multiplying by 1000 works with pAgent columns, but not for the pPYAll. It seems I'd need to multiply by about 16,000.
 
 I experimented with the others, but these were just guesses of what to multiply by, and I still found SABA results to be too low.
 
-![Appendix 6 attempt 2](appendix6v2-1.png)
+![Appendix 6 attempt 2](appendix6v1-1.png)
+
+
+## 15.10-15.40, 15.47-16.06: Troubleshooting appendix 6
+
+Looking at [their results from 50 million](https://github.com/KateJohnson/epicR/blob/239c55a700f9e97869c16d530080a354ec631568/casedetection/Case_Detection_Results.md), they also have a low SABA
+
+Comparing to other SABA results (with LAMA for context):
+
+| Scenario | My SABA (LAMA) | Their 50 million SABA (LAMA) |
+| S1NoCDAvg | 0.019 (0.136) | 0.019 (0.135) |
+| S1a | 0.026 (0.159) | 0.026 (0.159) |
+
+Given how similar these results are, I'm suspecting the issue might not be with the result, but with my transformation, as I just guessed at multiplying it all by 2000 to get similar-ish results for some bars. Looking at `Case_Detecetion_Results.Rmd`, `SABAAll` was created as follows:
+
+```
+ProppPatientYears = ifelse(Scenario=="S2a" | Scenario=="S2NoCD" | Scenario=="S3NoCD" | Scenario=="S3a" | Scenario=="S3b" |
+                                       Scenario=="S3c" | Scenario=="S3d", PatientYears/sall[sall$Scenario=="S1NoCDAvg","PatientYears"], 1),
+ # SABA
+SABAExcluded = ifelse(Scenario=="S1NoCDAvg" | Scenario=="S1a" | Scenario=="S1b" | Scenario=="S1c", 0,
+                          ifelse(Scenario=="S2a" | Scenario=="S2NoCD", 
+                                 (sall[sall$Scenario=="S1NoCDAvg","SABATotal"]- sall[sall$Scenario=="S2NoCD","SABATotal"])/
+                                 (sall[sall$Scenario=="S1NoCDAvg","PatientYears"]- sall[sall$Scenario=="S2NoCD","PatientYears"]),
+                          ifelse(Scenario=="S3NoCD" | Scenario=="S3a" | Scenario=="S3b" | Scenario=="S3c" | Scenario=="S3d", 
+                                  (sall[sall$Scenario=="S1NoCDAvg","SABATotal"]- sall[sall$Scenario=="S3NoCD","SABATotal"])/                                                   (sall[sall$Scenario=="S1NoCDAvg","PatientYears"]- sall[sall$Scenario=="S3NoCD","PatientYears"]),999))),
+ SABAAll = ProppPatientYears*SABA + (1-ProppPatientYears)*SABAExcluded,
+```
+
+ProppPatientYears adjusts the years for scenarios 2 and 3 by dividing them by the patient years of S1NoCDAvg. For scenario 1, it just sets this value to 1. This appears to be some adjustment of scenarios 2 and 3 so they compare against a single reference population. However, it remains unclear to me quite what the units are. SABAAll works out the same for scenarios 1 as SABA.
+
+::: {.callout-tip}
+## Reflection
+
+Found these transformations tricky to work out. I think part of the difficulty is that I'm really not quite sure what these columns are, and there isn't documentation/comments to explain it, so I then don't know how to transform them to match up with the paper.
+:::
+
+I then tried looking at the COPD DiagnosedpPY results, since those are the same thing just not broken down by treatment, and since `clinical` gives us adjusted versions of these but we also have "raw" versions from `s1`.
+
+```
+clin_diag <- clinical %>%
+  filter(Scenario %in% c("S1NoCDAvg", "S1a")) %>%
+  select(Scenario, DiagnosedpPYAll)
+
+s1_diag <- s1 %>%
+  filter(Scenario %in% c("S1NoCDAvg", "S1a")) %>%
+  select(Scenario, Agents, DiagnosedPYs) %>%
+  mutate(AdjDiagnosedPYs = DiagnosedPYs / (Agents/1000))
+
+diag_investigate <- merge(clin_diag, s1_diag) %>%
+  mutate(AdjDivideByPYAll = AdjDiagnosedPYs / DiagnosedpPYAll)
+
+write.csv(diag_investigate, "../../logbook/posts/2024_09_06/diag_investigate.csv")
+```
+
+```{python}
+pd.read_csv('diag_investigate.csv')
+```
+
+You can convert between the two by multiplying by about 1910, but that doesn't work for SABA.
+
+Instead, I tried looking back at `export_figures()` and the paper each again, but struggled to spot any answers there. I then tried looking at the first EpicR paper, "Development and Validation of the Evaluation Platform in COPD (EPIC): A Population-Based Outcomes Model of COPD for Canada", but couldn't find anything to explain it there either.
+
+I then looked to the [main epicR repo](https://github.com/resplab/epicR), and found it has some documentation in the `docs/` folder. I opened and read the html files in `docs/articles/`, but struggled to find answers here too.
 
 ## Timings
 
@@ -167,7 +229,12 @@ times = [
     ('11.00', '11.11'),
     ('11.12', '11.18'),
     ('11.24', '12.15'),
-    ('13.15', '13.20')]
+    ('13.15', '13.20'),
+    ('13.25', '13.28'),
+    ('13.30', '14.42'),
+    ('15.10', '15.40'),
+    ('15.47', '16.06')]
+#TODO: Finish adding times
 
 calculate_times(used_to_date, times)
 ```
