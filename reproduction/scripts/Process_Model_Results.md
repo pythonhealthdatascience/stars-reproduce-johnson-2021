@@ -6,9 +6,16 @@ This file processes the model results so they match up as closely as
 possible to those in the publication.
 
 ``` r
+# Clear environment before start
+rm(list=ls())
+
+# Set save location for figures generated when knit rmd
 knitr::opts_chunk$set(fig.path = "../outputs/")
+
+# Load required libraries
 library(dplyr)
 library(ggplot2)
+library(ggpubr)
 ```
 
 ## Define file paths and import files
@@ -16,10 +23,12 @@ library(ggplot2)
 ``` r
 paths <- list(
   # Model results
+  s1 = "../outputs/s1.csv",
   sall_3y = "../outputs/sall.csv",
   sall_5y = "../outputs/sall_5y.csv",
   ceplane_3y = "../outputs/ceplane.csv",
   ceplane_5y = "../outputs/ceplane_5y.csv",
+  clinical = "../outputs/clinicalresults.csv",
 
   # Original study results
   paper_tab3 = "../../original_study/tab3.csv",
@@ -28,15 +37,19 @@ paths <- list(
 
   # Outputs from this .Rmd file
   tab3_compare = "../outputs/tab3_compare_to_original.csv",
-  fig3 = "../outputs/fig3-1.png"
+  fig3 = "../outputs/fig3-1.png",
+  apx6v1 = "../outputs/appendix6v1-1.png",
+  apx6v2 = "../outputs/appendix6v2-1.png"
 )
 ```
 
 ``` r
+s1 <- read.csv(paths$s1)
 sall_3y <- read.csv(paths$sall_3y) %>% mutate("Interval" = "3 years")
 sall_5y <- read.csv(paths$sall_5y) %>% mutate("Interval" = "5 years")
 ceplane_3y <- read.csv(paths$ceplane_3y) %>% mutate("Interval" = "3 years")
 ceplane_5y <- read.csv(paths$ceplane_5y) %>% mutate("Interval" = "5 years")
+clinical <- read.csv(paths$clinical)
 
 paper_tab3 <- read.csv(paths$paper_tab3)
 original_sall <- read.csv(paths$original_sall)
@@ -252,7 +265,7 @@ ggplot(data=ceplane_plot, aes(x=IncrementalQALY, y=IncrementalCosts)) +
   guides(colour="none") +
   # Add the efficiency frontier
   geom_path(data=frontier, aes(x=IncrementalQALY, y=IncrementalCosts),
-            colour="blue", size=0.1) +
+            colour="blue", linewidth=0.1) +
   # Extend y axis to 300 like original (but x is already wider than original)
   ylim(c(0, 300)) +
   # Make 0 to 0.015 and 0 to 300 a square
@@ -262,12 +275,6 @@ ggplot(data=ceplane_plot, aes(x=IncrementalQALY, y=IncrementalCosts)) +
            hjust = 1.1, vjust = -0.3, size = 2.5)
 ```
 
-    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `linewidth` instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
-
 ![](../outputs/fig3-1.png)<!-- -->
 
 ``` r
@@ -276,3 +283,172 @@ ggsave(paths$fig3)
 ```
 
     ## Saving 7 x 5 in image
+
+## Appendix 6
+
+Using clinical…
+
+``` r
+# Create version of S1 but with scenarios renamed
+s1_scen <- clinical %>%
+  mutate(Scenario = recode(Scenario,
+                           "S1a" = "Case Detection",
+                           "S1NoCDAvg" = "No Case Detection"))
+
+# Define function for creating the plots
+plot_apx6 <- function(cols, suffix, ylab, multiply, factor=FALSE, ylim=FALSE) {
+  #' Create appendix 6 subplots
+  #' 
+  #' @param cols list of columns which will be plot on x axis
+  #' @param suffix string to be removed from column names
+  #' @param ylab label for y axis
+  #' @param multiply amount to multiply column values by
+  #' @param factor whether to make the group col as factor using cols list
+  #' @param ylim FALSE to use default, provide limits if want to adjust
+  #' 
+  #' @returns p ggplot object
+  # Create dataframe for plotting
+  ap6_df <- s1_scen %>%
+    # Get the relevant scenarios
+    filter(Scenario %in% c("No Case Detection", "Case Detection")) %>%
+    # Adjust results so they reflect population of 1000
+    mutate(across((cols), ~ . * multiply)) %>%
+    # Select relevant columns and switch to long format
+    select(Scenario, all_of(cols)) %>%
+    tidyr::pivot_longer(cols=-Scenario, names_to="Group", values_to="Value") %>%
+    # Remove suffix from group names
+    mutate(Group = gsub(suffix, "", Group))
+
+  # Add factor grouping if selected
+  if (isTRUE(factor)) {
+    ap6_df <- ap6_df %>%
+      mutate(Group = factor(Group, levels = gsub(suffix, "", cols)))
+  }
+
+  # Create plot
+  p <- ggplot(ap6_df, aes(x=Group, y=Value, fill=Scenario)) +
+    geom_bar(stat="identity", position="dodge") +
+    labs(x="", y=ylab, fill="") +
+    theme_bw()
+
+  # Adjust y axis limits if required
+  if (!isFALSE(ylim)) {
+    p <- p + ylim(ylim)
+  }
+
+  return(p)
+}
+
+cols <- c("MildpAgentAll", "ModeratepAgentAll", "SeverepAgentAll", "VerySeverepAgentAll")
+p1 <- plot_apx6(cols, "pAgentAll", "Number of exacerbations", multiply=1000, factor=FALSE, ylim=FALSE)
+```
+
+    ## Warning: There was 1 warning in `mutate()`.
+    ## ℹ In argument: `across((cols), ~. * multiply)`.
+    ## Caused by warning:
+    ## ! Using an external vector in selections was deprecated in tidyselect 1.1.0.
+    ## ℹ Please use `all_of()` or `any_of()` instead.
+    ##   # Was:
+    ##   data %>% select(cols)
+    ## 
+    ##   # Now:
+    ##   data %>% select(all_of(cols))
+    ## 
+    ## See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>.
+
+``` r
+cols <- c("NoCOPDpPYAll", "GOLD1pPYAll", "GOLD2pPYAll", "GOLD3pPYAll", "GOLD4pPYAll")
+p2 <- plot_apx6(cols, "pPYAll", "Patients years", multiply=17000, factor=TRUE, ylim=c(0, 15000))
+
+p3 <- s1_scen %>%
+    filter(Scenario %in% c("No Case Detection", "Case Detection")) %>%
+    # Adjust results so they reflect population of 1000
+    mutate(DiagnosedpPYAll = DiagnosedpPYAll * 2000) %>%
+    ggplot(aes(x=Scenario, y=DiagnosedpPYAll, fill=Scenario)) +
+    geom_bar(stat="identity", position="dodge") +
+    labs(x="", y="COPD patient years diagnosed", fill="") +
+    theme_bw()
+
+cols <- c("SABAAll", "LAMAAll", "LAMALABAAll", "ICSLAMALABAAll")
+p4 <- plot_apx6(cols, "All", "Patients years on treatment", multiply=2000, factor=FALSE, ylim=FALSE)
+
+ggarrange(p1, p2, p3, p4, ncol=2, nrow=2, common.legend = TRUE, legend="bottom")
+```
+
+![](../outputs/appendix6v1-1.png)<!-- -->
+
+``` r
+ggsave(paths$apx6v1, width = 12, height = 10)
+```
+
+``` r
+# Create version of S1 with scenarios renamed
+s1_scen <- s1 %>%
+  mutate(Scenario = recode(Scenario,
+                           "S1a" = "Case Detection",
+                           "S1NoCDAvg" = "No Case Detection"))
+
+ap6_df <- s1_scen %>%
+  # Get the relevant scenarios
+  filter(Scenario %in% c("Case Detection", "No Case Detection")) %>%
+  # Adjust results so they reflect population of 1000
+  mutate(across(c(Mild, Moderate, Severe, VerySevere), ~ . / (Agents/1000))) %>%
+  # Tidy and make long format for plotting
+  select(Scenario, Mild, Moderate, Severe, VerySevere) %>%
+  tidyr::pivot_longer(cols=-Scenario, names_to="Severity", values_to="Exacerbations")
+
+p1 <- ggplot(ap6_df, aes(x=Severity, y=Exacerbations, fill=Scenario)) +
+  geom_bar(stat="identity", position="dodge") +
+  labs(x="", y="Number of exacerbations", fill="") +
+  theme_bw()
+
+ap6_df <- s1_scen %>%
+  # Get the relevant scenarios
+  filter(Scenario %in% c("Case Detection", "No Case Detection")) %>%
+  # Adjust results so they reflect population of 1000
+  mutate(across(c(NoCOPD, GOLD1, GOLD2, GOLD3, GOLD4), ~ . / (Agents/1000))) %>%
+  # Tidy and make long format for plotting
+  select(Scenario, NoCOPD, GOLD1, GOLD2, GOLD3, GOLD4) %>%
+  tidyr::pivot_longer(cols=-Scenario, names_to="Severity", values_to="Years") %>%
+  # Reorder Severity to have NoCOPD first
+  mutate(Severity = factor(Severity, levels = c("NoCOPD", "GOLD1", "GOLD2", "GOLD3", "GOLD4")))
+
+p2 <- ggplot(ap6_df, aes(x=Severity, y=Years, fill=Scenario)) +
+  geom_bar(stat="identity", position="dodge") +
+  labs(x="", y="Patient years", fill="") +
+  ylim(c(0, 15000)) +
+  theme_bw()
+
+ap6_df <- s1_scen %>%
+  # Get the relevant scenarios
+  filter(Scenario %in% c("Case Detection", "No Case Detection")) %>%
+  # Adjust results so they reflect population of 1000
+  mutate(across(c(DiagnosedPYs), ~ . / (Agents/1000)))
+
+p3 <- ggplot(ap6_df, aes(x=Scenario, y=DiagnosedPYs, fill=Scenario)) +
+  geom_bar(stat="identity", position="dodge") +
+  labs(x="", y="COPD patient years diagnosed", fill="") +
+  theme_bw()
+
+ap6_df <- s1_scen %>%
+  # Get the relevant scenarios
+  filter(Scenario %in% c("Case Detection", "No Case Detection")) %>%
+  # Tidy and make long format for plotting
+  select(Scenario, SABA, LAMA, LAMALABA, ICSLAMALABA) %>%
+  tidyr::pivot_longer(cols=-Scenario, names_to="Group", values_to="Years") %>%
+  # Reorder group to have NoCOPD first
+  mutate(Group = factor(Group, levels = c("SABA", "LAMA", "LAMALABA", "ICSLAMALABA")))
+
+p4 <- ggplot(ap6_df, aes(x=Group, y=Years, fill=Scenario)) +
+  geom_bar(stat="identity", position="dodge") +
+  labs(x="", y="Patient years on treatment", fill="") +
+  theme_bw()
+
+ggarrange(p1, p2, p3, p4, ncol=2, nrow=2, common.legend = TRUE, legend="bottom")
+```
+
+![](../outputs/appendix6v2-1.png)<!-- -->
+
+``` r
+ggsave(paths$apx6v2, width = 12, height = 10)
+```
