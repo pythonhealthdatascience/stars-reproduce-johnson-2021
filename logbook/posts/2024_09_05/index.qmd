@@ -8,9 +8,11 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
-Troubleshooting table 3. Total time used: 9h 36m (24.0%)
+Troubleshooting table 3. Total time used: 9h 48m (24.5%)
 
 :::
+
+*When comparing against table 3 on this page, the results are from @johnson_cost_2021*
 
 ## 09.28-09.38, 10.10-10.19: Running 5 years
 
@@ -124,7 +126,7 @@ This aligns with the table 3 caption from paper about symptomatic patients (scen
 
 > "The ‘All patients’ strategy encompassed the entire population of interest. 59% of the population was included in the ‘Symptomatic’ strategy, and 46% in the ‘Smoking history’ strategy. To maintain a constant reference population, per patient costs and QALYs were adjusted to include patients not selected by the strategy. For the symptomatic strategy, the costs (and QALYs) shown are the sum of the costs (QALYs) of patients not included in the symptomatic strategy, and the costs (QALYs) of those included, weighted by the proportion in each group. The results of smoking history strategy were adjusted in the same fashion" @johnson_cost_2021
 
-## 16.02-16.21: Looking at ICER and INMB
+## 16.02-16.33: Looking at ICER and INMB
 
 I tried to see if I was using the wrong ICER, or what might explain the difference.
 
@@ -134,7 +136,9 @@ Looking at table 3 in the paper, if I were to calculate the ICER manually from c
 (2438-2151)/(12.560-12.546)
 ```
 
-This is different from 19,632, and more different than just rounding. I then realised that again, I might be using the wrong column...! As there is `ICERAdj`.
+20499 is quite different from 19632, although I am assuming that might be because I am oversimplifying in this calculation, and that other things went into that calculation.
+
+Looking at my results, I wondered if I might be using the wrong column, as we have `ICER` and `ICERAdj`. I had a look at the original output of incrementalcosts and incrementalqaly in my .md file and the original, and realised that actually although the costs and qalys are very similar, it has a big impact on the ICER. Therefore, it seems this could be related to the number of agents.
 
 ## Timings
 
@@ -156,7 +160,7 @@ times = [
     ('13.13', '13.25'),
     ('14.24', '14.41'),
     ('14.58', '16.00'),
-    ('16.02', '16.21')]
+    ('16.02', '16.33')]
 
 calculate_times(used_to_date, times)
 ```
