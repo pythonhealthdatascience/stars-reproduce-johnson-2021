@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Amy Heather">
-<meta name="dcterms.date" content="2024-07-31">
+<meta name="dcterms.date" content="2024-09-06">
 
-<title>Day 1 – Reproducing Johnson et al.&nbsp;2021</title>
+<title>Day 7 – Reproducing Johnson et al.&nbsp;2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -203,9 +203,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Day 1</h1>
+      <h1 class="title">Day 7</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">setup</div>
+                <div class="quarto-category">reproduce</div>
               </div>
                   </div>
   </div>
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 31, 2024</p>
+        <p class="date">September 6, 2024</p>
       </div>
     </div>
     
@@ -239,11 +239,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#set-up-repository" id="toc-set-up-repository" class="nav-link active" data-scroll-target="#set-up-repository">15.46-16.06: Set-up repository</a></li>
-  <li><a href="#upload-code" id="toc-upload-code" class="nav-link" data-scroll-target="#upload-code">16.34-16.46: Upload code</a></li>
+  <li><a href="#revisiting-table-3" id="toc-revisiting-table-3" class="nav-link active" data-scroll-target="#revisiting-table-3">09.36-09.48: Revisiting Table 3</a></li>
+  <li><a href="#working-on-figure-3" id="toc-working-on-figure-3" class="nav-link" data-scroll-target="#working-on-figure-3">09.49-10.40: Working on Figure 3</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_07_31/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_06/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -262,59 +262,93 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Set-up repository. Total time used: 0h 32m (1.3%)</p>
+<p>-. Total time used: -h -m (-%)</p>
 </div>
 </div>
-<section id="set-up-repository" class="level2">
-<h2 class="anchored" data-anchor-id="set-up-repository">15.46-16.06: Set-up repository</h2>
+<section id="revisiting-table-3" class="level2">
+<h2 class="anchored" data-anchor-id="revisiting-table-3">09.36-09.48: Revisiting Table 3</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reflection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I’ve been finding this quite tricky/slow to get my head around, and want to acknowledge that part of the reason for that will be that this is a complex model subject and - though having studied and done a little work in health economics - I am not a health economist.</p>
+<p>There are some things that might have helped though, such as having a clear indicator of which columns and outputs match up with the paper, as its still taking me a while to make sure I’m looking at the same ones, particularly as the results don’t match up.</p>
+</div>
+</div>
+<p>Continuing from yesterday, when I’d realised that incremental costs and QALYs that subjectively look really similar actually result in really different ICERs, I explored the possibility that the difference in results is actually just down to the number of agents.</p>
+<p>Looking in their GitHub commit history, I found results from them running with 1 million base agents (like me here):</p>
 <ul>
-<li>Create repository from template</li>
-<li>Set up environment</li>
-<li>Modified template files:
-<ul>
-<li><code>README.md</code></li>
-<li>quarto site <code>index.qmd</code></li>
-<li><code>CITATION.cff</code></li>
-<li><code>_quarto.yml</code></li>
-</ul></li>
-<li>Set up site on GitHub pages (<code>quarto publish gh-pages</code>)</li>
+<li><a href="https://github.com/KateJohnson/epicR/blob/ace50c4292d6622ea5b63ed202cda13387f55397/casedetection/Case_Detection_Results.md">Case_Detection_Results.md</a></li>
+<li><a href="https://github.com/KateJohnson/epicR/blob/ace50c4292d6622ea5b63ed202cda13387f55397/casedetection/Case_Detection_Results_5yrs.md">Case_Detection_Results_5yrs.md</a></li>
 </ul>
+<p>Comparing those against Table 3, they are very different from them, and from me as well. This was despite having set the seed to 333, so it appears the seed control might not be working as expected, whether that be my fault for any changes or just in general.</p>
+<p>However, their latest results (from 50 million agents) still look quite different to the original, e.g.&nbsp;S1b 3yr ICER $31075/QALY <a href="https://github.com/KateJohnson/epicR/blob/239c55a700f9e97869c16d530080a354ec631568/casedetection/Case_Detection_Results.md">in their repository</a> versus $25,894/QALY in the paper.</p>
+<p>Hence, I’m wary that running with 50 million agents on my machine - even if I could - still might not get me the same results.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reflection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uncertain on if seed control implemented properly. Also, here, it appears that either the number of agents can’t be reduced to get same results, and that a really high number are needed for stability, or that its actually just a seed issue.</p>
+</div>
+</div>
 </section>
-<section id="upload-code" class="level2">
-<h2 class="anchored" data-anchor-id="upload-code">16.34-16.46: Upload code</h2>
-<p>The article states that code is available at <a href="http://resp.core.ubc.ca/software/caseDetection" class="uri">http://resp.core.ubc.ca/software/caseDetection</a>. That website then states that the code and R markdown file are available at <a href="https://github.com/KateJohnson/epicR/tree/closed_cohort" class="uri">https://github.com/KateJohnson/epicR/tree/closed_cohort</a>.</p>
-<p>Note: That is a link to a specific branch, <code>closed_cohort</code>. The repository is forked from epicR, and all code from the authors for this study is in that branch.</p>
-<p>The last commit to that branch was 22nd February 2020. However, this is prior to publication. The article was:</p>
-<ul>
-<li>Accepted 30th September 2020</li>
-<li>Published 2nd November 2020</li>
-<li>In an issue in March 2020</li>
-</ul>
-<p>In some of the commits, I can see that it does add beneficial information relating to the reproduction - e.g.&nbsp;<a href="https://github.com/KateJohnson/epicR/commit/202ae95487af3570ae6e1e7eddf7001e4199877b#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5">commit 202ae95</a> in February 2020, which provides additional instructions in the README.</p>
-<p>Most of the commits are in February 2020. If I go to the commit prior to that, which was 17th November 2019, it is much less clear with no README instructions and the code for the study within the EpicR <code>R/</code> directory.</p>
-<p>Feel I need to get a second opinion on what code to use for this study, due to the volume of commits, and the fact that they are prior to the issue date, but past the publication date.</p>
+<section id="working-on-figure-3" class="level2">
+<h2 class="anchored" data-anchor-id="working-on-figure-3">09.49-10.40: Working on Figure 3</h2>
+<p>Taking a break on Table 3, I looked to Figure 3. The current model code does output two visually similar figures, and it appears I would just need to combine these to get the figure from the paper. This was very easy to get started with - just copying it over, but tweaking to add a grouping for 3 years and 5 years.</p>
+<p>I add the efficiency frontier based on the description in the text - looking for lowest cost-effectiveness ratio, and then ruling out strategies that were less effective with a higher ICER. I’m not 100% certain I’ve implemented it correctly, but certainly, it looks different any since the points are all different.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig3-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3 Attempt</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reflection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Was really helpful having partial code for figures, but full code would have been fab (as e.g.&nbsp;I was uncertain if I’m implementing efficiency frontier correctly).</p>
+</div>
+</div>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="555aaaa9" class="cell" data-execution_count="1">
+<div id="18b27fed" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">588</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.46'</span>, <span class="st">'16.06'</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'16.34'</span>, <span class="st">'16.46'</span>)]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.36'</span>, <span class="st">'09.48'</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.49'</span>, <span class="st">'10.40'</span>)]</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 32m, or 0h 32m
-Total used to date: 32m, or 0h 32m
-Time remaining: 2368m, or 39h 28m
-Used 1.3% of 40 hours max</code></pre>
+<pre><code>Time spent today: 63m, or 1h 3m
+Total used to date: 651m, or 10h 51m
+Time remaining: 1749m, or 29h 9m
+Used 27.1% of 40 hours max</code></pre>
 </div>
 </div>
 
@@ -766,7 +800,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_07_31/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_06/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

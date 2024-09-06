@@ -266,7 +266,7 @@ div.csl-indent {
   <li><a href="#resuming-table-3" id="toc-resuming-table-3" class="nav-link" data-scroll-target="#resuming-table-3">10.20-11.30: Resuming Table 3</a></li>
   <li><a href="#trying-higher-agent-numbers" id="toc-trying-higher-agent-numbers" class="nav-link" data-scroll-target="#trying-higher-agent-numbers">11.32-11.36, 13.08-13.10: Trying higher agent numbers</a></li>
   <li><a href="#comparing-against-their-markdown-file-and-finding-right-columns" id="toc-comparing-against-their-markdown-file-and-finding-right-columns" class="nav-link" data-scroll-target="#comparing-against-their-markdown-file-and-finding-right-columns">13.13-13.25, 14.24-14.41, 14.58-16.00: Comparing against their markdown file and finding right columns</a></li>
-  <li><a href="#looking-at-icer-and-inmb" id="toc-looking-at-icer-and-inmb" class="nav-link" data-scroll-target="#looking-at-icer-and-inmb">16.02-16.21: Looking at ICER and INMB</a></li>
+  <li><a href="#looking-at-icer-and-inmb" id="toc-looking-at-icer-and-inmb" class="nav-link" data-scroll-target="#looking-at-icer-and-inmb">16.02-16.33: Looking at ICER and INMB</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -289,9 +289,10 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Troubleshooting table 3. Total time used: 9h 36m (24.0%)</p>
+<p>Troubleshooting table 3. Total time used: 9h 48m (24.5%)</p>
 </div>
 </div>
+<p><em>When comparing against table 3 on this page, the results are from <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></em></p>
 <section id="running-5-years" class="level2">
 <h2 class="anchored" data-anchor-id="running-5-years">09.28-09.38, 10.10-10.19: Running 5 years</h2>
 <p>Copied and modified <code>Case_Detection_Results_5yrs.Rmd</code> as I had for <code>Case_Detection_Results.Rmd</code> yesterday, and then ran that on the remote machine (8.6 minutes).</p>
@@ -316,7 +317,7 @@ Reflection
 <p>Add the 5 year results to Table 3 - still assuming that S0 is S1NoCD from 3 year (not from from 5 year or S2 or S3), as can’t spot an S0 anywhere.</p>
 <p>Due to size of table, it was difficult to just look between the two tables, so I converted and simplified Table 3 from the paper into a <code>.csv</code> file, and then appended that so I could calculate the differences.</p>
 <p>Although some things are similar (e.g.&nbsp;scenario 1 costs and QALYs), others are very different…</p>
-<div id="9f8567f7" class="cell" data-execution_count="1">
+<div id="1f1365c6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="va">None</span>)</span>
@@ -791,7 +792,7 @@ Reflection
 <section id="trying-higher-agent-numbers" class="level2">
 <h2 class="anchored" data-anchor-id="trying-higher-agent-numbers">11.32-11.36, 13.08-13.10: Trying higher agent numbers</h2>
 <p>Curious is this is due to the number of base agents, I re-ran with 1e6 base_agents (1 million) instead of 5e5 (500,000). On the remote machine, this took 17.1 + 17.1 = 34.2 minutes.</p>
-<div id="24e1d6d1" class="cell" data-execution_count="2">
+<div id="0dcecae9" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'sall_compare_to_paper_1e6.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -1264,7 +1265,7 @@ Reflection
 <p>The original repository included a markdown file from a run of this code. Instead of comparing against the paper, I tried comparing against those results, as that should definitely match up, and can tell us if this code as it is is running as expected or not.</p>
 <p>I copied the sall tables from <code>Case_Detection_Results.md</code> and <code>Case_Detection_Results_5yrs.md</code> into a single <code>.csv</code> file, then add that to the comparison.</p>
 <p>Comparing the paper and repo against my results:</p>
-<div id="fa1f1158" class="cell" data-execution_count="3">
+<div id="dfe8cab1" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'sall_compare_1e6_to_mine.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -1842,7 +1843,7 @@ Reflection
 </div>
 </div>
 <p>Comparing my results and the repo against the papers results:</p>
-<div id="f66ce61c" class="cell" data-execution_count="4">
+<div id="c07c9e4a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'sall_compare_1e6_to_paper.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -2463,7 +2464,7 @@ Reflection
 <p>The Cost Effectiveness Plane table is “adjusted to the total population”. I made a <code>.csv</code> with the CEPlane from their <code>.md</code> and then modified <code>Process_Model_Results.Rmd</code> to use CEplane instead of sall.</p>
 <p>In that table, you can see <code>CostpAgentAll</code> comes out lower than <code>CostpAgent</code>, for example, which matches up to paper, so I used those “All” columns.</p>
 <p>This <strong>resolved the issue for costs and QALYS</strong>, which now both matched the paper:</p>
-<div id="cf320cfb" class="cell" data-execution_count="5">
+<div id="7a58c238" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'tab3_compare_to_original.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -3046,20 +3047,21 @@ Reflection
 </blockquote>
 </section>
 <section id="looking-at-icer-and-inmb" class="level2">
-<h2 class="anchored" data-anchor-id="looking-at-icer-and-inmb">16.02-16.21: Looking at ICER and INMB</h2>
+<h2 class="anchored" data-anchor-id="looking-at-icer-and-inmb">16.02-16.33: Looking at ICER and INMB</h2>
 <p>I tried to see if I was using the wrong ICER, or what might explain the difference.</p>
 <p>Looking at table 3 in the paper, if I were to calculate the ICER manually from change in costs over change in QALYs, I would get:</p>
-<div id="f26cce8f" class="cell" data-execution_count="6">
+<div id="78dce518" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2438</span><span class="op">-</span><span class="dv">2151</span>)<span class="op">/</span>(<span class="fl">12.560</span><span class="op">-</span><span class="fl">12.546</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>20499.999999998356</code></pre>
 </div>
 </div>
-<p>This is different from 19,632, and more different than just rounding. I then realised that again, I might be using the wrong column…! As there is <code>ICERAdj</code>.</p>
+<p>20499 is quite different from 19632, although I am assuming that might be because I am oversimplifying in this calculation, and that other things went into that calculation.</p>
+<p>Looking at my results, I wondered if I might be using the wrong column, as we have <code>ICER</code> and <code>ICERAdj</code>. I had a look at the original output of incrementalcosts and incrementalqaly in my .md file and the original, and realised that actually although the costs and qalys are very similar, it has a big impact on the ICER. Therefore, it seems this could be related to the number of agents.</p>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="9dfa7411" class="cell" data-execution_count="7">
+<div id="bb65bd97" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -3077,14 +3079,14 @@ Reflection
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'13.13'</span>, <span class="st">'13.25'</span>),</span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'14.24'</span>, <span class="st">'14.41'</span>),</span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'14.58'</span>, <span class="st">'16.00'</span>),</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'16.02'</span>, <span class="st">'16.21'</span>)]</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'16.02'</span>, <span class="st">'16.33'</span>)]</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 205m, or 3h 25m
-Total used to date: 576m, or 9h 36m
-Time remaining: 1824m, or 30h 24m
-Used 24.0% of 40 hours max</code></pre>
+<pre><code>Time spent today: 217m, or 3h 37m
+Total used to date: 588m, or 9h 48m
+Time remaining: 1812m, or 30h 12m
+Used 24.5% of 40 hours max</code></pre>
 </div>
 </div>
 </section>
