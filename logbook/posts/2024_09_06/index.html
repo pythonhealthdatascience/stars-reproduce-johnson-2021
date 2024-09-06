@@ -248,7 +248,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#running-one-scenario-with-50-million" id="toc-running-one-scenario-with-50-million" class="nav-link" data-scroll-target="#running-one-scenario-with-50-million">11.12-11.18: Running one scenario with 50 million</a></li>
   <li><a href="#appendix-6" id="toc-appendix-6" class="nav-link" data-scroll-target="#appendix-6">11.24-12.15: Appendix 6</a></li>
   <li><a href="#result-from-50-million" id="toc-result-from-50-million" class="nav-link" data-scroll-target="#result-from-50-million">13.15-13.20, 13.25-13.28: Result from 50 million</a></li>
-  <li><a href="#x-returning-to-appendix-6" id="toc-x-returning-to-appendix-6" class="nav-link" data-scroll-target="#x-returning-to-appendix-6">13.30-X: Returning to appendix 6</a></li>
+  <li><a href="#returning-to-appendix-6" id="toc-returning-to-appendix-6" class="nav-link" data-scroll-target="#returning-to-appendix-6">13.30-14.42: Returning to appendix 6</a></li>
+  <li><a href="#troubleshooting-appendix-6" id="toc-troubleshooting-appendix-6" class="nav-link" data-scroll-target="#troubleshooting-appendix-6">15.10-15.40, 15.47-16.06: Troubleshooting appendix 6</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_06/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -270,7 +271,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>-. Total time used: -h -m (-%)</p>
+<p>Working on Table 3, Figure 3 and Appendix 6 (none yet reproduced). Total time used: -h -m (-%)</p>
 </div>
 </div>
 <section id="revisiting-table-3" class="level2">
@@ -379,7 +380,7 @@ op_ex &lt;- Cget_output_ex()</code></pre>
 <p>To run S1NoCD with 50 million base agents, it took 1.644506 hours (1 hour 38 minutes)</p>
 <p>There’s 24 scenarios (exc. sensitivity analysis), so running those with 50 million would take apx. <strong>1 day 15 hours 28 minutes</strong>. With 100 million (as in the paper), it would be at least double that. It appears we may therefore need to explore access to a HPC.</p>
 <p>The result was:</p>
-<div id="e819740c" class="cell" data-execution_count="1">
+<div id="81ef1945" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'s1NoCD_50mil.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -447,8 +448,8 @@ op_ex &lt;- Cget_output_ex()</code></pre>
 </div>
 </div>
 </section>
-<section id="x-returning-to-appendix-6" class="level2">
-<h2 class="anchored" data-anchor-id="x-returning-to-appendix-6">13.30-X: Returning to appendix 6</h2>
+<section id="returning-to-appendix-6" class="level2">
+<h2 class="anchored" data-anchor-id="returning-to-appendix-6">13.30-14.42: Returning to appendix 6</h2>
 <p>I created the four figures. For the fourth, the transformation I’d done to make it reflect 1000 didn’t seem to make sense for that one, but I wasn’t quite sure what the data was or how to transform it.</p>
 <p>I tried multiplifying by 1000, and that got results about half of the original. I tried multiplifying by 2000 - although this is just a total guess at this point.</p>
 <p>Looking across the results, I would say that I am satisified this matches the original for all except one bar: SABA. The SABA bars for patient years on treatment are much lower than in the original figure.</p>
@@ -470,43 +471,144 @@ Reflection
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It’s great that this was provided, and makes it much easier. This is partly my fault for not noticing that I should be using that table. However, as for the other parts of this reproduction, this might have been supported by more guidance on which tables produced which figures, or inclusion of code to produce that figure in the paper.</p>
+<p>It’s great that this was provided, and makes it much easier. This is partly my fault for not noticing that I should be using that table. However, as for the other parts of this reproduction, this might have been supported by more guidance on which tables produced which figures, or inclusion of code to produce that figure in the paper. And, I wasn’t sure what to multiply for these either in the end (see below).</p>
 </div>
 </div>
 <p>I realised that multiplying by 1000 works with pAgent columns, but not for the pPYAll. It seems I’d need to multiply by about 16,000.</p>
 <p>I experimented with the others, but these were just guesses of what to multiply by, and I still found SABA results to be too low.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="appendix6v2-1.png" class="img-fluid figure-img"></p>
+<p><img src="appendix6v1-1.png" class="img-fluid figure-img"></p>
 <figcaption>Appendix 6 attempt 2</figcaption>
 </figure>
 </div>
 </section>
+<section id="troubleshooting-appendix-6" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting-appendix-6">15.10-15.40, 15.47-16.06: Troubleshooting appendix 6</h2>
+<p>Looking at <a href="https://github.com/KateJohnson/epicR/blob/239c55a700f9e97869c16d530080a354ec631568/casedetection/Case_Detection_Results.md">their results from 50 million</a>, they also have a low SABA</p>
+<p>Comparing to other SABA results (with LAMA for context):</p>
+<div class="line-block">Scenario | My SABA (LAMA) | Their 50 million SABA (LAMA) |<br>
+S1NoCDAvg | 0.019 (0.136) | 0.019 (0.135) |<br>
+S1a | 0.026 (0.159) | 0.026 (0.159) |</div>
+<p>Given how similar these results are, I’m suspecting the issue might not be with the result, but with my transformation, as I just guessed at multiplying it all by 2000 to get similar-ish results for some bars. Looking at <code>Case_Detecetion_Results.Rmd</code>, <code>SABAAll</code> was created as follows:</p>
+<pre><code>ProppPatientYears = ifelse(Scenario=="S2a" | Scenario=="S2NoCD" | Scenario=="S3NoCD" | Scenario=="S3a" | Scenario=="S3b" |
+                                       Scenario=="S3c" | Scenario=="S3d", PatientYears/sall[sall$Scenario=="S1NoCDAvg","PatientYears"], 1),
+ # SABA
+SABAExcluded = ifelse(Scenario=="S1NoCDAvg" | Scenario=="S1a" | Scenario=="S1b" | Scenario=="S1c", 0,
+                          ifelse(Scenario=="S2a" | Scenario=="S2NoCD", 
+                                 (sall[sall$Scenario=="S1NoCDAvg","SABATotal"]- sall[sall$Scenario=="S2NoCD","SABATotal"])/
+                                 (sall[sall$Scenario=="S1NoCDAvg","PatientYears"]- sall[sall$Scenario=="S2NoCD","PatientYears"]),
+                          ifelse(Scenario=="S3NoCD" | Scenario=="S3a" | Scenario=="S3b" | Scenario=="S3c" | Scenario=="S3d", 
+                                  (sall[sall$Scenario=="S1NoCDAvg","SABATotal"]- sall[sall$Scenario=="S3NoCD","SABATotal"])/                                                   (sall[sall$Scenario=="S1NoCDAvg","PatientYears"]- sall[sall$Scenario=="S3NoCD","PatientYears"]),999))),
+ SABAAll = ProppPatientYears*SABA + (1-ProppPatientYears)*SABAExcluded,</code></pre>
+<p>ProppPatientYears adjusts the years for scenarios 2 and 3 by dividing them by the patient years of S1NoCDAvg. For scenario 1, it just sets this value to 1. This appears to be some adjustment of scenarios 2 and 3 so they compare against a single reference population. However, it remains unclear to me quite what the units are. SABAAll works out the same for scenarios 1 as SABA.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reflection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Found these transformations tricky to work out. I think part of the difficulty is that I’m really not quite sure what these columns are, and there isn’t documentation/comments to explain it, so I then don’t know how to transform them to match up with the paper.</p>
+</div>
+</div>
+<p>I then tried looking at the COPD DiagnosedpPY results, since those are the same thing just not broken down by treatment, and since <code>clinical</code> gives us adjusted versions of these but we also have “raw” versions from <code>s1</code>.</p>
+<pre><code>clin_diag &lt;- clinical %&gt;%
+  filter(Scenario %in% c("S1NoCDAvg", "S1a")) %&gt;%
+  select(Scenario, DiagnosedpPYAll)
+
+s1_diag &lt;- s1 %&gt;%
+  filter(Scenario %in% c("S1NoCDAvg", "S1a")) %&gt;%
+  select(Scenario, Agents, DiagnosedPYs) %&gt;%
+  mutate(AdjDiagnosedPYs = DiagnosedPYs / (Agents/1000))
+
+diag_investigate &lt;- merge(clin_diag, s1_diag) %&gt;%
+  mutate(AdjDivideByPYAll = AdjDiagnosedPYs / DiagnosedpPYAll)
+
+write.csv(diag_investigate, "../../logbook/posts/2024_09_06/diag_investigate.csv")</code></pre>
+<div id="3a4e4950" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'diag_investigate.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">Scenario</th>
+<th data-quarto-table-cell-role="th">DiagnosedpPYAll</th>
+<th data-quarto-table-cell-role="th">Agents</th>
+<th data-quarto-table-cell-role="th">DiagnosedPYs</th>
+<th data-quarto-table-cell-role="th">AdjDiagnosedPYs</th>
+<th data-quarto-table-cell-role="th">AdjDivideByPYAll</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>S1a</td>
+<td>0.462874</td>
+<td>743762</td>
+<td>659857.061426</td>
+<td>887.188457</td>
+<td>1916.696154</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>S1NoCDAvg</td>
+<td>0.186304</td>
+<td>743240</td>
+<td>264401.460862</td>
+<td>355.741700</td>
+<td>1909.470132</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>You can convert between the two by multiplying by about 1910, but that doesn’t work for SABA.</p>
+<p>Instead, I tried looking back at <code>export_figures()</code> and the paper each again, but struggled to spot any answers there. I then tried looking at the first EpicR paper, “Development and Validation of the Evaluation Platform in COPD (EPIC): A Population-Based Outcomes Model of COPD for Canada”, but couldn’t find anything to explain it there either.</p>
+<p>I then looked to the <a href="https://github.com/resplab/epicR">main epicR repo</a>, and found it has some documentation in the <code>docs/</code> folder. I opened and read the html files in <code>docs/articles/</code>, but struggled to find answers here too.</p>
+</section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="9342eebf" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">588</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.36'</span>, <span class="st">'09.48'</span>),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.49'</span>, <span class="st">'10.40'</span>),</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.00'</span>, <span class="st">'11.11'</span>),</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.12'</span>, <span class="st">'11.18'</span>),</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.24'</span>, <span class="st">'12.15'</span>),</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'13.15'</span>, <span class="st">'13.20'</span>)]</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="72dbbad7" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">588</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.36'</span>, <span class="st">'09.48'</span>),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.49'</span>, <span class="st">'10.40'</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.00'</span>, <span class="st">'11.11'</span>),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.12'</span>, <span class="st">'11.18'</span>),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.24'</span>, <span class="st">'12.15'</span>),</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'13.15'</span>, <span class="st">'13.20'</span>),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'13.25'</span>, <span class="st">'13.28'</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'13.30'</span>, <span class="st">'14.42'</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.10'</span>, <span class="st">'15.40'</span>),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.47'</span>, <span class="st">'16.06'</span>)]</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: Finish adding times</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 136m, or 2h 16m
-Total used to date: 724m, or 12h 4m
-Time remaining: 1676m, or 27h 56m
-Used 30.2% of 40 hours max</code></pre>
+<pre><code>Time spent today: 260m, or 4h 20m
+Total used to date: 848m, or 14h 8m
+Time remaining: 1552m, or 25h 52m
+Used 35.3% of 40 hours max</code></pre>
 </div>
 </div>
 
