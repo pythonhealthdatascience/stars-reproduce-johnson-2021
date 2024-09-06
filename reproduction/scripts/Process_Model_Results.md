@@ -6,7 +6,9 @@ This file processes the model results so they match up as closely as
 possible to those in the publication.
 
 ``` r
+knitr::opts_chunk$set(fig.path = "../outputs/")
 library(dplyr)
+library(ggplot2)
 ```
 
 ## Define file paths and import files
@@ -26,7 +28,7 @@ paths <- list(
 
   # Outputs from this .Rmd file
   tab3_compare = "../outputs/tab3_compare_to_original.csv",
-  fig3 = "../outputs/fig3.png"
+  fig3 = "../outputs/fig3-1.png"
 )
 ```
 
@@ -180,3 +182,97 @@ ceplane_pretty
 | (S3d) CDQ + screening spirometry | 5 years          | \$2222            |            12.539 | 120888 | -42(15)        |
 
 </div>
+
+## Figure 3
+
+``` r
+# Process data
+ceplane_plot <- rbind(ceplane_3y, ceplane_5y) %>%
+  # Remove scenario 2b
+  filter(!(Scenario == "S2b")) %>%
+  # Replace the NoCD results with a single NoCD category
+  mutate(Scenario = ifelse(
+    Scenario %in% c("S1NoCDAvg", "S2NoCD", "S3NoCD"), "NoCD", Scenario)) %>%
+  # Add colour for S1a
+  mutate(Colour = ifelse((Scenario == "S1a" & Interval == "3 years"), "A", "B"))
+```
+
+Find the efficiency frontier
+
+``` r
+# Remove negative QALY and then...
+# Find highest ICER and remove those with a QALY less than that but ICER above
+find_frontier <- ceplane_plot %>%
+  filter(!(IncrementalQALY <= 0)) %>%
+  arrange(ICERAdj) %>%
+  filter(!(IncrementalQALY <= first(IncrementalQALY) & ICERAdj > first(ICERAdj)))
+
+# Add first row to frontier df, and remove from the other
+frontier <- find_frontier[1, , drop=FALSE]
+find_frontier <- find_frontier[-1,]
+
+# Repeat that, each time adding to frontier, until there are none remaining after filter
+while (nrow(find_frontier) > 0){
+  find_frontier <- find_frontier %>%
+    arrange(ICERAdj) %>%
+    filter(!(IncrementalQALY <= first(IncrementalQALY) & ICERAdj > first(ICERAdj)))
+  frontier <- rbind(frontier, find_frontier[1, , drop=FALSE])
+  find_frontier <- find_frontier[-1,]
+}
+
+# Add NoCD to start of frontier
+frontier <- frontier %>%
+  select(Scenario, IncrementalCosts, IncrementalQALY) %>%
+  add_row(Scenario="NoCD", IncrementalCosts=0, IncrementalQALY=0) %>%
+  arrange(IncrementalCosts)
+frontier
+```
+
+<div class="kable-table">
+
+| Scenario | IncrementalCosts | IncrementalQALY |
+|:---------|-----------------:|----------------:|
+| NoCD     |          0.00000 |       0.0000000 |
+| S3a      |         67.95925 |       0.0124963 |
+| S2a      |        132.02380 |       0.0167010 |
+| S1a      |        202.94319 |       0.0214250 |
+
+</div>
+
+``` r
+# Create plot
+ggplot(data=ceplane_plot, aes(x=IncrementalQALY, y=IncrementalCosts)) + 
+  geom_point(aes(shape=factor(Interval), colour=factor(Colour))) +
+  geom_text(aes(label=Scenario, colour=factor(Colour)),vjust=-0.5, size=3) + 
+  geom_abline(intercept=0, slope=50000, colour="grey", linetype="dashed") +
+  scale_colour_manual(values=c("red", "black")) +
+  theme_bw() +
+  labs(x="Incremental QALYs", y="Incremental Costs", shape="Testing Interval") +
+  theme(legend.position="bottom") +
+  guides(colour="none") +
+  # Add the efficiency frontier
+  geom_path(data=frontier, aes(x=IncrementalQALY, y=IncrementalCosts),
+            colour="blue", size=0.1) +
+  # Extend y axis to 300 like original (but x is already wider than original)
+  ylim(c(0, 300)) +
+  # Make 0 to 0.015 and 0 to 300 a square
+  coord_fixed(ratio = (0.015 - 0) / (300 - 0)) +
+  annotate(geom="text", x = Inf, y = -Inf,
+           label = "S1: All Patients\nS2: Symptomatic\nS3: Smoking History\nS1a: CDQ > 17 points",
+           hjust = 1.1, vjust = -0.3, size = 2.5)
+```
+
+    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+    ## ℹ Please use `linewidth` instead.
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+    ## generated.
+
+![](../outputs/fig3-1.png)<!-- -->
+
+``` r
+# Not needed if knitting, which will overwrite
+ggsave(paths$fig3)
+```
+
+    ## Saving 7 x 5 in image
