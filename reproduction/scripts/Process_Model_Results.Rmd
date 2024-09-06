@@ -323,6 +323,8 @@ p3 <- ggplot(ap6_df, aes(x=Scenario, y=DiagnosedPYs, fill=Scenario)) +
 ap6_df <- s1_scen %>%
   # Get the relevant scenarios
   filter(Scenario %in% c("Case Detection", "No Case Detection")) %>%
+  # Adjust
+  mutate(across(c(SABA, LAMA, LAMALABA, ICSLAMALABA), ~ . * 2000)) %>%
   # Tidy and make long format for plotting
   select(Scenario, SABA, LAMA, LAMALABA, ICSLAMALABA) %>%
   tidyr::pivot_longer(cols=-Scenario, names_to="Group", values_to="Years") %>%
@@ -337,5 +339,4 @@ p4 <- ggplot(ap6_df, aes(x=Group, y=Years, fill=Scenario)) +
 ggarrange(p1, p2, p3, p4, ncol=2, nrow=2, common.legend = TRUE, legend="bottom")
 
 ggsave(paths$apx6v2, width = 12, height = 10)
-
 ```
