@@ -1,6 +1,6 @@
 Process Model Results
 ================
-05 September, 2024
+06 September, 2024
 
 This file processes the model results so they match up as closely as
 possible to those in the publication.
@@ -25,7 +25,8 @@ paths <- list(
   original_ceplane = "../../original_study/ceplane.csv",
 
   # Outputs from this .Rmd file
-  tab3_compare = "../outputs/tab3_compare_to_original.csv"
+  tab3_compare = "../outputs/tab3_compare_to_original.csv",
+  fig3 = "../outputs/fig3.png"
 )
 ```
 
@@ -49,75 +50,34 @@ rbind(ceplane_3y, ceplane_5y) %>%
   arrange(Scenario)
 ```
 
-    ##     Scenario Agents PropAgents       Cost CostpAgent CostpAgentExcluded
-    ## 1  S1NoCDAvg 743240  1.0000000 1599466443   2152.020              0.000
-    ## 2  S1NoCDAvg 743240  1.0000000 1599466443   2152.020              0.000
-    ## 3        S1a 743762  1.0000000 1807321435   2429.973              0.000
-    ## 4        S1a 744354  1.0000000 1752926443   2354.963              0.000
-    ## 5        S1b 744327  1.0000000 1760175403   2364.788              0.000
-    ## 6        S1b 744122  1.0000000 1719863654   2311.266              0.000
-    ## 7        S1c 744352  1.0000000 1784618220   2397.546              0.000
-    ## 8        S1c 744408  1.0000000 1712210641   2300.097              0.000
-    ## 9     S2NoCD 441551  0.5940894 1172222127   2654.783           1416.175
-    ## 10    S2NoCD 441928  0.5945966 1179924911   2669.948           1392.382
-    ## 11       S2a 441650  0.5942226 1270487699   2876.684           1416.175
-    ## 12       S2a 441121  0.5935108 1240789795   2812.811           1392.382
-    ## 13    S3NoCD 345450  0.4647893 1009751817   2923.004           1482.477
-    ## 14    S3NoCD 344713  0.4637977  996287204   2890.193           1513.522
-    ## 15       S3a 344340  0.4632958 1058616300   3074.334           1482.477
-    ## 16       S3a 344831  0.4639565 1045268642   3031.249           1513.522
-    ## 17       S3b 344561  0.4635932 1098068656   3186.863           1482.477
-    ## 18       S3b 344259  0.4631869 1074556989   3121.362           1513.522
-    ## 19       S3c 345148  0.4643830 1069636233   3099.065           1482.477
-    ## 20       S3c 344359  0.4633214 1045425869   3035.860           1513.522
-    ## 21       S3d 344912  0.4640654 1075013391   3116.776           1482.477
-    ## 22       S3d 343958  0.4627819 1047428798   3045.223           1513.522
-    ##    CostpAgentAll    QALY QALYpAgent QALYpAgentExcluded QALYpAgentAll
-    ## 1       2152.020 9319095   12.53848            0.00000      12.53848
-    ## 2       2152.020 9319095   12.53848            0.00000      12.53848
-    ## 3       2429.973 9340234   12.55810            0.00000      12.55810
-    ## 4       2354.963 9349016   12.55991            0.00000      12.55991
-    ## 5       2364.788 9341640   12.55045            0.00000      12.55045
-    ## 6       2311.266 9342006   12.55440            0.00000      12.55440
-    ## 7       2397.546 9343139   12.55204            0.00000      12.55204
-    ## 8       2300.097 9338065   12.54428            0.00000      12.54428
-    ## 9       2152.019 5415116   12.26385           12.94041      12.53847
-    ## 10      2152.019 5422979   12.27118           12.93050      12.53847
-    ## 11      2284.043 5428810   12.29211           12.94041      12.55517
-    ## 12      2235.422 5419996   12.28687           12.93050      12.54850
-    ## 13      2152.019 3878935   11.22864           13.67596      12.53847
-    ## 14      2152.019 3873367   11.23650           13.66464      12.53847
-    ## 15      2219.978 3873043   11.24773           13.67596      12.55097
-    ## 16      2217.681 3874091   11.23475           13.66464      12.53728
-    ## 17      2272.619 3875123   11.24655           13.67596      12.54970
-    ## 18      2258.252 3874191   11.25371           13.66464      12.54793
-    ## 19      2233.193 3879671   11.24060           13.67596      12.54502
-    ## 20      2218.854 3873257   11.24773           13.66464      12.54483
-    ## 21      2240.899 3876329   11.23860           13.67596      12.54487
-    ## 22      2222.365 3863483   11.23243           13.66464      12.53905
-    ##    IncrementalCosts IncrementalQALY    ICERAdj       ICER        INMB Interval
-    ## 1           0.00000     0.000000000         NA         NA    0.000000  3 years
-    ## 2           0.00000     0.000000000         NA         NA    0.000000  5 years
-    ## 3         277.95257     0.019613777  14171.293  13791.124  702.736263  3 years
-    ## 4         202.94319     0.021425035   9472.245   9739.527  868.308574  5 years
-    ## 5         212.76756     0.011970800  17773.880  17035.376  385.772440  3 years
-    ## 6         159.24546     0.015920268  10002.688  10379.531  636.767913  5 years
-    ## 7         245.52585     0.013562965  18102.668  17438.189  432.622386  3 years
-    ## 8         148.07681     0.005802018  25521.605  27838.899  142.024090  5 years
-    ## 9           0.00000     0.000000000         NA         NA   -0.420303  3 years
-    ## 10          0.00000     0.000000000         NA         NA   -0.420303  5 years
-    ## 11        132.02380     0.016700953   7905.166   7852.913  702.603532  3 years
-    ## 12         83.40312     0.010026932   8317.911   9106.416  417.523169  5 years
-    ## 13          0.00000     0.000000000         NA         NA   -0.420303  3 years
-    ## 14          0.00000     0.000000000         NA         NA   -0.420303  5 years
-    ## 15         67.95925     0.012496296   5438.352   7929.873  556.435226  3 years
-    ## 16         65.66229    -0.001195652 -54917.558 -80779.766 -125.865199  5 years
-    ## 17        120.60002     0.011228431  10740.594  14735.648  440.401243  3 years
-    ## 18        106.23342     0.009456154  11234.316  13429.701  366.153959  5 years
-    ## 19         81.17449     0.006546236  12400.176  14726.663  245.717029  3 years
-    ## 20         66.83501     0.006360854  10507.238  12968.139  250.787397  5 years
-    ## 21         88.87997     0.006392796  13903.144  19458.355  230.339544  3 years
-    ## 22         70.34646     0.000581916 120887.662 -38068.150  -41.670964  5 years
+<div class="kable-table">
+
+| Scenario  | Agents | PropAgents |       Cost | CostpAgent | CostpAgentExcluded | CostpAgentAll |    QALY | QALYpAgent | QALYpAgentExcluded | QALYpAgentAll | IncrementalCosts | IncrementalQALY |    ICERAdj |       ICER |        INMB | Interval |
+|:----------|-------:|-----------:|-----------:|-----------:|-------------------:|--------------:|--------:|-----------:|-------------------:|--------------:|-----------------:|----------------:|-----------:|-----------:|------------:|:---------|
+| S1NoCDAvg | 743240 |  1.0000000 | 1599466443 |   2152.020 |              0.000 |      2152.020 | 9319095 |   12.53848 |            0.00000 |      12.53848 |          0.00000 |       0.0000000 |         NA |         NA |    0.000000 | 3 years  |
+| S1NoCDAvg | 743240 |  1.0000000 | 1599466443 |   2152.020 |              0.000 |      2152.020 | 9319095 |   12.53848 |            0.00000 |      12.53848 |          0.00000 |       0.0000000 |         NA |         NA |    0.000000 | 5 years  |
+| S1a       | 743762 |  1.0000000 | 1807321435 |   2429.973 |              0.000 |      2429.973 | 9340234 |   12.55809 |            0.00000 |      12.55809 |        277.95257 |       0.0196138 |  14171.293 |  13791.124 |  702.736263 | 3 years  |
+| S1a       | 744354 |  1.0000000 | 1752926443 |   2354.963 |              0.000 |      2354.963 | 9349016 |   12.55991 |            0.00000 |      12.55991 |        202.94319 |       0.0214250 |   9472.245 |   9739.527 |  868.308574 | 5 years  |
+| S1b       | 744327 |  1.0000000 | 1760175403 |   2364.788 |              0.000 |      2364.788 | 9341640 |   12.55045 |            0.00000 |      12.55045 |        212.76756 |       0.0119708 |  17773.880 |  17035.376 |  385.772441 | 3 years  |
+| S1b       | 744122 |  1.0000000 | 1719863654 |   2311.266 |              0.000 |      2311.266 | 9342006 |   12.55440 |            0.00000 |      12.55440 |        159.24546 |       0.0159203 |  10002.688 |  10379.531 |  636.767913 | 5 years  |
+| S1c       | 744352 |  1.0000000 | 1784618220 |   2397.546 |              0.000 |      2397.546 | 9343139 |   12.55204 |            0.00000 |      12.55204 |        245.52585 |       0.0135630 |  18102.668 |  17438.189 |  432.622386 | 3 years  |
+| S1c       | 744408 |  1.0000000 | 1712210641 |   2300.097 |              0.000 |      2300.097 | 9338065 |   12.54428 |            0.00000 |      12.54428 |        148.07681 |       0.0058020 |  25521.605 |  27838.899 |  142.024090 | 5 years  |
+| S2NoCD    | 441551 |  0.5940894 | 1172222127 |   2654.783 |           1416.175 |      2152.019 | 5415116 |   12.26385 |           12.94041 |      12.53847 |          0.00000 |       0.0000000 |         NA |         NA |   -0.420303 | 3 years  |
+| S2NoCD    | 441928 |  0.5945966 | 1179924911 |   2669.948 |           1392.382 |      2152.019 | 5422979 |   12.27118 |           12.93050 |      12.53847 |          0.00000 |       0.0000000 |         NA |         NA |   -0.420303 | 5 years  |
+| S2a       | 441650 |  0.5942226 | 1270487699 |   2876.684 |           1416.175 |      2284.043 | 5428810 |   12.29211 |           12.94041 |      12.55517 |        132.02380 |       0.0167010 |   7905.166 |   7852.913 |  702.603533 | 3 years  |
+| S2a       | 441121 |  0.5935108 | 1240789795 |   2812.811 |           1392.382 |      2235.422 | 5419996 |   12.28687 |           12.93050 |      12.54850 |         83.40312 |       0.0100269 |   8317.911 |   9106.416 |  417.523169 | 5 years  |
+| S3NoCD    | 345450 |  0.4647893 | 1009751817 |   2923.004 |           1482.477 |      2152.019 | 3878935 |   11.22864 |           13.67596 |      12.53847 |          0.00000 |       0.0000000 |         NA |         NA |   -0.420303 | 3 years  |
+| S3NoCD    | 344713 |  0.4637977 |  996287204 |   2890.193 |           1513.522 |      2152.019 | 3873367 |   11.23650 |           13.66464 |      12.53847 |          0.00000 |       0.0000000 |         NA |         NA |   -0.420303 | 5 years  |
+| S3a       | 344340 |  0.4632958 | 1058616300 |   3074.334 |           1482.477 |      2219.978 | 3873043 |   11.24773 |           13.67596 |      12.55097 |         67.95925 |       0.0124963 |   5438.352 |   7929.873 |  556.435226 | 3 years  |
+| S3a       | 344831 |  0.4639565 | 1045268642 |   3031.249 |           1513.522 |      2217.681 | 3874091 |   11.23475 |           13.66464 |      12.53728 |         65.66229 |      -0.0011957 | -54917.558 | -80779.766 | -125.865199 | 5 years  |
+| S3b       | 344561 |  0.4635932 | 1098068656 |   3186.863 |           1482.477 |      2272.619 | 3875123 |   11.24655 |           13.67596 |      12.54970 |        120.60002 |       0.0112284 |  10740.594 |  14735.648 |  440.401243 | 3 years  |
+| S3b       | 344259 |  0.4631869 | 1074556989 |   3121.362 |           1513.522 |      2258.252 | 3874191 |   11.25371 |           13.66464 |      12.54793 |        106.23342 |       0.0094562 |  11234.316 |  13429.701 |  366.153959 | 5 years  |
+| S3c       | 345148 |  0.4643830 | 1069636233 |   3099.065 |           1482.477 |      2233.193 | 3879671 |   11.24060 |           13.67596 |      12.54502 |         81.17449 |       0.0065462 |  12400.176 |  14726.663 |  245.717029 | 3 years  |
+| S3c       | 344359 |  0.4633214 | 1045425869 |   3035.860 |           1513.522 |      2218.854 | 3873257 |   11.24773 |           13.66464 |      12.54483 |         66.83501 |       0.0063609 |  10507.238 |  12968.139 |  250.787397 | 5 years  |
+| S3d       | 344912 |  0.4640654 | 1075013391 |   3116.776 |           1482.477 |      2240.899 | 3876329 |   11.23860 |           13.67596 |      12.54487 |         88.87997 |       0.0063928 |  13903.144 |  19458.355 |  230.339544 | 3 years  |
+| S3d       | 343958 |  0.4627819 | 1047428798 |   3045.223 |           1513.522 |      2222.365 | 3863483 |   11.23243 |           13.66464 |      12.53905 |         70.34646 |       0.0005819 | 120887.662 | -38068.150 |  -41.670964 | 5 years  |
+
+</div>
 
 Combine, organise and modify results as per paper.
 
@@ -133,81 +93,32 @@ ceplane <- rbind(ceplane_3y, ceplane_5y) %>%
   # Get INMB ranking
   mutate(Ranking = min_rank(desc(INMB)))
 
-ceplane
+ceplane %>% arrange(Scenario)
 ```
 
-    ##     Scenario Agents PropAgents       Cost CostpAgent CostpAgentExcluded
-    ## 1  S1NoCDAvg 743240  1.0000000 1599466443   2152.020              0.000
-    ## 2        S1a 743762  1.0000000 1807321435   2429.973              0.000
-    ## 3        S1b 744327  1.0000000 1760175403   2364.788              0.000
-    ## 4        S1c 744352  1.0000000 1784618220   2397.546              0.000
-    ## 5        S2a 441650  0.5942226 1270487699   2876.684           1416.175
-    ## 6        S3a 344340  0.4632958 1058616300   3074.334           1482.477
-    ## 7        S3b 344561  0.4635932 1098068656   3186.863           1482.477
-    ## 8        S3c 345148  0.4643830 1069636233   3099.065           1482.477
-    ## 9        S3d 344912  0.4640654 1075013391   3116.776           1482.477
-    ## 10       S1a 744354  1.0000000 1752926443   2354.963              0.000
-    ## 11       S1b 744122  1.0000000 1719863654   2311.266              0.000
-    ## 12       S1c 744408  1.0000000 1712210641   2300.097              0.000
-    ## 13       S2a 441121  0.5935108 1240789795   2812.811           1392.382
-    ## 14       S3a 344831  0.4639565 1045268642   3031.249           1513.522
-    ## 15       S3b 344259  0.4631869 1074556989   3121.362           1513.522
-    ## 16       S3c 344359  0.4633214 1045425869   3035.860           1513.522
-    ## 17       S3d 343958  0.4627819 1047428798   3045.223           1513.522
-    ##    CostpAgentAll    QALY QALYpAgent QALYpAgentExcluded QALYpAgentAll
-    ## 1       2152.020 9319095   12.53848            0.00000      12.53848
-    ## 2       2429.973 9340234   12.55810            0.00000      12.55810
-    ## 3       2364.788 9341640   12.55045            0.00000      12.55045
-    ## 4       2397.546 9343139   12.55204            0.00000      12.55204
-    ## 5       2284.043 5428810   12.29211           12.94041      12.55517
-    ## 6       2219.978 3873043   11.24773           13.67596      12.55097
-    ## 7       2272.619 3875123   11.24655           13.67596      12.54970
-    ## 8       2233.193 3879671   11.24060           13.67596      12.54502
-    ## 9       2240.899 3876329   11.23860           13.67596      12.54487
-    ## 10      2354.963 9349016   12.55991            0.00000      12.55991
-    ## 11      2311.266 9342006   12.55440            0.00000      12.55440
-    ## 12      2300.097 9338065   12.54428            0.00000      12.54428
-    ## 13      2235.422 5419996   12.28687           12.93050      12.54850
-    ## 14      2217.681 3874091   11.23475           13.66464      12.53728
-    ## 15      2258.252 3874191   11.25371           13.66464      12.54793
-    ## 16      2218.854 3873257   11.24773           13.66464      12.54483
-    ## 17      2222.365 3863483   11.23243           13.66464      12.53905
-    ##    IncrementalCosts IncrementalQALY    ICERAdj       ICER       INMB Interval
-    ## 1           0.00000     0.000000000         NA         NA         NA     <NA>
-    ## 2         277.95257     0.019613777  14171.293  13791.124  702.73626  3 years
-    ## 3         212.76756     0.011970800  17773.880  17035.376  385.77244  3 years
-    ## 4         245.52585     0.013562965  18102.668  17438.189  432.62239  3 years
-    ## 5         132.02380     0.016700953   7905.166   7852.913  702.60353  3 years
-    ## 6          67.95925     0.012496296   5438.352   7929.873  556.43523  3 years
-    ## 7         120.60002     0.011228431  10740.594  14735.648  440.40124  3 years
-    ## 8          81.17449     0.006546236  12400.176  14726.663  245.71703  3 years
-    ## 9          88.87997     0.006392796  13903.144  19458.355  230.33954  3 years
-    ## 10        202.94319     0.021425035   9472.245   9739.527  868.30857  5 years
-    ## 11        159.24546     0.015920268  10002.688  10379.531  636.76791  5 years
-    ## 12        148.07681     0.005802018  25521.605  27838.899  142.02409  5 years
-    ## 13         83.40312     0.010026932   8317.911   9106.416  417.52317  5 years
-    ## 14         65.66229    -0.001195652 -54917.558 -80779.766 -125.86520  5 years
-    ## 15        106.23342     0.009456154  11234.316  13429.701  366.15396  5 years
-    ## 16         66.83501     0.006360854  10507.238  12968.139  250.78740  5 years
-    ## 17         70.34646     0.000581916 120887.662 -38068.150  -41.67096  5 years
-    ##    Ranking
-    ## 1       NA
-    ## 2        2
-    ## 3        9
-    ## 4        7
-    ## 5        3
-    ## 6        5
-    ## 7        6
-    ## 8       12
-    ## 9       13
-    ## 10       1
-    ## 11       4
-    ## 12      14
-    ## 13       8
-    ## 14      16
-    ## 15      10
-    ## 16      11
-    ## 17      15
+<div class="kable-table">
+
+| Scenario  | Agents | PropAgents |       Cost | CostpAgent | CostpAgentExcluded | CostpAgentAll |    QALY | QALYpAgent | QALYpAgentExcluded | QALYpAgentAll | IncrementalCosts | IncrementalQALY |    ICERAdj |       ICER |       INMB | Interval | Ranking |
+|:----------|-------:|-----------:|-----------:|-----------:|-------------------:|--------------:|--------:|-----------:|-------------------:|--------------:|-----------------:|----------------:|-----------:|-----------:|-----------:|:---------|--------:|
+| S1NoCDAvg | 743240 |  1.0000000 | 1599466443 |   2152.020 |              0.000 |      2152.020 | 9319095 |   12.53848 |            0.00000 |      12.53848 |          0.00000 |       0.0000000 |         NA |         NA |         NA | NA       |      NA |
+| S1a       | 743762 |  1.0000000 | 1807321435 |   2429.973 |              0.000 |      2429.973 | 9340234 |   12.55809 |            0.00000 |      12.55809 |        277.95257 |       0.0196138 |  14171.293 |  13791.124 |  702.73626 | 3 years  |       2 |
+| S1a       | 744354 |  1.0000000 | 1752926443 |   2354.963 |              0.000 |      2354.963 | 9349016 |   12.55991 |            0.00000 |      12.55991 |        202.94319 |       0.0214250 |   9472.245 |   9739.527 |  868.30857 | 5 years  |       1 |
+| S1b       | 744327 |  1.0000000 | 1760175403 |   2364.788 |              0.000 |      2364.788 | 9341640 |   12.55045 |            0.00000 |      12.55045 |        212.76756 |       0.0119708 |  17773.880 |  17035.376 |  385.77244 | 3 years  |       9 |
+| S1b       | 744122 |  1.0000000 | 1719863654 |   2311.266 |              0.000 |      2311.266 | 9342006 |   12.55440 |            0.00000 |      12.55440 |        159.24546 |       0.0159203 |  10002.688 |  10379.531 |  636.76791 | 5 years  |       4 |
+| S1c       | 744352 |  1.0000000 | 1784618220 |   2397.546 |              0.000 |      2397.546 | 9343139 |   12.55204 |            0.00000 |      12.55204 |        245.52585 |       0.0135630 |  18102.668 |  17438.189 |  432.62239 | 3 years  |       7 |
+| S1c       | 744408 |  1.0000000 | 1712210641 |   2300.097 |              0.000 |      2300.097 | 9338065 |   12.54428 |            0.00000 |      12.54428 |        148.07681 |       0.0058020 |  25521.605 |  27838.899 |  142.02409 | 5 years  |      14 |
+| S2a       | 441650 |  0.5942226 | 1270487699 |   2876.684 |           1416.175 |      2284.043 | 5428810 |   12.29211 |           12.94041 |      12.55517 |        132.02380 |       0.0167010 |   7905.166 |   7852.913 |  702.60353 | 3 years  |       3 |
+| S2a       | 441121 |  0.5935108 | 1240789795 |   2812.811 |           1392.382 |      2235.422 | 5419996 |   12.28687 |           12.93050 |      12.54850 |         83.40312 |       0.0100269 |   8317.911 |   9106.416 |  417.52317 | 5 years  |       8 |
+| S3a       | 344340 |  0.4632958 | 1058616300 |   3074.334 |           1482.477 |      2219.978 | 3873043 |   11.24773 |           13.67596 |      12.55097 |         67.95925 |       0.0124963 |   5438.352 |   7929.873 |  556.43523 | 3 years  |       5 |
+| S3a       | 344831 |  0.4639565 | 1045268642 |   3031.249 |           1513.522 |      2217.681 | 3874091 |   11.23475 |           13.66464 |      12.53728 |         65.66229 |      -0.0011957 | -54917.558 | -80779.766 | -125.86520 | 5 years  |      16 |
+| S3b       | 344561 |  0.4635932 | 1098068656 |   3186.863 |           1482.477 |      2272.619 | 3875123 |   11.24655 |           13.67596 |      12.54970 |        120.60002 |       0.0112284 |  10740.594 |  14735.648 |  440.40124 | 3 years  |       6 |
+| S3b       | 344259 |  0.4631869 | 1074556989 |   3121.362 |           1513.522 |      2258.252 | 3874191 |   11.25371 |           13.66464 |      12.54793 |        106.23342 |       0.0094562 |  11234.316 |  13429.701 |  366.15396 | 5 years  |      10 |
+| S3c       | 345148 |  0.4643830 | 1069636233 |   3099.065 |           1482.477 |      2233.193 | 3879671 |   11.24060 |           13.67596 |      12.54502 |         81.17449 |       0.0065462 |  12400.176 |  14726.663 |  245.71703 | 3 years  |      12 |
+| S3c       | 344359 |  0.4633214 | 1045425869 |   3035.860 |           1513.522 |      2218.854 | 3873257 |   11.24773 |           13.66464 |      12.54483 |         66.83501 |       0.0063609 |  10507.238 |  12968.139 |  250.78740 | 5 years  |      11 |
+| S3d       | 344912 |  0.4640654 | 1075013391 |   3116.776 |           1482.477 |      2240.899 | 3876329 |   11.23860 |           13.67596 |      12.54487 |         88.87997 |       0.0063928 |  13903.144 |  19458.355 |  230.33954 | 3 years  |      13 |
+| S3d       | 343958 |  0.4627819 | 1047428798 |   3045.223 |           1513.522 |      2222.365 | 3863483 |   11.23243 |           13.66464 |      12.53905 |         70.34646 |       0.0005819 | 120887.662 | -38068.150 |  -41.67096 | 5 years  |      15 |
+
+</div>
 
 Reformat to match paper.
 
@@ -237,369 +148,35 @@ ceplane_pretty <- ceplane %>%
   # Select, reorder and relabel columns
   select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMBRank) %>%
   rename("Testing interval" = Interval,
-         "Costs ($/patient)" = CostpAgentAll,
-         "QALYs (QALYs/patient)" = QALYpAgentAll,
-         "ICER ($/QALY)" = ICERAdj,
+         "Costs per patient" = CostpAgentAll,
+         "QALYs per patient" = QALYpAgentAll,
+         "ICER" = ICERAdj,
          "INMB (ranking)" = INMBRank)
 
 # Preview dataframe
 ceplane_pretty
 ```
 
-    ##                            Scenario Testing interval Costs ($/patient)
-    ## 1             S0: No case detection             <NA>             $2152
-    ## 2             (S1a) CDQ ≥ 17 points          3 years             $2430
-    ## 3             (S1a) CDQ ≥ 17 points          5 years             $2355
-    ## 4        (S1b) Screening spirometry          3 years             $2365
-    ## 5        (S1b) Screening spirometry          5 years             $2311
-    ## 6  (S1c) CDQ + screening spirometry          3 years             $2398
-    ## 7  (S1c) CDQ + screening spirometry          5 years             $2300
-    ## 8        (S2a) Screening spirometry          3 years             $2284
-    ## 9        (S2a) Screening spirometry          5 years             $2235
-    ## 10          (S3a) CDQ ≥ 19.5 points          3 years             $2220
-    ## 11          (S3a) CDQ ≥ 19.5 points          5 years             $2218
-    ## 12          (S3b) CDQ ≥ 16.5 points          3 years             $2273
-    ## 13          (S3b) CDQ ≥ 16.5 points          5 years             $2258
-    ## 14       (S3c) Screening spirometry          3 years             $2233
-    ## 15       (S3c) Screening spirometry          5 years             $2219
-    ## 16 (S3d) CDQ + screening spirometry          3 years             $2241
-    ## 17 (S3d) CDQ + screening spirometry          5 years             $2222
-    ##    QALYs (QALYs/patient) ICER ($/QALY) INMB (ranking)
-    ## 1                 12.538            NA           <NA>
-    ## 2                 12.558         14171         703(2)
-    ## 3                 12.560          9472         868(1)
-    ## 4                 12.550         17774         386(9)
-    ## 5                 12.554         10003         637(4)
-    ## 6                 12.552         18103         433(7)
-    ## 7                 12.544         25522        142(14)
-    ## 8                 12.555          7905         703(3)
-    ## 9                 12.548          8318         418(8)
-    ## 10                12.551          5438         556(5)
-    ## 11                12.537        -54918       -126(16)
-    ## 12                12.550         10741         440(6)
-    ## 13                12.548         11234        366(10)
-    ## 14                12.545         12400        246(12)
-    ## 15                12.545         10507        251(11)
-    ## 16                12.545         13903        230(13)
-    ## 17                12.539        120888        -42(15)
+<div class="kable-table">
 
-### Compare between our results, the paper, and their repository
+| Scenario                         | Testing interval | Costs per patient | QALYs per patient |   ICER | INMB (ranking) |
+|:---------------------------------|:-----------------|:------------------|------------------:|-------:|:---------------|
+| S0: No case detection            | NA               | \$2152            |            12.538 |     NA | NA             |
+| (S1a) CDQ ≥ 17 points            | 3 years          | \$2430            |            12.558 |  14171 | 703(2)         |
+| (S1a) CDQ ≥ 17 points            | 5 years          | \$2355            |            12.560 |   9472 | 868(1)         |
+| (S1b) Screening spirometry       | 3 years          | \$2365            |            12.550 |  17774 | 386(9)         |
+| (S1b) Screening spirometry       | 5 years          | \$2311            |            12.554 |  10003 | 637(4)         |
+| (S1c) CDQ + screening spirometry | 3 years          | \$2398            |            12.552 |  18103 | 433(7)         |
+| (S1c) CDQ + screening spirometry | 5 years          | \$2300            |            12.544 |  25522 | 142(14)        |
+| (S2a) Screening spirometry       | 3 years          | \$2284            |            12.555 |   7905 | 703(3)         |
+| (S2a) Screening spirometry       | 5 years          | \$2235            |            12.548 |   8318 | 418(8)         |
+| (S3a) CDQ ≥ 19.5 points          | 3 years          | \$2220            |            12.551 |   5438 | 556(5)         |
+| (S3a) CDQ ≥ 19.5 points          | 5 years          | \$2218            |            12.537 | -54918 | -126(16)       |
+| (S3b) CDQ ≥ 16.5 points          | 3 years          | \$2273            |            12.550 |  10741 | 440(6)         |
+| (S3b) CDQ ≥ 16.5 points          | 5 years          | \$2258            |            12.548 |  11234 | 366(10)        |
+| (S3c) Screening spirometry       | 3 years          | \$2233            |            12.545 |  12400 | 246(12)        |
+| (S3c) Screening spirometry       | 5 years          | \$2219            |            12.545 |  10507 | 251(11)        |
+| (S3d) CDQ + screening spirometry | 3 years          | \$2241            |            12.545 |  13903 | 230(13)        |
+| (S3d) CDQ + screening spirometry | 5 years          | \$2222            |            12.539 | 120888 | -42(15)        |
 
-Prepare our model results…
-
-``` r
-# Prepare sall model results to combine with original table
-ceplane_prep <- ceplane %>%
-  # Replace S1NoCDAvg with S0
-  mutate(Scenario = replace(Scenario, Scenario == "S1NoCDAvg", "S0")) %>%
-  # Round columns
-  mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
-  mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
-  mutate(ICERAdj = round(ICERAdj, 0)) %>%
-  mutate(INMB = round(INMB, 0)) %>%
-  # Select relevant columns
-  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMB, Ranking)
-
-ceplane_prep
-```
-
-    ##    Scenario Interval CostpAgentAll QALYpAgentAll ICERAdj INMB Ranking
-    ## 1        S0     <NA>          2152        12.538      NA   NA      NA
-    ## 2       S1a  3 years          2430        12.558   14171  703       2
-    ## 3       S1b  3 years          2365        12.550   17774  386       9
-    ## 4       S1c  3 years          2398        12.552   18103  433       7
-    ## 5       S2a  3 years          2284        12.555    7905  703       3
-    ## 6       S3a  3 years          2220        12.551    5438  556       5
-    ## 7       S3b  3 years          2273        12.550   10741  440       6
-    ## 8       S3c  3 years          2233        12.545   12400  246      12
-    ## 9       S3d  3 years          2241        12.545   13903  230      13
-    ## 10      S1a  5 years          2355        12.560    9472  868       1
-    ## 11      S1b  5 years          2311        12.554   10003  637       4
-    ## 12      S1c  5 years          2300        12.544   25522  142      14
-    ## 13      S2a  5 years          2235        12.548    8318  418       8
-    ## 14      S3a  5 years          2218        12.537  -54918 -126      16
-    ## 15      S3b  5 years          2258        12.548   11234  366      10
-    ## 16      S3c  5 years          2219        12.545   10507  251      11
-    ## 17      S3d  5 years          2222        12.539  120888  -42      15
-
-Prepare results from the paper…
-
-``` r
-# Convert costs to numeric
-paper_tab3_prep <- paper_tab3 %>%
-  mutate(CostpAgent = readr::parse_number(CostpAgent))
-
-# Append "_paper" to columns (except Scenario and Interval)
-icol <- which(names(paper_tab3_prep) %in% c("Scenario", "Interval"))
-colnames(paper_tab3_prep)[-icol] <- paste(colnames(paper_tab3_prep)[-icol], "paper", sep = "_")
-
-# Preview dataframe
-paper_tab3_prep
-```
-
-    ##    Scenario Interval CostpAgent_paper QALYpAgent_paper ICER_paper
-    ## 1        S0     <NA>             2151           12.546         NA
-    ## 2       S1a  3 years             2438           12.560      19632
-    ## 3       S1a  5 years             2356           12.556      19847
-    ## 4       S1b  3 years             2363           12.554      25894
-    ## 5       S1b  5 years             2296           12.552      23187
-    ## 6       S1c  3 years             2386           12.551      46956
-    ## 7       S1c  5 years             2313           12.550      38673
-    ## 8       S2a  3 years             2286           12.553      18908
-    ## 9       S2a  5 years             2246           12.551      17514
-    ## 10      S3a  3 years             2234           12.548      30366
-    ## 11      S3a  5 years             2207           12.548      22636
-    ## 12      S3b  3 years             2292           12.553      18438
-    ## 13      S3b  5 years             2250           12.552      16251
-    ## 14      S3c  3 years             2256           12.550      23972
-    ## 15      S3c  5 years             2224           12.549      20278
-    ## 16      S3d  3 years             2263           12.549      28245
-    ## 17      S3d  5 years             2227           12.548      27591
-    ##    IncrementalNMB_paper Ranking_paper
-    ## 1                    NA            NA
-    ## 2                   444             1
-    ## 3                   312             2
-    ## 4                   198             6
-    ## 5                   168             8
-    ## 6                    15            16
-    ## 7                    47            15
-    ## 8                   223             4
-    ## 9                   176             7
-    ## 10                   54            14
-    ## 11                   68            12
-    ## 12                  241             3
-    ## 13                  206             5
-    ## 14                  114             9
-    ## 15                  107            10
-    ## 16                   86            11
-    ## 17                   62            13
-
-``` r
-original_ceplane_prep <- original_ceplane %>%
-  # Replace "NA" string with actual NaN for the interval
-  mutate(Interval = replace(Interval, Interval == "NA", NA_character_)) %>%
-  # Remove scenarios 2 and 3 with no case detection, and scenario 2b
-  filter(!(Scenario %in% c("S2NoCD", "S3NoCD", "S2b"))) %>%
-  # Replace S1NoCDAvg with S0
-  mutate(Scenario = replace(Scenario, Scenario == "S1NoCDAvg", "S0")) %>%
-  # Round columns
-  mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
-  mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
-  mutate(ICERAdj = round(ICERAdj, 0)) %>%
-  mutate(INMB = round(INMB, 0)) %>%
-  # Select relevant columns
-  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMB)
-
-# Append "_repo" to columns (except Scenario and Interval)
-icol <- which(names(original_ceplane_prep) %in% c("Scenario", "Interval"))
-colnames(original_ceplane_prep)[-icol] <- paste(
-  colnames(original_ceplane_prep)[-icol], "repo", sep = "_")
-
-original_ceplane_prep
-```
-
-    ##    Scenario Interval CostpAgentAll_repo QALYpAgentAll_repo ICERAdj_repo
-    ## 1        S0     <NA>               2151             12.545           NA
-    ## 2       S1a  3 years               2439             12.560        19665
-    ## 3       S1b  3 years               2365             12.552        31076
-    ## 4       S1c  3 years               2386             12.551        42697
-    ## 5       S2a  3 years               2287             12.552        21184
-    ## 6       S3a  3 years               2232             12.548        32247
-    ## 7       S3b  3 years               2289             12.553        18157
-    ## 8       S3c  3 years               2255             12.550        20700
-    ## 9       S3d  3 years               2261             12.550        23462
-    ## 10       S0     <NA>               2151             12.545           NA
-    ## 11      S1a  5 years               2355             12.557        16600
-    ## 12      S1b  5 years               2298             12.551        25501
-    ## 13      S1c  5 years               2311             12.551        29600
-    ## 14      S2a  5 years               2245             12.550        20394
-    ## 15      S3a  5 years               2207             12.548        22694
-    ## 16      S3b  5 years               2248             12.551        17325
-    ## 17      S3c  5 years               2221             12.549        19250
-    ## 18      S3d  5 years               2226             12.548        26517
-    ##    INMB_repo
-    ## 1          0
-    ## 2        446
-    ## 3        131
-    ## 4         40
-    ## 5        186
-    ## 6         45
-    ## 7        243
-    ## 8        148
-    ## 9        124
-    ## 10         0
-    ## 11       411
-    ## 12       142
-    ## 13       110
-    ## 14       137
-    ## 15        67
-    ## 16       183
-    ## 17       113
-    ## 18        67
-
-``` r
-calc_diff_perc <- function(df, our_res, paper_res, repo_res, prefix) {
-  #' Calculate the difference and percentage difference between two columns
-  #' 
-  #' @param df Dataframe containing columns
-  #' @param our_res Column with results from our run of the model
-  #' @param paper_res Column with results from the paper table 3
-  #' @param repo_res Column with results from the .md files in their repository
-  #' @param prefix String to prefix start of the result columns
-  #' 
-  #' @return Dataframe with the column pair, results, scenario and interval
-
-  # Create column names for differences
-  mydiff <- paste0(prefix, "MyDiff")
-  myperc <- paste0(prefix, "MyPerc")
-  repodiff <- paste0(prefix, "RepoDiff")
-  repoperc <- paste0(prefix, "RepoPerc")
-
-  # Calculate the difference and percentage difference between col1 and col2
-  df %>%
-    mutate(
-      !!sym(mydiff) := !!sym(paper_res) - !!sym(our_res),
-      !!sym(myperc) := scales::percent(round(!!sym(mydiff) / !!sym(our_res), 3)),
-      !!sym(repodiff) := !!sym(paper_res) - !!sym(repo_res),
-      !!sym(repoperc) := scales::percent(round(!!sym(repodiff) / !!sym(repo_res), 3))
-    ) %>%
-    # Select only those columns, as well as Scenario and Interval
-    select(Scenario, Interval,
-           !!sym(paper_res), !!sym(our_res), !!sym(repo_res),
-           !!sym(mydiff), !!sym(myperc),
-           !!sym(repodiff), !!sym(repoperc))
-}
-
-# Combine the model and paper results
-ceplane_combine <- merge(ceplane_prep, paper_tab3_prep, by=c("Scenario", "Interval")) %>%
-  merge(original_ceplane_prep, by=c("Scenario", "Interval"))
-
-# Define the pairs of columns to compare and the prefix to use for their comparison
-column_pairs <- list(
-  c("CostpAgentAll", "CostpAgent_paper", "CostpAgentAll_repo", "Cost"),
-  c("QALYpAgentAll", "QALYpAgent_paper", "QALYpAgentAll_repo", "QALY"),
-  c("ICERAdj", "ICER_paper", "ICERAdj_repo", "ICER"),
-  c("INMB", "IncrementalNMB_paper", "INMB_repo", "INMB")
-)
-
-# Combine model and paper results and apply the function for each pair of columns
-ceplane_compare <- column_pairs %>%
-  purrr::map(~ calc_diff_perc(ceplane_combine, .x[1], .x[2], .x[3], .x[4])) %>%
-  purrr::reduce(left_join, by = c("Scenario", "Interval"))
-
-# Remove duplicates
-ceplane_compare <- ceplane_compare[!duplicated(ceplane_compare), ]
-
-# Save to csv and view
-write.csv(ceplane_compare, paths$tab3_compare, row.names=FALSE)
-ceplane_compare
-```
-
-    ##    Scenario Interval CostpAgent_paper CostpAgentAll CostpAgentAll_repo
-    ## 1        S0     <NA>             2151          2152               2151
-    ## 17      S1a  3 years             2438          2430               2439
-    ## 18      S1a  5 years             2356          2355               2355
-    ## 19      S1b  3 years             2363          2365               2365
-    ## 20      S1b  5 years             2296          2311               2298
-    ## 21      S1c  3 years             2386          2398               2386
-    ## 22      S1c  5 years             2313          2300               2311
-    ## 23      S2a  3 years             2286          2284               2287
-    ## 24      S2a  5 years             2246          2235               2245
-    ## 25      S3a  3 years             2234          2220               2232
-    ## 26      S3a  5 years             2207          2218               2207
-    ## 27      S3b  3 years             2292          2273               2289
-    ## 28      S3b  5 years             2250          2258               2248
-    ## 29      S3c  3 years             2256          2233               2255
-    ## 30      S3c  5 years             2224          2219               2221
-    ## 31      S3d  3 years             2263          2241               2261
-    ## 32      S3d  5 years             2227          2222               2226
-    ##    CostMyDiff CostMyPerc CostRepoDiff CostRepoPerc QALYpAgent_paper
-    ## 1          -1       0.0%            0         0.0%           12.546
-    ## 17          8       0.3%           -1         0.0%           12.560
-    ## 18          1       0.0%            1         0.0%           12.556
-    ## 19         -2      -0.1%           -2        -0.1%           12.554
-    ## 20        -15      -0.6%           -2        -0.1%           12.552
-    ## 21        -12      -0.5%            0         0.0%           12.551
-    ## 22         13       0.6%            2         0.1%           12.550
-    ## 23          2       0.1%           -1         0.0%           12.553
-    ## 24         11       0.5%            1         0.0%           12.551
-    ## 25         14       0.6%            2         0.1%           12.548
-    ## 26        -11      -0.5%            0         0.0%           12.548
-    ## 27         19       0.8%            3         0.1%           12.553
-    ## 28         -8      -0.4%            2         0.1%           12.552
-    ## 29         23       1.0%            1         0.0%           12.550
-    ## 30          5       0.2%            3         0.1%           12.549
-    ## 31         22       1.0%            2         0.1%           12.549
-    ## 32          5       0.2%            1         0.0%           12.548
-    ##    QALYpAgentAll QALYpAgentAll_repo QALYMyDiff QALYMyPerc QALYRepoDiff
-    ## 1         12.538             12.545      0.008       0.1%        0.001
-    ## 17        12.558             12.560      0.002       0.0%        0.000
-    ## 18        12.560             12.557     -0.004       0.0%       -0.001
-    ## 19        12.550             12.552      0.004       0.0%        0.002
-    ## 20        12.554             12.551     -0.002       0.0%        0.001
-    ## 21        12.552             12.551     -0.001       0.0%        0.000
-    ## 22        12.544             12.551      0.006       0.0%       -0.001
-    ## 23        12.555             12.552     -0.002       0.0%        0.001
-    ## 24        12.548             12.550      0.003       0.0%        0.001
-    ## 25        12.551             12.548     -0.003       0.0%        0.000
-    ## 26        12.537             12.548      0.011       0.1%        0.000
-    ## 27        12.550             12.553      0.003       0.0%        0.000
-    ## 28        12.548             12.551      0.004       0.0%        0.001
-    ## 29        12.545             12.550      0.005       0.0%        0.000
-    ## 30        12.545             12.549      0.004       0.0%        0.000
-    ## 31        12.545             12.550      0.004       0.0%       -0.001
-    ## 32        12.539             12.548      0.009       0.1%        0.000
-    ##    QALYRepoPerc ICER_paper ICERAdj ICERAdj_repo ICERMyDiff ICERMyPerc
-    ## 1            0%         NA      NA           NA         NA       <NA>
-    ## 17           0%      19632   14171        19665       5461      38.5%
-    ## 18           0%      19847    9472        16600      10375     109.5%
-    ## 19           0%      25894   17774        31076       8120      45.7%
-    ## 20           0%      23187   10003        25501      13184     131.8%
-    ## 21           0%      46956   18103        42697      28853     159.4%
-    ## 22           0%      38673   25522        29600      13151      51.5%
-    ## 23           0%      18908    7905        21184      11003     139.2%
-    ## 24           0%      17514    8318        20394       9196     110.6%
-    ## 25           0%      30366    5438        32247      24928     458.4%
-    ## 26           0%      22636  -54918        22694      77554    -141.2%
-    ## 27           0%      18438   10741        18157       7697      71.7%
-    ## 28           0%      16251   11234        17325       5017      44.7%
-    ## 29           0%      23972   12400        20700      11572      93.3%
-    ## 30           0%      20278   10507        19250       9771      93.0%
-    ## 31           0%      28245   13903        23462      14342     103.2%
-    ## 32           0%      27591  120888        26517     -93297     -77.2%
-    ##    ICERRepoDiff ICERRepoPerc IncrementalNMB_paper INMB INMB_repo INMBMyDiff
-    ## 1            NA         <NA>                   NA   NA         0         NA
-    ## 17          -33        -0.2%                  444  703       446       -259
-    ## 18         3247        19.6%                  312  868       411       -556
-    ## 19        -5182       -16.7%                  198  386       131       -188
-    ## 20        -2314        -9.1%                  168  637       142       -469
-    ## 21         4259        10.0%                   15  433        40       -418
-    ## 22         9073        30.7%                   47  142       110        -95
-    ## 23        -2276       -10.7%                  223  703       186       -480
-    ## 24        -2880       -14.1%                  176  418       137       -242
-    ## 25        -1881        -5.8%                   54  556        45       -502
-    ## 26          -58        -0.3%                   68 -126        67        194
-    ## 27          281         1.5%                  241  440       243       -199
-    ## 28        -1074        -6.2%                  206  366       183       -160
-    ## 29         3272        15.8%                  114  246       148       -132
-    ## 30         1028         5.3%                  107  251       113       -144
-    ## 31         4783        20.4%                   86  230       124       -144
-    ## 32         1074         4.1%                   62  -42        67        104
-    ##    INMBMyPerc INMBRepoDiff INMBRepoPerc
-    ## 1        <NA>           NA         <NA>
-    ## 17     -36.8%           -2       -0.40%
-    ## 18     -64.1%          -99      -24.10%
-    ## 19     -48.7%           67       51.10%
-    ## 20     -73.6%           26       18.30%
-    ## 21     -96.5%          -25      -62.50%
-    ## 22     -66.9%          -63      -57.30%
-    ## 23     -68.3%           37       19.90%
-    ## 24     -57.9%           39       28.50%
-    ## 25     -90.3%            9       20.00%
-    ## 26    -154.0%            1        1.50%
-    ## 27     -45.2%           -2       -0.80%
-    ## 28     -43.7%           23       12.60%
-    ## 29     -53.7%          -34      -23.00%
-    ## 30     -57.4%           -6       -5.30%
-    ## 31     -62.6%          -38      -30.60%
-    ## 32    -247.6%           -5       -7.50%
+</div>

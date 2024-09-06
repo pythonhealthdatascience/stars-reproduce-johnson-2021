@@ -1,7 +1,9 @@
 ---
 title: "Process Model Results"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: github_document
+output:
+  github_document:
+    df_print: "kable"
 keep.md: true
 ---
 
@@ -27,7 +29,8 @@ paths <- list(
   original_ceplane = "../../original_study/ceplane.csv",
 
   # Outputs from this .Rmd file
-  tab3_compare = "../outputs/tab3_compare_to_original.csv"
+  tab3_compare = "../outputs/tab3_compare_to_original.csv",
+  fig3 = "../outputs/fig3.png"
 )
 ```
 
@@ -65,7 +68,7 @@ ceplane <- rbind(ceplane_3y, ceplane_5y) %>%
   # Get INMB ranking
   mutate(Ranking = min_rank(desc(INMB)))
 
-ceplane
+ceplane %>% arrange(Scenario)
 ```
 
 Reformat to match paper.
@@ -96,128 +99,11 @@ ceplane_pretty <- ceplane %>%
   # Select, reorder and relabel columns
   select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMBRank) %>%
   rename("Testing interval" = Interval,
-         "Costs ($/patient)" = CostpAgentAll,
-         "QALYs (QALYs/patient)" = QALYpAgentAll,
-         "ICER ($/QALY)" = ICERAdj,
+         "Costs per patient" = CostpAgentAll,
+         "QALYs per patient" = QALYpAgentAll,
+         "ICER" = ICERAdj,
          "INMB (ranking)" = INMBRank)
 
 # Preview dataframe
 ceplane_pretty
-```
-
-### Compare between our results, the paper, and their repository
-
-Prepare our model results...
-
-```{r}
-# Prepare sall model results to combine with original table
-ceplane_prep <- ceplane %>%
-  # Replace S1NoCDAvg with S0
-  mutate(Scenario = replace(Scenario, Scenario == "S1NoCDAvg", "S0")) %>%
-  # Round columns
-  mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
-  mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
-  mutate(ICERAdj = round(ICERAdj, 0)) %>%
-  mutate(INMB = round(INMB, 0)) %>%
-  # Select relevant columns
-  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMB, Ranking)
-
-ceplane_prep
-```
-
-Prepare results from the paper...
-
-```{r}
-# Convert costs to numeric
-paper_tab3_prep <- paper_tab3 %>%
-  mutate(CostpAgent = readr::parse_number(CostpAgent))
-
-# Append "_paper" to columns (except Scenario and Interval)
-icol <- which(names(paper_tab3_prep) %in% c("Scenario", "Interval"))
-colnames(paper_tab3_prep)[-icol] <- paste(colnames(paper_tab3_prep)[-icol], "paper", sep = "_")
-
-# Preview dataframe
-paper_tab3_prep
-```
-
-```{r}
-original_ceplane_prep <- original_ceplane %>%
-  # Replace "NA" string with actual NaN for the interval
-  mutate(Interval = replace(Interval, Interval == "NA", NA_character_)) %>%
-  # Remove scenarios 2 and 3 with no case detection, and scenario 2b
-  filter(!(Scenario %in% c("S2NoCD", "S3NoCD", "S2b"))) %>%
-  # Replace S1NoCDAvg with S0
-  mutate(Scenario = replace(Scenario, Scenario == "S1NoCDAvg", "S0")) %>%
-  # Round columns
-  mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
-  mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
-  mutate(ICERAdj = round(ICERAdj, 0)) %>%
-  mutate(INMB = round(INMB, 0)) %>%
-  # Select relevant columns
-  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMB)
-
-# Append "_repo" to columns (except Scenario and Interval)
-icol <- which(names(original_ceplane_prep) %in% c("Scenario", "Interval"))
-colnames(original_ceplane_prep)[-icol] <- paste(
-  colnames(original_ceplane_prep)[-icol], "repo", sep = "_")
-
-original_ceplane_prep
-```
-
-```{r}
-calc_diff_perc <- function(df, our_res, paper_res, repo_res, prefix) {
-  #' Calculate the difference and percentage difference between two columns
-  #' 
-  #' @param df Dataframe containing columns
-  #' @param our_res Column with results from our run of the model
-  #' @param paper_res Column with results from the paper table 3
-  #' @param repo_res Column with results from the .md files in their repository
-  #' @param prefix String to prefix start of the result columns
-  #' 
-  #' @return Dataframe with the column pair, results, scenario and interval
-
-  # Create column names for differences
-  mydiff <- paste0(prefix, "MyDiff")
-  myperc <- paste0(prefix, "MyPerc")
-  repodiff <- paste0(prefix, "RepoDiff")
-  repoperc <- paste0(prefix, "RepoPerc")
-
-  # Calculate the difference and percentage difference between col1 and col2
-  df %>%
-    mutate(
-      !!sym(mydiff) := !!sym(paper_res) - !!sym(our_res),
-      !!sym(myperc) := scales::percent(round(!!sym(mydiff) / !!sym(our_res), 3)),
-      !!sym(repodiff) := !!sym(paper_res) - !!sym(repo_res),
-      !!sym(repoperc) := scales::percent(round(!!sym(repodiff) / !!sym(repo_res), 3))
-    ) %>%
-    # Select only those columns, as well as Scenario and Interval
-    select(Scenario, Interval,
-           !!sym(paper_res), !!sym(our_res), !!sym(repo_res),
-           !!sym(mydiff), !!sym(myperc),
-           !!sym(repodiff), !!sym(repoperc))
-}
-
-# Combine the model and paper results
-ceplane_combine <- merge(ceplane_prep, paper_tab3_prep, by=c("Scenario", "Interval")) %>%
-  merge(original_ceplane_prep, by=c("Scenario", "Interval"))
-
-# Define the pairs of columns to compare and the prefix to use for their comparison
-column_pairs <- list(
-  c("CostpAgentAll", "CostpAgent_paper", "CostpAgentAll_repo", "Cost"),
-  c("QALYpAgentAll", "QALYpAgent_paper", "QALYpAgentAll_repo", "QALY"),
-  c("ICERAdj", "ICER_paper", "ICERAdj_repo", "ICER"),
-  c("INMB", "IncrementalNMB_paper", "INMB_repo", "INMB")
-)
-
-# Combine model and paper results and apply the function for each pair of columns
-ceplane_compare <- column_pairs %>%
-  purrr::map(~ calc_diff_perc(ceplane_combine, .x[1], .x[2], .x[3], .x[4])) %>%
-  purrr::reduce(left_join, by = c("Scenario", "Interval"))
-
-# Remove duplicates
-ceplane_compare <- ceplane_compare[!duplicated(ceplane_compare), ]
-
-# Save to csv and view
-write.csv(ceplane_compare, paths$tab3_compare, row.names=FALSE)
-ceplane_compare
 ```
