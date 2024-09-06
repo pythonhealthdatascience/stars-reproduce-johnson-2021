@@ -55,6 +55,101 @@ I add the efficiency frontier based on the description in the text - looking for
 Was really helpful having partial code for figures, but full code would have been fab (as e.g. I was uncertain if I'm implementing efficiency frontier correctly).
 :::
 
+## 11.00-11.11: Troubleshooting difference in results
+
+I stuck with Table 3 and Figure 3, trying to figure out the reason for the differing results.
+
+I checked whether the incremental costs and QALYs were based on the adjusted or unadjusted results and, from trying a calculation manually, could see it definitely uses the adjusted.
+
+I looked through the history of some results in their GitHub, just to help clarify to myself the discrepancies I'm seeing v.s. what they see.
+
+ICERs:
+
+| Scenario (3yr) | Table 3 | Me (1m) | [Them (50m)](https://github.com/KateJohnson/epicR/blob/239c55a700f9e97869c16d530080a354ec631568/casedetection/Case_Detection_Results.md) |[ Them (1m)](https://github.com/KateJohnson/epicR/blob/ace50c4292d6622ea5b63ed202cda13387f55397/casedetection/Case_Detection_Results.md) |
+| S1a | 19632 | 14171 | 19664 | 26317 |
+| S2a | 18908 | 7905 | 21183 | 16496 |
+| S3a | 30366 | 5438 | 32247 | -36092 |
+
+This reaffirms to me - again - that the problem is likely agent number, and so the best course of action would be to run it with 50 million (like their repository) and potentially even 100 million (like their paper), although I'm not sure if our computer will be capable of it.
+
+## 11.12-11.18: Running one scenario with 50 million
+
+I remade a mini analysis file with a single scenario, so we can test how long the run takes without trying to run all at once.
+
+## 11.24-12.15: Appendix 6
+
+Appendix 6 presents the clinical results from S1a 3 yrs. I couldn't spot code for these figures in the closedcohort `.Rmd` files. I could see the package itself had plotting functions in `figures.R` and some of these appeared potentially relevant. This appeared to need to be called whilst running the model (rather than using the model outputs we had saved to csv).
+
+I made a new .Rmd file to run S1A, reduce from 1e6 to 50000 just while testing. Looking through the package, it wasn't immediately clear to me how/when to call the `export_figures()` function. I tried adding it after all the S1A code. This had error:
+
+```
+Error in `cost_by_GOLD[, 2:5] <- (op_ex$cumul_cost_gold_ctime[, 2:5])`:
+! number of items to replace is not a multiple of replacement length
+Backtrace:
+ 1. epicR::export_figures()
+```
+
+I tried instead putting it before s1a's `terminate_session()`, but the error persisted.
+
+I tried a different approach, to instead manually copy of the relevant code from `export_figures()` so I can altered it more closely and figure out why its breaking. Looking at the function, it was running the model itself and using:
+
+```
+data <- as.data.frame(Cget_all_events_matrix())
+op <- Cget_output()
+op_ex <- Cget_output_ex()
+```
+
+I then realised that actually, the results we need might just be in the output S1.csv, and that these figures are more complicated than we require, so I instead looked to make them manually.
+
+There are columns with Mild, Moderate, etc. counts but this needs to be transformed to per 1000. I wasn't sure whether to:
+
+* Divide by 1000 (as 1 million / 1000 = 1000)
+* Use the "PY" results and multiply by 1000 (as that appears to be a bit like what they do in `export_figures()` although not super sure)
+
+Each of the two methods came out with different results. I searched in the repository but couldn't find anything about `MildPY` or the others, so decided to go with the non-PY method, since I wasn't actually sure what PY stood for, and whether it might actually be to do with "pack years" or "patient years".
+
+Doing it manually, I made the first of the four figures, and found it actually looked very visually similar to the original, even if the number of exacerbations was lower. I suspected this was an issue with my adjustments. Looking at `s1.csv`, the Agents are actually lower than the base agents we set (apx 700k v.s. 1m). I tried using that to adjust - and that worked out much closer.
+
+## 13.15-13.20, 13.25-13.28: Result from 50 million
+
+To run S1NoCD with 50 million base agents, it took 1.644506 hours (1 hour 38 minutes)
+
+There's 24 scenarios (exc. sensitivity analysis), so running those with 50 million would take apx. **1 day 15 hours 28 minutes**. With 100 million (as in the paper), it would be at least double that. It appears we may therefore need to explore access to a HPC.
+
+The result was:
+
+```{python}
+import pandas as pd
+
+pd.read_csv('s1NoCD_50mil.csv')
+```
+
+## 13.30-X: Returning to appendix 6
+
+I created the four figures. For the fourth, the transformation I'd done to make it reflect 1000 didn't seem to make sense for that one, but I wasn't quite sure what the data was or how to transform it.
+
+I tried multiplifying by 1000, and that got results about half of the original. I tried multiplifying by 2000 - although this is just a total guess at this point.
+
+Looking across the results, I would say that I am satisified this matches the original for all except one bar: SABA. The SABA bars for patient years on treatment are much lower than in the original figure.
+
+![Appendix 6 attempt](appendix6-1.png)
+
+SABA is one of the treatments: short-acting beta-agonists.
+
+I went to check my results, then realised there was an adjusted table of clinical results, and that I should try using that instead of S1, which is the more "raw" model results. Notably, that table just seems to have the columns used in the appendix plot - and they are adjusted to be per agent, so I can confidently just multiply by 1000 to get results for 1000 people.
+
+::: {.callout-tip}
+## Reflection
+
+It's great that this was provided, and makes it much easier. This is partly my fault for not noticing that I should be using that table. However, as for the other parts of this reproduction, this might have been supported by more guidance on which tables produced which figures, or inclusion of code to produce that figure in the paper.
+:::
+
+I realised that multiplying by 1000 works with pAgent columns, but not for the pPYAll. It seems I'd need to multiply by about 16,000.
+
+I experimented with the others, but these were just guesses of what to multiply by, and I still found SABA results to be too low.
+
+![Appendix 6 attempt 2](appendix6v2-1.png)
+
 ## Timings
 
 ```{python}
@@ -68,7 +163,11 @@ used_to_date = 588
 # Times from today
 times = [
     ('09.36', '09.48'),
-    ('09.49', '10.40')]
+    ('09.49', '10.40'),
+    ('11.00', '11.11'),
+    ('11.12', '11.18'),
+    ('11.24', '12.15'),
+    ('13.15', '13.20')]
 
 calculate_times(used_to_date, times)
 ```
