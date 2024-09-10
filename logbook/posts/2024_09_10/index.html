@@ -239,7 +239,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#creating-.rmd-for-sensitivity-analysis" id="toc-creating-.rmd-for-sensitivity-analysis" class="nav-link active" data-scroll-target="#creating-.rmd-for-sensitivity-analysis">09.32-09.50, 11.08-11.38: Creating .Rmd for sensitivity analysis</a></li>
+  <li><a href="#creating-.rmd-for-sensitivity-analysis" id="toc-creating-.rmd-for-sensitivity-analysis" class="nav-link active" data-scroll-target="#creating-.rmd-for-sensitivity-analysis">09.32-09.50, 11.08-11.38, 11.46-11.57: Creating .Rmd for sensitivity analysis</a></li>
+  <li><a href="#checking-and-running-the-sensitivity-analysis-files" id="toc-checking-and-running-the-sensitivity-analysis-files" class="nav-link" data-scroll-target="#checking-and-running-the-sensitivity-analysis-files">13.09-13.20, 13.45-13.47, 14.45-14.49: Checking and running the sensitivity analysis files</a></li>
+  <li><a href="#writing-code-for-figure-4-and-appendix-7" id="toc-writing-code-for-figure-4-and-appendix-7" class="nav-link" data-scroll-target="#writing-code-for-figure-4-and-appendix-7">15.16-16.40: Writing code for figure 4 and appendix 7</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_10/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -261,17 +263,26 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>-. Total time used: -h -m (-%)</p>
+<p>Creating .Rmd for sensitivity analysis and run with 5e5. Wrote code for Figure 4 and Appendix 7. Total time used: 17h 15m (43.1%)</p>
 </div>
 </div>
 <section id="creating-.rmd-for-sensitivity-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="creating-.rmd-for-sensitivity-analysis">09.32-09.50, 11.08-11.38: Creating .Rmd for sensitivity analysis</h2>
-<p>As per yesterday’s notes, decided simplest solution (given I want to minimise rewriting/writing code where possible) was to write a script that generates the .Rmd files required for the sensitivity analysis from the existing.</p>
-<p>Also, during this time, discussed the study with Tom, who agreed that we should look to access the HPC, as we have been unable to reproduce on our machines, and that appears likely to be the solution. We have requested access, but it is currently down, so will not be able to resume this until mid-October.</p>
+<h2 class="anchored" data-anchor-id="creating-.rmd-for-sensitivity-analysis">09.32-09.50, 11.08-11.38, 11.46-11.57: Creating .Rmd for sensitivity analysis</h2>
+<p>Note: Also, during this time, discussed the study with Tom, who agreed that we should <strong>look to access the HPC</strong>, as we have been unable to reproduce on our machines, and that appears likely to be the solution. We have requested access, but it is currently down, so will not be able to resume this until mid-October.</p>
+<p>As per yesterday’s notes, decided simplest solution (given I want to minimise rewriting/writing code where possible) was to write a script that generates the .Rmd files required for the sensitivity analysis from the existing .Rmd files.</p>
+</section>
+<section id="checking-and-running-the-sensitivity-analysis-files" class="level2">
+<h2 class="anchored" data-anchor-id="checking-and-running-the-sensitivity-analysis-files">13.09-13.20, 13.45-13.47, 14.45-14.49: Checking and running the sensitivity analysis files</h2>
+<p>I looked through each of the files to confirm they had been amended correctly, and couldn’t spot any issues</p>
+<p>I don’t anticipate to get similar results to the original on low numbers, but I am running anyway so I can start processing to make the charts. I ran each with 5e5 (500 thousand), and re-ran the two reference case analyses with these too (instead of 1 million), given that’s quicker, and I intend to run these on a HPC anyway.</p>
+</section>
+<section id="writing-code-for-figure-4-and-appendix-7" class="level2">
+<h2 class="anchored" data-anchor-id="writing-code-for-figure-4-and-appendix-7">15.16-16.40: Writing code for figure 4 and appendix 7</h2>
+<p>Whilst the analyses continued to run with 5e5, I wrote code to produce the two figures.</p>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="86a78ea7" class="cell" data-execution_count="1">
+<div id="fdf1dc38" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -282,14 +293,19 @@ Note
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.32'</span>, <span class="st">'09.50'</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.08'</span>, <span class="st">'11.38'</span>)]</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.08'</span>, <span class="st">'11.38'</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.46'</span>, <span class="st">'11.57'</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'13.09'</span>, <span class="st">'13.20'</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'13.45'</span>, <span class="st">'13.47'</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'14.45'</span>, <span class="st">'14.49'</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.16'</span>, <span class="st">'16.40'</span>)]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 48m, or 0h 48m
-Total used to date: 923m, or 15h 23m
-Time remaining: 1477m, or 24h 37m
-Used 38.5% of 40 hours max</code></pre>
+<pre><code>Time spent today: 160m, or 2h 40m
+Total used to date: 1035m, or 17h 15m
+Time remaining: 1365m, or 22h 45m
+Used 43.1% of 40 hours max</code></pre>
 </div>
 </div>
 

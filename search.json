@@ -459,21 +459,35 @@
     "href": "logbook/posts/2024_09_10/index.html",
     "title": "Day 9",
     "section": "",
-    "text": "Note\n\n\n\n-. Total time used: -h -m (-%)"
+    "text": "Note\n\n\n\nCreating .Rmd for sensitivity analysis and run with 5e5. Wrote code for Figure 4 and Appendix 7. Total time used: 17h 15m (43.1%)"
   },
   {
     "objectID": "logbook/posts/2024_09_10/index.html#creating-.rmd-for-sensitivity-analysis",
     "href": "logbook/posts/2024_09_10/index.html#creating-.rmd-for-sensitivity-analysis",
     "title": "Day 9",
-    "section": "09.32-09.50, 11.08-11.38: Creating .Rmd for sensitivity analysis",
-    "text": "09.32-09.50, 11.08-11.38: Creating .Rmd for sensitivity analysis\nAs per yesterday’s notes, decided simplest solution (given I want to minimise rewriting/writing code where possible) was to write a script that generates the .Rmd files required for the sensitivity analysis from the existing.\nAlso, during this time, discussed the study with Tom, who agreed that we should look to access the HPC, as we have been unable to reproduce on our machines, and that appears likely to be the solution. We have requested access, but it is currently down, so will not be able to resume this until mid-October."
+    "section": "09.32-09.50, 11.08-11.38, 11.46-11.57: Creating .Rmd for sensitivity analysis",
+    "text": "09.32-09.50, 11.08-11.38, 11.46-11.57: Creating .Rmd for sensitivity analysis\nNote: Also, during this time, discussed the study with Tom, who agreed that we should look to access the HPC, as we have been unable to reproduce on our machines, and that appears likely to be the solution. We have requested access, but it is currently down, so will not be able to resume this until mid-October.\nAs per yesterday’s notes, decided simplest solution (given I want to minimise rewriting/writing code where possible) was to write a script that generates the .Rmd files required for the sensitivity analysis from the existing .Rmd files."
+  },
+  {
+    "objectID": "logbook/posts/2024_09_10/index.html#checking-and-running-the-sensitivity-analysis-files",
+    "href": "logbook/posts/2024_09_10/index.html#checking-and-running-the-sensitivity-analysis-files",
+    "title": "Day 9",
+    "section": "13.09-13.20, 13.45-13.47, 14.45-14.49: Checking and running the sensitivity analysis files",
+    "text": "13.09-13.20, 13.45-13.47, 14.45-14.49: Checking and running the sensitivity analysis files\nI looked through each of the files to confirm they had been amended correctly, and couldn’t spot any issues\nI don’t anticipate to get similar results to the original on low numbers, but I am running anyway so I can start processing to make the charts. I ran each with 5e5 (500 thousand), and re-ran the two reference case analyses with these too (instead of 1 million), given that’s quicker, and I intend to run these on a HPC anyway."
+  },
+  {
+    "objectID": "logbook/posts/2024_09_10/index.html#writing-code-for-figure-4-and-appendix-7",
+    "href": "logbook/posts/2024_09_10/index.html#writing-code-for-figure-4-and-appendix-7",
+    "title": "Day 9",
+    "section": "15.16-16.40: Writing code for figure 4 and appendix 7",
+    "text": "15.16-16.40: Writing code for figure 4 and appendix 7\nWhilst the analyses continued to run with 5e5, I wrote code to produce the two figures."
   },
   {
     "objectID": "logbook/posts/2024_09_10/index.html#timings",
     "href": "logbook/posts/2024_09_10/index.html#timings",
     "title": "Day 9",
     "section": "Timings",
-    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 875\n\n# Times from today\ntimes = [\n    ('09.32', '09.50'),\n    ('11.08', '11.38')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 48m, or 0h 48m\nTotal used to date: 923m, or 15h 23m\nTime remaining: 1477m, or 24h 37m\nUsed 38.5% of 40 hours max"
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 875\n\n# Times from today\ntimes = [\n    ('09.32', '09.50'),\n    ('11.08', '11.38'),\n    ('11.46', '11.57'),\n    ('13.09', '13.20'),\n    ('13.45', '13.47'),\n    ('14.45', '14.49'),\n    ('15.16', '16.40')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 160m, or 2h 40m\nTotal used to date: 1035m, or 17h 15m\nTime remaining: 1365m, or 22h 45m\nUsed 43.1% of 40 hours max"
   },
   {
     "objectID": "quarto_site/reproduction_readme.html",
@@ -578,7 +592,7 @@
     "href": "logbook/posts/2024_09_06/index.html#troubleshooting-difference-in-results",
     "title": "Day 7",
     "section": "11.00-11.11: Troubleshooting difference in results",
-    "text": "11.00-11.11: Troubleshooting difference in results\nI stuck with Table 3 and Figure 3, trying to figure out the reason for the differing results.\nI checked whether the incremental costs and QALYs were based on the adjusted or unadjusted results and, from trying a calculation manually, could see it definitely uses the adjusted.\nI looked through the history of some results in their GitHub, just to help clarify to myself the discrepancies I’m seeing v.s. what they see.\nICERs:\nScenario (3yr) | Table 3 | Me (1m) | Them (50m) |Them (1m) |\nS1a | 19632 | 14171 | 19664 | 26317 |\nS2a | 18908 | 7905 | 21183 | 16496 |\nS3a | 30366 | 5438 | 32247 | -36092 |\nThis reaffirms to me - again - that the problem is likely agent number, and so the best course of action would be to run it with 50 million (like their repository) and potentially even 100 million (like their paper), although I’m not sure if our computer will be capable of it."
+    "text": "11.00-11.11: Troubleshooting difference in results\nI stuck with Table 3 and Figure 3, trying to figure out the reason for the differing results.\nI checked whether the incremental costs and QALYs were based on the adjusted or unadjusted results and, from trying a calculation manually, could see it definitely uses the adjusted.\nI looked through the history of some results in their GitHub, just to help clarify to myself the discrepancies I’m seeing v.s. what they see.\nICERs:\n\n\n\nScenario (3yr)\nTable 3\nMe (1m)\nThem (50m)\nThem (1m)\n\n\n\n\nS1a\n19632\n14171\n19664\n26317\n\n\nS2a\n18908\n7905\n21183\n16496\n\n\nS3a\n30366\n5438\n32247\n-36092\n\n\n\nThis reaffirms to me - again - that the problem is likely agent number, and so the best course of action would be to run it with 50 million (like their repository) and potentially even 100 million (like their paper), although I’m not sure if our computer will be capable of it."
   },
   {
     "objectID": "logbook/posts/2024_09_06/index.html#running-one-scenario-with-50-million",
