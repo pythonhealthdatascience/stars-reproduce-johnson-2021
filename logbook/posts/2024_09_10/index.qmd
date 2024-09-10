@@ -1,0 +1,37 @@
+---
+title: "Day 9"
+author: "Amy Heather"
+date: "2024-09-10"
+categories: [reproduce]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+-. Total time used: -h -m (-%)
+
+:::
+
+## 09.32-09.50, 11.08-11.38: Creating .Rmd for sensitivity analysis
+
+As per yesterday's notes, decided simplest solution (given I want to minimise rewriting/writing code where possible) was to write a script that generates the .Rmd files required for the sensitivity analysis from the existing.
+
+Also, during this time, discussed the study with Tom, who agreed that we should look to access the HPC, as we have been unable to reproduce on our machines, and that appears likely to be the solution. We have requested access, but it is currently down, so will not be able to resume this until mid-October.
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 875
+
+# Times from today
+times = [
+    ('09.32', '09.50'),
+    ('11.08', '11.38')]
+
+calculate_times(used_to_date, times)
+```

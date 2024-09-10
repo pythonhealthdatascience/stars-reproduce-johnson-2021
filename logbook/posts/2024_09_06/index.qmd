@@ -8,7 +8,7 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
-Working on Table 3, Figure 3 and Appendix 6 (none yet reproduced). Total time used: -h -m (-%)
+Working on Table 3, Figure 3 and Appendix 6 (none yet reproduced). Total time used: 14h 8m (35.3%).
 
 :::
 
@@ -114,7 +114,11 @@ Doing it manually, I made the first of the four figures, and found it actually l
 
 To run S1NoCD with 50 million base agents, it took 1.644506 hours (1 hour 38 minutes)
 
-There's 24 scenarios (exc. sensitivity analysis), so running those with 50 million would take apx. **1 day 15 hours 28 minutes**. With 100 million (as in the paper), it would be at least double that. It appears we may therefore need to explore access to a HPC.
+There's 24 scenarios, so running those with 50 million would take apx. **1 day 15 hours 28 minutes**. With 100 million (as in the paper), it would be at least double that (so at least 3 days 7 hours).
+
+That's repeated a total of 8 times, for the reference case and then for the scenario analyses (so, 26 days 8 hours).
+
+It appears we may therefore need to explore access to a HPC.
 
 The result was:
 
@@ -234,7 +238,6 @@ times = [
     ('13.30', '14.42'),
     ('15.10', '15.40'),
     ('15.47', '16.06')]
-#TODO: Finish adding times
 
 calculate_times(used_to_date, times)
 ```

@@ -1,0 +1,65 @@
+---
+title: "Day 8"
+author: "Amy Heather"
+date: "2024-09-09"
+categories: [reproduce]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+A little bit of thinking around sensitivity analysis. Total time used: 14h 35m (36.5%)
+
+:::
+
+## 16.08-16.18, 16.23-16.40: Sensitivity analysis
+
+The remaining items in the scope that I've not yet attempted - Figure 4 and appendix 7 - are both based on the results of the sensitivity analyses. I haven't identified any code in the GitHub repository to run this analysis. As such, I am assuming that the provided scripts were directly modified to run each of these scenarios.
+
+The contents of each figure as presented below, along with my identified snippets of code that we would likely need to alter for the scenario.
+
+Figure 4 has INMB from:
+
+* Reference case analysis
+* No smoking cessation (`smoking_adherence=0.7`) (`input$values$smoking$smoking_cessation_adherence <- smoking_adherence`)
+* 50% medication adherence (`medication_adherence=0.7`)
+* 30% medication adherence (`medication_adherence=0.7`)
+* 0.01 treatment utility (`medication_utility=0.0367`)
+* 0 treatment utility (`medication_utility=0.0367`)
+
+Whilst appendix 7 has INMB from:
+
+* Reference case analysis
+* 0% discount rate (`discount_rate=0.015`)
+* 3% discount rate (`discount_rate=0.015`)
+
+::: {.callout-tip}
+## Reflection
+
+It's handy that I could fairly easily identify each of these variables in the script since the variable names aligned pretty well with the concepts.
+
+:::
+
+Whilst there is a global variables section at the top of the script, they then seem to be provided each time at the start of each scenario in `Case_Detection_Results.Rmd` - but I think this is just because each scenario changes something slightly in the inputs, so they repeat them all each time.
+
+I would prefer not to duplicate the .Rmd files 8 times, so I started a `Sensitivity_Analysis.Rmd` file. I what differed between all the scenarios (in reference case, time intervals, and in sensitivity analysis).
+
+On reflection, I think the simplest solution to this, instead of trying to restructure all the models to run easily from one file, would be to write a script that duplicates the Rmd file but alters one part of it.
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 848
+
+# Times from today
+times = [
+    ('16.08', '16.18'),
+    ('16.23', '16.40')]
+
+calculate_times(used_to_date, times)
+```
