@@ -284,7 +284,7 @@ Rscript -e "rmarkdown::render('scripts/Mini_Analysis.Rmd')"</code></pre>
 <section id="reviewing-results-from-50e6" class="level2">
 <h2 class="anchored" data-anchor-id="reviewing-results-from-50e6">11.29-11.34, 11.48-12.00: Reviewing results from 50e+6</h2>
 <p>This ran in 1.642896 hours (1 hour 38 minutes). The result was still wrong though:</p>
-<div id="2f96e49e" class="cell" data-execution_count="1">
+<div id="d54af820" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'mini_analysis_50e6.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
@@ -393,7 +393,7 @@ terminate_session()</code></pre>
 <li>5 million (5e6) (27.3 minutes local, 10.0 minutes remote)</li>
 </ul>
 <p>And it was quicker than before too! (17s vs 2.4m, 2.6m vs 18.2m).</p>
-<div id="09c45ae8" class="cell" data-execution_count="2">
+<div id="ad5b7d06" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Import results</span></span>
@@ -599,7 +599,7 @@ terminate_session()</code></pre>
 </ul></li>
 </ul>
 <p>I filtered to those columns, and add the results from <code>Case_Detection_Results.md</code>…</p>
-<div id="39428e17" class="cell" data-execution_count="3">
+<div id="fed4ff7f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to columns not influenced by agent number</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> df_s1nocd[[</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'SABA'</span>, <span class="st">'LAMA'</span>, <span class="st">'LAMALABA'</span>, <span class="st">'ICSLAMALABA'</span>, <span class="st">'MildPY'</span>,<span class="st">'ModeratePY'</span>, <span class="st">'SeverePY'</span>,</span>
@@ -752,7 +752,7 @@ terminate_session()</code></pre>
 </ul>
 <p>Then ran on remote machine. It took a bit of tweaking to correct the saving into outputs folder and get right paths, as I got the path wrong, and then it wouldn’t work before had made “outputs” folder.</p>
 <p>Finishing this, I got five results tables (saved to csv).</p>
-<div id="23b4a87b" class="cell" data-execution_count="4">
+<div id="540c86ef" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'sall_5e5.csv'</span>).sort_values(by<span class="op">=</span><span class="st">'Scenario'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -900,7 +900,7 @@ terminate_session()</code></pre>
 </div>
 </div>
 </div>
-<div id="59ae90ae" class="cell" data-execution_count="5">
+<div id="97c80719" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'ceplane_5e5.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -1144,7 +1144,7 @@ terminate_session()</code></pre>
 </div>
 </div>
 </div>
-<div id="5a7c9b8d" class="cell" data-execution_count="6">
+<div id="76ff9a37" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'clinicalresults_5e5.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -1422,7 +1422,7 @@ terminate_session()</code></pre>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="994190f3" class="cell" data-execution_count="7">
+<div id="69d72280" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
