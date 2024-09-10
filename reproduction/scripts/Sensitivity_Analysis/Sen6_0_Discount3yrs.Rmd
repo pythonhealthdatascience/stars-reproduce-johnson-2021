@@ -10,7 +10,7 @@ keep.md: true
 # into the r environment with renv
 
 # Load local package epicR
-devtools::load_all("../epicR")
+devtools::load_all("../../epicR")
 
 # Clear environment as want to use library(epicR) below, which will use the
 # devtools loaded library, but want to clear any other bits load_all() brought

@@ -25,7 +25,10 @@ modify_rmd <- function(new_file, new_title, old_param, new_param) {
     mod_content <- gsub(
       "title: \"Case Detection Scenario Main Analysis\"",
       paste0("title: \"Sensitivity analysis: ", new_title, "\""), content)
-  
+
+    # Alter path to epic
+    mod_content <- gsub("../epicR","../../epicR", mod_content)
+
     # Alter path to outputs
     mod_content <- gsub(
       "outputs <- \"../outputs/\"",
