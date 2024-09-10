@@ -271,7 +271,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Working on Table 3, Figure 3 and Appendix 6 (none yet reproduced). Total time used: -h -m (-%)</p>
+<p>Working on Table 3, Figure 3 and Appendix 6 (none yet reproduced). Total time used: 14h 8m (35.3%).</p>
 </div>
 </div>
 <section id="revisiting-table-3" class="level2">
@@ -378,9 +378,11 @@ op_ex &lt;- Cget_output_ex()</code></pre>
 <section id="result-from-50-million" class="level2">
 <h2 class="anchored" data-anchor-id="result-from-50-million">13.15-13.20, 13.25-13.28: Result from 50 million</h2>
 <p>To run S1NoCD with 50 million base agents, it took 1.644506 hours (1 hour 38 minutes)</p>
-<p>There’s 24 scenarios (exc. sensitivity analysis), so running those with 50 million would take apx. <strong>1 day 15 hours 28 minutes</strong>. With 100 million (as in the paper), it would be at least double that. It appears we may therefore need to explore access to a HPC.</p>
+<p>There’s 24 scenarios, so running those with 50 million would take apx. <strong>1 day 15 hours 28 minutes</strong>. With 100 million (as in the paper), it would be at least double that (so at least 3 days 7 hours).</p>
+<p>That’s repeated a total of 8 times, for the reference case and then for the scenario analyses (so, 26 days 8 hours).</p>
+<p>It appears we may therefore need to explore access to a HPC.</p>
 <p>The result was:</p>
-<div id="81ef1945" class="cell" data-execution_count="1">
+<div id="5d7e2adc" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'s1NoCD_50mil.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -529,7 +531,7 @@ diag_investigate &lt;- merge(clin_diag, s1_diag) %&gt;%
   mutate(AdjDivideByPYAll = AdjDiagnosedPYs / DiagnosedpPYAll)
 
 write.csv(diag_investigate, "../../logbook/posts/2024_09_06/diag_investigate.csv")</code></pre>
-<div id="3a4e4950" class="cell" data-execution_count="2">
+<div id="a1905cc3" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'diag_investigate.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -581,7 +583,7 @@ write.csv(diag_investigate, "../../logbook/posts/2024_09_06/diag_investigate.csv
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="72dbbad7" class="cell" data-execution_count="3">
+<div id="4b5ea461" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -601,9 +603,8 @@ write.csv(diag_investigate, "../../logbook/posts/2024_09_06/diag_investigate.csv
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'13.30'</span>, <span class="st">'14.42'</span>),</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.10'</span>, <span class="st">'15.40'</span>),</span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.47'</span>, <span class="st">'16.06'</span>)]</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: Finish adding times</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time spent today: 260m, or 4h 20m
 Total used to date: 848m, or 14h 8m
