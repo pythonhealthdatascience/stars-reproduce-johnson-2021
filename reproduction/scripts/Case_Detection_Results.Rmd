@@ -52,7 +52,7 @@ files <- list(
 )
 
 # Apply file.path to each element in list to create path to file in outputs
-paths <- lapply(files, function(filename) file.path(outputs, filename))
+paths <- lapply(files, function(filename) paste0(outputs, filename))
 ```
 
 ```{r global settings, echo=FALSE}

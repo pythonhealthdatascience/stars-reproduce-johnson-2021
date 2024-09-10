@@ -26,7 +26,17 @@ modify_rmd <- function(new_file, new_title, old_param, new_param) {
       "title: \"Case Detection Scenario Main Analysis\"",
       paste0("title: \"Sensitivity analysis: ", new_title, "\""), content)
   
-    # Replace parameter
+    # Alter path to outputs
+    mod_content <- gsub(
+      "outputs <- \"../outputs/\"",
+      paste0("outputs <- \"../../outputs/", new_file, "\""), mod_content)
+
+    # Alter name of the ggplot file by altering chunk name
+    mod_content <- gsub(
+      "[{]r CEplot",
+      paste0("{r ", new_file, "_CEplot"), mod_content)
+
+    # Replace parameter specified in function input
     mod_content <- gsub(old_param, new_param, mod_content)
 
     # Create the new .Rmd file

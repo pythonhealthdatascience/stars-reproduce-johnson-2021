@@ -41,7 +41,7 @@ library(kableExtra)
 
 ```{r}
 # CHANGE: Add save paths (will see later, we also add lines to save to csv)
-outputs <- "../outputs/"
+outputs <- "../../outputs/Sen1_No_Smoking_Cessation"
 files <- list(
   s1 = "s1.csv",
   s2 = "s2.csv",
@@ -52,7 +52,7 @@ files <- list(
 )
 
 # Apply file.path to each element in list to create path to file in outputs
-paths <- lapply(files, function(filename) file.path(outputs, filename))
+paths <- lapply(files, function(filename) paste0(outputs, filename))
 ```
 
 ```{r global settings, echo=FALSE}
@@ -1389,7 +1389,7 @@ write.csv(ceplane, paths$ceplane, row.names=FALSE)
 ```
 
 
-```{r CEplot, echo=FALSE}
+```{r Sen1_No_Smoking_Cessation_CEplot, echo=FALSE}
 ceplane$Scenario <- as.character(ceplane$Scenario)
 
 ceplane.plot <- ceplane %>% 
