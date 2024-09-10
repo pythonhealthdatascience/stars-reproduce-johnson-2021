@@ -27,7 +27,7 @@ start.time <- Sys.time()
 ```{r opts, echo = FALSE}
 # CHANGE: Altered save path for image
 knitr::opts_chunk$set(
-  fig.path = "../outputs/"
+  fig.path = "../../outputs/"
 )
 ```
 

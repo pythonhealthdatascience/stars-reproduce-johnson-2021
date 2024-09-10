@@ -9,6 +9,8 @@ keep.md: true
 
 This file processes the model results so they match up as closely as possible to those in the publication.
 
+It aims to produce **Table 3**, **Figure 3** and **Appendix 6**.
+
 ```{r, message=FALSE}
 # Clear environment before start
 rm(list=ls())

@@ -1,0 +1,35 @@
+---
+title: "Process Sensitivity Analysis Results"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  github_document:
+    df_print: "kable"
+keep.md: true
+---
+
+This file processes results from the sensitivity analysis.
+
+It aims to reproduce **Figure 4** and **Appendix 7**.
+
+```{r, message=FALSE}
+# Clear environment before start
+rm(list=ls())
+
+# Set save location for figures generated when knit rmd
+knitr::opts_chunk$set(fig.path = "../outputs/")
+
+# Load required libraries
+library(dplyr)
+library(ggplot2)
+library(ggpubr)
+```
+
+## Import results
+
+Set paths
+
+```{r}
+# Reference case
+ref3y = "../outputs/ceplane.csv"
+ref5y = "../outputs/ceplane.csv"
+```

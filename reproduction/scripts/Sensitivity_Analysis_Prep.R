@@ -29,7 +29,12 @@ modify_rmd <- function(new_file, new_title, old_param, new_param) {
     # Alter path to epic
     mod_content <- gsub("../epicR","../../epicR", mod_content)
 
-    # Alter path to outputs
+    # Alter path to outputs for the images
+    mod_content <- gsub(
+      "fig.path = \"../outputs/\"",
+      "fig.path = \"../../outputs/\"", mod_content)
+
+    # Alter path to outputs for the CSV
     mod_content <- gsub(
       "outputs <- \"../outputs/\"",
       paste0("outputs <- \"../../outputs/", new_file, "\""), mod_content)
