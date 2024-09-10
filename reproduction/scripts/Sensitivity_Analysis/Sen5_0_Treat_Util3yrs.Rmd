@@ -51,7 +51,7 @@ files <- list(
   clinical = "clinicalresults.csv"
 )
 
-# Apply file.path to each element in list to create path to file in outputs
+# Apply to each element in list to create path to file in outputs
 paths <- lapply(files, function(filename) paste0(outputs, filename))
 ```
 
