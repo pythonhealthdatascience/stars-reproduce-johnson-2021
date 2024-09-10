@@ -1,17 +1,12 @@
----
-title: "Process Sensitivity Analysis Results"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-output:
-  github_document:
-    df_print: "kable"
-keep.md: true
----
+Process Sensitivity Analysis Results
+================
+10 September, 2024
 
 This file processes results from the sensitivity analysis.
 
 It aims to reproduce **Figure 4** and **Appendix 7**.
 
-```{r, message=FALSE}
+``` r
 # Clear environment before start
 rm(list=ls())
 
@@ -26,15 +21,26 @@ library(ggpubr)
 
 ## Import results
 
-```{r}
+``` r
 # Get all `ceplane` results files
 files <- list.files("../outputs", pattern="*ceplane*")
 print(files)
 ```
 
+    ##  [1] "ceplane_5y.csv"                         
+    ##  [2] "ceplane.csv"                            
+    ##  [3] "Sen1_No_Smoking_Cessationceplane_5y.csv"
+    ##  [4] "Sen1_No_Smoking_Cessationceplane.csv"   
+    ##  [5] "Sen2_50_Med_Adherenceceplane_5y.csv"    
+    ##  [6] "Sen2_50_Med_Adherenceceplane.csv"       
+    ##  [7] "Sen3_30_Med_Adherenceceplane_5y.csv"    
+    ##  [8] "Sen3_30_Med_Adherenceceplane.csv"       
+    ##  [9] "Sen4_01_Treat_Utilceplane_5y.csv"       
+    ## [10] "Sen4_01_Treat_Utilceplane.csv"
+
 ## Combine into a single dataframe
 
-```{r}
+``` r
 # Define basic labels for each of the scenarios
 labels <- list(
   "ceplane.csv" = "ref",
@@ -52,7 +58,7 @@ labels <- list(
 )
 ```
 
-```{r}
+``` r
 get_result <- function(file){
   #' Imports and processes the model result
   #' 
@@ -80,7 +86,7 @@ get_result <- function(file){
 }
 ```
 
-```{r}
+``` r
 # Apply get_result()
 res_list <- lapply(files, get_result)
 
@@ -108,7 +114,7 @@ res$AnalysisFull <- factor(res$AnalysisFull, levels=unlist(unname(analysis)))
 
 ## Figure 4
 
-```{r, fig4}
+``` r
 ggplot(res, aes(x=AnalysisFull, y=INMB, group=Scen_Yrs, shape=Years, color=Scen_Yrs)) +
   geom_line() +
   geom_point() +
@@ -120,3 +126,5 @@ ggplot(res, aes(x=AnalysisFull, y=INMB, group=Scen_Yrs, shape=Years, color=Scen_
   theme(axis.text.x = element_text(angle=70, hjust=1),
         legend.title = element_blank())
 ```
+
+![](../outputs/fig4-1.png)<!-- -->
