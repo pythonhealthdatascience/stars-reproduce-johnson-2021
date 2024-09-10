@@ -8,15 +8,25 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
--. Total time used: -h -m (-%)
+Creating .Rmd for sensitivity analysis and run with 5e5. Wrote code for Figure 4 and Appendix 7. Total time used: 17h 15m (43.1%)
 
 :::
 
-## 09.32-09.50, 11.08-11.38: Creating .Rmd for sensitivity analysis
+## 09.32-09.50, 11.08-11.38, 11.46-11.57: Creating .Rmd for sensitivity analysis
 
-As per yesterday's notes, decided simplest solution (given I want to minimise rewriting/writing code where possible) was to write a script that generates the .Rmd files required for the sensitivity analysis from the existing.
+Note: Also, during this time, discussed the study with Tom, who agreed that we should **look to access the HPC**, as we have been unable to reproduce on our machines, and that appears likely to be the solution. We have requested access, but it is currently down, so will not be able to resume this until mid-October.
 
-Also, during this time, discussed the study with Tom, who agreed that we should look to access the HPC, as we have been unable to reproduce on our machines, and that appears likely to be the solution. We have requested access, but it is currently down, so will not be able to resume this until mid-October.
+As per yesterday's notes, decided simplest solution (given I want to minimise rewriting/writing code where possible) was to write a script that generates the .Rmd files required for the sensitivity analysis from the existing .Rmd files.
+
+## 13.09-13.20, 13.45-13.47, 14.45-14.49: Checking and running the sensitivity analysis files
+
+I looked through each of the files to confirm they had been amended correctly, and couldn't spot any issues
+
+I don't anticipate to get similar results to the original on low numbers, but I am running anyway so I can start processing to make the charts. I ran each with 5e5 (500 thousand), and re-ran the two reference case analyses with these too (instead of 1 million), given that's quicker, and I intend to run these on a HPC anyway.
+
+## 15.16-16.40: Writing code for figure 4 and appendix 7
+
+Whilst the analyses continued to run with 5e5, I wrote code to produce the two figures.
 
 ## Timings
 
@@ -31,7 +41,12 @@ used_to_date = 875
 # Times from today
 times = [
     ('09.32', '09.50'),
-    ('11.08', '11.38')]
+    ('11.08', '11.38'),
+    ('11.46', '11.57'),
+    ('13.09', '13.20'),
+    ('13.45', '13.47'),
+    ('14.45', '14.49'),
+    ('15.16', '16.40')]
 
 calculate_times(used_to_date, times)
 ```
