@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Amy Heather">
-<meta name="dcterms.date" content="2024-08-14">
+<meta name="dcterms.date" content="2024-09-16">
 
-<title>Day 4 – Reproducing Johnson et al.&nbsp;2021</title>
+<title>Day 10 – Reproducing Johnson et al.&nbsp;2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -203,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Day 4</h1>
+      <h1 class="title">Day 10</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">reproduce</div>
               </div>
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 14, 2024</p>
+        <p class="date">September 16, 2024</p>
       </div>
     </div>
     
@@ -239,10 +239,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#run-model" id="toc-run-model" class="nav-link active" data-scroll-target="#run-model">09.27-09.52, 10.20-10.21, 10.40-10.43: Run model</a></li>
+  <li><a href="#running-remaining-scenarios-with-5e5" id="toc-running-remaining-scenarios-with-5e5" class="nav-link active" data-scroll-target="#running-remaining-scenarios-with-5e5">09.23-09.25, 09.57: Running remaining scenarios with 5e5</a></li>
+  <li><a href="#testing-seeds" id="toc-testing-seeds" class="nav-link" data-scroll-target="#testing-seeds">09.59-10.00: Testing seeds</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_14/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_16/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -261,48 +262,52 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Attempted to run model with fewer agents but results 0/1/NaN so paused until have access to higher powered machine in a few weeks. Total time used: 3h 13m (8.0%)</p>
+<p>Ran final scenario analyses with 5e5, but as expected, not a match. Total time used: 17h 21m (43.3%)</p>
 </div>
 </div>
-<section id="run-model" class="level2">
-<h2 class="anchored" data-anchor-id="run-model">09.27-09.52, 10.20-10.21, 10.40-10.43: Run model</h2>
-<p>Helpfully, we know to expect that this has a long run time from their README:</p>
-<blockquote class="blockquote">
-<p>“Note: The analysis version of these results simulates 100 million agents, which will take ~16 hours to run for each script. The published analysis was conducted using R Version 3.5.3”</p>
-</blockquote>
-<p>Given this warning, I tried running it with fewer agents:</p>
-<pre><code>settings$n_base_agents &lt;- 5e+3</code></pre>
-<p>On my machine, I tried it with increasing numbers of agents, but it consistently returned results of 0 / 1 / NaN:</p>
-<ul>
-<li>5000 (a minute to run)</li>
-<li>50,000 (2.4 minutes to run)</li>
-<li>500,000 (18.2 minutes to run)</li>
-</ul>
-<p>Unfortunately I can’t currently access our remote higher spec machine, which would’ve allowed me to run these quicker.</p>
-<p>I created an <code>.Rmd</code> file with only the first scenario, but set to 100 million agents as in the original analysis.</p>
+<section id="running-remaining-scenarios-with-5e5" class="level2">
+<h2 class="anchored" data-anchor-id="running-remaining-scenarios-with-5e5">09.23-09.25, 09.57: Running remaining scenarios with 5e5</h2>
+<p>Running Scenarios 6 and 7 with 5e5 base agents. Then ran my prepared <code>Process_Sensitivity_Analysis.Rmd</code>. As expected, these look very different from original, so will have to wait and see if running with 1 million base agents on the HPC resolves this issue or not.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig4-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4 Reproduction</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="appendix7-1.png" class="img-fluid figure-img"></p>
+<figcaption>Appendix 7 Reproduction</figcaption>
+</figure>
+</div>
+</section>
+<section id="testing-seeds" class="level2">
+<h2 class="anchored" data-anchor-id="testing-seeds">09.59-10.00: Testing seeds</h2>
+<p>Ran one of them for a second time, just to confirm I got the same results, and that the seed control is working as expected - and this was indeed the case, with no changes in the results observed.</p>
+<p>Try running one twice to check get same results each time</p>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="fa4d9b8a" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">164</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.27'</span>, <span class="st">'09.52'</span>),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.20'</span>, <span class="st">'10.21'</span>),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.40'</span>, <span class="st">'10.43'</span>)]</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="65743d7d" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">1035</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.23'</span>, <span class="st">'09.25'</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.54'</span>, <span class="st">'09.57'</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.59'</span>, <span class="st">'10.00'</span>)]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 29m, or 0h 29m
-Total used to date: 193m, or 3h 13m
-Time remaining: 2207m, or 36h 47m
-Used 8.0% of 40 hours max</code></pre>
+<pre><code>Time spent today: 6m, or 0h 6m
+Total used to date: 1041m, or 17h 21m
+Time remaining: 1359m, or 22h 39m
+Used 43.4% of 40 hours max</code></pre>
 </div>
 </div>
 
@@ -754,7 +759,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_14/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_16/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
