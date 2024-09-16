@@ -66,6 +66,7 @@ I looked through the history of some results in their GitHub, just to help clari
 ICERs:
 
 | Scenario (3yr) | Table 3 | Me (1m) | [Them (50m)](https://github.com/KateJohnson/epicR/blob/239c55a700f9e97869c16d530080a354ec631568/casedetection/Case_Detection_Results.md) |[ Them (1m)](https://github.com/KateJohnson/epicR/blob/ace50c4292d6622ea5b63ed202cda13387f55397/casedetection/Case_Detection_Results.md) |
+| - | - | - | - | - |
 | S1a | 19632 | 14171 | 19664 | 26317 |
 | S2a | 18908 | 7905 | 21183 | 16496 |
 | S3a | 30366 | 5438 | 32247 | -36092 |
