@@ -1,0 +1,46 @@
+---
+title: "Day 10"
+author: "Amy Heather"
+date: "2024-09-16"
+categories: [reproduce]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+Ran final scenario analyses with 5e5, but as expected, not a match. Total time used: 17h 21m (43.3%)
+
+:::
+
+## 09.23-09.25, 09.57: Running remaining scenarios with 5e5
+
+Running Scenarios 6 and 7 with 5e5 base agents. Then ran my prepared `Process_Sensitivity_Analysis.Rmd`. As expected, these look very different from original, so will have to wait and see if running with 1 million base agents on the HPC resolves this issue or not.
+
+![Figure 4 Reproduction](fig4-1.png)
+
+![Appendix 7 Reproduction](appendix7-1.png)
+
+## 09.59-10.00: Testing seeds
+
+Ran one of them for a second time, just to confirm I got the same results, and that the seed control is working as expected - and this was indeed the case, with no changes in the results observed.
+
+Try running one twice to check get same results each time
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 1035
+
+# Times from today
+times = [
+    ('09.23', '09.25'),
+    ('09.54', '09.57'),
+    ('09.59', '10.00')]
+
+calculate_times(used_to_date, times)
+```
