@@ -1,6 +1,6 @@
 Process Sensitivity Analysis Results
 ================
-10 September, 2024
+16 September, 2024
 
 This file processes results from the sensitivity analysis.
 
@@ -36,7 +36,13 @@ print(files)
     ##  [7] "Sen3_30_Med_Adherenceceplane_5y.csv"    
     ##  [8] "Sen3_30_Med_Adherenceceplane.csv"       
     ##  [9] "Sen4_01_Treat_Utilceplane_5y.csv"       
-    ## [10] "Sen4_01_Treat_Utilceplane.csv"
+    ## [10] "Sen4_01_Treat_Utilceplane.csv"          
+    ## [11] "Sen5_0_Treat_Utilceplane_5y.csv"        
+    ## [12] "Sen5_0_Treat_Utilceplane.csv"           
+    ## [13] "Sen6_0_Discountceplane_5y.csv"          
+    ## [14] "Sen6_0_Discountceplane.csv"             
+    ## [15] "Sen7_3_Discountceplane_5y.csv"          
+    ## [16] "Sen7_3_Discountceplane.csv"
 
 ## Combine into a single dataframe
 
@@ -54,7 +60,11 @@ labels <- list(
   "Sen4_01_Treat_Utilceplane.csv" = "util01",
   "Sen4_01_Treat_Utilceplane_5y.csv" = "util01",
   "Sen5_0_Treat_Utilceplane.csv" = "util0",
-  "Sen5_0_Treat_Utilceplane_5y.csv" = "util0"
+  "Sen5_0_Treat_Utilceplane_5y.csv" = "util0",
+  "Sen6_0_Discountceplane.csv" = "discount0",
+  "Sen6_0_Discountceplane_5y.csv" = "discount0",
+  "Sen7_3_Discountceplane.csv" = "discount3",
+  "Sen7_3_Discountceplane_5y.csv" = "discount3"
 )
 ```
 
@@ -92,10 +102,44 @@ res_list <- lapply(files, get_result)
 
 # Combine into single dataframe
 res <- do.call(rbind, res_list)
+```
 
-# Create list to define order of analyses, and to give labels for each scenario
-# from the sensitivity analysis
-analysis <- list(
+## Define function to create figures
+
+``` r
+make_figure <- function(analysis){
+  #' Create Figure 4 or Appendix 7 from Johnson et al. 2021
+  #' 
+  #' @param analysis list where keys are category from the Analysis column,
+  #' and values are labels for each key
+
+  # Create dataframe for plotting
+  to_plot <- res %>%
+    filter(Analysis %in% names(analysis)) %>%
+    # Create a column with the labelled scenario
+    mutate(AnalysisFull = recode(Analysis, !!!analysis)) %>%
+    # Make the analysis column a factor (to fix order in the plots)
+    mutate(AnalysisFull = factor(AnalysisFull, levels=unlist(unname(analysis))))
+  
+  # Create plot
+  ggplot(to_plot, aes(x=AnalysisFull, y=INMB,
+                      group=Scen_Yrs, shape=Years, color=Scen_Yrs)) +
+    geom_line() +
+    geom_point() +
+    geom_hline(yintercept=0, linetype="dashed") +
+    xlab("") +
+    ylab("Incremenetal Net Monetary Benefit") +
+    scale_x_discrete(expand = c(0.01,0)) +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle=70, hjust=1),
+          legend.title = element_blank())
+}
+```
+
+## Figure 4
+
+``` r
+fig4_analysis <- list(
   "ref" = "Reference Case Analysis",
   "smoke" = "No Smoking Cessation",
   "med50" = "50% Medication Adherence",
@@ -104,27 +148,21 @@ analysis <- list(
   "util0" = "0 Treatment Utility"
 )
 
-# Create a column with the labelled scenario
-res <- res %>%
-  mutate(AnalysisFull = recode(Analysis, !!!analysis))
-
-# Make the analysis column a factor (to fix order in the plots)
-res$AnalysisFull <- factor(res$AnalysisFull, levels=unlist(unname(analysis)))
-```
-
-## Figure 4
-
-``` r
-ggplot(res, aes(x=AnalysisFull, y=INMB, group=Scen_Yrs, shape=Years, color=Scen_Yrs)) +
-  geom_line() +
-  geom_point() +
-  geom_hline(yintercept=0, linetype="dashed") +
-  xlab("") +
-  ylab("Incremenetal Net Monetary Benefit") +
-  scale_x_discrete(expand = c(0.01,0)) +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle=70, hjust=1),
-        legend.title = element_blank())
+make_figure(fig4_analysis)
 ```
 
 ![](../outputs/fig4-1.png)<!-- -->
+
+## Appendix 7
+
+``` r
+apx7_analysis <- list(
+  "ref" = "Reference Case Analysis",
+  "discount0" = "0% Discount Rate",
+  "discount3" = "3% Discount Rate"
+)
+
+make_figure(apx7_analysis)
+```
+
+![](../outputs/appendix7-1.png)<!-- -->
