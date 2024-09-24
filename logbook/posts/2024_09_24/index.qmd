@@ -1,0 +1,43 @@
+---
+title: "Day 11"
+author: "Amy Heather"
+date: "2024-09-24"
+categories: [scope]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+Retrospectively archived scope. Total time used: 17h 28m (43.7%)
+
+:::
+
+## 09.31-09.38: Archive scope
+
+I realised that I had forgotten to archive the repository between deciding on consensus scope and proceeding with the reproduction. However, I was easily able to resolve this by setting the release up a prior commit, and listing the date of that commit.
+
+I created an annotated tag for that commit:
+
+```
+git tag v0.1.0 9146a68
+git push origin v0.1.0
+```
+
+I could then open that tag on GitHub and select "Create release from tag".
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 1041
+
+# Times from today
+times = [
+    ('09.31', '09.38')]
+
+calculate_times(used_to_date, times)
+```
