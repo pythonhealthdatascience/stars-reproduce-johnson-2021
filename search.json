@@ -175,60 +175,242 @@
     "text": "License\nSee License page."
   },
   {
-    "objectID": "logbook/posts/2024_09_10/index.html",
-    "href": "logbook/posts/2024_09_10/index.html",
-    "title": "Day 9",
+    "objectID": "logbook/posts/2024_09_16/index.html",
+    "href": "logbook/posts/2024_09_16/index.html",
+    "title": "Day 10",
     "section": "",
-    "text": "Note\n\n\n\nCreating .Rmd for sensitivity analysis and run with 5e5. Wrote code for Figure 4 and Appendix 7. Total time used: 17h 15m (43.1%)"
+    "text": "Note\n\n\n\nRan final scenario analyses with 5e5, but as expected, not a match. Total time used: 17h 21m (43.3%)"
   },
   {
-    "objectID": "logbook/posts/2024_09_10/index.html#creating-.rmd-for-sensitivity-analysis",
-    "href": "logbook/posts/2024_09_10/index.html#creating-.rmd-for-sensitivity-analysis",
-    "title": "Day 9",
-    "section": "09.32-09.50, 11.08-11.38, 11.46-11.57: Creating .Rmd for sensitivity analysis",
-    "text": "09.32-09.50, 11.08-11.38, 11.46-11.57: Creating .Rmd for sensitivity analysis\nNote: Also, during this time, discussed the study with Tom, who agreed that we should look to access the HPC, as we have been unable to reproduce on our machines, and that appears likely to be the solution. We have requested access, but it is currently down, so will not be able to resume this until mid-October.\nAs per yesterday’s notes, decided simplest solution (given I want to minimise rewriting/writing code where possible) was to write a script that generates the .Rmd files required for the sensitivity analysis from the existing .Rmd files."
+    "objectID": "logbook/posts/2024_09_16/index.html#running-remaining-scenarios-with-5e5",
+    "href": "logbook/posts/2024_09_16/index.html#running-remaining-scenarios-with-5e5",
+    "title": "Day 10",
+    "section": "09.23-09.25, 09.57: Running remaining scenarios with 5e5",
+    "text": "09.23-09.25, 09.57: Running remaining scenarios with 5e5\nRunning Scenarios 6 and 7 with 5e5 base agents. Then ran my prepared Process_Sensitivity_Analysis.Rmd. As expected, these look very different from original, so will have to wait and see if running with 1 million base agents on the HPC resolves this issue or not.\n\n\n\nFigure 4 Reproduction\n\n\n\n\n\nAppendix 7 Reproduction"
   },
   {
-    "objectID": "logbook/posts/2024_09_10/index.html#checking-and-running-the-sensitivity-analysis-files",
-    "href": "logbook/posts/2024_09_10/index.html#checking-and-running-the-sensitivity-analysis-files",
-    "title": "Day 9",
-    "section": "13.09-13.20, 13.45-13.47, 14.45-14.49: Checking and running the sensitivity analysis files",
-    "text": "13.09-13.20, 13.45-13.47, 14.45-14.49: Checking and running the sensitivity analysis files\nI looked through each of the files to confirm they had been amended correctly, and couldn’t spot any issues\nI don’t anticipate to get similar results to the original on low numbers, but I am running anyway so I can start processing to make the charts. I ran each with 5e5 (500 thousand), and re-ran the two reference case analyses with these too (instead of 1 million), given that’s quicker, and I intend to run these on a HPC anyway."
+    "objectID": "logbook/posts/2024_09_16/index.html#testing-seeds",
+    "href": "logbook/posts/2024_09_16/index.html#testing-seeds",
+    "title": "Day 10",
+    "section": "09.59-10.00: Testing seeds",
+    "text": "09.59-10.00: Testing seeds\nRan one of them for a second time, just to confirm I got the same results, and that the seed control is working as expected - and this was indeed the case, with no changes in the results observed.\nTry running one twice to check get same results each time"
   },
   {
-    "objectID": "logbook/posts/2024_09_10/index.html#writing-code-for-figure-4-and-appendix-7",
-    "href": "logbook/posts/2024_09_10/index.html#writing-code-for-figure-4-and-appendix-7",
-    "title": "Day 9",
-    "section": "15.16-16.40: Writing code for figure 4 and appendix 7",
-    "text": "15.16-16.40: Writing code for figure 4 and appendix 7\nWhilst the analyses continued to run with 5e5, I wrote code to produce the two figures."
-  },
-  {
-    "objectID": "logbook/posts/2024_09_10/index.html#timings",
-    "href": "logbook/posts/2024_09_10/index.html#timings",
-    "title": "Day 9",
+    "objectID": "logbook/posts/2024_09_16/index.html#timings",
+    "href": "logbook/posts/2024_09_16/index.html#timings",
+    "title": "Day 10",
     "section": "Timings",
-    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 875\n\n# Times from today\ntimes = [\n    ('09.32', '09.50'),\n    ('11.08', '11.38'),\n    ('11.46', '11.57'),\n    ('13.09', '13.20'),\n    ('13.45', '13.47'),\n    ('14.45', '14.49'),\n    ('15.16', '16.40')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 160m, or 2h 40m\nTotal used to date: 1035m, or 17h 15m\nTime remaining: 1365m, or 22h 45m\nUsed 43.1% of 40 hours max"
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 1035\n\n# Times from today\ntimes = [\n    ('09.23', '09.25'),\n    ('09.54', '09.57'),\n    ('09.59', '10.00')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 6m, or 0h 6m\nTotal used to date: 1041m, or 17h 21m\nTime remaining: 1359m, or 22h 39m\nUsed 43.4% of 40 hours max"
   },
   {
-    "objectID": "logbook/posts/2024_08_14/index.html",
-    "href": "logbook/posts/2024_08_14/index.html",
-    "title": "Day 4",
+    "objectID": "logbook/posts/2024_09_09/index.html",
+    "href": "logbook/posts/2024_09_09/index.html",
+    "title": "Day 8",
     "section": "",
-    "text": "Note\n\n\n\nAttempted to run model with fewer agents but results 0/1/NaN so paused until have access to higher powered machine in a few weeks. Total time used: 3h 13m (8.0%)"
+    "text": "Note\n\n\n\nA little bit of thinking around sensitivity analysis. Total time used: 14h 35m (36.5%)"
   },
   {
-    "objectID": "logbook/posts/2024_08_14/index.html#run-model",
-    "href": "logbook/posts/2024_08_14/index.html#run-model",
-    "title": "Day 4",
-    "section": "09.27-09.52, 10.20-10.21, 10.40-10.43: Run model",
-    "text": "09.27-09.52, 10.20-10.21, 10.40-10.43: Run model\nHelpfully, we know to expect that this has a long run time from their README:\n\n“Note: The analysis version of these results simulates 100 million agents, which will take ~16 hours to run for each script. The published analysis was conducted using R Version 3.5.3”\n\nGiven this warning, I tried running it with fewer agents:\nsettings$n_base_agents &lt;- 5e+3\nOn my machine, I tried it with increasing numbers of agents, but it consistently returned results of 0 / 1 / NaN:\n\n5000 (a minute to run)\n50,000 (2.4 minutes to run)\n500,000 (18.2 minutes to run)\n\nUnfortunately I can’t currently access our remote higher spec machine, which would’ve allowed me to run these quicker.\nI created an .Rmd file with only the first scenario, but set to 100 million agents as in the original analysis."
+    "objectID": "logbook/posts/2024_09_09/index.html#sensitivity-analysis",
+    "href": "logbook/posts/2024_09_09/index.html#sensitivity-analysis",
+    "title": "Day 8",
+    "section": "16.08-16.18, 16.23-16.40: Sensitivity analysis",
+    "text": "16.08-16.18, 16.23-16.40: Sensitivity analysis\nThe remaining items in the scope that I’ve not yet attempted - Figure 4 and appendix 7 - are both based on the results of the sensitivity analyses. I haven’t identified any code in the GitHub repository to run this analysis. As such, I am assuming that the provided scripts were directly modified to run each of these scenarios.\nThe contents of each figure as presented below, along with my identified snippets of code that we would likely need to alter for the scenario.\nFigure 4 has INMB from:\n\nReference case analysis\nNo smoking cessation (smoking_adherence=0.7) (input$values$smoking$smoking_cessation_adherence &lt;- smoking_adherence)\n50% medication adherence (medication_adherence=0.7)\n30% medication adherence (medication_adherence=0.7)\n0.01 treatment utility (medication_utility=0.0367)\n0 treatment utility (medication_utility=0.0367)\n\nWhilst appendix 7 has INMB from:\n\nReference case analysis\n0% discount rate (discount_rate=0.015)\n3% discount rate (discount_rate=0.015)\n\n\n\n\n\n\n\nReflection\n\n\n\nIt’s handy that I could fairly easily identify each of these variables in the script since the variable names aligned pretty well with the concepts.\n\n\nWhilst there is a global variables section at the top of the script, they then seem to be provided each time at the start of each scenario in Case_Detection_Results.Rmd - but I think this is just because each scenario changes something slightly in the inputs, so they repeat them all each time.\nI would prefer not to duplicate the .Rmd files 8 times, so I started a Sensitivity_Analysis.Rmd file. I what differed between all the scenarios (in reference case, time intervals, and in sensitivity analysis).\nOn reflection, I think the simplest solution to this, instead of trying to restructure all the models to run easily from one file, would be to write a script that duplicates the Rmd file but alters one part of it."
   },
   {
-    "objectID": "logbook/posts/2024_08_14/index.html#timings",
-    "href": "logbook/posts/2024_08_14/index.html#timings",
-    "title": "Day 4",
+    "objectID": "logbook/posts/2024_09_09/index.html#timings",
+    "href": "logbook/posts/2024_09_09/index.html#timings",
+    "title": "Day 8",
     "section": "Timings",
-    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 164\n\n# Times from today\ntimes = [\n    ('09.27', '09.52'),\n    ('10.20', '10.21'),\n    ('10.40', '10.43')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 29m, or 0h 29m\nTotal used to date: 193m, or 3h 13m\nTime remaining: 2207m, or 36h 47m\nUsed 8.0% of 40 hours max"
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 848\n\n# Times from today\ntimes = [\n    ('16.08', '16.18'),\n    ('16.23', '16.40')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 27m, or 0h 27m\nTotal used to date: 875m, or 14h 35m\nTime remaining: 1525m, or 25h 25m\nUsed 36.5% of 40 hours max"
+  },
+  {
+    "objectID": "logbook/posts/2024_08_13/index.html",
+    "href": "logbook/posts/2024_08_13/index.html",
+    "title": "Day 3",
+    "section": "",
+    "text": "Note\n\n\n\nSet up environment and import package. Total time used: 2h 44m (6.8%)"
+  },
+  {
+    "objectID": "logbook/posts/2024_08_13/index.html#browse-code-and-set-up-environment",
+    "href": "logbook/posts/2024_08_13/index.html#browse-code-and-set-up-environment",
+    "title": "Day 3",
+    "section": "15.33-15.53, 15.57-16.00: Browse code and set up environment",
+    "text": "15.33-15.53, 15.57-16.00: Browse code and set up environment\nThe study uses the EPIC model, with the repository forked from that package and then with code for this particular analysis using that model added - I think, all to casedetection/. I can see that casedetection/Case_Detection_Results.md has similar tables and figures to the scope (table 3, figure 3).\nThe README has an additional section titled Case Detection Analysis with instructions to perform the analysis. It suggests to install the branch as a package or to clone the repository, then copy the code from Case_Detection_results.Rmd and Case_Detection_Results_5yrs.Rmd, and knit it. It warns that the run time is about 16 hours for each script, and states that the analysis was conducted using R version 3.5.3.\nFollowing the procedure as I have done for previous R projects that I am reproducing, I will initially try to do so using the latest version of R and packages, and then attempt to backdate if there are issues.\nThere is a DESCRIPTION file with required packages for EPIC - since it uses that model, I’m assuming this to likewise be the basis for the environment for this reproduction. I created a DESCRIPTION file with the depends, packages and suggests from that, and used it to set-up renv, so:\n\nrenv::init(bare=TRUE)\nrenv::install() - but “Error: package ‘rredis’ is not available”\n\nOn CRAN page can see that the package was removed from CRAN and archived on 2022-03-21, but [can access archive] (https://cran.r-project.org/src/contrib/Archive/rredis/).\nInstalled remotes - renv::install(\"remotes\")\nUsed that to install the latest version of rredis in the CRAN archive - remotes::install_version(\"rredis\", \"1.7.0\")\nAdd the installation of that version via remotes to DESCRIPTION\nDeleted current renv (so I could test that DESCRIPTION was set up correct with remotes). So, renv::deactivate(), delete renv/, renv::init(bare=TRUE), renv::install()\n\nrenv::snapshot()"
+  },
+  {
+    "objectID": "logbook/posts/2024_08_13/index.html#import-epicr",
+    "href": "logbook/posts/2024_08_13/index.html#import-epicr",
+    "title": "Day 3",
+    "section": "16.01-16.41: Import epicR",
+    "text": "16.01-16.41: Import epicR\nInitially, I tried adding epicR to the environment, and then running the .Rmd file. To DESCRIPTION I tried:\n\nKateJohnson/epicR@closed_cohort\ngit::https://github.com/KateJohnson/epicR.git@closed_cohort\nurl::https://github.com/KateJohnson/epicR/archive/refs/heads/closed_cohort.zip\ngithub::KateJohnson/epicR@c239c55a700f9e97869c16d530080a354ec631568\ngithub::KateJohnson/epicR@c239c55a\ngithub::KateJohnson/epicR.git@closed_cohort\n\nHowever, these did not work. The final three found the package, but then had error code 22.\nI then just did manual installation following the instructions provided (remotes::install_github('KateJohnson/epicR', ref=\"closed_cohort\")), which had error message that dependency rredis is not available. Hence, it seems I’ll need to just use it as a local package anyway.\nTried to figure the simplest way to install the package, whilst having a simpler folder layout. Figured the simplest might be to use devtools::load_all() to load a local folder as a package. I add devtools to DESCRIPTION then re-ran renv::install() and renv::snapshot().\nI copied the package into a folder, but amended its DESCRIPTION file so that rredis is installed using remotes. In the .Rmd file, I then devtools::load_all(\"./epicR\"). However, this had an error:\nRWarning: ── Conflicts ───────────────────────────────────── epicR conflicts\n──\n✖ `Cget_agent_events` masks `epicR::Cget_agent_events()`.\n✖ `Cget_all_events` masks `epicR::Cget_all_events()`.\n✖ `Cget_all_events_matrix` masks `epicR::Cget_all_events_matrix()`.\n  … and more.\nℹ Did you accidentally source a file rather than using `load_all()`?\n  Run `rm(list = c(\"Cget_agent_events\", \"Cget_all_events\",\n  \"Cget_all_events_matrix\", \"Cget_event\", \"Cget_events_by_type\",\n  \"Cget_inputs\", \"Cget_n_events\", \"Cget_output\", \"Cget_output_ex\",\n  \"Cget_runtime_stats\", \"Cget_settings\", \"Cget_smith\",\n  \"Cset_input_var\", \"Cset_settings_var\", \"get_sample_output\",\n  \"mvrnormArma\"))` to remove the conflicts.\nDespite that though, it seemed to have worked.\nI then add some additional dependencies from the .Rmd to DESCRIPTION and to the renv."
+  },
+  {
+    "objectID": "logbook/posts/2024_08_13/index.html#timings",
+    "href": "logbook/posts/2024_08_13/index.html#timings",
+    "title": "Day 3",
+    "section": "Timings",
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 101\n\n# Times from today\ntimes = [\n    ('15.33', '15.53'),\n    ('15.57', '16.00'),\n    ('16.01', '16.41')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 63m, or 1h 3m\nTotal used to date: 164m, or 2h 44m\nTime remaining: 2236m, or 37h 16m\nUsed 6.8% of 40 hours max"
+  },
+  {
+    "objectID": "logbook/posts/2024_07_31/index.html",
+    "href": "logbook/posts/2024_07_31/index.html",
+    "title": "Day 1",
+    "section": "",
+    "text": "Note\n\n\n\nSet-up repository. Total time used: 0h 32m (1.3%)"
+  },
+  {
+    "objectID": "logbook/posts/2024_07_31/index.html#set-up-repository",
+    "href": "logbook/posts/2024_07_31/index.html#set-up-repository",
+    "title": "Day 1",
+    "section": "15.46-16.06: Set-up repository",
+    "text": "15.46-16.06: Set-up repository\n\nCreate repository from template\nSet up environment\nModified template files:\n\nREADME.md\nquarto site index.qmd\nCITATION.cff\n_quarto.yml\n\nSet up site on GitHub pages (quarto publish gh-pages)"
+  },
+  {
+    "objectID": "logbook/posts/2024_07_31/index.html#upload-code",
+    "href": "logbook/posts/2024_07_31/index.html#upload-code",
+    "title": "Day 1",
+    "section": "16.34-16.46: Upload code",
+    "text": "16.34-16.46: Upload code\nThe article states that code is available at http://resp.core.ubc.ca/software/caseDetection. That website then states that the code and R markdown file are available at https://github.com/KateJohnson/epicR/tree/closed_cohort.\nNote: That is a link to a specific branch, closed_cohort. The repository is forked from epicR, and all code from the authors for this study is in that branch.\nThe last commit to that branch was 22nd February 2020. However, this is prior to publication. The article was:\n\nAccepted 30th September 2020\nPublished 2nd November 2020\nIn an issue in March 2020\n\nIn some of the commits, I can see that it does add beneficial information relating to the reproduction - e.g. commit 202ae95 in February 2020, which provides additional instructions in the README.\nMost of the commits are in February 2020. If I go to the commit prior to that, which was 17th November 2019, it is much less clear with no README instructions and the code for the study within the EpicR R/ directory.\nFeel I need to get a second opinion on what code to use for this study, due to the volume of commits, and the fact that they are prior to the issue date, but past the publication date."
+  },
+  {
+    "objectID": "logbook/posts/2024_07_31/index.html#timings",
+    "href": "logbook/posts/2024_07_31/index.html#timings",
+    "title": "Day 1",
+    "section": "Timings",
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 0\n\n# Times from today\ntimes = [\n    ('15.46', '16.06'),\n    ('16.34', '16.46')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 32m, or 0h 32m\nTotal used to date: 32m, or 0h 32m\nTime remaining: 2368m, or 39h 28m\nUsed 1.3% of 40 hours max"
+  },
+  {
+    "objectID": "quarto_site/study_publication.html",
+    "href": "quarto_site/study_publication.html",
+    "title": "Publication",
+    "section": "",
+    "text": "Johnson et al. (2021)"
+  },
+  {
+    "objectID": "quarto_site/study_publication.html#code-and-data",
+    "href": "quarto_site/study_publication.html#code-and-data",
+    "title": "Publication",
+    "section": "Code and data",
+    "text": "Code and data\nView at: https://github.com/KateJohnson/epicR/tree/closed_cohort"
+  },
+  {
+    "objectID": "quarto_site/study_publication.html#journal-article",
+    "href": "quarto_site/study_publication.html#journal-article",
+    "title": "Publication",
+    "section": "Journal article",
+    "text": "Journal article\nThe article does not provide permissions to reshare, so cannot be uploaded.\nIf you wish to view this article, please navigate to: https://doi.org/10.1007/s40258-020-00616-2."
+  },
+  {
+    "objectID": "quarto_site/study_publication.html#supplementary-materials",
+    "href": "quarto_site/study_publication.html#supplementary-materials",
+    "title": "Publication",
+    "section": "Supplementary materials",
+    "text": "Supplementary materials\nThe article has one supplementary material, which is a word document with seven sections:\n\n“Development and validation of the symptom module\nDevelopment and validation of the primary care visits module\nDevelopment and validation of the diagnosis module\nDevelopment of the case module\nDevelopment and validation of the treatment module\nResults of the preferred case detection scenario\nResults of the sensivity analysis for discount rate”\n\nThis can likewise be viewed at https://doi.org/10.1007/s40258-020-00616-2."
+  },
+  {
+    "objectID": "evaluation/scope.html",
+    "href": "evaluation/scope.html",
+    "title": "Scope",
+    "section": "",
+    "text": "This page outlines the parts of the journal article (Johnson et al. (2021)) which we will attempt to reproduce.\nAs the copyright of the article belongs to the journal (without permissions to freely share images from the article), I have simply provided quotations from the table/figure captions below. You will need to navigate to the original paper to view the items."
+  },
+  {
+    "objectID": "evaluation/scope.html#within-scope",
+    "href": "evaluation/scope.html#within-scope",
+    "title": "Scope",
+    "section": "Within scope",
+    "text": "Within scope\n\n\n\n\n\n\nTable 3\n\n\n\n\n\nTable 3. “Table 3 Total costs and QALYs for case detection scenarios”. Johnson et al. (2021)\nView at: https://link.springer.com/article/10.1007/s40258-020-00616-2/tables/4\n\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\nFigure 3. “Cost-effectiveness plane for case detection scenarios. NoCD no case detection, S1a CDQ ≥ 17 points among all patients, S1b screening spirometry (with bronchodilator) all patients, S1c CDQ + screening spirometry (with bronchodilator) all patients, S2a screening spirometry (without bronchodilator) among symptomatic patients, S3a CDQ ≥ 19.5 points among ever smokers aged ≥ 50 years, S3b CDQ ≥ 16.5 points among ever smokers aged ≥ 50 years, S3c screening spirometry (without bronchodilator) among ever smokers aged ≥ 50 years, S3d CDQ + screening spirometry (with bronchodilator) among ever smokers aged ≥ 50 years. The solid blue line indicates the efficiency frontier, and the grey dashed line indicates the WTP threshold ($50,000 per QALY gained). The highest value scenario using the efficiency frontier approach is highlighted in red”. Johnson et al. (2021)\nView at: https://link.springer.com/article/10.1007/s40258-020-00616-2/figures/3\n\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\nFigure 4. “Sensitivity analyses of the incremental net monetary benefit of case detection scenarios compared to no case detection. S1a CDQ ≥ 17 points among all patients, S1b screening spirometry (with bronchodilator) all patients, S1c CDQ + screening spirometry (with bronchodilator) all patients, S2a screening spirometry (without bronchodilator) among symptomatic patients, S3a CDQ ≥ 19.5 points among ever smokers aged ≥ 50 years, S3b CDQ ≥ 16.5 points among ever smokers aged ≥ 50 years, S3c screening spirometry (without bronchodilator) among ever smokers aged ≥ 50 years, S3d CDQ + screening spirometry (with bronchodilator) among ever smokers aged ≥ 50 years”. Johnson et al. (2021)\nView at: https://link.springer.com/article/10.1007/s40258-020-00616-2/figures/4\n\n\n\n\n\n\n\n\n\nSupplementary material appendix 6\n\n\n\n\n\nAppendix 6. “Results of the preferred case detection scenario”. “Results of the preferred case detection scenario (S1a: CDQ ≥17 points delivered at 3-year intervals to all patients ≥40 years) compared to no case detection. Results are shown for a cohort of 1,000 individuals eligible to receive case detection.” Johnson et al. (2021)\nView in supplementary material, which can be downloaded from https://doi.org/10.1007/s40258-020-00616-2.\n\n\n\n\n\n\n\n\n\nSupplementary material appendix 7\n\n\n\n\n\nAppendix 7. “Results of the sensitivity analysis for discount rate”. “Sensitivity analysis of the incremental net monetary benefit of case detection compared to no case detection under different rates of discounting for costs and QALYs.” Johnson et al. (2021)\nView in supplementary material, which can be downloaded from https://doi.org/10.1007/s40258-020-00616-2."
+  },
+  {
+    "objectID": "evaluation/scope.html#outside-scope",
+    "href": "evaluation/scope.html#outside-scope",
+    "title": "Scope",
+    "section": "Outside scope",
+    "text": "Outside scope\n\n\n\n\n\n\nTable 1\n\n\n\n\n\nTable 1. “Case detection scenarios evaluated”. Johnson et al. (2021)\n\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\nFigure 1. “Schematic illustration of the Evaluation Platform in COPD (EPIC). Modules added to the original version of EPIC [21] in order to simulate the case detection pathway are shown in grey. Note that the payoff module (not shown) collects outcomes such as costs and quality-adjusted life years as they occur throughout the disease process. GOLD Global Initiative for chronic Obstructive Lung Disease”. Johnson et al. (2021)\n\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nFigure 1. “Framework for applying case detection strategies”. Johnson et al. (2021)\n\n\n\n\n\n\n\n\n\nTable 2\n\n\n\n\n\nTable 2. “Model parameters specific to the evaluation of case detection”. Johnson et al. (2021)"
+  },
+  {
+    "objectID": "evaluation/reflections.html",
+    "href": "evaluation/reflections.html",
+    "title": "Reflections",
+    "section": "",
+    "text": "Please note: This is a template page and has not yet been completed\nThis page contains reflections on the facilitators and barriers to this reproduction, as well as a full list of the troubleshooting steps taken to reproduce this work."
+  },
+  {
+    "objectID": "evaluation/reflections.html#what-would-have-helped-facilitate-this-reproduction",
+    "href": "evaluation/reflections.html#what-would-have-helped-facilitate-this-reproduction",
+    "title": "Reflections",
+    "section": "What would have helped facilitate this reproduction?",
+    "text": "What would have helped facilitate this reproduction?"
+  },
+  {
+    "objectID": "evaluation/reflections.html#full-list-of-troubleshooting-steps",
+    "href": "evaluation/reflections.html#full-list-of-troubleshooting-steps",
+    "title": "Reflections",
+    "section": "Full list of troubleshooting steps",
+    "text": "Full list of troubleshooting steps\n\n\n\n\n\n\nView list\n\n\n\n\n\nTroubleshooting steps are grouped by theme, and the day these occurred is given in brackets at the end of each bullet."
+  },
+  {
+    "objectID": "evaluation/artefacts.html",
+    "href": "evaluation/artefacts.html",
+    "title": "STARS framework",
+    "section": "",
+    "text": "Please note: This is a template page and has not yet been completed\nThis page evaluates the extent to which the original study meets the recommendations from the STARS framework for the sharing of code and associated materials from discrete-event simulation models (Monks, Harper, and Mustafee (2024)).\nOf the 8 essential STARS components:\n\n\nX were met fully (✅)\nX was met partially (🟡)\nX was not met (❌)\n\nOf the 5 optional STARS components:\n\n\nX was met fully (✅)\nX were not met (❌)\n\n\n\n\n\n\n\n\n\n\n\nComponent\nDescription\nMet by study?\nEvidence/location\n\n\n\n\nEssential components\n\n\n\n\n\nOpen license\nFree and open-source software (FOSS) license (e.g. MIT, GNU Public License (GPL))\n\n\n\n\nDependency management\nSpecify software libraries, version numbers and sources (e.g. dependency management tools like virtualenv, conda, poetry)\n\n\n\n\nFOSS model\nCoded in FOSS language (e.g. R, Julia, Python)\n\n\n\n\nMinimum documentation\nMinimal instructions (e.g. in README) that overview (a) what model does, (b) how to install and run model to obtain results, and (c) how to vary parameters to run new experiments\n\n\n\n\nORCID\nORCID for each study author\n\n\n\n\nCitation information\nInstructions on how to cite the research artefact (e.g. CITATION.cff file)\n\n\n\n\nRemote code repository\nCode available in a remote code repository (e.g. GitHub, GitLab, BitBucket)\n\n\n\n\nOpen science archive\nCode stored in an open science archive with FORCE11 compliant citation and guaranteed persistance of digital artefacts (e.g. Figshare, Zenodo, the Open Science Framework (OSF), and the Computational Modeling in the Social and Ecological Sciences Network (CoMSES Net))\n\n\n\n\nOptional components\n\n\n\n\n\nEnhanced documentation\nOpen and high quality documentation on how the model is implemented and works (e.g. via notebooks and markdown files, brought together using software like Quarto and Jupyter Book). Suggested content includes:• Plain english summary of project and model• Clarifying license• Citation instructions• Contribution instructions• Model installation instructions• Structured code walk through of model• Documentation of modelling cycle using TRACE• Annotated simulation reporting guidelines• Clear description of model validation including its intended purpose\n\n\n\n\nDocumentation hosting\nHost documentation (e.g. with GitHub pages, GitLab pages, BitBucket Cloud, Quarto Pub)\n\n\n\n\nOnline coding environment\nProvide an online environment where users can run and change code (e.g. BinderHub, Google Colaboratory, Deepnote)\n\n\n\n\nModel interface\nProvide web application interface to the model so it is accessible to less technical simulation users\n\n\n\n\nWeb app hosting\nHost web app online (e.g. Streamlit Community Cloud, ShinyApps hosting)\n\n\n\n\n\n\n\n\n\nReferences\n\nMonks, Thomas, Alison Harper, and Navonil Mustafee. 2024. “Towards Sharing Tools and Artefacts for Reusable Simulations in Healthcare.” Journal of Simulation 0 (0): 1–20. https://doi.org/10.1080/17477778.2024.2347882."
+  },
+  {
+    "objectID": "evaluation/reporting.html",
+    "href": "evaluation/reporting.html",
+    "title": "Reporting guidelines",
+    "section": "",
+    "text": "Please note: This is a template page and has not yet been completed\nThis page evaluates the extent to which the journal article meets the criteria from two discrete-event simulation study reporting guidelines:"
+  },
+  {
+    "objectID": "evaluation/reporting.html#stress-des",
+    "href": "evaluation/reporting.html#stress-des",
+    "title": "Reporting guidelines",
+    "section": "STRESS-DES",
+    "text": "STRESS-DES\nOf the 24 items in the checklist:\n\n\nX were met fully (✅)\nX were partially met (🟡)\nX were not met (❌)\nX were not applicable (N/A)\n\n\n\n\n\n\n\n\n\n\n\nItem\nRecommendation\nMet by study?\nEvidence\n\n\n\n\nObjectives\n\n\n\n\n\n1.1 Purpose of the model\nExplain the background and objectives for the model\n\n\n\n\n1.2 Model outputs\nDefine all quantitative performance measures that are reported, using equations where necessary. Specify how and when they are calculated during the model run along with how any measures of error such as confidence intervals are calculated.\n\n\n\n\n1.3 Experimentation aims\nIf the model has been used for experimentation, state the objectives that it was used to investigate.(A) Scenario based analysis – Provide a name and description for each scenario, providing a rationale for the choice of scenarios and ensure that item 2.3 (below) is completed.(B) Design of experiments – Provide details of the overall design of the experiments with reference to performance measures and their parameters (provide further details in data below).(C) Simulation Optimisation – (if appropriate) Provide full details of what is to be optimised, the parameters that were included and the algorithm(s) that was be used. Where possible provide a citation of the algorithm(s).\n\n\n\n\nLogic\n\n\n\n\n\n2.1 Base model overview diagram\nDescribe the base model using appropriate diagrams and description. This could include one or more process flow, activity cycle or equivalent diagrams sufficient to describe the model to readers. Avoid complicated diagrams in the main text. The goal is to describe the breadth and depth of the model with respect to the system being studied.\n\n\n\n\n2.2 Base model logic\nGive details of the base model logic. Give additional model logic details sufficient to communicate to the reader how the model works.\n\n\n\n\n2.3 Scenario logic\nGive details of the logical difference between the base case model and scenarios (if any). This could be incorporated as text or where differences are substantial could be incorporated in the same manner as 2.2.\n\n\n\n\n2.4 Algorithms\nProvide further detail on any algorithms in the model that (for example) mimic complex or manual processes in the real world (i.e. scheduling of arrivals/ appointments/ operations/ maintenance, operation of a conveyor system, machine breakdowns, etc.). Sufficient detail should be included (or referred to in other published work) for the algorithms to be reproducible. Pseudo-code may be used to describe an algorithm.\n\n\n\n\n2.5.1 Components - entities\nGive details of all entities within the simulation including a description of their role in the model and a description of all their attributes.\n\n\n\n\n2.5.2 Components - activities\nDescribe the activities that entities engage in within the model. Provide details of entity routing into and out of the activity.\n\n\n\n\n2.5.3 Components - resources\nList all the resources included within the model and which activities make use of them.\n\n\n\n\n2.5.4 Components - queues\nGive details of the assumed queuing discipline used in the model (e.g. First in First Out, Last in First Out, prioritisation, etc.). Where one or more queues have a different discipline from the rest, provide a list of queues, indicating the queuing discipline used for each. If reneging, balking or jockeying occur, etc., provide details of the rules. Detail any delays or capacity constraints on the queues.\n\n\n\n\n2.5.5 Components - entry/exit points\nGive details of the model boundaries i.e. all arrival and exit points of entities. Detail the arrival mechanism (e.g. ‘thinning’ to mimic a non-homogenous Poisson process or balking)\n\n\n\n\nData\n\n\n\n\n\n3.1 Data sources\nList and detail all data sources. Sources may include:• Interviews with stakeholders,• Samples of routinely collected data,• Prospectively collected samples for the purpose of the simulation study,• Public domain data published in either academic or organisational literature. Provide, where possible, the link and DOI to the data or reference to published literature.All data source descriptions should include details of the sample size, sample date ranges and use within the study.\n\n\n\n\n3.2 Pre-processing\nProvide details of any data manipulation that has taken place before its use in the simulation, e.g. interpolation to account for missing data or the removal of outliers.\n\n\n\n\n3.3 Input parameters\nList all input variables in the model. Provide a description of their use and include parameter values. For stochastic inputs provide details of any continuous, discrete or empirical distributions used along with all associated parameters. Give details of all time dependent parameters and correlation.Clearly state:• Base case data• Data use in experimentation, where different from the base case.• Where optimisation or design of experiments has been used, state the range of values that parameters can take.• Where theoretical distributions are used, state how these were selected and prioritised above other candidate distributions.\n\n\n\n\n3.4 Assumptions\nWhere data or knowledge of the real system is unavailable what assumptions are included in the model? This might include parameter values, distributions or routing logic within the model.\n\n\n\n\nExperimentation\n\n\n\n\n\n4.1 Initialisation\nReport if the system modelled is terminating or non-terminating. State if a warm-up period has been used, its length and the analysis method used to select it. For terminating systems state the stopping condition.State what if any initial model conditions have been included, e.g., pre-loaded queues and activities. Report whether initialisation of these variables is deterministic or stochastic.\n\n\n\n\n4.2 Run length\nDetail the run length of the simulation model and time units.\n\n\n\n\n4.3 Estimation approach\nState the method used to account for the stochasticity: For example, two common methods are multiple replications or batch means. Where multiple replications have been used, state the number of replications and for batch means, indicate the batch length and whether the batch means procedure is standard, spaced or overlapping. For both procedures provide a justification for the methods used and the number of replications/size of batches.\n\n\n\n\nImplementation\n\n\n\n\n\n5.1 Software or programming language\nState the operating system and version and build number.State the name, version and build number of commercial or open source DES software that the model is implemented in.State the name and version of general-purpose programming languages used (e.g. Python 3.5).Where frameworks and libraries have been used provide all details including version numbers.\n\n\n\n\n5.2 Random sampling\nState the algorithm used to generate random samples in the software/programming language used e.g. Mersenne Twister.If common random numbers are used, state how seeds (or random number streams) are distributed among sampling processes.\n\n\n\n\n5.3 Model execution\nState the event processing mechanism used e.g. three phase, event, activity, process interaction.Note that in some commercial software the event processing mechanism may not be published. In these cases authors should adhere to item 5.1 software recommendations.State all priority rules included if entities/activities compete for resources.If the model is parallel, distributed and/or use grid or cloud computing, etc., state and preferably reference the technology used. For parallel and distributed simulations the time management algorithms used. If the HLA is used then state the version of the standard, which run-time infrastructure (and version), and any supporting documents (FOMs, etc.)\n\n\n\n\n5.4 System specification\nState the model run time and specification of hardware used. This is particularly important for large scale models that require substantial computing power. For parallel, distributed and/or use grid or cloud computing, etc. state the details of all systems used in the implementation (processors, network, etc.)\n\n\n\n\nCode access\n\n\n\n\n\n6.1 Computer model sharing statement\nDescribe how someone could obtain the model described in the paper, the simulation software and any other associated software (or hardware) needed to reproduce the results. Provide, where possible, the link and DOIs to these."
+  },
+  {
+    "objectID": "evaluation/reporting.html#des-checklist-derived-from-ispor-sdm",
+    "href": "evaluation/reporting.html#des-checklist-derived-from-ispor-sdm",
+    "title": "Reporting guidelines",
+    "section": "DES checklist derived from ISPOR-SDM",
+    "text": "DES checklist derived from ISPOR-SDM\nOf the 18 items in the checklist:\n\n\nX were met fully (✅)\nX were partially met (🟡)\nX were not met (❌)\nX were not applicable (N/A)\n\n\n\n\n\n\n\n\n\n\n\nItem\nAssessed if…\nMet by study?\nEvidence/location\n\n\n\n\nModel conceptualisation\n\n\n\n\n\n1 Is the focused health-related decision problem clarified?\n…the decision problem under investigation was defined. DES studies included different types of decision problems, eg, those listed in previously developed taxonomies.\n\n\n\n\n2 Is the modeled healthcare setting/health condition clarified?\n…the physical context/scope (eg, a certain healthcare unit or a broader system) or disease spectrum simulated was described.\n\n\n\n\n3 Is the model structure described?\n…the model’s conceptual structure was described in the form of either graphical or text presentation.\n\n\n\n\n4 Is the time horizon given?\n…the time period covered by the simulation was reported.\n\n\n\n\n5 Are all simulated strategies/scenarios specified?\n…the comparators under test were described in terms of their components, corresponding variations, etc\n\n\n\n\n6 Is the target population described?\n…the entities simulated and their main attributes were characterized.\n\n\n\n\nParamaterisation and uncertainty assessment\n\n\n\n\n\n7 Are data sources informing parameter estimations provided?\n…the sources of all data used to inform model inputs were reported.\n\n\n\n\n8 Are the parameters used to populate model frameworks specified?\n…all relevant parameters fed into model frameworks were disclosed.\n\n\n\n\n9 Are model uncertainties discussed?\n…the uncertainty surrounding parameter estimations and adopted statistical methods (eg, 95% confidence intervals or possibility distributions) were reported.\n\n\n\n\n10 Are sensitivity analyses performed and reported?\n…the robustness of model outputs to input uncertainties was examined, for example via deterministic (based on parameters’ plausible ranges) or probabilistic (based on a priori-defined probability distributions) sensitivity analyses, or both.\n\n\n\n\nValidation\n\n\n\n\n\n11 Is face validity evaluated and reported?\n…it was reported that the model was subjected to the examination on how well model designs correspond to the reality and intuitions. It was assumed that this type of validation should be conducted by external evaluators with no stake in the study.\n\n\n\n\n12 Is cross validation performed and reported\n…comparison across similar modeling studies which deal with the same decision problem was undertaken.\n\n\n\n\n13 Is external validation performed and reported?\n…the modeler(s) examined how well the model’s results match the empirical data of an actual event modeled.\n\n\n\n\n14 Is predictive validation performed or attempted?\n…the modeler(s) examined the consistency of a model’s predictions of a future event and the actual outcomes in the future. If this was not undertaken, it was assessed whether the reasons were discussed.\n\n\n\n\nGeneralisability and stakeholder involvement\n\n\n\n\n\n15 Is the model generalizability issue discussed?\n…the modeler(s) discussed the potential of the resulting model for being applicable to other settings/populations (single/multiple application).\n\n\n\n\n16 Are decision makers or other stakeholders involved in modeling?\n…the modeler(s) reported in which part throughout the modeling process decision makers and other stakeholders (eg, subject experts) were engaged.\n\n\n\n\n17 Is the source of funding stated?\n…the sponsorship of the study was indicated.\n\n\n\n\n18 Are model limitations discussed?\n…limitations of the assessed model, especially limitations of interest to decision makers, were discussed."
+  },
+  {
+    "objectID": "logbook/logbook.html",
+    "href": "logbook/logbook.html",
+    "title": "Logbook",
+    "section": "",
+    "text": "These diary entries record daily progress in reproduction of the study, providing a transparent and detailed record of work.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 11\n\n\n\n\n\n\nscope\n\n\n\n\n\n\n\n\n\nSep 24, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 10\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 16, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 9\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 10, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 8\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 9, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 7\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 6, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 6\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 5, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 5\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 4, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nAug 14, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nAug 13, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 2\n\n\n\n\n\n\nsetup\n\n\nread\n\n\nscope\n\n\n\n\n\n\n\n\n\nAug 1, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1\n\n\n\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nJul 31, 2024\n\n\nAmy Heather\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "evaluation/reproduction_report.html",
+    "href": "evaluation/reproduction_report.html",
+    "title": "Summary report",
+    "section": "",
+    "text": "Please note: This is a template page and has not yet been completed"
+  },
+  {
+    "objectID": "evaluation/reproduction_report.html#study",
+    "href": "evaluation/reproduction_report.html#study",
+    "title": "Summary report",
+    "section": "Study",
+    "text": "Study\n\n[Authors]. [Title]. [Journal] [Volume], [Edition] ([Year]). &lt;[URL]&gt;.\n\n[Paragraph summarising model]"
+  },
+  {
+    "objectID": "evaluation/reproduction_report.html#computational-reproducibility",
+    "href": "evaluation/reproduction_report.html#computational-reproducibility",
+    "title": "Summary report",
+    "section": "Computational reproducibility",
+    "text": "Computational reproducibility\nSuccessfully reproduced X out of X (X%) of items from the scope in Xh Xm (X%).\nRequired troubleshooting:\n\n[List of required changes to code]\n\n\nItem XItem YFigure 4\n\n\n[One sentence description of item X]\n[Display side-by-side] \n\n\n[Set-up as for Item X]\n\n\n[Set-up as for Item X]"
+  },
+  {
+    "objectID": "evaluation/reproduction_report.html#evaluation-against-guidelines",
+    "href": "evaluation/reproduction_report.html#evaluation-against-guidelines",
+    "title": "Summary report",
+    "section": "Evaluation against guidelines",
+    "text": "Evaluation against guidelines\n\n\n                                                \n\n\nContext: The original study repository was evaluated against criteria from journal badges relating to how open and reproducible the model is and against guidance for sharing artefacts from the STARS framework. The original study article and supplementary materials (excluding code) were evaluated against reporting guidelines for DES models: STRESS-DES, and guidelines adapted from ISPOR-SDM."
   },
   {
     "objectID": "logbook/posts/2024_08_01/index.html",
@@ -280,242 +462,81 @@
     "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 32\n\n# Times from today\ntimes = [\n    ('09.44', '09.48'),\n    ('09.52', '09.56'),\n    ('10.38', '10.47'),\n    ('10.50', '10.52'),\n    ('10.53', '11.01'),\n    ('11.09', '11.22'),\n    ('11.29', '11.38'),\n    ('12.04', '12.24')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 69m, or 1h 9m\nTotal used to date: 101m, or 1h 41m\nTime remaining: 2299m, or 38h 19m\nUsed 4.2% of 40 hours max"
   },
   {
-    "objectID": "evaluation/reproduction_report.html",
-    "href": "evaluation/reproduction_report.html",
-    "title": "Summary report",
+    "objectID": "logbook/posts/2024_08_14/index.html",
+    "href": "logbook/posts/2024_08_14/index.html",
+    "title": "Day 4",
     "section": "",
-    "text": "Please note: This is a template page and has not yet been completed"
+    "text": "Note\n\n\n\nAttempted to run model with fewer agents but results 0/1/NaN so paused until have access to higher powered machine in a few weeks. Total time used: 3h 13m (8.0%)"
   },
   {
-    "objectID": "evaluation/reproduction_report.html#study",
-    "href": "evaluation/reproduction_report.html#study",
-    "title": "Summary report",
-    "section": "Study",
-    "text": "Study\n\n[Authors]. [Title]. [Journal] [Volume], [Edition] ([Year]). &lt;[URL]&gt;.\n\n[Paragraph summarising model]"
+    "objectID": "logbook/posts/2024_08_14/index.html#run-model",
+    "href": "logbook/posts/2024_08_14/index.html#run-model",
+    "title": "Day 4",
+    "section": "09.27-09.52, 10.20-10.21, 10.40-10.43: Run model",
+    "text": "09.27-09.52, 10.20-10.21, 10.40-10.43: Run model\nHelpfully, we know to expect that this has a long run time from their README:\n\n“Note: The analysis version of these results simulates 100 million agents, which will take ~16 hours to run for each script. The published analysis was conducted using R Version 3.5.3”\n\nGiven this warning, I tried running it with fewer agents:\nsettings$n_base_agents &lt;- 5e+3\nOn my machine, I tried it with increasing numbers of agents, but it consistently returned results of 0 / 1 / NaN:\n\n5000 (a minute to run)\n50,000 (2.4 minutes to run)\n500,000 (18.2 minutes to run)\n\nUnfortunately I can’t currently access our remote higher spec machine, which would’ve allowed me to run these quicker.\nI created an .Rmd file with only the first scenario, but set to 100 million agents as in the original analysis."
   },
   {
-    "objectID": "evaluation/reproduction_report.html#computational-reproducibility",
-    "href": "evaluation/reproduction_report.html#computational-reproducibility",
-    "title": "Summary report",
-    "section": "Computational reproducibility",
-    "text": "Computational reproducibility\nSuccessfully reproduced X out of X (X%) of items from the scope in Xh Xm (X%).\nRequired troubleshooting:\n\n[List of required changes to code]\n\n\nItem XItem YFigure 4\n\n\n[One sentence description of item X]\n[Display side-by-side] \n\n\n[Set-up as for Item X]\n\n\n[Set-up as for Item X]"
-  },
-  {
-    "objectID": "evaluation/reproduction_report.html#evaluation-against-guidelines",
-    "href": "evaluation/reproduction_report.html#evaluation-against-guidelines",
-    "title": "Summary report",
-    "section": "Evaluation against guidelines",
-    "text": "Evaluation against guidelines\n\n\n                                                \n\n\nContext: The original study repository was evaluated against criteria from journal badges relating to how open and reproducible the model is and against guidance for sharing artefacts from the STARS framework. The original study article and supplementary materials (excluding code) were evaluated against reporting guidelines for DES models: STRESS-DES, and guidelines adapted from ISPOR-SDM."
-  },
-  {
-    "objectID": "logbook/logbook.html",
-    "href": "logbook/logbook.html",
-    "title": "Logbook",
-    "section": "",
-    "text": "These diary entries record daily progress in reproduction of the study, providing a transparent and detailed record of work.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDay 10\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 16, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 9\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 10, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 8\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 9, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 7\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 6, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 6\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 5, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 5\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nSep 4, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nAug 14, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3\n\n\n\n\n\n\nreproduce\n\n\n\n\n\n\n\n\n\nAug 13, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 2\n\n\n\n\n\n\nsetup\n\n\nread\n\n\nscope\n\n\n\n\n\n\n\n\n\nAug 1, 2024\n\n\nAmy Heather\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1\n\n\n\n\n\n\nsetup\n\n\n\n\n\n\n\n\n\nJul 31, 2024\n\n\nAmy Heather\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "evaluation/reporting.html",
-    "href": "evaluation/reporting.html",
-    "title": "Reporting guidelines",
-    "section": "",
-    "text": "Please note: This is a template page and has not yet been completed\nThis page evaluates the extent to which the journal article meets the criteria from two discrete-event simulation study reporting guidelines:"
-  },
-  {
-    "objectID": "evaluation/reporting.html#stress-des",
-    "href": "evaluation/reporting.html#stress-des",
-    "title": "Reporting guidelines",
-    "section": "STRESS-DES",
-    "text": "STRESS-DES\nOf the 24 items in the checklist:\n\n\nX were met fully (✅)\nX were partially met (🟡)\nX were not met (❌)\nX were not applicable (N/A)\n\n\n\n\n\n\n\n\n\n\n\nItem\nRecommendation\nMet by study?\nEvidence\n\n\n\n\nObjectives\n\n\n\n\n\n1.1 Purpose of the model\nExplain the background and objectives for the model\n\n\n\n\n1.2 Model outputs\nDefine all quantitative performance measures that are reported, using equations where necessary. Specify how and when they are calculated during the model run along with how any measures of error such as confidence intervals are calculated.\n\n\n\n\n1.3 Experimentation aims\nIf the model has been used for experimentation, state the objectives that it was used to investigate.(A) Scenario based analysis – Provide a name and description for each scenario, providing a rationale for the choice of scenarios and ensure that item 2.3 (below) is completed.(B) Design of experiments – Provide details of the overall design of the experiments with reference to performance measures and their parameters (provide further details in data below).(C) Simulation Optimisation – (if appropriate) Provide full details of what is to be optimised, the parameters that were included and the algorithm(s) that was be used. Where possible provide a citation of the algorithm(s).\n\n\n\n\nLogic\n\n\n\n\n\n2.1 Base model overview diagram\nDescribe the base model using appropriate diagrams and description. This could include one or more process flow, activity cycle or equivalent diagrams sufficient to describe the model to readers. Avoid complicated diagrams in the main text. The goal is to describe the breadth and depth of the model with respect to the system being studied.\n\n\n\n\n2.2 Base model logic\nGive details of the base model logic. Give additional model logic details sufficient to communicate to the reader how the model works.\n\n\n\n\n2.3 Scenario logic\nGive details of the logical difference between the base case model and scenarios (if any). This could be incorporated as text or where differences are substantial could be incorporated in the same manner as 2.2.\n\n\n\n\n2.4 Algorithms\nProvide further detail on any algorithms in the model that (for example) mimic complex or manual processes in the real world (i.e. scheduling of arrivals/ appointments/ operations/ maintenance, operation of a conveyor system, machine breakdowns, etc.). Sufficient detail should be included (or referred to in other published work) for the algorithms to be reproducible. Pseudo-code may be used to describe an algorithm.\n\n\n\n\n2.5.1 Components - entities\nGive details of all entities within the simulation including a description of their role in the model and a description of all their attributes.\n\n\n\n\n2.5.2 Components - activities\nDescribe the activities that entities engage in within the model. Provide details of entity routing into and out of the activity.\n\n\n\n\n2.5.3 Components - resources\nList all the resources included within the model and which activities make use of them.\n\n\n\n\n2.5.4 Components - queues\nGive details of the assumed queuing discipline used in the model (e.g. First in First Out, Last in First Out, prioritisation, etc.). Where one or more queues have a different discipline from the rest, provide a list of queues, indicating the queuing discipline used for each. If reneging, balking or jockeying occur, etc., provide details of the rules. Detail any delays or capacity constraints on the queues.\n\n\n\n\n2.5.5 Components - entry/exit points\nGive details of the model boundaries i.e. all arrival and exit points of entities. Detail the arrival mechanism (e.g. ‘thinning’ to mimic a non-homogenous Poisson process or balking)\n\n\n\n\nData\n\n\n\n\n\n3.1 Data sources\nList and detail all data sources. Sources may include:• Interviews with stakeholders,• Samples of routinely collected data,• Prospectively collected samples for the purpose of the simulation study,• Public domain data published in either academic or organisational literature. Provide, where possible, the link and DOI to the data or reference to published literature.All data source descriptions should include details of the sample size, sample date ranges and use within the study.\n\n\n\n\n3.2 Pre-processing\nProvide details of any data manipulation that has taken place before its use in the simulation, e.g. interpolation to account for missing data or the removal of outliers.\n\n\n\n\n3.3 Input parameters\nList all input variables in the model. Provide a description of their use and include parameter values. For stochastic inputs provide details of any continuous, discrete or empirical distributions used along with all associated parameters. Give details of all time dependent parameters and correlation.Clearly state:• Base case data• Data use in experimentation, where different from the base case.• Where optimisation or design of experiments has been used, state the range of values that parameters can take.• Where theoretical distributions are used, state how these were selected and prioritised above other candidate distributions.\n\n\n\n\n3.4 Assumptions\nWhere data or knowledge of the real system is unavailable what assumptions are included in the model? This might include parameter values, distributions or routing logic within the model.\n\n\n\n\nExperimentation\n\n\n\n\n\n4.1 Initialisation\nReport if the system modelled is terminating or non-terminating. State if a warm-up period has been used, its length and the analysis method used to select it. For terminating systems state the stopping condition.State what if any initial model conditions have been included, e.g., pre-loaded queues and activities. Report whether initialisation of these variables is deterministic or stochastic.\n\n\n\n\n4.2 Run length\nDetail the run length of the simulation model and time units.\n\n\n\n\n4.3 Estimation approach\nState the method used to account for the stochasticity: For example, two common methods are multiple replications or batch means. Where multiple replications have been used, state the number of replications and for batch means, indicate the batch length and whether the batch means procedure is standard, spaced or overlapping. For both procedures provide a justification for the methods used and the number of replications/size of batches.\n\n\n\n\nImplementation\n\n\n\n\n\n5.1 Software or programming language\nState the operating system and version and build number.State the name, version and build number of commercial or open source DES software that the model is implemented in.State the name and version of general-purpose programming languages used (e.g. Python 3.5).Where frameworks and libraries have been used provide all details including version numbers.\n\n\n\n\n5.2 Random sampling\nState the algorithm used to generate random samples in the software/programming language used e.g. Mersenne Twister.If common random numbers are used, state how seeds (or random number streams) are distributed among sampling processes.\n\n\n\n\n5.3 Model execution\nState the event processing mechanism used e.g. three phase, event, activity, process interaction.Note that in some commercial software the event processing mechanism may not be published. In these cases authors should adhere to item 5.1 software recommendations.State all priority rules included if entities/activities compete for resources.If the model is parallel, distributed and/or use grid or cloud computing, etc., state and preferably reference the technology used. For parallel and distributed simulations the time management algorithms used. If the HLA is used then state the version of the standard, which run-time infrastructure (and version), and any supporting documents (FOMs, etc.)\n\n\n\n\n5.4 System specification\nState the model run time and specification of hardware used. This is particularly important for large scale models that require substantial computing power. For parallel, distributed and/or use grid or cloud computing, etc. state the details of all systems used in the implementation (processors, network, etc.)\n\n\n\n\nCode access\n\n\n\n\n\n6.1 Computer model sharing statement\nDescribe how someone could obtain the model described in the paper, the simulation software and any other associated software (or hardware) needed to reproduce the results. Provide, where possible, the link and DOIs to these."
-  },
-  {
-    "objectID": "evaluation/reporting.html#des-checklist-derived-from-ispor-sdm",
-    "href": "evaluation/reporting.html#des-checklist-derived-from-ispor-sdm",
-    "title": "Reporting guidelines",
-    "section": "DES checklist derived from ISPOR-SDM",
-    "text": "DES checklist derived from ISPOR-SDM\nOf the 18 items in the checklist:\n\n\nX were met fully (✅)\nX were partially met (🟡)\nX were not met (❌)\nX were not applicable (N/A)\n\n\n\n\n\n\n\n\n\n\n\nItem\nAssessed if…\nMet by study?\nEvidence/location\n\n\n\n\nModel conceptualisation\n\n\n\n\n\n1 Is the focused health-related decision problem clarified?\n…the decision problem under investigation was defined. DES studies included different types of decision problems, eg, those listed in previously developed taxonomies.\n\n\n\n\n2 Is the modeled healthcare setting/health condition clarified?\n…the physical context/scope (eg, a certain healthcare unit or a broader system) or disease spectrum simulated was described.\n\n\n\n\n3 Is the model structure described?\n…the model’s conceptual structure was described in the form of either graphical or text presentation.\n\n\n\n\n4 Is the time horizon given?\n…the time period covered by the simulation was reported.\n\n\n\n\n5 Are all simulated strategies/scenarios specified?\n…the comparators under test were described in terms of their components, corresponding variations, etc\n\n\n\n\n6 Is the target population described?\n…the entities simulated and their main attributes were characterized.\n\n\n\n\nParamaterisation and uncertainty assessment\n\n\n\n\n\n7 Are data sources informing parameter estimations provided?\n…the sources of all data used to inform model inputs were reported.\n\n\n\n\n8 Are the parameters used to populate model frameworks specified?\n…all relevant parameters fed into model frameworks were disclosed.\n\n\n\n\n9 Are model uncertainties discussed?\n…the uncertainty surrounding parameter estimations and adopted statistical methods (eg, 95% confidence intervals or possibility distributions) were reported.\n\n\n\n\n10 Are sensitivity analyses performed and reported?\n…the robustness of model outputs to input uncertainties was examined, for example via deterministic (based on parameters’ plausible ranges) or probabilistic (based on a priori-defined probability distributions) sensitivity analyses, or both.\n\n\n\n\nValidation\n\n\n\n\n\n11 Is face validity evaluated and reported?\n…it was reported that the model was subjected to the examination on how well model designs correspond to the reality and intuitions. It was assumed that this type of validation should be conducted by external evaluators with no stake in the study.\n\n\n\n\n12 Is cross validation performed and reported\n…comparison across similar modeling studies which deal with the same decision problem was undertaken.\n\n\n\n\n13 Is external validation performed and reported?\n…the modeler(s) examined how well the model’s results match the empirical data of an actual event modeled.\n\n\n\n\n14 Is predictive validation performed or attempted?\n…the modeler(s) examined the consistency of a model’s predictions of a future event and the actual outcomes in the future. If this was not undertaken, it was assessed whether the reasons were discussed.\n\n\n\n\nGeneralisability and stakeholder involvement\n\n\n\n\n\n15 Is the model generalizability issue discussed?\n…the modeler(s) discussed the potential of the resulting model for being applicable to other settings/populations (single/multiple application).\n\n\n\n\n16 Are decision makers or other stakeholders involved in modeling?\n…the modeler(s) reported in which part throughout the modeling process decision makers and other stakeholders (eg, subject experts) were engaged.\n\n\n\n\n17 Is the source of funding stated?\n…the sponsorship of the study was indicated.\n\n\n\n\n18 Are model limitations discussed?\n…limitations of the assessed model, especially limitations of interest to decision makers, were discussed."
-  },
-  {
-    "objectID": "evaluation/artefacts.html",
-    "href": "evaluation/artefacts.html",
-    "title": "STARS framework",
-    "section": "",
-    "text": "Please note: This is a template page and has not yet been completed\nThis page evaluates the extent to which the original study meets the recommendations from the STARS framework for the sharing of code and associated materials from discrete-event simulation models (Monks, Harper, and Mustafee (2024)).\nOf the 8 essential STARS components:\n\n\nX were met fully (✅)\nX was met partially (🟡)\nX was not met (❌)\n\nOf the 5 optional STARS components:\n\n\nX was met fully (✅)\nX were not met (❌)\n\n\n\n\n\n\n\n\n\n\n\nComponent\nDescription\nMet by study?\nEvidence/location\n\n\n\n\nEssential components\n\n\n\n\n\nOpen license\nFree and open-source software (FOSS) license (e.g. MIT, GNU Public License (GPL))\n\n\n\n\nDependency management\nSpecify software libraries, version numbers and sources (e.g. dependency management tools like virtualenv, conda, poetry)\n\n\n\n\nFOSS model\nCoded in FOSS language (e.g. R, Julia, Python)\n\n\n\n\nMinimum documentation\nMinimal instructions (e.g. in README) that overview (a) what model does, (b) how to install and run model to obtain results, and (c) how to vary parameters to run new experiments\n\n\n\n\nORCID\nORCID for each study author\n\n\n\n\nCitation information\nInstructions on how to cite the research artefact (e.g. CITATION.cff file)\n\n\n\n\nRemote code repository\nCode available in a remote code repository (e.g. GitHub, GitLab, BitBucket)\n\n\n\n\nOpen science archive\nCode stored in an open science archive with FORCE11 compliant citation and guaranteed persistance of digital artefacts (e.g. Figshare, Zenodo, the Open Science Framework (OSF), and the Computational Modeling in the Social and Ecological Sciences Network (CoMSES Net))\n\n\n\n\nOptional components\n\n\n\n\n\nEnhanced documentation\nOpen and high quality documentation on how the model is implemented and works (e.g. via notebooks and markdown files, brought together using software like Quarto and Jupyter Book). Suggested content includes:• Plain english summary of project and model• Clarifying license• Citation instructions• Contribution instructions• Model installation instructions• Structured code walk through of model• Documentation of modelling cycle using TRACE• Annotated simulation reporting guidelines• Clear description of model validation including its intended purpose\n\n\n\n\nDocumentation hosting\nHost documentation (e.g. with GitHub pages, GitLab pages, BitBucket Cloud, Quarto Pub)\n\n\n\n\nOnline coding environment\nProvide an online environment where users can run and change code (e.g. BinderHub, Google Colaboratory, Deepnote)\n\n\n\n\nModel interface\nProvide web application interface to the model so it is accessible to less technical simulation users\n\n\n\n\nWeb app hosting\nHost web app online (e.g. Streamlit Community Cloud, ShinyApps hosting)\n\n\n\n\n\n\n\n\n\nReferences\n\nMonks, Thomas, Alison Harper, and Navonil Mustafee. 2024. “Towards Sharing Tools and Artefacts for Reusable Simulations in Healthcare.” Journal of Simulation 0 (0): 1–20. https://doi.org/10.1080/17477778.2024.2347882."
-  },
-  {
-    "objectID": "evaluation/reflections.html",
-    "href": "evaluation/reflections.html",
-    "title": "Reflections",
-    "section": "",
-    "text": "Please note: This is a template page and has not yet been completed\nThis page contains reflections on the facilitators and barriers to this reproduction, as well as a full list of the troubleshooting steps taken to reproduce this work."
-  },
-  {
-    "objectID": "evaluation/reflections.html#what-would-have-helped-facilitate-this-reproduction",
-    "href": "evaluation/reflections.html#what-would-have-helped-facilitate-this-reproduction",
-    "title": "Reflections",
-    "section": "What would have helped facilitate this reproduction?",
-    "text": "What would have helped facilitate this reproduction?"
-  },
-  {
-    "objectID": "evaluation/reflections.html#full-list-of-troubleshooting-steps",
-    "href": "evaluation/reflections.html#full-list-of-troubleshooting-steps",
-    "title": "Reflections",
-    "section": "Full list of troubleshooting steps",
-    "text": "Full list of troubleshooting steps\n\n\n\n\n\n\nView list\n\n\n\n\n\nTroubleshooting steps are grouped by theme, and the day these occurred is given in brackets at the end of each bullet."
-  },
-  {
-    "objectID": "evaluation/scope.html",
-    "href": "evaluation/scope.html",
-    "title": "Scope",
-    "section": "",
-    "text": "This page outlines the parts of the journal article (Johnson et al. (2021)) which we will attempt to reproduce.\nAs the copyright of the article belongs to the journal (without permissions to freely share images from the article), I have simply provided quotations from the table/figure captions below. You will need to navigate to the original paper to view the items."
-  },
-  {
-    "objectID": "evaluation/scope.html#within-scope",
-    "href": "evaluation/scope.html#within-scope",
-    "title": "Scope",
-    "section": "Within scope",
-    "text": "Within scope\n\n\n\n\n\n\nTable 3\n\n\n\n\n\nTable 3. “Table 3 Total costs and QALYs for case detection scenarios”. Johnson et al. (2021)\nView at: https://link.springer.com/article/10.1007/s40258-020-00616-2/tables/4\n\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\nFigure 3. “Cost-effectiveness plane for case detection scenarios. NoCD no case detection, S1a CDQ ≥ 17 points among all patients, S1b screening spirometry (with bronchodilator) all patients, S1c CDQ + screening spirometry (with bronchodilator) all patients, S2a screening spirometry (without bronchodilator) among symptomatic patients, S3a CDQ ≥ 19.5 points among ever smokers aged ≥ 50 years, S3b CDQ ≥ 16.5 points among ever smokers aged ≥ 50 years, S3c screening spirometry (without bronchodilator) among ever smokers aged ≥ 50 years, S3d CDQ + screening spirometry (with bronchodilator) among ever smokers aged ≥ 50 years. The solid blue line indicates the efficiency frontier, and the grey dashed line indicates the WTP threshold ($50,000 per QALY gained). The highest value scenario using the efficiency frontier approach is highlighted in red”. Johnson et al. (2021)\nView at: https://link.springer.com/article/10.1007/s40258-020-00616-2/figures/3\n\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\nFigure 4. “Sensitivity analyses of the incremental net monetary benefit of case detection scenarios compared to no case detection. S1a CDQ ≥ 17 points among all patients, S1b screening spirometry (with bronchodilator) all patients, S1c CDQ + screening spirometry (with bronchodilator) all patients, S2a screening spirometry (without bronchodilator) among symptomatic patients, S3a CDQ ≥ 19.5 points among ever smokers aged ≥ 50 years, S3b CDQ ≥ 16.5 points among ever smokers aged ≥ 50 years, S3c screening spirometry (without bronchodilator) among ever smokers aged ≥ 50 years, S3d CDQ + screening spirometry (with bronchodilator) among ever smokers aged ≥ 50 years”. Johnson et al. (2021)\nView at: https://link.springer.com/article/10.1007/s40258-020-00616-2/figures/4\n\n\n\n\n\n\n\n\n\nSupplementary material appendix 6\n\n\n\n\n\nAppendix 6. “Results of the preferred case detection scenario”. “Results of the preferred case detection scenario (S1a: CDQ ≥17 points delivered at 3-year intervals to all patients ≥40 years) compared to no case detection. Results are shown for a cohort of 1,000 individuals eligible to receive case detection.” Johnson et al. (2021)\nView in supplementary material, which can be downloaded from https://doi.org/10.1007/s40258-020-00616-2.\n\n\n\n\n\n\n\n\n\nSupplementary material appendix 7\n\n\n\n\n\nAppendix 7. “Results of the sensitivity analysis for discount rate”. “Sensitivity analysis of the incremental net monetary benefit of case detection compared to no case detection under different rates of discounting for costs and QALYs.” Johnson et al. (2021)\nView in supplementary material, which can be downloaded from https://doi.org/10.1007/s40258-020-00616-2."
-  },
-  {
-    "objectID": "evaluation/scope.html#outside-scope",
-    "href": "evaluation/scope.html#outside-scope",
-    "title": "Scope",
-    "section": "Outside scope",
-    "text": "Outside scope\n\n\n\n\n\n\nTable 1\n\n\n\n\n\nTable 1. “Case detection scenarios evaluated”. Johnson et al. (2021)\n\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\nFigure 1. “Schematic illustration of the Evaluation Platform in COPD (EPIC). Modules added to the original version of EPIC [21] in order to simulate the case detection pathway are shown in grey. Note that the payoff module (not shown) collects outcomes such as costs and quality-adjusted life years as they occur throughout the disease process. GOLD Global Initiative for chronic Obstructive Lung Disease”. Johnson et al. (2021)\n\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nFigure 1. “Framework for applying case detection strategies”. Johnson et al. (2021)\n\n\n\n\n\n\n\n\n\nTable 2\n\n\n\n\n\nTable 2. “Model parameters specific to the evaluation of case detection”. Johnson et al. (2021)"
-  },
-  {
-    "objectID": "quarto_site/study_publication.html",
-    "href": "quarto_site/study_publication.html",
-    "title": "Publication",
-    "section": "",
-    "text": "Johnson et al. (2021)"
-  },
-  {
-    "objectID": "quarto_site/study_publication.html#code-and-data",
-    "href": "quarto_site/study_publication.html#code-and-data",
-    "title": "Publication",
-    "section": "Code and data",
-    "text": "Code and data\nView at: https://github.com/KateJohnson/epicR/tree/closed_cohort"
-  },
-  {
-    "objectID": "quarto_site/study_publication.html#journal-article",
-    "href": "quarto_site/study_publication.html#journal-article",
-    "title": "Publication",
-    "section": "Journal article",
-    "text": "Journal article\nThe article does not provide permissions to reshare, so cannot be uploaded.\nIf you wish to view this article, please navigate to: https://doi.org/10.1007/s40258-020-00616-2."
-  },
-  {
-    "objectID": "quarto_site/study_publication.html#supplementary-materials",
-    "href": "quarto_site/study_publication.html#supplementary-materials",
-    "title": "Publication",
-    "section": "Supplementary materials",
-    "text": "Supplementary materials\nThe article has one supplementary material, which is a word document with seven sections:\n\n“Development and validation of the symptom module\nDevelopment and validation of the primary care visits module\nDevelopment and validation of the diagnosis module\nDevelopment of the case module\nDevelopment and validation of the treatment module\nResults of the preferred case detection scenario\nResults of the sensivity analysis for discount rate”\n\nThis can likewise be viewed at https://doi.org/10.1007/s40258-020-00616-2."
-  },
-  {
-    "objectID": "logbook/posts/2024_07_31/index.html",
-    "href": "logbook/posts/2024_07_31/index.html",
-    "title": "Day 1",
-    "section": "",
-    "text": "Note\n\n\n\nSet-up repository. Total time used: 0h 32m (1.3%)"
-  },
-  {
-    "objectID": "logbook/posts/2024_07_31/index.html#set-up-repository",
-    "href": "logbook/posts/2024_07_31/index.html#set-up-repository",
-    "title": "Day 1",
-    "section": "15.46-16.06: Set-up repository",
-    "text": "15.46-16.06: Set-up repository\n\nCreate repository from template\nSet up environment\nModified template files:\n\nREADME.md\nquarto site index.qmd\nCITATION.cff\n_quarto.yml\n\nSet up site on GitHub pages (quarto publish gh-pages)"
-  },
-  {
-    "objectID": "logbook/posts/2024_07_31/index.html#upload-code",
-    "href": "logbook/posts/2024_07_31/index.html#upload-code",
-    "title": "Day 1",
-    "section": "16.34-16.46: Upload code",
-    "text": "16.34-16.46: Upload code\nThe article states that code is available at http://resp.core.ubc.ca/software/caseDetection. That website then states that the code and R markdown file are available at https://github.com/KateJohnson/epicR/tree/closed_cohort.\nNote: That is a link to a specific branch, closed_cohort. The repository is forked from epicR, and all code from the authors for this study is in that branch.\nThe last commit to that branch was 22nd February 2020. However, this is prior to publication. The article was:\n\nAccepted 30th September 2020\nPublished 2nd November 2020\nIn an issue in March 2020\n\nIn some of the commits, I can see that it does add beneficial information relating to the reproduction - e.g. commit 202ae95 in February 2020, which provides additional instructions in the README.\nMost of the commits are in February 2020. If I go to the commit prior to that, which was 17th November 2019, it is much less clear with no README instructions and the code for the study within the EpicR R/ directory.\nFeel I need to get a second opinion on what code to use for this study, due to the volume of commits, and the fact that they are prior to the issue date, but past the publication date."
-  },
-  {
-    "objectID": "logbook/posts/2024_07_31/index.html#timings",
-    "href": "logbook/posts/2024_07_31/index.html#timings",
-    "title": "Day 1",
+    "objectID": "logbook/posts/2024_08_14/index.html#timings",
+    "href": "logbook/posts/2024_08_14/index.html#timings",
+    "title": "Day 4",
     "section": "Timings",
-    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 0\n\n# Times from today\ntimes = [\n    ('15.46', '16.06'),\n    ('16.34', '16.46')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 32m, or 0h 32m\nTotal used to date: 32m, or 0h 32m\nTime remaining: 2368m, or 39h 28m\nUsed 1.3% of 40 hours max"
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 164\n\n# Times from today\ntimes = [\n    ('09.27', '09.52'),\n    ('10.20', '10.21'),\n    ('10.40', '10.43')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 29m, or 0h 29m\nTotal used to date: 193m, or 3h 13m\nTime remaining: 2207m, or 36h 47m\nUsed 8.0% of 40 hours max"
   },
   {
-    "objectID": "logbook/posts/2024_08_13/index.html",
-    "href": "logbook/posts/2024_08_13/index.html",
-    "title": "Day 3",
+    "objectID": "logbook/posts/2024_09_10/index.html",
+    "href": "logbook/posts/2024_09_10/index.html",
+    "title": "Day 9",
     "section": "",
-    "text": "Note\n\n\n\nSet up environment and import package. Total time used: 2h 44m (6.8%)"
+    "text": "Note\n\n\n\nCreating .Rmd for sensitivity analysis and run with 5e5. Wrote code for Figure 4 and Appendix 7. Total time used: 17h 15m (43.1%)"
   },
   {
-    "objectID": "logbook/posts/2024_08_13/index.html#browse-code-and-set-up-environment",
-    "href": "logbook/posts/2024_08_13/index.html#browse-code-and-set-up-environment",
-    "title": "Day 3",
-    "section": "15.33-15.53, 15.57-16.00: Browse code and set up environment",
-    "text": "15.33-15.53, 15.57-16.00: Browse code and set up environment\nThe study uses the EPIC model, with the repository forked from that package and then with code for this particular analysis using that model added - I think, all to casedetection/. I can see that casedetection/Case_Detection_Results.md has similar tables and figures to the scope (table 3, figure 3).\nThe README has an additional section titled Case Detection Analysis with instructions to perform the analysis. It suggests to install the branch as a package or to clone the repository, then copy the code from Case_Detection_results.Rmd and Case_Detection_Results_5yrs.Rmd, and knit it. It warns that the run time is about 16 hours for each script, and states that the analysis was conducted using R version 3.5.3.\nFollowing the procedure as I have done for previous R projects that I am reproducing, I will initially try to do so using the latest version of R and packages, and then attempt to backdate if there are issues.\nThere is a DESCRIPTION file with required packages for EPIC - since it uses that model, I’m assuming this to likewise be the basis for the environment for this reproduction. I created a DESCRIPTION file with the depends, packages and suggests from that, and used it to set-up renv, so:\n\nrenv::init(bare=TRUE)\nrenv::install() - but “Error: package ‘rredis’ is not available”\n\nOn CRAN page can see that the package was removed from CRAN and archived on 2022-03-21, but [can access archive] (https://cran.r-project.org/src/contrib/Archive/rredis/).\nInstalled remotes - renv::install(\"remotes\")\nUsed that to install the latest version of rredis in the CRAN archive - remotes::install_version(\"rredis\", \"1.7.0\")\nAdd the installation of that version via remotes to DESCRIPTION\nDeleted current renv (so I could test that DESCRIPTION was set up correct with remotes). So, renv::deactivate(), delete renv/, renv::init(bare=TRUE), renv::install()\n\nrenv::snapshot()"
+    "objectID": "logbook/posts/2024_09_10/index.html#creating-.rmd-for-sensitivity-analysis",
+    "href": "logbook/posts/2024_09_10/index.html#creating-.rmd-for-sensitivity-analysis",
+    "title": "Day 9",
+    "section": "09.32-09.50, 11.08-11.38, 11.46-11.57: Creating .Rmd for sensitivity analysis",
+    "text": "09.32-09.50, 11.08-11.38, 11.46-11.57: Creating .Rmd for sensitivity analysis\nNote: Also, during this time, discussed the study with Tom, who agreed that we should look to access the HPC, as we have been unable to reproduce on our machines, and that appears likely to be the solution. We have requested access, but it is currently down, so will not be able to resume this until mid-October.\nAs per yesterday’s notes, decided simplest solution (given I want to minimise rewriting/writing code where possible) was to write a script that generates the .Rmd files required for the sensitivity analysis from the existing .Rmd files."
   },
   {
-    "objectID": "logbook/posts/2024_08_13/index.html#import-epicr",
-    "href": "logbook/posts/2024_08_13/index.html#import-epicr",
-    "title": "Day 3",
-    "section": "16.01-16.41: Import epicR",
-    "text": "16.01-16.41: Import epicR\nInitially, I tried adding epicR to the environment, and then running the .Rmd file. To DESCRIPTION I tried:\n\nKateJohnson/epicR@closed_cohort\ngit::https://github.com/KateJohnson/epicR.git@closed_cohort\nurl::https://github.com/KateJohnson/epicR/archive/refs/heads/closed_cohort.zip\ngithub::KateJohnson/epicR@c239c55a700f9e97869c16d530080a354ec631568\ngithub::KateJohnson/epicR@c239c55a\ngithub::KateJohnson/epicR.git@closed_cohort\n\nHowever, these did not work. The final three found the package, but then had error code 22.\nI then just did manual installation following the instructions provided (remotes::install_github('KateJohnson/epicR', ref=\"closed_cohort\")), which had error message that dependency rredis is not available. Hence, it seems I’ll need to just use it as a local package anyway.\nTried to figure the simplest way to install the package, whilst having a simpler folder layout. Figured the simplest might be to use devtools::load_all() to load a local folder as a package. I add devtools to DESCRIPTION then re-ran renv::install() and renv::snapshot().\nI copied the package into a folder, but amended its DESCRIPTION file so that rredis is installed using remotes. In the .Rmd file, I then devtools::load_all(\"./epicR\"). However, this had an error:\nRWarning: ── Conflicts ───────────────────────────────────── epicR conflicts\n──\n✖ `Cget_agent_events` masks `epicR::Cget_agent_events()`.\n✖ `Cget_all_events` masks `epicR::Cget_all_events()`.\n✖ `Cget_all_events_matrix` masks `epicR::Cget_all_events_matrix()`.\n  … and more.\nℹ Did you accidentally source a file rather than using `load_all()`?\n  Run `rm(list = c(\"Cget_agent_events\", \"Cget_all_events\",\n  \"Cget_all_events_matrix\", \"Cget_event\", \"Cget_events_by_type\",\n  \"Cget_inputs\", \"Cget_n_events\", \"Cget_output\", \"Cget_output_ex\",\n  \"Cget_runtime_stats\", \"Cget_settings\", \"Cget_smith\",\n  \"Cset_input_var\", \"Cset_settings_var\", \"get_sample_output\",\n  \"mvrnormArma\"))` to remove the conflicts.\nDespite that though, it seemed to have worked.\nI then add some additional dependencies from the .Rmd to DESCRIPTION and to the renv."
+    "objectID": "logbook/posts/2024_09_10/index.html#checking-and-running-the-sensitivity-analysis-files",
+    "href": "logbook/posts/2024_09_10/index.html#checking-and-running-the-sensitivity-analysis-files",
+    "title": "Day 9",
+    "section": "13.09-13.20, 13.45-13.47, 14.45-14.49: Checking and running the sensitivity analysis files",
+    "text": "13.09-13.20, 13.45-13.47, 14.45-14.49: Checking and running the sensitivity analysis files\nI looked through each of the files to confirm they had been amended correctly, and couldn’t spot any issues\nI don’t anticipate to get similar results to the original on low numbers, but I am running anyway so I can start processing to make the charts. I ran each with 5e5 (500 thousand), and re-ran the two reference case analyses with these too (instead of 1 million), given that’s quicker, and I intend to run these on a HPC anyway."
   },
   {
-    "objectID": "logbook/posts/2024_08_13/index.html#timings",
-    "href": "logbook/posts/2024_08_13/index.html#timings",
-    "title": "Day 3",
+    "objectID": "logbook/posts/2024_09_10/index.html#writing-code-for-figure-4-and-appendix-7",
+    "href": "logbook/posts/2024_09_10/index.html#writing-code-for-figure-4-and-appendix-7",
+    "title": "Day 9",
+    "section": "15.16-16.40: Writing code for figure 4 and appendix 7",
+    "text": "15.16-16.40: Writing code for figure 4 and appendix 7\nWhilst the analyses continued to run with 5e5, I wrote code to produce the two figures."
+  },
+  {
+    "objectID": "logbook/posts/2024_09_10/index.html#timings",
+    "href": "logbook/posts/2024_09_10/index.html#timings",
+    "title": "Day 9",
     "section": "Timings",
-    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 101\n\n# Times from today\ntimes = [\n    ('15.33', '15.53'),\n    ('15.57', '16.00'),\n    ('16.01', '16.41')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 63m, or 1h 3m\nTotal used to date: 164m, or 2h 44m\nTime remaining: 2236m, or 37h 16m\nUsed 6.8% of 40 hours max"
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 875\n\n# Times from today\ntimes = [\n    ('09.32', '09.50'),\n    ('11.08', '11.38'),\n    ('11.46', '11.57'),\n    ('13.09', '13.20'),\n    ('13.45', '13.47'),\n    ('14.45', '14.49'),\n    ('15.16', '16.40')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 160m, or 2h 40m\nTotal used to date: 1035m, or 17h 15m\nTime remaining: 1365m, or 22h 45m\nUsed 43.1% of 40 hours max"
   },
   {
-    "objectID": "logbook/posts/2024_09_09/index.html",
-    "href": "logbook/posts/2024_09_09/index.html",
-    "title": "Day 8",
+    "objectID": "logbook/posts/2024_09_24/index.html",
+    "href": "logbook/posts/2024_09_24/index.html",
+    "title": "Day 11",
     "section": "",
-    "text": "Note\n\n\n\nA little bit of thinking around sensitivity analysis. Total time used: 14h 35m (36.5%)"
+    "text": "Note\n\n\n\nRetrospectively archived scope. Total time used: 17h 28m (43.7%)"
   },
   {
-    "objectID": "logbook/posts/2024_09_09/index.html#sensitivity-analysis",
-    "href": "logbook/posts/2024_09_09/index.html#sensitivity-analysis",
-    "title": "Day 8",
-    "section": "16.08-16.18, 16.23-16.40: Sensitivity analysis",
-    "text": "16.08-16.18, 16.23-16.40: Sensitivity analysis\nThe remaining items in the scope that I’ve not yet attempted - Figure 4 and appendix 7 - are both based on the results of the sensitivity analyses. I haven’t identified any code in the GitHub repository to run this analysis. As such, I am assuming that the provided scripts were directly modified to run each of these scenarios.\nThe contents of each figure as presented below, along with my identified snippets of code that we would likely need to alter for the scenario.\nFigure 4 has INMB from:\n\nReference case analysis\nNo smoking cessation (smoking_adherence=0.7) (input$values$smoking$smoking_cessation_adherence &lt;- smoking_adherence)\n50% medication adherence (medication_adherence=0.7)\n30% medication adherence (medication_adherence=0.7)\n0.01 treatment utility (medication_utility=0.0367)\n0 treatment utility (medication_utility=0.0367)\n\nWhilst appendix 7 has INMB from:\n\nReference case analysis\n0% discount rate (discount_rate=0.015)\n3% discount rate (discount_rate=0.015)\n\n\n\n\n\n\n\nReflection\n\n\n\nIt’s handy that I could fairly easily identify each of these variables in the script since the variable names aligned pretty well with the concepts.\n\n\nWhilst there is a global variables section at the top of the script, they then seem to be provided each time at the start of each scenario in Case_Detection_Results.Rmd - but I think this is just because each scenario changes something slightly in the inputs, so they repeat them all each time.\nI would prefer not to duplicate the .Rmd files 8 times, so I started a Sensitivity_Analysis.Rmd file. I what differed between all the scenarios (in reference case, time intervals, and in sensitivity analysis).\nOn reflection, I think the simplest solution to this, instead of trying to restructure all the models to run easily from one file, would be to write a script that duplicates the Rmd file but alters one part of it."
+    "objectID": "logbook/posts/2024_09_24/index.html#archive-scope",
+    "href": "logbook/posts/2024_09_24/index.html#archive-scope",
+    "title": "Day 11",
+    "section": "09.31-09.38: Archive scope",
+    "text": "09.31-09.38: Archive scope\nI realised that I had forgotten to archive the repository between deciding on consensus scope and proceeding with the reproduction. However, I was easily able to resolve this by setting the release up a prior commit, and listing the date of that commit.\nI created an annotated tag for that commit:\ngit tag v0.1.0 9146a68\ngit push origin v0.1.0\nI could then open that tag on GitHub and select “Create release from tag”."
   },
   {
-    "objectID": "logbook/posts/2024_09_09/index.html#timings",
-    "href": "logbook/posts/2024_09_09/index.html#timings",
-    "title": "Day 8",
+    "objectID": "logbook/posts/2024_09_24/index.html#timings",
+    "href": "logbook/posts/2024_09_24/index.html#timings",
+    "title": "Day 11",
     "section": "Timings",
-    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 848\n\n# Times from today\ntimes = [\n    ('16.08', '16.18'),\n    ('16.23', '16.40')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 27m, or 0h 27m\nTotal used to date: 875m, or 14h 35m\nTime remaining: 1525m, or 25h 25m\nUsed 36.5% of 40 hours max"
-  },
-  {
-    "objectID": "logbook/posts/2024_09_16/index.html",
-    "href": "logbook/posts/2024_09_16/index.html",
-    "title": "Day 10",
-    "section": "",
-    "text": "Note\n\n\n\nRan final scenario analyses with 5e5, but as expected, not a match. Total time used: 17h 21m (43.3%)"
-  },
-  {
-    "objectID": "logbook/posts/2024_09_16/index.html#running-remaining-scenarios-with-5e5",
-    "href": "logbook/posts/2024_09_16/index.html#running-remaining-scenarios-with-5e5",
-    "title": "Day 10",
-    "section": "09.23-09.25, 09.57: Running remaining scenarios with 5e5",
-    "text": "09.23-09.25, 09.57: Running remaining scenarios with 5e5\nRunning Scenarios 6 and 7 with 5e5 base agents. Then ran my prepared Process_Sensitivity_Analysis.Rmd. As expected, these look very different from original, so will have to wait and see if running with 1 million base agents on the HPC resolves this issue or not.\n\n\n\nFigure 4 Reproduction\n\n\n\n\n\nAppendix 7 Reproduction"
-  },
-  {
-    "objectID": "logbook/posts/2024_09_16/index.html#testing-seeds",
-    "href": "logbook/posts/2024_09_16/index.html#testing-seeds",
-    "title": "Day 10",
-    "section": "09.59-10.00: Testing seeds",
-    "text": "09.59-10.00: Testing seeds\nRan one of them for a second time, just to confirm I got the same results, and that the seed control is working as expected - and this was indeed the case, with no changes in the results observed.\nTry running one twice to check get same results each time"
-  },
-  {
-    "objectID": "logbook/posts/2024_09_16/index.html#timings",
-    "href": "logbook/posts/2024_09_16/index.html#timings",
-    "title": "Day 10",
-    "section": "Timings",
-    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 1035\n\n# Times from today\ntimes = [\n    ('09.23', '09.25'),\n    ('09.54', '09.57'),\n    ('09.59', '10.00')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 6m, or 0h 6m\nTotal used to date: 1041m, or 17h 21m\nTime remaining: 1359m, or 22h 39m\nUsed 43.4% of 40 hours max"
+    "text": "Timings\n\nimport sys\nsys.path.append('../')\nfrom timings import calculate_times\n\n# Minutes used prior to today\nused_to_date = 1041\n\n# Times from today\ntimes = [\n    ('09.31', '09.38')]\n\ncalculate_times(used_to_date, times)\n\nTime spent today: 7m, or 0h 7m\nTotal used to date: 1048m, or 17h 28m\nTime remaining: 1352m, or 22h 32m\nUsed 43.7% of 40 hours max"
   },
   {
     "objectID": "quarto_site/reproduction_readme.html",
