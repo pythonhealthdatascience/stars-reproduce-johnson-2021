@@ -1,0 +1,34 @@
+---
+title: "Day 12"
+author: "Amy Heather"
+date: "2024-10-11"
+categories: [reproduction]
+bibliography: ../../../quarto_site/references.bib
+---
+
+## 09.50-09.59: Attempting to run with 50 million agents for one entire `.Rmd` file
+
+Returning to this as long delays and minimal response in getting access to the HPC, and figured its worth seeing if we can manage to run this locally on our high-powered machine that I have used previously, over the weekend.
+
+Set up `Case_Detection_Results.Rmd` to run with 50 million agents (so from 5e5 to 50e6).
+
+```
+Rscript -e "rmarkdown::render('scripts/Case_Detection_Results.Rmd')"
+```
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 1048
+
+# Times from today
+times = [
+    ('09.50', '09.59')]
+
+calculate_times(used_to_date, times)
+```
