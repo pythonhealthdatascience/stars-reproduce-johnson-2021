@@ -412,7 +412,7 @@ op_ex &lt;- Cget_output_ex()</code></pre>
 <p>That’s repeated a total of 8 times, for the reference case and then for the scenario analyses (so, 26 days 8 hours).</p>
 <p>It appears we may therefore need to explore access to a HPC.</p>
 <p>The result was:</p>
-<div id="729aed01" class="cell" data-execution_count="1">
+<div id="ccecc4d0" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'s1NoCD_50mil.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -519,9 +519,27 @@ Reflection
 <h2 class="anchored" data-anchor-id="troubleshooting-appendix-6">15.10-15.40, 15.47-16.06: Troubleshooting appendix 6</h2>
 <p>Looking at <a href="https://github.com/KateJohnson/epicR/blob/239c55a700f9e97869c16d530080a354ec631568/casedetection/Case_Detection_Results.md">their results from 50 million</a>, they also have a low SABA</p>
 <p>Comparing to other SABA results (with LAMA for context):</p>
-<div class="line-block">Scenario | My SABA (LAMA) | Their 50 million SABA (LAMA) |<br>
-S1NoCDAvg | 0.019 (0.136) | 0.019 (0.135) |<br>
-S1a | 0.026 (0.159) | 0.026 (0.159) |</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th>My SABA (LAMA)</th>
+<th>Their 50 million SABA (LAMA)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S1NoCDAvg</td>
+<td>0.019 (0.136)</td>
+<td>0.019 (0.135)</td>
+</tr>
+<tr class="even">
+<td>S1a</td>
+<td>0.026 (0.159)</td>
+<td>0.026 (0.159)</td>
+</tr>
+</tbody>
+</table>
 <p>Given how similar these results are, I’m suspecting the issue might not be with the result, but with my transformation, as I just guessed at multiplying it all by 2000 to get similar-ish results for some bars. Looking at <code>Case_Detecetion_Results.Rmd</code>, <code>SABAAll</code> was created as follows:</p>
 <pre><code>ProppPatientYears = ifelse(Scenario=="S2a" | Scenario=="S2NoCD" | Scenario=="S3NoCD" | Scenario=="S3a" | Scenario=="S3b" |
                                        Scenario=="S3c" | Scenario=="S3d", PatientYears/sall[sall$Scenario=="S1NoCDAvg","PatientYears"], 1),
@@ -561,7 +579,7 @@ diag_investigate &lt;- merge(clin_diag, s1_diag) %&gt;%
   mutate(AdjDivideByPYAll = AdjDiagnosedPYs / DiagnosedpPYAll)
 
 write.csv(diag_investigate, "../../logbook/posts/2024_09_06/diag_investigate.csv")</code></pre>
-<div id="5019f781" class="cell" data-execution_count="2">
+<div id="c58b3f79" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'diag_investigate.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -613,7 +631,7 @@ write.csv(diag_investigate, "../../logbook/posts/2024_09_06/diag_investigate.csv
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="7e0fd768" class="cell" data-execution_count="3">
+<div id="438b54e9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>

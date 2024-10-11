@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Amy Heather">
-<meta name="dcterms.date" content="2024-08-13">
+<meta name="dcterms.date" content="2024-10-11">
 
-<title>Day 3 – Reproducing Johnson et al.&nbsp;2021</title>
+<title>Day 12 – Reproducing Johnson et al.&nbsp;2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -203,9 +203,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Day 3</h1>
+      <h1 class="title">Day 12</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">reproduce</div>
+                <div class="quarto-category">reproduction</div>
               </div>
                   </div>
   </div>
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 13, 2024</p>
+        <p class="date">October 11, 2024</p>
       </div>
     </div>
     
@@ -239,11 +239,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#browse-code-and-set-up-environment" id="toc-browse-code-and-set-up-environment" class="nav-link active" data-scroll-target="#browse-code-and-set-up-environment">15.33-15.53, 15.57-16.00: Browse code and set up environment</a></li>
-  <li><a href="#import-epicr" id="toc-import-epicr" class="nav-link" data-scroll-target="#import-epicr">16.01-16.41: Import epicR</a></li>
+  <li><a href="#attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file" id="toc-attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file" class="nav-link active" data-scroll-target="#attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file">09.50-09.59: Attempting to run with 50 million agents for one entire <code>.Rmd</code> file</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_13/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_11/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -252,91 +251,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Set up environment and import package. Total time used: 2h 44m (6.8%)</p>
-</div>
-</div>
-<section id="browse-code-and-set-up-environment" class="level2">
-<h2 class="anchored" data-anchor-id="browse-code-and-set-up-environment">15.33-15.53, 15.57-16.00: Browse code and set up environment</h2>
-<p>The study uses the <code>EPIC</code> model, with the repository forked from that package and then with code for this particular analysis using that model added - I think, all to <code>casedetection/</code>. I can see that <code>casedetection/Case_Detection_Results.md</code> has similar tables and figures to the scope (table 3, figure 3).</p>
-<p>The README has an additional section titled <strong>Case Detection Analysis</strong> with instructions to perform the analysis. It suggests to install the branch as a package or to clone the repository, then copy the code from <code>Case_Detection_results.Rmd</code> and <code>Case_Detection_Results_5yrs.Rmd</code>, and knit it. It warns that the run time is about 16 hours for each script, and states that the analysis was conducted using <strong>R version 3.5.3</strong>.</p>
-<p>Following the procedure as I have done for previous R projects that I am reproducing, I will initially try to do so using the latest version of R and packages, and then attempt to backdate if there are issues.</p>
-<p>There is a <code>DESCRIPTION</code> file with required packages for EPIC - since it uses that model, I’m assuming this to likewise be the basis for the environment for this reproduction. I created a <code>DESCRIPTION</code> file with the <code>depends</code>, <code>packages</code> and <code>suggests</code> from that, and used it to set-up renv, so:</p>
-<ul>
-<li><code>renv::init(bare=TRUE)</code></li>
-<li><code>renv::install()</code> - but “Error: package ‘rredis’ is not available”
-<ul>
-<li>On <a href="https://cran.r-project.org/web/packages/rredis/index.html">CRAN page</a> can see that the package was removed from CRAN and archived on 2022-03-21, but [can access archive] (https://cran.r-project.org/src/contrib/Archive/rredis/).</li>
-<li>Installed remotes - <code>renv::install("remotes")</code></li>
-<li>Used that to install the latest version of rredis in the CRAN archive - <code>remotes::install_version("rredis", "1.7.0")</code></li>
-<li>Add the installation of that version via remotes to DESCRIPTION</li>
-<li>Deleted current renv (so I could test that DESCRIPTION was set up correct with remotes). So, <code>renv::deactivate()</code>, delete <code>renv/</code>, <code>renv::init(bare=TRUE)</code>, <code>renv::install()</code></li>
-</ul></li>
-<li><code>renv::snapshot()</code></li>
-</ul>
-</section>
-<section id="import-epicr" class="level2">
-<h2 class="anchored" data-anchor-id="import-epicr">16.01-16.41: Import epicR</h2>
-<p>Initially, I tried adding epicR to the environment, and then running the .Rmd file. To DESCRIPTION I tried:</p>
-<ul>
-<li><code>KateJohnson/epicR@closed_cohort</code></li>
-<li><code>git::https://github.com/KateJohnson/epicR.git@closed_cohort</code></li>
-<li><code>url::https://github.com/KateJohnson/epicR/archive/refs/heads/closed_cohort.zip</code></li>
-<li><code>github::KateJohnson/epicR@c239c55a700f9e97869c16d530080a354ec631568</code></li>
-<li><code>github::KateJohnson/epicR@c239c55a</code></li>
-<li><code>github::KateJohnson/epicR.git@closed_cohort</code></li>
-</ul>
-<p>However, these did not work. The final three found the package, but then had error code 22.</p>
-<p>I then just did manual installation following the instructions provided (<code>remotes::install_github('KateJohnson/epicR', ref="closed_cohort")</code>), which had error message that dependency rredis is not available. Hence, it seems I’ll need to just use it as a local package anyway.</p>
-<p>Tried to figure the simplest way to install the package, whilst having a simpler folder layout. Figured the simplest might be to use <code>devtools::load_all()</code> to load a local folder as a package. I add <code>devtools</code> to <code>DESCRIPTION</code> then re-ran <code>renv::install()</code> and <code>renv::snapshot()</code>.</p>
-<p>I copied the package into a folder, but amended its DESCRIPTION file so that rredis is installed using remotes. In the <code>.Rmd</code> file, I then <code>devtools::load_all("./epicR")</code>. However, this had an error:</p>
-<pre><code>RWarning: ── Conflicts ───────────────────────────────────── epicR conflicts
-──
-✖ `Cget_agent_events` masks `epicR::Cget_agent_events()`.
-✖ `Cget_all_events` masks `epicR::Cget_all_events()`.
-✖ `Cget_all_events_matrix` masks `epicR::Cget_all_events_matrix()`.
-  … and more.
-ℹ Did you accidentally source a file rather than using `load_all()`?
-  Run `rm(list = c("Cget_agent_events", "Cget_all_events",
-  "Cget_all_events_matrix", "Cget_event", "Cget_events_by_type",
-  "Cget_inputs", "Cget_n_events", "Cget_output", "Cget_output_ex",
-  "Cget_runtime_stats", "Cget_settings", "Cget_smith",
-  "Cset_input_var", "Cset_settings_var", "get_sample_output",
-  "mvrnormArma"))` to remove the conflicts.</code></pre>
-<p>Despite that though, it seemed to have worked.</p>
-<p>I then add some additional dependencies from the <code>.Rmd</code> to DESCRIPTION and to the renv.</p>
+<section id="attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file" class="level2">
+<h2 class="anchored" data-anchor-id="attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file">09.50-09.59: Attempting to run with 50 million agents for one entire <code>.Rmd</code> file</h2>
+<p>Returning to this as long delays and minimal response in getting access to the HPC, and figured its worth seeing if we can manage to run this locally on our high-powered machine that I have used previously, over the weekend.</p>
+<p>Set up <code>Case_Detection_Results.Rmd</code> to run with 50 million agents (so from 5e5 to 50e6).</p>
+<pre><code>Rscript -e "rmarkdown::render('scripts/Case_Detection_Results.Rmd')"</code></pre>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="42f49417" class="cell" data-execution_count="1">
+<div id="cd56c9ab" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">101</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">1048</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.33'</span>, <span class="st">'15.53'</span>),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.57'</span>, <span class="st">'16.00'</span>),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'16.01'</span>, <span class="st">'16.41'</span>)]</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.50'</span>, <span class="st">'09.59'</span>)]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 63m, or 1h 3m
-Total used to date: 164m, or 2h 44m
-Time remaining: 2236m, or 37h 16m
-Used 6.8% of 40 hours max</code></pre>
+<pre><code>Time spent today: 9m, or 0h 9m
+Total used to date: 1057m, or 17h 37m
+Time remaining: 1343m, or 22h 23m
+Used 44.0% of 40 hours max</code></pre>
 </div>
 </div>
 
@@ -788,7 +728,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_13/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_11/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
