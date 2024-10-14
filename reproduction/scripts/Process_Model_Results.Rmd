@@ -42,10 +42,10 @@ paths <- list(
   original_ceplane = "../../original_study/ceplane.csv",
 
   # Outputs from this .Rmd file
+  tab3 = "../outputs/tab3.csv",
   tab3_compare = "../outputs/tab3_compare_to_original.csv",
   fig3 = "../outputs/fig3-1.png",
-  apx6v1 = "../outputs/appendix6v1-1.png",
-  apx6v2 = "../outputs/appendix6v2-1.png"
+  apx6 = "../outputs/appendix6-1.png"
 )
 ```
 
@@ -121,8 +121,114 @@ ceplane_pretty <- ceplane %>%
          "ICER" = ICERAdj,
          "INMB (ranking)" = INMBRank)
 
-# Preview dataframe
+# Save to csv
+write.csv(ceplane_pretty, paths$tab3, row.names=FALSE)
+
+# View dataframe
 ceplane_pretty
+```
+
+### Compare between our results, the paper, and their repository
+
+Prepare our model results...
+
+```{r}
+# Prepare sall model results to combine with original table
+ceplane_prep <- ceplane %>%
+  # Replace S1NoCDAvg with S0
+  mutate(Scenario = replace(Scenario, Scenario == "S1NoCDAvg", "S0")) %>%
+  # Round columns
+  mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
+  mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
+  mutate(ICERAdj = round(ICERAdj, 0)) %>%
+  mutate(INMB = round(INMB, 0)) %>%
+  # Select relevant columns
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMB, Ranking)
+ceplane_prep
+```
+
+Prepare results from the paper...
+
+```{r}
+# Convert costs to numeric
+paper_tab3_prep <- paper_tab3 %>%
+  mutate(CostpAgent = readr::parse_number(CostpAgent))
+# Append "_paper" to columns (except Scenario and Interval)
+icol <- which(names(paper_tab3_prep) %in% c("Scenario", "Interval"))
+colnames(paper_tab3_prep)[-icol] <- paste(colnames(paper_tab3_prep)[-icol], "paper", sep = "_")
+# Preview dataframe
+paper_tab3_prep
+```
+```{r}
+original_ceplane_prep <- original_ceplane %>%
+  # Replace "NA" string with actual NaN for the interval
+  mutate(Interval = replace(Interval, Interval == "NA", NA_character_)) %>%
+  # Remove scenarios 2 and 3 with no case detection, and scenario 2b
+  filter(!(Scenario %in% c("S2NoCD", "S3NoCD", "S2b"))) %>%
+  # Replace S1NoCDAvg with S0
+  mutate(Scenario = replace(Scenario, Scenario == "S1NoCDAvg", "S0")) %>%
+  # Round columns
+  mutate(CostpAgentAll = round(CostpAgentAll, 0)) %>%
+  mutate(QALYpAgentAll = round(QALYpAgentAll, 3)) %>%
+  mutate(ICERAdj = round(ICERAdj, 0)) %>%
+  mutate(INMB = round(INMB, 0)) %>%
+  # Select relevant columns
+  select(Scenario, Interval, CostpAgentAll, QALYpAgentAll, ICERAdj, INMB)
+# Append "_repo" to columns (except Scenario and Interval)
+icol <- which(names(original_ceplane_prep) %in% c("Scenario", "Interval"))
+colnames(original_ceplane_prep)[-icol] <- paste(
+  colnames(original_ceplane_prep)[-icol], "repo", sep = "_")
+original_ceplane_prep
+```
+```{r}
+calc_diff_perc <- function(df, our_res, paper_res, repo_res, prefix) {
+  #' Calculate the difference and percentage difference between two columns
+  #' 
+  #' @param df Dataframe containing columns
+  #' @param our_res Column with results from our run of the model
+  #' @param paper_res Column with results from the paper table 3
+  #' @param repo_res Column with results from the .md files in their repository
+  #' @param prefix String to prefix start of the result columns
+  #' 
+  #' @return Dataframe with the column pair, results, scenario and interval
+  # Create column names for differences
+  mydiff <- paste0(prefix, "MyDiff")
+  myperc <- paste0(prefix, "MyPerc")
+  repodiff <- paste0(prefix, "RepoDiff")
+  repoperc <- paste0(prefix, "RepoPerc")
+  # Calculate the difference and percentage difference between col1 and col2
+  df %>%
+    mutate(
+      !!sym(mydiff) := !!sym(paper_res) - !!sym(our_res),
+      !!sym(myperc) := scales::percent(round(!!sym(mydiff) / !!sym(our_res), 3)),
+      !!sym(repodiff) := !!sym(paper_res) - !!sym(repo_res),
+      !!sym(repoperc) := scales::percent(round(!!sym(repodiff) / !!sym(repo_res), 3))
+    ) %>%
+    # Select only those columns, as well as Scenario and Interval
+    select(Scenario, Interval,
+           !!sym(paper_res), !!sym(our_res), !!sym(repo_res),
+           !!sym(mydiff), !!sym(myperc),
+           !!sym(repodiff), !!sym(repoperc))
+}
+# Combine the model and paper results
+ceplane_combine <- merge(ceplane_prep, paper_tab3_prep, by=c("Scenario", "Interval")) %>%
+  merge(original_ceplane_prep, by=c("Scenario", "Interval"))
+# Define the pairs of columns to compare and the prefix to use for their comparison
+column_pairs <- list(
+  c("CostpAgentAll", "CostpAgent_paper", "CostpAgentAll_repo", "Cost"),
+  c("QALYpAgentAll", "QALYpAgent_paper", "QALYpAgentAll_repo", "QALY"),
+  c("ICERAdj", "ICER_paper", "ICERAdj_repo", "ICER"),
+  c("INMB", "IncrementalNMB_paper", "INMB_repo", "INMB")
+)
+# Combine model and paper results and apply the function for each pair of columns
+ceplane_compare <- column_pairs %>%
+  purrr::map(~ calc_diff_perc(ceplane_combine, .x[1], .x[2], .x[3], .x[4])) %>%
+  purrr::reduce(left_join, by = c("Scenario", "Interval"))
+# Remove duplicates
+ceplane_compare <- ceplane_compare[!duplicated(ceplane_compare), ]
+# Save to csv and view
+write.csv(ceplane_compare, paths$tab3_compare, row.names=FALSE)
+ceplane_compare
 ```
 
 ## Figure 3
@@ -197,83 +303,7 @@ ggsave(paths$fig3)
 
 ## Appendix 6
 
-Using clinical...
-
-```{r appendix6v1}
-# Create version of S1 but with scenarios renamed
-s1_scen <- clinical %>%
-  mutate(Scenario = recode(Scenario,
-                           "S1a" = "Case Detection",
-                           "S1NoCDAvg" = "No Case Detection"))
-
-# Define function for creating the plots
-plot_apx6 <- function(cols, suffix, ylab, multiply, factor=FALSE, ylim=FALSE) {
-  #' Create appendix 6 subplots
-  #' 
-  #' @param cols list of columns which will be plot on x axis
-  #' @param suffix string to be removed from column names
-  #' @param ylab label for y axis
-  #' @param multiply amount to multiply column values by
-  #' @param factor whether to make the group col as factor using cols list
-  #' @param ylim FALSE to use default, provide limits if want to adjust
-  #' 
-  #' @returns p ggplot object
-  # Create dataframe for plotting
-  ap6_df <- s1_scen %>%
-    # Get the relevant scenarios
-    filter(Scenario %in% c("No Case Detection", "Case Detection")) %>%
-    # Adjust results so they reflect population of 1000
-    mutate(across((cols), ~ . * multiply)) %>%
-    # Select relevant columns and switch to long format
-    select(Scenario, all_of(cols)) %>%
-    tidyr::pivot_longer(cols=-Scenario, names_to="Group", values_to="Value") %>%
-    # Remove suffix from group names
-    mutate(Group = gsub(suffix, "", Group))
-
-  # Add factor grouping if selected
-  if (isTRUE(factor)) {
-    ap6_df <- ap6_df %>%
-      mutate(Group = factor(Group, levels = gsub(suffix, "", cols)))
-  }
-
-  # Create plot
-  p <- ggplot(ap6_df, aes(x=Group, y=Value, fill=Scenario)) +
-    geom_bar(stat="identity", position="dodge") +
-    labs(x="", y=ylab, fill="") +
-    theme_bw()
-
-  # Adjust y axis limits if required
-  if (!isFALSE(ylim)) {
-    p <- p + ylim(ylim)
-  }
-
-  return(p)
-}
-
-cols <- c("MildpAgentAll", "ModeratepAgentAll", "SeverepAgentAll", "VerySeverepAgentAll")
-p1 <- plot_apx6(cols, "pAgentAll", "Number of exacerbations", multiply=1000, factor=FALSE, ylim=FALSE)
-
-cols <- c("NoCOPDpPYAll", "GOLD1pPYAll", "GOLD2pPYAll", "GOLD3pPYAll", "GOLD4pPYAll")
-p2 <- plot_apx6(cols, "pPYAll", "Patients years", multiply=17000, factor=TRUE, ylim=c(0, 15000))
-
-p3 <- s1_scen %>%
-    filter(Scenario %in% c("No Case Detection", "Case Detection")) %>%
-    # Adjust results so they reflect population of 1000
-    mutate(DiagnosedpPYAll = DiagnosedpPYAll * 2000) %>%
-    ggplot(aes(x=Scenario, y=DiagnosedpPYAll, fill=Scenario)) +
-    geom_bar(stat="identity", position="dodge") +
-    labs(x="", y="COPD patient years diagnosed", fill="") +
-    theme_bw()
-
-cols <- c("SABAAll", "LAMAAll", "LAMALABAAll", "ICSLAMALABAAll")
-p4 <- plot_apx6(cols, "All", "Patients years on treatment", multiply=2000, factor=FALSE, ylim=FALSE)
-
-ggarrange(p1, p2, p3, p4, ncol=2, nrow=2, common.legend = TRUE, legend="bottom")
-
-ggsave(paths$apx6v1, width = 12, height = 10)
-```
-
-```{r appendix6v2}
+```{r appendix6}
 # Create version of S1 with scenarios renamed
 s1_scen <- s1 %>%
   mutate(Scenario = recode(Scenario,
@@ -340,5 +370,5 @@ p4 <- ggplot(ap6_df, aes(x=Group, y=Years, fill=Scenario)) +
 
 ggarrange(p1, p2, p3, p4, ncol=2, nrow=2, common.legend = TRUE, legend="bottom")
 
-ggsave(paths$apx6v2, width = 12, height = 10)
+ggsave(paths$apx6, width = 12, height = 10)
 ```
