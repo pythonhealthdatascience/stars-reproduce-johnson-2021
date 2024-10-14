@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file" id="toc-attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file" class="nav-link active" data-scroll-target="#attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file">09.50-09.59: Attempting to run with 50 million agents for one entire <code>.Rmd</code> file</a></li>
+  <li><a href="#attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file" id="toc-attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file" class="nav-link active" data-scroll-target="#attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file">09.50-09.59, 13.15-13.20: Attempting to run with 50 million agents for one entire <code>.Rmd</code> file</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_11/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -251,15 +251,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ran two scripts on remote machine with 50 million agents. Total time used: 17h 42m (44.2%)</p>
+</div>
+</div>
 <section id="attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file" class="level2">
-<h2 class="anchored" data-anchor-id="attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file">09.50-09.59: Attempting to run with 50 million agents for one entire <code>.Rmd</code> file</h2>
+<h2 class="anchored" data-anchor-id="attempting-to-run-with-50-million-agents-for-one-entire-.rmd-file">09.50-09.59, 13.15-13.20: Attempting to run with 50 million agents for one entire <code>.Rmd</code> file</h2>
 <p>Returning to this as long delays and minimal response in getting access to the HPC, and figured its worth seeing if we can manage to run this locally on our high-powered machine that I have used previously, over the weekend.</p>
-<p>Set up <code>Case_Detection_Results.Rmd</code> to run with 50 million agents (so from 5e5 to 50e6).</p>
+<p>Set up <code>Case_Detection_Results.Rmd</code> (3 yrs and 5yrs) to run with 50 million agents (so from 5e5 to 50e6).</p>
 <pre><code>Rscript -e "rmarkdown::render('scripts/Case_Detection_Results.Rmd')"</code></pre>
+<p>This used apx 4400 memory (so still lots spare). Adding another in parallel bumped it up to over 5000, but at that point, the machine got a bit noisy.</p>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="a2cefcbe" class="cell" data-execution_count="1">
+<div id="0a4184fb" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -269,14 +283,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.50'</span>, <span class="st">'09.59'</span>)]</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.50'</span>, <span class="st">'09.59'</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'13.15'</span>, <span class="st">'13.20'</span>)]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 9m, or 0h 9m
-Total used to date: 1057m, or 17h 37m
-Time remaining: 1343m, or 22h 23m
-Used 44.0% of 40 hours max</code></pre>
+<pre><code>Time spent today: 14m, or 0h 14m
+Total used to date: 1062m, or 17h 42m
+Time remaining: 1338m, or 22h 18m
+Used 44.2% of 40 hours max</code></pre>
 </div>
 </div>
 

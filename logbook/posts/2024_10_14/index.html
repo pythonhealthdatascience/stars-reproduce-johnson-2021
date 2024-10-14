@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Amy Heather">
-<meta name="dcterms.date" content="2024-08-13">
+<meta name="dcterms.date" content="2024-10-14">
 
-<title>Day 3 – Reproducing Johnson et al.&nbsp;2021</title>
+<title>Day 13 – Reproducing Johnson et al.&nbsp;2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,7 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,6 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -203,9 +206,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Day 3</h1>
+      <h1 class="title">Day 13</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">reproduce</div>
+                <div class="quarto-category">reproduction</div>
               </div>
                   </div>
   </div>
@@ -223,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 13, 2024</p>
+        <p class="date">October 14, 2024</p>
       </div>
     </div>
     
@@ -239,11 +242,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#browse-code-and-set-up-environment" id="toc-browse-code-and-set-up-environment" class="nav-link active" data-scroll-target="#browse-code-and-set-up-environment">15.33-15.53, 15.57-16.00: Browse code and set up environment</a></li>
-  <li><a href="#import-epicr" id="toc-import-epicr" class="nav-link" data-scroll-target="#import-epicr">16.01-16.41: Import epicR</a></li>
+  <li><a href="#x-review-results-from-50-million-agents" id="toc-x-review-results-from-50-million-agents" class="nav-link active" data-scroll-target="#x-review-results-from-50-million-agents">09.16-09.19, 09.36-X: Review results from 50 million agents</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_13/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_14/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -262,81 +264,848 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Set up environment and import package. Total time used: 2h 44m (6.8%)</p>
+<p>X. Total time used: Xh Xm (X%)</p>
 </div>
 </div>
-<section id="browse-code-and-set-up-environment" class="level2">
-<h2 class="anchored" data-anchor-id="browse-code-and-set-up-environment">15.33-15.53, 15.57-16.00: Browse code and set up environment</h2>
-<p>The study uses the <code>EPIC</code> model, with the repository forked from that package and then with code for this particular analysis using that model added - I think, all to <code>casedetection/</code>. I can see that <code>casedetection/Case_Detection_Results.md</code> has similar tables and figures to the scope (table 3, figure 3).</p>
-<p>The README has an additional section titled <strong>Case Detection Analysis</strong> with instructions to perform the analysis. It suggests to install the branch as a package or to clone the repository, then copy the code from <code>Case_Detection_results.Rmd</code> and <code>Case_Detection_Results_5yrs.Rmd</code>, and knit it. It warns that the run time is about 16 hours for each script, and states that the analysis was conducted using <strong>R version 3.5.3</strong>.</p>
-<p>Following the procedure as I have done for previous R projects that I am reproducing, I will initially try to do so using the latest version of R and packages, and then attempt to backdate if there are issues.</p>
-<p>There is a <code>DESCRIPTION</code> file with required packages for EPIC - since it uses that model, I’m assuming this to likewise be the basis for the environment for this reproduction. I created a <code>DESCRIPTION</code> file with the <code>depends</code>, <code>packages</code> and <code>suggests</code> from that, and used it to set-up renv, so:</p>
+<section id="x-review-results-from-50-million-agents" class="level2">
+<h2 class="anchored" data-anchor-id="x-review-results-from-50-million-agents">09.16-09.19, 09.36-X: Review results from 50 million agents</h2>
+<p>I looked over them, comparing them to the article.</p>
+<p>I had to remind myself of what appendix 6 v1 vs v2 were, recalling that I’d remained uncertain on whether the implementation of this figure was correct. Version 2 was the “more correct”, so I removed version 1. What had remained uncertain for version 2 was how to adjust the results. I had multiplied by 2000, and found that resulted in all bars matching except SABA, and this still remained the case.</p>
+<p>For table 3, I add back in the code for comparing against the original.</p>
+<p>The results from 50 million are closer to the original.</p>
+<p><strong>Run times:</strong></p>
 <ul>
-<li><code>renv::init(bare=TRUE)</code></li>
-<li><code>renv::install()</code> - but “Error: package ‘rredis’ is not available”
-<ul>
-<li>On <a href="https://cran.r-project.org/web/packages/rredis/index.html">CRAN page</a> can see that the package was removed from CRAN and archived on 2022-03-21, but [can access archive] (https://cran.r-project.org/src/contrib/Archive/rredis/).</li>
-<li>Installed remotes - <code>renv::install("remotes")</code></li>
-<li>Used that to install the latest version of rredis in the CRAN archive - <code>remotes::install_version("rredis", "1.7.0")</code></li>
-<li>Add the installation of that version via remotes to DESCRIPTION</li>
-<li>Deleted current renv (so I could test that DESCRIPTION was set up correct with remotes). So, <code>renv::deactivate()</code>, delete <code>renv/</code>, <code>renv::init(bare=TRUE)</code>, <code>renv::install()</code></li>
-</ul></li>
-<li><code>renv::snapshot()</code></li>
+<li><code>Case_Detection_Results.md</code> - 14.13 hours - 14 hours 8 minutes</li>
+<li><code>Case_Detection_Results_5yrs.md</code> - 15.38 hours - 15 hours 23 minutes</li>
 </ul>
-</section>
-<section id="import-epicr" class="level2">
-<h2 class="anchored" data-anchor-id="import-epicr">16.01-16.41: Import epicR</h2>
-<p>Initially, I tried adding epicR to the environment, and then running the .Rmd file. To DESCRIPTION I tried:</p>
+<p><strong>Table 3:</strong></p>
+<div id="7ae0e9f5" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="va">None</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'50m_tab3.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Scenario</th>
+<th data-quarto-table-cell-role="th">Testing interval</th>
+<th data-quarto-table-cell-role="th">Costs per patient</th>
+<th data-quarto-table-cell-role="th">QALYs per patient</th>
+<th data-quarto-table-cell-role="th">ICER</th>
+<th data-quarto-table-cell-role="th">INMB (ranking)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>S0: No case detection</td>
+<td>NaN</td>
+<td>$2149</td>
+<td>12.545</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>(S1a) CDQ ≥ 17 points</td>
+<td>3 years</td>
+<td>$2440</td>
+<td>12.562</td>
+<td>17669.0</td>
+<td>533(1)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>(S1a) CDQ ≥ 17 points</td>
+<td>5 years</td>
+<td>$2355</td>
+<td>12.556</td>
+<td>19073.0</td>
+<td>335(2)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>(S1b) Screening spirometry</td>
+<td>3 years</td>
+<td>$2362</td>
+<td>12.553</td>
+<td>26497.0</td>
+<td>189(5)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>(S1b) Screening spirometry</td>
+<td>5 years</td>
+<td>$2298</td>
+<td>12.552</td>
+<td>22920.0</td>
+<td>177(8)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>(S1c) CDQ + screening spirometry</td>
+<td>3 years</td>
+<td>$2387</td>
+<td>12.550</td>
+<td>46445.0</td>
+<td>18(16)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>(S1c) CDQ + screening spirometry</td>
+<td>5 years</td>
+<td>$2314</td>
+<td>12.551</td>
+<td>27818.0</td>
+<td>132(9)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>(S2a) Screening spirometry</td>
+<td>3 years</td>
+<td>$2286</td>
+<td>12.553</td>
+<td>18082.0</td>
+<td>242(4)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>(S2a) Screening spirometry</td>
+<td>5 years</td>
+<td>$2241</td>
+<td>12.549</td>
+<td>27650.0</td>
+<td>74(11)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>(S3a) CDQ ≥ 19.5 points</td>
+<td>3 years</td>
+<td>$2234</td>
+<td>12.548</td>
+<td>28714.0</td>
+<td>63(14)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>(S3a) CDQ ≥ 19.5 points</td>
+<td>5 years</td>
+<td>$2203</td>
+<td>12.548</td>
+<td>22107.0</td>
+<td>68(12)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>(S3b) CDQ ≥ 16.5 points</td>
+<td>3 years</td>
+<td>$2289</td>
+<td>12.552</td>
+<td>21354.0</td>
+<td>188(6)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>(S3b) CDQ ≥ 16.5 points</td>
+<td>5 years</td>
+<td>$2245</td>
+<td>12.552</td>
+<td>13503.0</td>
+<td>260(3)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>(S3c) Screening spirometry</td>
+<td>3 years</td>
+<td>$2253</td>
+<td>12.549</td>
+<td>28161.0</td>
+<td>81(10)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>(S3c) Screening spirometry</td>
+<td>5 years</td>
+<td>$2220</td>
+<td>12.550</td>
+<td>14224.0</td>
+<td>178(7)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>(S3d) CDQ + screening spirometry</td>
+<td>3 years</td>
+<td>$2262</td>
+<td>12.549</td>
+<td>33377.0</td>
+<td>56(15)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>(S3d) CDQ + screening spirometry</td>
+<td>5 years</td>
+<td>$2223</td>
+<td>12.548</td>
+<td>26612.0</td>
+<td>65(13)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="92d20a2b" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'50m_tab3_compare_to_original.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Scenario</th>
+<th data-quarto-table-cell-role="th">Interval</th>
+<th data-quarto-table-cell-role="th">CostpAgent_paper</th>
+<th data-quarto-table-cell-role="th">CostpAgentAll</th>
+<th data-quarto-table-cell-role="th">CostpAgentAll_repo</th>
+<th data-quarto-table-cell-role="th">CostMyDiff</th>
+<th data-quarto-table-cell-role="th">CostMyPerc</th>
+<th data-quarto-table-cell-role="th">CostRepoDiff</th>
+<th data-quarto-table-cell-role="th">CostRepoPerc</th>
+<th data-quarto-table-cell-role="th">QALYpAgent_paper</th>
+<th data-quarto-table-cell-role="th">QALYpAgentAll</th>
+<th data-quarto-table-cell-role="th">QALYpAgentAll_repo</th>
+<th data-quarto-table-cell-role="th">QALYMyDiff</th>
+<th data-quarto-table-cell-role="th">QALYMyPerc</th>
+<th data-quarto-table-cell-role="th">QALYRepoDiff</th>
+<th data-quarto-table-cell-role="th">QALYRepoPerc</th>
+<th data-quarto-table-cell-role="th">ICER_paper</th>
+<th data-quarto-table-cell-role="th">ICERAdj</th>
+<th data-quarto-table-cell-role="th">ICERAdj_repo</th>
+<th data-quarto-table-cell-role="th">ICERMyDiff</th>
+<th data-quarto-table-cell-role="th">ICERMyPerc</th>
+<th data-quarto-table-cell-role="th">ICERRepoDiff</th>
+<th data-quarto-table-cell-role="th">ICERRepoPerc</th>
+<th data-quarto-table-cell-role="th">IncrementalNMB_paper</th>
+<th data-quarto-table-cell-role="th">INMB</th>
+<th data-quarto-table-cell-role="th">INMB_repo</th>
+<th data-quarto-table-cell-role="th">INMBMyDiff</th>
+<th data-quarto-table-cell-role="th">INMBMyPerc</th>
+<th data-quarto-table-cell-role="th">INMBRepoDiff</th>
+<th data-quarto-table-cell-role="th">INMBRepoPerc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>S0</td>
+<td>NaN</td>
+<td>2151</td>
+<td>2149</td>
+<td>2151</td>
+<td>2</td>
+<td>0.1%</td>
+<td>0</td>
+<td>0.0%</td>
+<td>12.546</td>
+<td>12.545</td>
+<td>12.545</td>
+<td>0.001</td>
+<td>0%</td>
+<td>0.001</td>
+<td>0%</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>S1a</td>
+<td>3 years</td>
+<td>2438</td>
+<td>2440</td>
+<td>2439</td>
+<td>-2</td>
+<td>-0.1%</td>
+<td>-1</td>
+<td>0.0%</td>
+<td>12.560</td>
+<td>12.562</td>
+<td>12.560</td>
+<td>-0.002</td>
+<td>0%</td>
+<td>0.000</td>
+<td>0%</td>
+<td>19632.0</td>
+<td>17669.0</td>
+<td>19665.0</td>
+<td>1963.0</td>
+<td>11.1%</td>
+<td>-33.0</td>
+<td>-0.2%</td>
+<td>444.0</td>
+<td>533.0</td>
+<td>446</td>
+<td>-89.0</td>
+<td>-16.7%</td>
+<td>-2.0</td>
+<td>-0.40%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>S1a</td>
+<td>5 years</td>
+<td>2356</td>
+<td>2355</td>
+<td>2355</td>
+<td>1</td>
+<td>0.0%</td>
+<td>1</td>
+<td>0.0%</td>
+<td>12.556</td>
+<td>12.556</td>
+<td>12.557</td>
+<td>0.000</td>
+<td>0%</td>
+<td>-0.001</td>
+<td>0%</td>
+<td>19847.0</td>
+<td>19073.0</td>
+<td>16600.0</td>
+<td>774.0</td>
+<td>4.1%</td>
+<td>3247.0</td>
+<td>19.6%</td>
+<td>312.0</td>
+<td>335.0</td>
+<td>411</td>
+<td>-23.0</td>
+<td>-6.9%</td>
+<td>-99.0</td>
+<td>-24.10%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>S1b</td>
+<td>3 years</td>
+<td>2363</td>
+<td>2362</td>
+<td>2365</td>
+<td>1</td>
+<td>0.0%</td>
+<td>-2</td>
+<td>-0.1%</td>
+<td>12.554</td>
+<td>12.553</td>
+<td>12.552</td>
+<td>0.001</td>
+<td>0%</td>
+<td>0.002</td>
+<td>0%</td>
+<td>25894.0</td>
+<td>26497.0</td>
+<td>31076.0</td>
+<td>-603.0</td>
+<td>-2.3%</td>
+<td>-5182.0</td>
+<td>-16.7%</td>
+<td>198.0</td>
+<td>189.0</td>
+<td>131</td>
+<td>9.0</td>
+<td>4.8%</td>
+<td>67.0</td>
+<td>51.10%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>S1b</td>
+<td>5 years</td>
+<td>2296</td>
+<td>2298</td>
+<td>2298</td>
+<td>-2</td>
+<td>-0.1%</td>
+<td>-2</td>
+<td>-0.1%</td>
+<td>12.552</td>
+<td>12.552</td>
+<td>12.551</td>
+<td>0.000</td>
+<td>0%</td>
+<td>0.001</td>
+<td>0%</td>
+<td>23187.0</td>
+<td>22920.0</td>
+<td>25501.0</td>
+<td>267.0</td>
+<td>1.2%</td>
+<td>-2314.0</td>
+<td>-9.1%</td>
+<td>168.0</td>
+<td>177.0</td>
+<td>142</td>
+<td>-9.0</td>
+<td>-5.1%</td>
+<td>26.0</td>
+<td>18.30%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>S1c</td>
+<td>3 years</td>
+<td>2386</td>
+<td>2387</td>
+<td>2386</td>
+<td>-1</td>
+<td>0.0%</td>
+<td>0</td>
+<td>0.0%</td>
+<td>12.551</td>
+<td>12.550</td>
+<td>12.551</td>
+<td>0.001</td>
+<td>0%</td>
+<td>0.000</td>
+<td>0%</td>
+<td>46956.0</td>
+<td>46445.0</td>
+<td>42697.0</td>
+<td>511.0</td>
+<td>1.1%</td>
+<td>4259.0</td>
+<td>10.0%</td>
+<td>15.0</td>
+<td>18.0</td>
+<td>40</td>
+<td>-3.0</td>
+<td>-16.7%</td>
+<td>-25.0</td>
+<td>-62.50%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>S1c</td>
+<td>5 years</td>
+<td>2313</td>
+<td>2314</td>
+<td>2311</td>
+<td>-1</td>
+<td>0.0%</td>
+<td>2</td>
+<td>0.1%</td>
+<td>12.550</td>
+<td>12.551</td>
+<td>12.551</td>
+<td>-0.001</td>
+<td>0%</td>
+<td>-0.001</td>
+<td>0%</td>
+<td>38673.0</td>
+<td>27818.0</td>
+<td>29600.0</td>
+<td>10855.0</td>
+<td>39.0%</td>
+<td>9073.0</td>
+<td>30.7%</td>
+<td>47.0</td>
+<td>132.0</td>
+<td>110</td>
+<td>-85.0</td>
+<td>-64.4%</td>
+<td>-63.0</td>
+<td>-57.30%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>S2a</td>
+<td>3 years</td>
+<td>2286</td>
+<td>2286</td>
+<td>2287</td>
+<td>0</td>
+<td>0.0%</td>
+<td>-1</td>
+<td>0.0%</td>
+<td>12.553</td>
+<td>12.553</td>
+<td>12.552</td>
+<td>0.000</td>
+<td>0%</td>
+<td>0.001</td>
+<td>0%</td>
+<td>18908.0</td>
+<td>18082.0</td>
+<td>21184.0</td>
+<td>826.0</td>
+<td>4.6%</td>
+<td>-2276.0</td>
+<td>-10.7%</td>
+<td>223.0</td>
+<td>242.0</td>
+<td>186</td>
+<td>-19.0</td>
+<td>-7.9%</td>
+<td>37.0</td>
+<td>19.90%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>S2a</td>
+<td>5 years</td>
+<td>2246</td>
+<td>2241</td>
+<td>2245</td>
+<td>5</td>
+<td>0.2%</td>
+<td>1</td>
+<td>0.0%</td>
+<td>12.551</td>
+<td>12.549</td>
+<td>12.550</td>
+<td>0.002</td>
+<td>0%</td>
+<td>0.001</td>
+<td>0%</td>
+<td>17514.0</td>
+<td>27650.0</td>
+<td>20394.0</td>
+<td>-10136.0</td>
+<td>-36.7%</td>
+<td>-2880.0</td>
+<td>-14.1%</td>
+<td>176.0</td>
+<td>74.0</td>
+<td>137</td>
+<td>102.0</td>
+<td>137.8%</td>
+<td>39.0</td>
+<td>28.50%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>S3a</td>
+<td>3 years</td>
+<td>2234</td>
+<td>2234</td>
+<td>2232</td>
+<td>0</td>
+<td>0.0%</td>
+<td>2</td>
+<td>0.1%</td>
+<td>12.548</td>
+<td>12.548</td>
+<td>12.548</td>
+<td>0.000</td>
+<td>0%</td>
+<td>0.000</td>
+<td>0%</td>
+<td>30366.0</td>
+<td>28714.0</td>
+<td>32247.0</td>
+<td>1652.0</td>
+<td>5.8%</td>
+<td>-1881.0</td>
+<td>-5.8%</td>
+<td>54.0</td>
+<td>63.0</td>
+<td>45</td>
+<td>-9.0</td>
+<td>-14.3%</td>
+<td>9.0</td>
+<td>20.00%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>S3a</td>
+<td>5 years</td>
+<td>2207</td>
+<td>2203</td>
+<td>2207</td>
+<td>4</td>
+<td>0.2%</td>
+<td>0</td>
+<td>0.0%</td>
+<td>12.548</td>
+<td>12.548</td>
+<td>12.548</td>
+<td>0.000</td>
+<td>0%</td>
+<td>0.000</td>
+<td>0%</td>
+<td>22636.0</td>
+<td>22107.0</td>
+<td>22694.0</td>
+<td>529.0</td>
+<td>2.4%</td>
+<td>-58.0</td>
+<td>-0.3%</td>
+<td>68.0</td>
+<td>68.0</td>
+<td>67</td>
+<td>0.0</td>
+<td>0.0%</td>
+<td>1.0</td>
+<td>1.50%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>S3b</td>
+<td>3 years</td>
+<td>2292</td>
+<td>2289</td>
+<td>2289</td>
+<td>3</td>
+<td>0.1%</td>
+<td>3</td>
+<td>0.1%</td>
+<td>12.553</td>
+<td>12.552</td>
+<td>12.553</td>
+<td>0.001</td>
+<td>0%</td>
+<td>0.000</td>
+<td>0%</td>
+<td>18438.0</td>
+<td>21354.0</td>
+<td>18157.0</td>
+<td>-2916.0</td>
+<td>-13.7%</td>
+<td>281.0</td>
+<td>1.5%</td>
+<td>241.0</td>
+<td>188.0</td>
+<td>243</td>
+<td>53.0</td>
+<td>28.2%</td>
+<td>-2.0</td>
+<td>-0.80%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>S3b</td>
+<td>5 years</td>
+<td>2250</td>
+<td>2245</td>
+<td>2248</td>
+<td>5</td>
+<td>0.2%</td>
+<td>2</td>
+<td>0.1%</td>
+<td>12.552</td>
+<td>12.552</td>
+<td>12.551</td>
+<td>0.000</td>
+<td>0%</td>
+<td>0.001</td>
+<td>0%</td>
+<td>16251.0</td>
+<td>13503.0</td>
+<td>17325.0</td>
+<td>2748.0</td>
+<td>20.4%</td>
+<td>-1074.0</td>
+<td>-6.2%</td>
+<td>206.0</td>
+<td>260.0</td>
+<td>183</td>
+<td>-54.0</td>
+<td>-20.8%</td>
+<td>23.0</td>
+<td>12.60%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>S3c</td>
+<td>3 years</td>
+<td>2256</td>
+<td>2253</td>
+<td>2255</td>
+<td>3</td>
+<td>0.1%</td>
+<td>1</td>
+<td>0.0%</td>
+<td>12.550</td>
+<td>12.549</td>
+<td>12.550</td>
+<td>0.001</td>
+<td>0%</td>
+<td>0.000</td>
+<td>0%</td>
+<td>23972.0</td>
+<td>28161.0</td>
+<td>20700.0</td>
+<td>-4189.0</td>
+<td>-14.9%</td>
+<td>3272.0</td>
+<td>15.8%</td>
+<td>114.0</td>
+<td>81.0</td>
+<td>148</td>
+<td>33.0</td>
+<td>40.7%</td>
+<td>-34.0</td>
+<td>-23.00%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>S3c</td>
+<td>5 years</td>
+<td>2224</td>
+<td>2220</td>
+<td>2221</td>
+<td>4</td>
+<td>0.2%</td>
+<td>3</td>
+<td>0.1%</td>
+<td>12.549</td>
+<td>12.550</td>
+<td>12.549</td>
+<td>-0.001</td>
+<td>0%</td>
+<td>0.000</td>
+<td>0%</td>
+<td>20278.0</td>
+<td>14224.0</td>
+<td>19250.0</td>
+<td>6054.0</td>
+<td>42.6%</td>
+<td>1028.0</td>
+<td>5.3%</td>
+<td>107.0</td>
+<td>178.0</td>
+<td>113</td>
+<td>-71.0</td>
+<td>-39.9%</td>
+<td>-6.0</td>
+<td>-5.30%</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>S3d</td>
+<td>3 years</td>
+<td>2263</td>
+<td>2262</td>
+<td>2261</td>
+<td>1</td>
+<td>0.0%</td>
+<td>2</td>
+<td>0.1%</td>
+<td>12.549</td>
+<td>12.549</td>
+<td>12.550</td>
+<td>0.000</td>
+<td>0%</td>
+<td>-0.001</td>
+<td>0%</td>
+<td>28245.0</td>
+<td>33377.0</td>
+<td>23462.0</td>
+<td>-5132.0</td>
+<td>-15.4%</td>
+<td>4783.0</td>
+<td>20.4%</td>
+<td>86.0</td>
+<td>56.0</td>
+<td>124</td>
+<td>30.0</td>
+<td>53.6%</td>
+<td>-38.0</td>
+<td>-30.60%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>S3d</td>
+<td>5 years</td>
+<td>2227</td>
+<td>2223</td>
+<td>2226</td>
+<td>4</td>
+<td>0.2%</td>
+<td>1</td>
+<td>0.0%</td>
+<td>12.548</td>
+<td>12.548</td>
+<td>12.548</td>
+<td>0.000</td>
+<td>0%</td>
+<td>0.000</td>
+<td>0%</td>
+<td>27591.0</td>
+<td>26612.0</td>
+<td>26517.0</td>
+<td>979.0</td>
+<td>3.7%</td>
+<td>1074.0</td>
+<td>4.1%</td>
+<td>62.0</td>
+<td>65.0</td>
+<td>67</td>
+<td>-3.0</td>
+<td>-4.6%</td>
+<td>-5.0</td>
+<td>-7.50%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Looking at each of the columns…</p>
 <ul>
-<li><code>KateJohnson/epicR@closed_cohort</code></li>
-<li><code>git::https://github.com/KateJohnson/epicR.git@closed_cohort</code></li>
-<li><code>url::https://github.com/KateJohnson/epicR/archive/refs/heads/closed_cohort.zip</code></li>
-<li><code>github::KateJohnson/epicR@c239c55a700f9e97869c16d530080a354ec631568</code></li>
-<li><code>github::KateJohnson/epicR@c239c55a</code></li>
-<li><code>github::KateJohnson/epicR.git@closed_cohort</code></li>
+<li><strong>Costs per patient</strong> - max difference from paper is 5 (0.2%) (e.g.&nbsp;$2250 vs $2245 for S3b 5 years). With lower number of agents, max difference was 23 (1%)</li>
+<li><strong>QALYs per patient</strong> - max difference from paper is 0.002 (0%) (e.g.&nbsp;12.562 vs 12.560). With lower agent numbers, max difference was 0.01 (0.1%)</li>
+<li><strong>ICER</strong> - max difference is 10,136 (36.7%) (mine 27,650 v.s. paper 17,514) for S2A 5 years. Biggest percentage difference was 42.6% (14,224 vs 20,278). With lower agent numbers, my biggest absolute difference was 93,297, and biggest percentage difference was 458%.</li>
+<li><strong>INMB</strong> - max difference was 102 (137.8%) (mine 74 vs paper 176 for S2A 5 years).</li>
 </ul>
-<p>However, these did not work. The final three found the package, but then had error code 22.</p>
-<p>I then just did manual installation following the instructions provided (<code>remotes::install_github('KateJohnson/epicR', ref="closed_cohort")</code>), which had error message that dependency rredis is not available. Hence, it seems I’ll need to just use it as a local package anyway.</p>
-<p>Tried to figure the simplest way to install the package, whilst having a simpler folder layout. Figured the simplest might be to use <code>devtools::load_all()</code> to load a local folder as a package. I add <code>devtools</code> to <code>DESCRIPTION</code> then re-ran <code>renv::install()</code> and <code>renv::snapshot()</code>.</p>
-<p>I copied the package into a folder, but amended its DESCRIPTION file so that rredis is installed using remotes. In the <code>.Rmd</code> file, I then <code>devtools::load_all("./epicR")</code>. However, this had an error:</p>
-<pre><code>RWarning: ── Conflicts ───────────────────────────────────── epicR conflicts
-──
-✖ `Cget_agent_events` masks `epicR::Cget_agent_events()`.
-✖ `Cget_all_events` masks `epicR::Cget_all_events()`.
-✖ `Cget_all_events_matrix` masks `epicR::Cget_all_events_matrix()`.
-  … and more.
-ℹ Did you accidentally source a file rather than using `load_all()`?
-  Run `rm(list = c("Cget_agent_events", "Cget_all_events",
-  "Cget_all_events_matrix", "Cget_event", "Cget_events_by_type",
-  "Cget_inputs", "Cget_n_events", "Cget_output", "Cget_output_ex",
-  "Cget_runtime_stats", "Cget_settings", "Cget_smith",
-  "Cset_input_var", "Cset_settings_var", "get_sample_output",
-  "mvrnormArma"))` to remove the conflicts.</code></pre>
-<p>Despite that though, it seemed to have worked.</p>
-<p>I then add some additional dependencies from the <code>.Rmd</code> to DESCRIPTION and to the renv.</p>
+<p>Due to the large difference in ICERs and INMB, I would unfortunately say this is not reproduced.</p>
+<p><strong>Figure 3:</strong></p>
+<p><img src="50m_fig3-1.png" class="img-fluid"></p>
+<p>This looks fairly similar, at a glance (unlike with higher agent numbers which was wildly different). I think I would argue this to be reproduced, as the points are pretty close to where they were in the original, although given the tiny scale is this working to, this would definitely require some consensus and second opinion.</p>
+<p><strong>Appendix 6:</strong></p>
+<p><img src="50m_appendix6-1.png" class="img-fluid"></p>
+<p>This hasn’t changed much from running with 50 million agents v.s. lower numbers. The same issue remains - that everything is spot on except SABA - and so, unfortunately, still not reproduced. My result is very similar to the result from their repository when they ran with 50 million.</p>
+<p>Having looked over these, I think it would be worth running this again with 100 million (as in the paper), just to be sure, in case that does happen to resolve the remaining differences in Table 3 and Figure 3 (although unfortunately I suspect the difference might remain for Appendix 6 as that didn’t change with agent numbers).</p>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="29f45fc6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">101</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.33'</span>, <span class="st">'15.53'</span>),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'15.57'</span>, <span class="st">'16.00'</span>),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'16.01'</span>, <span class="st">'16.41'</span>)]</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="989e433e" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">1062</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.16'</span>, <span class="st">'09.19'</span>)]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 63m, or 1h 3m
-Total used to date: 164m, or 2h 44m
-Time remaining: 2236m, or 37h 16m
-Used 6.8% of 40 hours max</code></pre>
+<pre><code>Time spent today: 3m, or 0h 3m
+Total used to date: 1065m, or 17h 45m
+Time remaining: 1335m, or 22h 15m
+Used 44.4% of 40 hours max</code></pre>
 </div>
 </div>
 
@@ -788,7 +1557,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_08_13/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_14/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
