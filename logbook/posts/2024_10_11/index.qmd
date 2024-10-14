@@ -6,15 +6,23 @@ categories: [reproduction]
 bibliography: ../../../quarto_site/references.bib
 ---
 
-## 09.50-09.59: Attempting to run with 50 million agents for one entire `.Rmd` file
+::: {.callout-note}
+
+Ran two scripts on remote machine with 50 million agents. Total time used: 17h 42m (44.2%)
+
+:::
+
+## 09.50-09.59, 13.15-13.20: Attempting to run with 50 million agents for one entire `.Rmd` file
 
 Returning to this as long delays and minimal response in getting access to the HPC, and figured its worth seeing if we can manage to run this locally on our high-powered machine that I have used previously, over the weekend.
 
-Set up `Case_Detection_Results.Rmd` to run with 50 million agents (so from 5e5 to 50e6).
+Set up `Case_Detection_Results.Rmd` (3 yrs and 5yrs) to run with 50 million agents (so from 5e5 to 50e6).
 
 ```
 Rscript -e "rmarkdown::render('scripts/Case_Detection_Results.Rmd')"
 ```
+
+This used apx 4400 memory (so still lots spare). Adding another in parallel bumped it up to over 5000, but at that point, the machine got a bit noisy.
 
 ## Timings
 
@@ -28,7 +36,8 @@ used_to_date = 1048
 
 # Times from today
 times = [
-    ('09.50', '09.59')]
+    ('09.50', '09.59'),
+    ('13.15', '13.20')]
 
 calculate_times(used_to_date, times)
 ```

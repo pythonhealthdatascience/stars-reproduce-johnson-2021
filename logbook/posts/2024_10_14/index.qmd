@@ -1,0 +1,81 @@
+---
+title: "Day 13"
+author: "Amy Heather"
+date: "2024-10-14"
+categories: [reproduction]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+X. Total time used: Xh Xm (X%)
+
+:::
+
+## 09.16-09.19, 09.36-X: Review results from 50 million agents
+
+I looked over them, comparing them to the article.
+
+I had to remind myself of what appendix 6 v1 vs v2 were, recalling that I'd remained uncertain on whether the implementation of this figure was correct. Version 2 was the "more correct", so I removed version 1. What had remained uncertain for version 2 was how to adjust the results. I had multiplied by 2000, and found that resulted in all bars matching except SABA, and this still remained the case.
+
+For table 3, I add back in the code for comparing against the original.
+
+The results from 50 million are closer to the original.
+
+**Run times:**
+
+* `Case_Detection_Results.md` - 14.13 hours - 14 hours 8 minutes
+* `Case_Detection_Results_5yrs.md` - 15.38 hours - 15 hours 23 minutes
+
+**Table 3:**
+
+```{python}
+import pandas as pd
+pd.set_option('display.max_columns', None)
+
+pd.read_csv('50m_tab3.csv')
+```
+
+```{python}
+pd.read_csv('50m_tab3_compare_to_original.csv')
+```
+
+Looking at each of the columns...
+
+* **Costs per patient** - max difference from paper is 5 (0.2%) (e.g. $2250 vs $2245 for S3b 5 years). With lower number of agents, max difference was 23 (1%)
+* **QALYs per patient** - max difference from paper is 0.002 (0%) (e.g. 12.562 vs 12.560). With lower agent numbers, max difference was 0.01 (0.1%)
+* **ICER** - max difference is 10,136 (36.7%) (mine 27,650 v.s. paper 17,514) for S2A 5 years. Biggest percentage difference was 42.6% (14,224 vs 20,278). With lower agent numbers, my biggest absolute difference was 93,297, and biggest percentage difference was 458%.
+* **INMB** - max difference was 102 (137.8%) (mine 74 vs paper 176 for S2A 5 years).
+
+Due to the large difference in ICERs and INMB, I would unfortunately say this is not reproduced.
+
+**Figure 3:**
+
+![](50m_fig3-1.png)
+
+This looks fairly similar, at a glance (unlike with higher agent numbers which was wildly different). I think I would argue this to be reproduced, as the points are pretty close to where they were in the original, although given the tiny scale is this working to, this would definitely require some consensus and second opinion.
+
+**Appendix 6:**
+
+![](50m_appendix6-1.png)
+
+This hasn't changed much from running with 50 million agents v.s. lower numbers. The same issue remains - that everything is spot on except SABA - and so, unfortunately, still not reproduced. My result is very similar to the result from their repository when they ran with 50 million.
+
+Having looked over these, I think it would be worth running this again with 100 million (as in the paper), just to be sure, in case that does happen to resolve the remaining differences in Table 3 and Figure 3 (although unfortunately I suspect the difference might remain for Appendix 6 as that didn't change with agent numbers).
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 1062
+
+# Times from today
+times = [
+    ('09.16', '09.19')]
+
+calculate_times(used_to_date, times)
+```
