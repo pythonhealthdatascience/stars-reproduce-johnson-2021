@@ -163,6 +163,7 @@ Looking at [their results from 50 million](https://github.com/KateJohnson/epicR/
 Comparing to other SABA results (with LAMA for context):
 
 | Scenario | My SABA (LAMA) | Their 50 million SABA (LAMA) |
+| - | - | - |
 | S1NoCDAvg | 0.019 (0.136) | 0.019 (0.135) |
 | S1a | 0.026 (0.159) | 0.026 (0.159) |
 
