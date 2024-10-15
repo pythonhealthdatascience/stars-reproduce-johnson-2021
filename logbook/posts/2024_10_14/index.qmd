@@ -8,11 +8,11 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
-X. Total time used: Xh Xm (X%)
+Reviewed results from 50 million (as in their repository) and decided to run 100 million (as in paper). Total time used: 18h 31m (46.3%)
 
 :::
 
-## 09.16-09.19, 09.36-X: Review results from 50 million agents
+## 09.16-09.19, 09.36-10.22: Review results from 50 million agents and set to run with 100 million
 
 I looked over them, comparing them to the article.
 
@@ -26,6 +26,8 @@ The results from 50 million are closer to the original.
 
 * `Case_Detection_Results.md` - 14.13 hours - 14 hours 8 minutes
 * `Case_Detection_Results_5yrs.md` - 15.38 hours - 15 hours 23 minutes
+
+Although note, these were run in parallel to each other, so total time required (with our machine) was 15 hours 23 minutes.
 
 **Table 3:**
 
@@ -61,7 +63,7 @@ This looks fairly similar, at a glance (unlike with higher agent numbers which w
 
 This hasn't changed much from running with 50 million agents v.s. lower numbers. The same issue remains - that everything is spot on except SABA - and so, unfortunately, still not reproduced. My result is very similar to the result from their repository when they ran with 50 million.
 
-Having looked over these, I think it would be worth running this again with 100 million (as in the paper), just to be sure, in case that does happen to resolve the remaining differences in Table 3 and Figure 3 (although unfortunately I suspect the difference might remain for Appendix 6 as that didn't change with agent numbers).
+Having looked over these, I think it would be worth running this again with 100 million (as in the paper), just to be sure, in case that does happen to resolve the remaining differences in Table 3 (big difference) and Figure 3 (smaller difference) (although unfortunately I suspect the difference might remain for Appendix 6 as that didn't change with agent numbers).
 
 ## Timings
 
@@ -75,7 +77,8 @@ used_to_date = 1062
 
 # Times from today
 times = [
-    ('09.16', '09.19')]
+    ('09.16', '09.19'),
+    ('09.36', '10.22')]
 
 calculate_times(used_to_date, times)
 ```
