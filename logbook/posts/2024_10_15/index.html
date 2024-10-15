@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Amy Heather">
-<meta name="dcterms.date" content="2024-09-16">
+<meta name="dcterms.date" content="2024-10-15">
 
-<title>Day 10 – Reproducing Johnson et al.&nbsp;2021</title>
+<title>Day 14 – Reproducing Johnson et al.&nbsp;2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -203,9 +169,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Day 10</h1>
+      <h1 class="title">Day 14</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">reproduce</div>
+                <div class="quarto-category">reproduction</div>
               </div>
                   </div>
   </div>
@@ -223,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 16, 2024</p>
+        <p class="date">October 15, 2024</p>
       </div>
     </div>
     
@@ -239,11 +205,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#running-remaining-scenarios-with-5e5" id="toc-running-remaining-scenarios-with-5e5" class="nav-link active" data-scroll-target="#running-remaining-scenarios-with-5e5">09.23-09.25, 09.57: Running remaining scenarios with 5e5</a></li>
-  <li><a href="#testing-seeds" id="toc-testing-seeds" class="nav-link" data-scroll-target="#testing-seeds">09.59-10.00: Testing seeds</a></li>
-  <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
+  <li><a href="#reviewing-results-from-100-million-agents" id="toc-reviewing-results-from-100-million-agents" class="nav-link active" data-scroll-target="#reviewing-results-from-100-million-agents">09.40-09.53: Reviewing results from 100 million agents</a></li>
+  <li><a href="#x-running-sensitivity-analysis-with-100-million-agents" id="toc-x-running-sensitivity-analysis-with-100-million-agents" class="nav-link" data-scroll-target="#x-running-sensitivity-analysis-with-100-million-agents">09.54-X: Running sensitivity analysis with 100 million agents</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_16/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_15/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -262,54 +227,22 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ran final scenario analyses with 5e5, but as expected, not a match. Total time used: 17h 21m (43.3%)</p>
+<p>X. Total time used: Xh Xm (X%)</p>
 </div>
 </div>
-<section id="running-remaining-scenarios-with-5e5" class="level2">
-<h2 class="anchored" data-anchor-id="running-remaining-scenarios-with-5e5">09.23-09.25, 09.57: Running remaining scenarios with 5e5</h2>
-<p>Running Scenarios 6 and 7 with 5e5 base agents. Then ran my prepared <code>Process_Sensitivity_Analysis.Rmd</code>. As expected, these look very different from original, so will have to wait and see if running with 1 million base agents on the HPC resolves this issue or not.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig4-1.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 4 Reproduction</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="appendix7-1.png" class="img-fluid figure-img"></p>
-<figcaption>Appendix 7 Reproduction</figcaption>
-</figure>
-</div>
+<section id="reviewing-results-from-100-million-agents" class="level2">
+<h2 class="anchored" data-anchor-id="reviewing-results-from-100-million-agents">09.40-09.53: Reviewing results from 100 million agents</h2>
+<p><strong>Run times:</strong></p>
+<ul>
+<li><code>Case_Detection_Results.md</code> - 20.65 hours - 20 hours 39 minutes</li>
+<li><code>Case_Detection_Results_5yrs.md</code> - 20.67 hours - 20 hours 40 minutes</li>
+</ul>
+<p>As these were run at the same time in seperate terminals, total was 20 hours 40 minutes.</p>
+<p><strong>Model results:</strong> Ran <code>Process_Model_Results.Rmd</code>. As expected, result still seems quite different for Appendix 6. For Table 3 and Figure 3, the results generally seem closer to the paper, and I would argue that I think these have been reproduced. I think this is a tricky case, as the ICER and INMB are evidently incredibly sensitive, and so with very similar looking QALYs and costs, they vary hugely. However, I am satisifed that we have now got close enough results to consider these reproduced.</p>
 </section>
-<section id="testing-seeds" class="level2">
-<h2 class="anchored" data-anchor-id="testing-seeds">09.59-10.00: Testing seeds</h2>
-<p>Ran one of them for a second time, just to confirm I got the same results, and that the seed control is working as expected - and this was indeed the case, with no changes in the results observed.</p>
-<p>Try running one twice to check get same results each time</p>
-</section>
-<section id="timings" class="level2">
-<h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="2d1c2ed5" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">1035</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.23'</span>, <span class="st">'09.25'</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.54'</span>, <span class="st">'09.57'</span>),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.59'</span>, <span class="st">'10.00'</span>)]</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 6m, or 0h 6m
-Total used to date: 1041m, or 17h 21m
-Time remaining: 1359m, or 22h 39m
-Used 43.4% of 40 hours max</code></pre>
-</div>
-</div>
+<section id="x-running-sensitivity-analysis-with-100-million-agents" class="level2">
+<h2 class="anchored" data-anchor-id="x-running-sensitivity-analysis-with-100-million-agents">09.54-X: Running sensitivity analysis with 100 million agents</h2>
+<p>Having found I needed to run this to 100 million agents, and given the timings were not exponentially larger (14 hours vs 20 hours), I set the sensitivity analyses to run with 100 million agents. I initially tried running all at once.</p>
 
 
 </section>
@@ -759,7 +692,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_16/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_15/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

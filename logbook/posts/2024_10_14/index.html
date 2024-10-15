@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#x-review-results-from-50-million-agents" id="toc-x-review-results-from-50-million-agents" class="nav-link active" data-scroll-target="#x-review-results-from-50-million-agents">09.16-09.19, 09.36-X: Review results from 50 million agents</a></li>
+  <li><a href="#review-results-from-50-million-agents-and-set-to-run-with-100-million" id="toc-review-results-from-50-million-agents-and-set-to-run-with-100-million" class="nav-link active" data-scroll-target="#review-results-from-50-million-agents-and-set-to-run-with-100-million">09.16-09.19, 09.36-10.22: Review results from 50 million agents and set to run with 100 million</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_14/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -264,11 +264,11 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>X. Total time used: Xh Xm (X%)</p>
+<p>Reviewed results from 50 million (as in their repository) and decided to run 100 million (as in paper). Total time used: 18h 31m (46.3%)</p>
 </div>
 </div>
-<section id="x-review-results-from-50-million-agents" class="level2">
-<h2 class="anchored" data-anchor-id="x-review-results-from-50-million-agents">09.16-09.19, 09.36-X: Review results from 50 million agents</h2>
+<section id="review-results-from-50-million-agents-and-set-to-run-with-100-million" class="level2">
+<h2 class="anchored" data-anchor-id="review-results-from-50-million-agents-and-set-to-run-with-100-million">09.16-09.19, 09.36-10.22: Review results from 50 million agents and set to run with 100 million</h2>
 <p>I looked over them, comparing them to the article.</p>
 <p>I had to remind myself of what appendix 6 v1 vs v2 were, recalling that I’d remained uncertain on whether the implementation of this figure was correct. Version 2 was the “more correct”, so I removed version 1. What had remained uncertain for version 2 was how to adjust the results. I had multiplied by 2000, and found that resulted in all bars matching except SABA, and this still remained the case.</p>
 <p>For table 3, I add back in the code for comparing against the original.</p>
@@ -278,8 +278,9 @@ Note
 <li><code>Case_Detection_Results.md</code> - 14.13 hours - 14 hours 8 minutes</li>
 <li><code>Case_Detection_Results_5yrs.md</code> - 15.38 hours - 15 hours 23 minutes</li>
 </ul>
+<p>Although note, these were run in parallel to each other, so total time required (with our machine) was 15 hours 23 minutes.</p>
 <p><strong>Table 3:</strong></p>
-<div id="b86829ee" class="cell" data-execution_count="1">
+<div id="1b998db3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="va">None</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -460,7 +461,7 @@ Note
 </div>
 </div>
 </div>
-<div id="bc293ade" class="cell" data-execution_count="2">
+<div id="9e71b8d0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'50m_tab3_compare_to_original.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -1084,11 +1085,11 @@ Note
 <p><strong>Appendix 6:</strong></p>
 <p><img src="50m_appendix6-1.png" class="img-fluid"></p>
 <p>This hasn’t changed much from running with 50 million agents v.s. lower numbers. The same issue remains - that everything is spot on except SABA - and so, unfortunately, still not reproduced. My result is very similar to the result from their repository when they ran with 50 million.</p>
-<p>Having looked over these, I think it would be worth running this again with 100 million (as in the paper), just to be sure, in case that does happen to resolve the remaining differences in Table 3 and Figure 3 (although unfortunately I suspect the difference might remain for Appendix 6 as that didn’t change with agent numbers).</p>
+<p>Having looked over these, I think it would be worth running this again with 100 million (as in the paper), just to be sure, in case that does happen to resolve the remaining differences in Table 3 (big difference) and Figure 3 (smaller difference) (although unfortunately I suspect the difference might remain for Appendix 6 as that didn’t change with agent numbers).</p>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="7dea7d5b" class="cell" data-execution_count="3">
+<div id="201b4388" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -1098,14 +1099,15 @@ Note
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.16'</span>, <span class="st">'09.19'</span>)]</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.16'</span>, <span class="st">'09.19'</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.36'</span>, <span class="st">'10.22'</span>)]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 3m, or 0h 3m
-Total used to date: 1065m, or 17h 45m
-Time remaining: 1335m, or 22h 15m
-Used 44.4% of 40 hours max</code></pre>
+<pre><code>Time spent today: 49m, or 0h 49m
+Total used to date: 1111m, or 18h 31m
+Time remaining: 1289m, or 21h 29m
+Used 46.3% of 40 hours max</code></pre>
 </div>
 </div>
 
