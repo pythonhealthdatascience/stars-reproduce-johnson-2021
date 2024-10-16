@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -206,7 +240,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#reviewing-results-from-100-million-agents" id="toc-reviewing-results-from-100-million-agents" class="nav-link active" data-scroll-target="#reviewing-results-from-100-million-agents">09.40-09.53: Reviewing results from 100 million agents</a></li>
-  <li><a href="#x-running-sensitivity-analysis-with-100-million-agents" id="toc-x-running-sensitivity-analysis-with-100-million-agents" class="nav-link" data-scroll-target="#x-running-sensitivity-analysis-with-100-million-agents">09.54-X: Running sensitivity analysis with 100 million agents</a></li>
+  <li><a href="#running-sensitivity-analysis-with-100-million-agents" id="toc-running-sensitivity-analysis-with-100-million-agents" class="nav-link" data-scroll-target="#running-sensitivity-analysis-with-100-million-agents">09.54-10.06: Running sensitivity analysis with 100 million agents</a></li>
+  <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_15/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -227,7 +262,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>X. Total time used: Xh Xm (X%)</p>
+<p>Review base case results with 100 million and run sensitivity analysis with 50 million. Total time used: 18h 56m (47.3%)</p>
 </div>
 </div>
 <section id="reviewing-results-from-100-million-agents" class="level2">
@@ -238,11 +273,36 @@ Note
 <li><code>Case_Detection_Results_5yrs.md</code> - 20.67 hours - 20 hours 40 minutes</li>
 </ul>
 <p>As these were run at the same time in seperate terminals, total was 20 hours 40 minutes.</p>
-<p><strong>Model results:</strong> Ran <code>Process_Model_Results.Rmd</code>. As expected, result still seems quite different for Appendix 6. For Table 3 and Figure 3, the results generally seem closer to the paper, and I would argue that I think these have been reproduced. I think this is a tricky case, as the ICER and INMB are evidently incredibly sensitive, and so with very similar looking QALYs and costs, they vary hugely. However, I am satisifed that we have now got close enough results to consider these reproduced.</p>
+<p><strong>Model results:</strong> Ran <code>Process_Model_Results.Rmd</code>. As expected, result still seems quite different for Appendix 6, due to the mismatch in SABA. For Table 3 and Figure 3, the results generally seem closer to the paper, and I would argue that I think these have been reproduced. I think this is a tricky case, as the ICER and INMB are evidently incredibly sensitive, and so with very similar looking QALYs and costs, they vary hugely. However, I am satisifed that we have now got close enough results to consider these reproduced.</p>
 </section>
-<section id="x-running-sensitivity-analysis-with-100-million-agents" class="level2">
-<h2 class="anchored" data-anchor-id="x-running-sensitivity-analysis-with-100-million-agents">09.54-X: Running sensitivity analysis with 100 million agents</h2>
-<p>Having found I needed to run this to 100 million agents, and given the timings were not exponentially larger (14 hours vs 20 hours), I set the sensitivity analyses to run with 100 million agents. I initially tried running all at once.</p>
+<section id="running-sensitivity-analysis-with-100-million-agents" class="level2">
+<h2 class="anchored" data-anchor-id="running-sensitivity-analysis-with-100-million-agents">09.54-10.06: Running sensitivity analysis with 100 million agents</h2>
+<p>Having found I needed to run this to 100 million agents, and given the timings were not exponentially larger (14 hours vs 20 hours), I set the sensitivity analyses to run with 100 million agents. I initially tried running all at once, and it seemed to manage fine with this, so I anticipate I could have ran everything in parallel (i.e.&nbsp;inc base case - which I had run seperately just like a “test run”) (using 11667, 10117 available, and that’s including any background processes).</p>
+<p><strong>Note: as on next logbook, turns out this was accidentally 50 million</strong></p>
+</section>
+<section id="timings" class="level2">
+<h2 class="anchored" data-anchor-id="timings">Timings</h2>
+<div id="c0a07e69" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">1111</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.40'</span>, <span class="st">'09.53'</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.54'</span>, <span class="st">'10.06'</span>)]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time spent today: 25m, or 0h 25m
+Total used to date: 1136m, or 18h 56m
+Time remaining: 1264m, or 21h 4m
+Used 47.3% of 40 hours max</code></pre>
+</div>
+</div>
 
 
 </section>

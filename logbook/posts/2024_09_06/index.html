@@ -412,7 +412,7 @@ op_ex &lt;- Cget_output_ex()</code></pre>
 <p>That’s repeated a total of 8 times, for the reference case and then for the scenario analyses (so, 26 days 8 hours).</p>
 <p>It appears we may therefore need to explore access to a HPC.</p>
 <p>The result was:</p>
-<div id="d9553227" class="cell" data-execution_count="1">
+<div id="0d5b20a5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'s1NoCD_50mil.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -579,7 +579,7 @@ diag_investigate &lt;- merge(clin_diag, s1_diag) %&gt;%
   mutate(AdjDivideByPYAll = AdjDiagnosedPYs / DiagnosedpPYAll)
 
 write.csv(diag_investigate, "../../logbook/posts/2024_09_06/diag_investigate.csv")</code></pre>
-<div id="938c7a48" class="cell" data-execution_count="2">
+<div id="0f95a8c6" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'diag_investigate.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -631,7 +631,7 @@ write.csv(diag_investigate, "../../logbook/posts/2024_09_06/diag_investigate.csv
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="ab66b8a6" class="cell" data-execution_count="3">
+<div id="e4ce5885" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>

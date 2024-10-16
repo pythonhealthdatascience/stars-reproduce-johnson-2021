@@ -317,7 +317,7 @@ Reflection
 <p>Add the 5 year results to Table 3 - still assuming that S0 is S1NoCD from 3 year (not from from 5 year or S2 or S3), as can’t spot an S0 anywhere.</p>
 <p>Due to size of table, it was difficult to just look between the two tables, so I converted and simplified Table 3 from the paper into a <code>.csv</code> file, and then appended that so I could calculate the differences.</p>
 <p>Although some things are similar (e.g.&nbsp;scenario 1 costs and QALYs), others are very different…</p>
-<div id="cb68024c" class="cell" data-execution_count="1">
+<div id="e197e9dc" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="va">None</span>)</span>
@@ -792,7 +792,7 @@ Reflection
 <section id="trying-higher-agent-numbers" class="level2">
 <h2 class="anchored" data-anchor-id="trying-higher-agent-numbers">11.32-11.36, 13.08-13.10: Trying higher agent numbers</h2>
 <p>Curious is this is due to the number of base agents, I re-ran with 1e6 base_agents (1 million) instead of 5e5 (500,000). On the remote machine, this took 17.1 + 17.1 = 34.2 minutes.</p>
-<div id="a933659a" class="cell" data-execution_count="2">
+<div id="01829f19" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'sall_compare_to_paper_1e6.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -1265,7 +1265,7 @@ Reflection
 <p>The original repository included a markdown file from a run of this code. Instead of comparing against the paper, I tried comparing against those results, as that should definitely match up, and can tell us if this code as it is is running as expected or not.</p>
 <p>I copied the sall tables from <code>Case_Detection_Results.md</code> and <code>Case_Detection_Results_5yrs.md</code> into a single <code>.csv</code> file, then add that to the comparison.</p>
 <p>Comparing the paper and repo against my results:</p>
-<div id="22edd8d6" class="cell" data-execution_count="3">
+<div id="395698b6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'sall_compare_1e6_to_mine.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -1843,7 +1843,7 @@ Reflection
 </div>
 </div>
 <p>Comparing my results and the repo against the papers results:</p>
-<div id="4a139c3a" class="cell" data-execution_count="4">
+<div id="f6a9ca38" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'sall_compare_1e6_to_paper.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -2464,7 +2464,7 @@ Reflection
 <p>The Cost Effectiveness Plane table is “adjusted to the total population”. I made a <code>.csv</code> with the CEPlane from their <code>.md</code> and then modified <code>Process_Model_Results.Rmd</code> to use CEplane instead of sall.</p>
 <p>In that table, you can see <code>CostpAgentAll</code> comes out lower than <code>CostpAgent</code>, for example, which matches up to paper, so I used those “All” columns.</p>
 <p>This <strong>resolved the issue for costs and QALYS</strong>, which now both matched the paper:</p>
-<div id="279f7fff" class="cell" data-execution_count="5">
+<div id="23c79054" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'tab3_compare_to_original.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -3050,7 +3050,7 @@ Reflection
 <h2 class="anchored" data-anchor-id="looking-at-icer-and-inmb">16.02-16.33: Looking at ICER and INMB</h2>
 <p>I tried to see if I was using the wrong ICER, or what might explain the difference.</p>
 <p>Looking at table 3 in the paper, if I were to calculate the ICER manually from change in costs over change in QALYs, I would get:</p>
-<div id="a1305fdd" class="cell" data-execution_count="6">
+<div id="9d1b6a74" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2438</span><span class="op">-</span><span class="dv">2151</span>)<span class="op">/</span>(<span class="fl">12.560</span><span class="op">-</span><span class="fl">12.546</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>20499.999999998356</code></pre>
@@ -3061,7 +3061,7 @@ Reflection
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="dd7299bf" class="cell" data-execution_count="7">
+<div id="7c626305" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
