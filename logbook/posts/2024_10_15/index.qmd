@@ -1,0 +1,28 @@
+---
+title: "Day 14"
+author: "Amy Heather"
+date: "2024-10-15"
+categories: [reproduction]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+X. Total time used: Xh Xm (X%)
+
+:::
+
+## 09.40-09.53: Reviewing results from 100 million agents
+
+**Run times:**
+
+* `Case_Detection_Results.md` - 20.65 hours - 20 hours 39 minutes
+* `Case_Detection_Results_5yrs.md` - 20.67 hours - 20 hours 40 minutes
+
+As these were run at the same time in seperate terminals, total was 20 hours 40 minutes.
+
+**Model results:** Ran `Process_Model_Results.Rmd`. As expected, result still seems quite different for Appendix 6. For Table 3 and Figure 3, the results generally seem closer to the paper, and I would argue that I think these have been reproduced. I think this is a tricky case, as the ICER and INMB are evidently incredibly sensitive, and so with very similar looking QALYs and costs, they vary hugely. However, I am satisifed that we have now got close enough results to consider these reproduced.
+
+## 09.54-X: Running sensitivity analysis with 100 million agents
+
+Having found I needed to run this to 100 million agents, and given the timings were not exponentially larger (14 hours vs 20 hours), I set the sensitivity analyses to run with 100 million agents. I initially tried running all at once.
