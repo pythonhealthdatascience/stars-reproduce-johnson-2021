@@ -8,7 +8,7 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
-X. Total time used: Xh Xm (X%)
+Review base case results with 100 million and run sensitivity analysis with 50 million. Total time used: 18h 56m (47.3%)
 
 :::
 
@@ -21,8 +21,28 @@ X. Total time used: Xh Xm (X%)
 
 As these were run at the same time in seperate terminals, total was 20 hours 40 minutes.
 
-**Model results:** Ran `Process_Model_Results.Rmd`. As expected, result still seems quite different for Appendix 6. For Table 3 and Figure 3, the results generally seem closer to the paper, and I would argue that I think these have been reproduced. I think this is a tricky case, as the ICER and INMB are evidently incredibly sensitive, and so with very similar looking QALYs and costs, they vary hugely. However, I am satisifed that we have now got close enough results to consider these reproduced.
+**Model results:** Ran `Process_Model_Results.Rmd`. As expected, result still seems quite different for Appendix 6, due to the mismatch in SABA. For Table 3 and Figure 3, the results generally seem closer to the paper, and I would argue that I think these have been reproduced. I think this is a tricky case, as the ICER and INMB are evidently incredibly sensitive, and so with very similar looking QALYs and costs, they vary hugely. However, I am satisifed that we have now got close enough results to consider these reproduced.
 
-## 09.54-X: Running sensitivity analysis with 100 million agents
+## 09.54-10.06: Running sensitivity analysis with 100 million agents
 
-Having found I needed to run this to 100 million agents, and given the timings were not exponentially larger (14 hours vs 20 hours), I set the sensitivity analyses to run with 100 million agents. I initially tried running all at once.
+Having found I needed to run this to 100 million agents, and given the timings were not exponentially larger (14 hours vs 20 hours), I set the sensitivity analyses to run with 100 million agents. I initially tried running all at once, and it seemed to manage fine with this, so I anticipate I could have ran everything in parallel (i.e. inc base case - which I had run seperately just like a "test run") (using 11667, 10117 available, and that's including any background processes).
+
+**Note: as on next logbook, turns out this was accidentally 50 million**
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 1111
+
+# Times from today
+times = [
+    ('09.40', '09.53'),
+    ('09.54', '10.06')]
+
+calculate_times(used_to_date, times)
+```
