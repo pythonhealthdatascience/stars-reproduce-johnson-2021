@@ -1,0 +1,35 @@
+---
+title: "Day 16"
+author: "Amy Heather"
+date: "2024-10-18"
+categories: [reproduction]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+X. Total time used: X
+
+:::
+
+## 09.15-09.20, 09.27-09.33: Review sensitivity analysis with 100 million
+
+Ran `Process_Sensitivity_Analysis.Rmd`. These are changed to be much more similar to the original, and I feel reasonably similar enough to consider it reproduced, but will certainly need to discuss this, as there are obviously some differences too, so it feels - in this case - a very subjective decision!
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 1146
+
+# Times from today
+times = [
+    ('09.15', '09.20'),
+    ('09.27', '09.33')]
+
+calculate_times(used_to_date, times)
+```
