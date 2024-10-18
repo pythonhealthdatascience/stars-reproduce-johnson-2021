@@ -5,7 +5,7 @@ bibliography: ../quarto_site/references.bib
 ---
 
 <!-- TODO: Add % reproduced -->
-Of the 5 items in the scope, X% (X out of X) were considered to be **successfully reproduced**.
+**TBC once finished reproduction:** Of the 5 items in the scope, X% (X out of X) were considered to be **successfully reproduced**.
 
 The original items are not included as we do not have permission for reuse - however, these can be viewed at @johnson_cost_2021.
 
@@ -19,11 +19,11 @@ from time_to_complete import process_times, success_static, success_interactive
 # List of time to complete each item
 # TODO: Change to actual items and times for this project
 time_list = [
-    [np.nan, 'Table 3'],
-    [np.nan, 'Figure 3'],
+    [1124, 'Table 3'],
+    [1124, 'Figure 3'],
     [np.nan, 'Figure 4'],
     [np.nan, 'Appendix 6'],
-    [np.nan, 'Appendix 7']]
+    [1157, 'Appendix 7']]
 times_df = process_times(time_list)
 ```
 
@@ -41,7 +41,7 @@ success_interactive(times_df)
 
 ## Table 3
 
-<!-- TODO: **Consensus: Not reproduced / Successfully reproduced** -->
+**Consensus: Successfully reproduced**
 
 Reproduction:
 
@@ -51,7 +51,7 @@ pd.read_csv('../reproduction/outputs/tab3.csv')
 
 ## Figure 3
 
-<!-- TODO: **Consensus: Not reproduced / Successfully reproduced** -->
+**Consensus: Successfully reproduced**
 
 Reproduction:
 
@@ -59,7 +59,7 @@ Reproduction:
 
 ## Figure 4
 
-<!-- TODO: **Consensus: Not reproduced / Successfully reproduced** -->
+**Consensus: Not reproduced**
 
 Reproduction:
 
@@ -67,7 +67,7 @@ Reproduction:
 
 ## Appendix 6
 
-<!-- TODO: **Consensus: Not reproduced / Successfully reproduced** -->
+**Consensus: Not reproduced**
 
 Reproduction:
 
@@ -75,7 +75,7 @@ Reproduction:
 
 ## Appendix 7
 
-<!-- TODO: **Consensus: Not reproduced / Successfully reproduced** -->
+**Consensus: Successfully reproduced**
 
 Reproduction:
 
