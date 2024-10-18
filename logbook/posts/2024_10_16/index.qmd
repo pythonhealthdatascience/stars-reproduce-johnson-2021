@@ -1,0 +1,62 @@
+---
+title: "Day 15"
+author: "Amy Heather"
+date: "2024-10-16"
+categories: [reproduction]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+Review sensitivity analysis from 50 million and set to run with 100 million. Total time used: 19h 6m (47.8%)
+
+:::
+
+## 09.28-09.31, 09.37-09.44: Review results from 50 million
+
+Realised mistake - had run sensitivity analysis with 50 million rather than intended 100 million.
+
+::: {.callout-tip}
+## Reflection
+
+With high run times like this, a simple mistake means another day waiting for results. Probably worth reflecting on the run time of the code itself in the article, and how in cases like this, it means it spans days waiting for different runs.
+
+:::
+
+Alas, will review results with 50 million, and set to run 100.
+
+Ran `Process_Sensitivity_Analysis.Rmd`. Results all still quite far off.
+
+**From 50 million:**
+
+![](fig4_50m.png)
+
+**For reference, from 100 thousand:**
+
+![](fig4_100t.png)
+
+**From 50 million:**
+
+![](apx7_50m.png)
+
+**For reference, from 100 thousand:**
+
+![](apx7_100t.png)
+
+## Timings
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 1136
+
+# Times from today
+times = [
+    ('09.28', '09.31'),
+    ('09.37', '09.44')]
+
+calculate_times(used_to_date, times)
+```
