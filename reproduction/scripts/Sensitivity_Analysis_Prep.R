@@ -63,15 +63,15 @@ modify_rmd(
 modify_rmd(
   new_file = "Sen2_50_Med_Adherence",
   new_title = "50% Medication Adherence",
-  old_param = "medication_adherence=0.7",
-  new_param = "medication_adherence=0.5"
+  old_param = "med_adherence=0.7",
+  new_param = "med_adherence=0.5"
 )
 
 modify_rmd(
   new_file = "Sen3_30_Med_Adherence",
   new_title = "30% Medication Adherence",
-  old_param = "medication_adherence=0.7",
-  new_param = "medication_adherence=0.3"
+  old_param = "med_adherence=0.7",
+  new_param = "med_adherence=0.3"
 )
 
 modify_rmd(
