@@ -1,6 +1,6 @@
 Process Sensitivity Analysis Results
 ================
-16 October, 2024
+18 October, 2024
 
 This file processes results from the sensitivity analysis.
 
@@ -132,7 +132,8 @@ make_figure <- function(analysis){
     scale_x_discrete(expand = c(0.01,0)) +
     theme_bw() +
     theme(axis.text.x = element_text(angle=70, hjust=1),
-          legend.title = element_blank())
+          legend.title = element_blank(),
+          aspect.ratio = 1)
 }
 ```
 

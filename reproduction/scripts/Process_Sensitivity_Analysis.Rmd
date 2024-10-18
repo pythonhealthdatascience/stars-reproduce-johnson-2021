@@ -120,7 +120,8 @@ make_figure <- function(analysis){
     scale_x_discrete(expand = c(0.01,0)) +
     theme_bw() +
     theme(axis.text.x = element_text(angle=70, hjust=1),
-          legend.title = element_blank())
+          legend.title = element_blank(),
+          aspect.ratio = 1)
 }
 ```
 
