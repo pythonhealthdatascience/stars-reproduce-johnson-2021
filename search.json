@@ -53,7 +53,7 @@
     "href": "evaluation/reproduction_success.html",
     "title": "Reproduction success",
     "section": "",
-    "text": "Of the 5 items in the scope, X% (X out of X) were considered to be successfully reproduced.\nThe original items are not included as we do not have permission for reuse - however, these can be viewed at Johnson et al. (2021)."
+    "text": "TBC once finished reproduction: Of the 5 items in the scope, X% (X out of X) were considered to be successfully reproduced.\nThe original items are not included as we do not have permission for reuse - however, these can be viewed at Johnson et al. (2021)."
   },
   {
     "objectID": "evaluation/reproduction_success.html#time-to-completion",
@@ -67,35 +67,35 @@
     "href": "evaluation/reproduction_success.html#table-3",
     "title": "Reproduction success",
     "section": "Table 3",
-    "text": "Table 3\n\nReproduction:\n\n\n\n\n\n\n\n\n\nScenario\nTesting interval\nCosts per patient\nQALYs per patient\nICER\nINMB (ranking)\n\n\n\n\n0\nS0: No case detection\nNaN\n$2150\n12.545\nNaN\nNaN\n\n\n1\n(S1a) CDQ ≥ 17 points\n3 years\n$2439\n12.560\n19472.0\n453(1)\n\n\n2\n(S1a) CDQ ≥ 17 points\n5 years\n$2357\n12.557\n18717.0\n346(2)\n\n\n3\n(S1b) Screening spirometry\n3 years\n$2363\n12.554\n25644.0\n202(4)\n\n\n4\n(S1b) Screening spirometry\n5 years\n$2298\n12.551\n25236.0\n146(8)\n\n\n5\n(S1c) CDQ + screening spirometry\n3 years\n$2385\n12.551\n39678.0\n61(13)\n\n\n6\n(S1c) CDQ + screening spirometry\n5 years\n$2311\n12.550\n39400.0\n43(15)\n\n\n7\n(S2a) Screening spirometry\n3 years\n$2286\n12.552\n21002.0\n188(5)\n\n\n8\n(S2a) Screening spirometry\n5 years\n$2245\n12.551\n17109.0\n182(6)\n\n\n9\n(S3a) CDQ ≥ 19.5 points\n3 years\n$2234\n12.548\n34157.0\n39(16)\n\n\n10\n(S3a) CDQ ≥ 19.5 points\n5 years\n$2205\n12.548\n25648.0\n52(14)\n\n\n11\n(S3b) CDQ ≥ 16.5 points\n3 years\n$2291\n12.553\n19763.0\n216(3)\n\n\n12\n(S3b) CDQ ≥ 16.5 points\n5 years\n$2248\n12.551\n18093.0\n173(7)\n\n\n13\n(S3c) Screening spirometry\n3 years\n$2255\n12.550\n24778.0\n107(10)\n\n\n14\n(S3c) Screening spirometry\n5 years\n$2220\n12.549\n18842.0\n117(9)\n\n\n15\n(S3d) CDQ + screening spirometry\n3 years\n$2263\n12.549\n28562.0\n85(12)\n\n\n16\n(S3d) CDQ + screening spirometry\n5 years\n$2225\n12.549\n22545.0\n91(11)"
+    "text": "Table 3\nConsensus: Successfully reproduced\nReproduction:\n\n\n\n\n\n\n\n\n\nScenario\nTesting interval\nCosts per patient\nQALYs per patient\nICER\nINMB (ranking)\n\n\n\n\n0\nS0: No case detection\nNaN\n$2150\n12.545\nNaN\nNaN\n\n\n1\n(S1a) CDQ ≥ 17 points\n3 years\n$2439\n12.560\n19472.0\n453(1)\n\n\n2\n(S1a) CDQ ≥ 17 points\n5 years\n$2357\n12.557\n18717.0\n346(2)\n\n\n3\n(S1b) Screening spirometry\n3 years\n$2363\n12.554\n25644.0\n202(4)\n\n\n4\n(S1b) Screening spirometry\n5 years\n$2298\n12.551\n25236.0\n146(8)\n\n\n5\n(S1c) CDQ + screening spirometry\n3 years\n$2385\n12.551\n39678.0\n61(13)\n\n\n6\n(S1c) CDQ + screening spirometry\n5 years\n$2311\n12.550\n39400.0\n43(15)\n\n\n7\n(S2a) Screening spirometry\n3 years\n$2286\n12.552\n21002.0\n188(5)\n\n\n8\n(S2a) Screening spirometry\n5 years\n$2245\n12.551\n17109.0\n182(6)\n\n\n9\n(S3a) CDQ ≥ 19.5 points\n3 years\n$2234\n12.548\n34157.0\n39(16)\n\n\n10\n(S3a) CDQ ≥ 19.5 points\n5 years\n$2205\n12.548\n25648.0\n52(14)\n\n\n11\n(S3b) CDQ ≥ 16.5 points\n3 years\n$2291\n12.553\n19763.0\n216(3)\n\n\n12\n(S3b) CDQ ≥ 16.5 points\n5 years\n$2248\n12.551\n18093.0\n173(7)\n\n\n13\n(S3c) Screening spirometry\n3 years\n$2255\n12.550\n24778.0\n107(10)\n\n\n14\n(S3c) Screening spirometry\n5 years\n$2220\n12.549\n18842.0\n117(9)\n\n\n15\n(S3d) CDQ + screening spirometry\n3 years\n$2263\n12.549\n28562.0\n85(12)\n\n\n16\n(S3d) CDQ + screening spirometry\n5 years\n$2225\n12.549\n22545.0\n91(11)"
   },
   {
     "objectID": "evaluation/reproduction_success.html#figure-3",
     "href": "evaluation/reproduction_success.html#figure-3",
     "title": "Reproduction success",
     "section": "Figure 3",
-    "text": "Figure 3\n\nReproduction:"
+    "text": "Figure 3\nConsensus: Successfully reproduced\nReproduction:"
   },
   {
     "objectID": "evaluation/reproduction_success.html#figure-4",
     "href": "evaluation/reproduction_success.html#figure-4",
     "title": "Reproduction success",
     "section": "Figure 4",
-    "text": "Figure 4\n\nReproduction:"
+    "text": "Figure 4\nConsensus: Not reproduced\nReproduction:"
   },
   {
     "objectID": "evaluation/reproduction_success.html#appendix-6",
     "href": "evaluation/reproduction_success.html#appendix-6",
     "title": "Reproduction success",
     "section": "Appendix 6",
-    "text": "Appendix 6\n\nReproduction:"
+    "text": "Appendix 6\nConsensus: Not reproduced\nReproduction:"
   },
   {
     "objectID": "evaluation/reproduction_success.html#appendix-7",
     "href": "evaluation/reproduction_success.html#appendix-7",
     "title": "Reproduction success",
     "section": "Appendix 7",
-    "text": "Appendix 7\n\nReproduction:"
+    "text": "Appendix 7\nConsensus: Successfully reproduced\nReproduction:"
   },
   {
     "objectID": "logbook/posts/2024_10_14/index.html",
