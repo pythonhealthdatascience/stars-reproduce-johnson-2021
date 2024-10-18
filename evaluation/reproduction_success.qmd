@@ -55,7 +55,7 @@ pd.read_csv('../reproduction/outputs/tab3.csv')
 
 Reproduction:
 
-![](../reproduction/outputs/fig3-1.png)
+![](../reproduction/outputs/fig3-1.png){.lightbox}
 
 ## Figure 4
 
@@ -63,7 +63,7 @@ Reproduction:
 
 Reproduction:
 
-![](../reproduction/outputs/fig4-1.png)
+![](../reproduction/outputs/fig4-1.png){.lightbox}
 
 ## Appendix 6
 
@@ -71,7 +71,7 @@ Reproduction:
 
 Reproduction:
 
-![](../reproduction/outputs/appendix6-1.png)
+![](../reproduction/outputs/appendix6-1.png){.lightbox}
 
 ## Appendix 7
 
@@ -79,4 +79,4 @@ Reproduction:
 
 Reproduction:
 
-![](../reproduction/outputs/appendix7-1.png)
+![](../reproduction/outputs/appendix7-1.png){.lightbox}
