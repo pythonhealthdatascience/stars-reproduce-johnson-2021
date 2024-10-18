@@ -240,6 +240,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#review-sensitivity-analysis-with-100-million" id="toc-review-sensitivity-analysis-with-100-million" class="nav-link active" data-scroll-target="#review-sensitivity-analysis-with-100-million">09.15-09.20, 09.27-09.33: Review sensitivity analysis with 100 million</a></li>
+  <li><a href="#untimed-consensus" id="toc-untimed-consensus" class="nav-link" data-scroll-target="#untimed-consensus">Untimed: Consensus</a></li>
+  <li><a href="#checking-figure-4-code" id="toc-checking-figure-4-code" class="nav-link" data-scroll-target="#checking-figure-4-code">10.56-11.14: Checking Figure 4 code</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_18/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -261,34 +263,107 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>X. Total time used: X</p>
+<p>Review sensitivity analysis 100 million results, consensus on reproduction success, fixed issue with medication adherence scenarios and set these to re-run. Total time used: 19h 35m (49.0%).</p>
 </div>
 </div>
 <section id="review-sensitivity-analysis-with-100-million" class="level2">
 <h2 class="anchored" data-anchor-id="review-sensitivity-analysis-with-100-million">09.15-09.20, 09.27-09.33: Review sensitivity analysis with 100 million</h2>
-<p>Ran <code>Process_Sensitivity_Analysis.Rmd</code>. These are changed to be much more similar to the original, and I feel reasonably similar enough to consider it reproduced, but will certainly need to discuss this, as there are obviously some differences too, so it feels - in this case - a very subjective decision!</p>
+<p><strong>Run times:</strong></p>
+<p>For 3 and 5 years of each scenario:</p>
+<ul>
+<li>Sen1_No_Smoking_Cessation 1.275262 days and 1.361881 days</li>
+<li>Sen2_50_Med_Adherence 1.2965 days and 1.269854 days</li>
+<li>Sen3_30_Med_Adherence 1.210629 days and 1.186785 days</li>
+<li>Sen4_01_Treat_Util 1.291363 days and 1.415365 days</li>
+<li>Sen5_0_Treat_Util 1.45615 days and 1.315001 days</li>
+<li>Sen6_0_Discount 1.148049 days and 1.163011 days</li>
+<li>Sen7_3_Discount 1.217285 days and 1.276366 days</li>
+</ul>
+<p>These were all run at once, so the total time was <strong>1.45615 days</strong> = 34.9476 hours = 34 hours 57 minutes (or <strong>1 day 10 hours 57 minutes</strong>)</p>
+<p><strong>Model results:</strong> Ran <code>Process_Sensitivity_Analysis.Rmd</code>. These are changed to be much more similar to the original, and I feel reasonably similar enough to consider it reproduced, but will certainly need to discuss this, as there are obviously some differences too, so it feels - in this case - a very subjective decision!</p>
 </section>
-<section id="timings" class="level2">
-<h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="710bdf04" class="cell" data-execution_count="1">
+<section id="untimed-consensus" class="level2">
+<h2 class="anchored" data-anchor-id="untimed-consensus">Untimed: Consensus</h2>
+<p>Agreed with Tom:</p>
+<ul>
+<li><strong>Table 3: Reproduced.</strong> Costs and QALYs are incredibly similar. Because ICER and INMB derive from the incremental differences, the nature of those calculations means they are very impacted by small differences. However, we are satisified that these are now looking similar enough (and note that none change about the willingness to pay threshold) that this can be considered reproduced, for our purposes.</li>
+<li><strong>Figure 3: Reproduced.</strong></li>
+<li><strong>Figure 4: Not reproduced.</strong> All points go across really flat and don’t show the pattern of dropping down. I will check if these are implemented correctly, given Apx 7 is all correct, and given some of these look right, it might be an issue in my implementation of the scenarios.</li>
+<li><strong>Appendix 6: Not reproduced.</strong> Due to difference in SABA.</li>
+<li><strong>Appendix 7: Reproduced.</strong> Super duper similar.</li>
+</ul>
+<p>Hence, for the three now considered reproduced, the timings for these are:</p>
+<p>Table 3 and Figure 3: Reproduced as of 09.53 on Day 14.</p>
+<p>Timings for table 3 and figure 3:</p>
+<div id="eb444ed6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">1146</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">1111</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.15'</span>, <span class="st">'09.20'</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.27'</span>, <span class="st">'09.33'</span>)]</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.40'</span>, <span class="st">'09.53'</span>)]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times, limit<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time spent today: 13m, or 0h 13m
+Total used to date: 1124m, or 18h 44m</code></pre>
+</div>
+</div>
+<p>Appendix 7: Reproduced as of 09.33 today.</p>
+<p>Timings for appendix 7:</p>
+<div id="885342d6" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">1146</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.15'</span>, <span class="st">'09.20'</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.27'</span>, <span class="st">'09.33'</span>)]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times, limit<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time spent today: 11m, or 0h 11m
-Total used to date: 1157m, or 19h 17m
-Time remaining: 1243m, or 20h 43m
-Used 48.2% of 40 hours max</code></pre>
+Total used to date: 1157m, or 19h 17m</code></pre>
+</div>
+</div>
+</section>
+<section id="checking-figure-4-code" class="level2">
+<h2 class="anchored" data-anchor-id="checking-figure-4-code">10.56-11.14: Checking Figure 4 code</h2>
+<p>Comparing our figure to the paper, our primary concern is 50% medication adherence and (in particular) 30% medication adherence, as both show very little change from prior points (moreso for 30%), making me suspect it could be an issue in the implementation of these scenarios.</p>
+<p>I realised that, though I had changed <code>medication_adherence</code> to 0.5 or 0.3, there was actually another variable used in the analysis called <code>med_adherence</code> which I hadn’t changed, which was actually responsible for the change in the model.</p>
+<p>I changed <code>medication_adherence</code> to <code>med_adherence</code> in the two base case files, then amended <code>Sensitivity_Analysis_Prep.R</code> to change the correct variable, so the new Sensitivity Analysis .Rmd had the correct change.</p>
+<p>I then set the medication adherence scenarios to run again. <strong>Note:</strong> Given long run time, will have to wait for that again, so although can speed up when run in parallel, when something like this happens, have to start from scratch again.</p>
+</section>
+<section id="timings" class="level2">
+<h2 class="anchored" data-anchor-id="timings">Timings</h2>
+<div id="23d6b201" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">1146</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.15'</span>, <span class="st">'09.20'</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.27'</span>, <span class="st">'09.33'</span>),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.56'</span>, <span class="st">'11.14'</span>)]</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time spent today: 29m, or 0h 29m
+Total used to date: 1175m, or 19h 35m
+Time remaining: 1225m, or 20h 25m
+Used 49.0% of 40 hours max</code></pre>
 </div>
 </div>
 
