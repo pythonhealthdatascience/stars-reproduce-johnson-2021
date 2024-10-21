@@ -4,8 +4,7 @@ echo: False
 bibliography: ../quarto_site/references.bib
 ---
 
-<!-- TODO: Add % reproduced -->
-**TBC once finished reproduction:** Of the 5 items in the scope, X% (X out of X) were considered to be **successfully reproduced**.
+Of the 5 items in the scope, 80% (4 out of 5) were considered to be **successfully reproduced**.
 
 The original items are not included as we do not have permission for reuse - however, these can be viewed at @johnson_cost_2021.
 
@@ -21,7 +20,7 @@ from time_to_complete import process_times, success_static, success_interactive
 time_list = [
     [1124, 'Table 3'],
     [1124, 'Figure 3'],
-    [np.nan, 'Figure 4'],
+    [1189, 'Figure 4'],
     [np.nan, 'Appendix 6'],
     [1157, 'Appendix 7']]
 times_df = process_times(time_list)
@@ -59,7 +58,7 @@ Reproduction:
 
 ## Figure 4
 
-**Consensus: Not reproduced**
+**Consensus: Successfully reproduced**
 
 Reproduction:
 
