@@ -1,0 +1,36 @@
+---
+title: "Day 17"
+author: "Amy Heather"
+date: "2024-10-21"
+categories: [reproduction]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+Following fix to med adherence, figure 4 now reproduced. Total reproduction time used: 19h 49m (49.5%).
+
+:::
+
+## 09.20-09.27: Review sensitivity analysis following fix
+
+Having fixed scenarios 2 and 3 (med adherence) and re-ran these, I re-generated the figures. This has absolutely resolved the issue, and we can now reasonably consider this figure reproduced.
+
+At this point, can now email the author, to let know success on most figures, and ask if any suggestions for the item we hadn't managed to reproduce.
+
+## Timings for reproduction
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 1182
+
+# Times from today
+times = [
+    ('09.20', '09.27')]
+
+calculate_times(used_to_date, times)
+```
