@@ -242,6 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#review-sensitivity-analysis-with-100-million" id="toc-review-sensitivity-analysis-with-100-million" class="nav-link active" data-scroll-target="#review-sensitivity-analysis-with-100-million">09.15-09.20, 09.27-09.33: Review sensitivity analysis with 100 million</a></li>
   <li><a href="#untimed-consensus" id="toc-untimed-consensus" class="nav-link" data-scroll-target="#untimed-consensus">Untimed: Consensus</a></li>
   <li><a href="#checking-figure-4-code" id="toc-checking-figure-4-code" class="nav-link" data-scroll-target="#checking-figure-4-code">10.56-11.14: Checking Figure 4 code</a></li>
+  <li><a href="#looking-back-at-saba-again" id="toc-looking-back-at-saba-again" class="nav-link" data-scroll-target="#looking-back-at-saba-again">11.20-11.27: Looking back at SABA again</a></li>
   <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_18/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -263,7 +264,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Review sensitivity analysis 100 million results, consensus on reproduction success, fixed issue with medication adherence scenarios and set these to re-run. Total time used: 19h 35m (49.0%).</p>
+<p>Review sensitivity analysis 100 million results, consensus on reproduction success, fixed issue with medication adherence scenarios and set these to re-run. Total time used: 19h 42m (49.2%).</p>
 </div>
 </div>
 <section id="review-sensitivity-analysis-with-100-million" class="level2">
@@ -295,7 +296,7 @@ Note
 <p>Hence, for the three now considered reproduced, the timings for these are:</p>
 <p>Table 3 and Figure 3: Reproduced as of 09.53 on Day 14.</p>
 <p>Timings for table 3 and figure 3:</p>
-<div id="2167e7df" class="cell" data-execution_count="1">
+<div id="a854d9d0" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -315,7 +316,7 @@ Total used to date: 1124m, or 18h 44m</code></pre>
 </div>
 <p>Appendix 7: Reproduced as of 09.33 today.</p>
 <p>Timings for appendix 7:</p>
-<div id="94c9ffc7" class="cell" data-execution_count="2">
+<div id="2f0125ac" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -340,11 +341,29 @@ Total used to date: 1157m, or 19h 17m</code></pre>
 <p>Comparing our figure to the paper, our primary concern is 50% medication adherence and (in particular) 30% medication adherence, as both show very little change from prior points (moreso for 30%), making me suspect it could be an issue in the implementation of these scenarios.</p>
 <p>I realised that, though I had changed <code>medication_adherence</code> to 0.5 or 0.3, there was actually another variable used in the analysis called <code>med_adherence</code> which I hadn’t changed, which was actually responsible for the change in the model.</p>
 <p>I changed <code>medication_adherence</code> to <code>med_adherence</code> in the two base case files, then amended <code>Sensitivity_Analysis_Prep.R</code> to change the correct variable, so the new Sensitivity Analysis .Rmd had the correct change.</p>
-<p>I then set the medication adherence scenarios to run again. <strong>Note:</strong> Given long run time, will have to wait for that again, so although can speed up when run in parallel, when something like this happens, have to start from scratch again.</p>
+<p>I then set the medication adherence scenarios to run again.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reflections
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Given long run time, will have to wait for that again, so although can speed up when run in parallel, when something like this happens, have to start from scratch again.</p>
+<p>Also, as scenarioes weren’t provided, this illustrates the difficulty of redoing it, and making mistakes.</p>
+</div>
+</div>
+</section>
+<section id="looking-back-at-saba-again" class="level2">
+<h2 class="anchored" data-anchor-id="looking-back-at-saba-again">11.20-11.27: Looking back at SABA again</h2>
+<p>On Day 7, I had troubleshooted SABA. I looked back again, and looked over the code again with fresh eyes, but couldn’t spot any issues that might explain this column.</p>
 </section>
 <section id="timings" class="level2">
 <h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="3065533a" class="cell" data-execution_count="3">
+<div id="c8fec102" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
@@ -356,14 +375,15 @@ Total used to date: 1157m, or 19h 17m</code></pre>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.15'</span>, <span class="st">'09.20'</span>),</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.27'</span>, <span class="st">'09.33'</span>),</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.56'</span>, <span class="st">'11.14'</span>)]</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.56'</span>, <span class="st">'11.14'</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.20'</span>, <span class="st">'11.27'</span>)]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 29m, or 0h 29m
-Total used to date: 1175m, or 19h 35m
-Time remaining: 1225m, or 20h 25m
-Used 49.0% of 40 hours max</code></pre>
+<pre><code>Time spent today: 36m, or 0h 36m
+Total used to date: 1182m, or 19h 42m
+Time remaining: 1218m, or 20h 18m
+Used 49.2% of 40 hours max</code></pre>
 </div>
 </div>
 
