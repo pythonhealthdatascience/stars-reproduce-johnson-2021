@@ -8,13 +8,88 @@ bibliography: ../../../quarto_site/references.bib
 
 ::: {.callout-note}
 
-X. Total time used: X
+Review sensitivity analysis 100 million results, consensus on reproduction success, fixed issue with medication adherence scenarios and set these to re-run. Total time used: 19h 35m (49.0%).
 
 :::
 
 ## 09.15-09.20, 09.27-09.33: Review sensitivity analysis with 100 million
 
-Ran `Process_Sensitivity_Analysis.Rmd`. These are changed to be much more similar to the original, and I feel reasonably similar enough to consider it reproduced, but will certainly need to discuss this, as there are obviously some differences too, so it feels - in this case - a very subjective decision!
+**Run times:**
+
+For 3 and 5 years of each scenario:
+
+* Sen1_No_Smoking_Cessation 1.275262 days and 1.361881 days
+* Sen2_50_Med_Adherence 1.2965 days and 1.269854 days
+* Sen3_30_Med_Adherence 1.210629 days and 1.186785 days
+* Sen4_01_Treat_Util 1.291363 days and 1.415365 days
+* Sen5_0_Treat_Util 1.45615 days and 1.315001 days
+* Sen6_0_Discount 1.148049 days and 1.163011 days
+* Sen7_3_Discount 1.217285 days and 1.276366 days
+
+These were all run at once, so the total time was **1.45615 days** = 34.9476 hours = 34 hours 57 minutes (or **1 day 10 hours 57 minutes**)
+
+**Model results:** Ran `Process_Sensitivity_Analysis.Rmd`. These are changed to be much more similar to the original, and I feel reasonably similar enough to consider it reproduced, but will certainly need to discuss this, as there are obviously some differences too, so it feels - in this case - a very subjective decision!
+
+## Untimed: Consensus
+
+Agreed with Tom:
+
+* **Table 3: Reproduced.** Costs and QALYs are incredibly similar. Because ICER and INMB derive from the incremental differences, the nature of those calculations means they are very impacted by small differences. However, we are satisified that these are now looking similar enough (and note that none change about the willingness to pay threshold) that this can be considered reproduced, for our purposes.
+* **Figure 3: Reproduced.**
+* **Figure 4: Not reproduced.** All points go across really flat and don't show the pattern of dropping down. I will check if these are implemented correctly, given Apx 7 is all correct, and given some of these look right, it might be an issue in my implementation of the scenarios.
+* **Appendix 6: Not reproduced.** Due to difference in SABA.
+* **Appendix 7: Reproduced.** Super duper similar.
+
+Hence, for the three now considered reproduced, the timings for these are:
+
+Table 3 and Figure 3: Reproduced as of 09.53 on Day 14.
+
+Timings for table 3 and figure 3:
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 1111
+
+# Times from today
+times = [
+    ('09.40', '09.53')]
+
+calculate_times(used_to_date, times, limit=False)
+```
+
+Appendix 7: Reproduced as of 09.33 today.
+
+Timings for appendix 7:
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 1146
+
+# Times from today
+times = [
+    ('09.15', '09.20'),
+    ('09.27', '09.33')]
+
+calculate_times(used_to_date, times, limit=False)
+```
+
+## 10.56-11.14: Checking Figure 4 code
+
+Comparing our figure to the paper, our primary concern is 50% medication adherence and (in particular) 30% medication adherence, as both show very little change from prior points (moreso for 30%), making me suspect it could be an issue in the implementation of these scenarios.
+
+I realised that, though I had changed `medication_adherence` to 0.5 or 0.3, there was actually another variable used in the analysis called `med_adherence` which I hadn't changed, which was actually responsible for the change in the model.
+
+I changed `medication_adherence` to `med_adherence` in the two base case files, then amended `Sensitivity_Analysis_Prep.R` to change the correct variable, so the new Sensitivity Analysis .Rmd had the correct change.
+
+I then set the medication adherence scenarios to run again. **Note:** Given long run time, will have to wait for that again, so although can speed up when run in parallel, when something like this happens, have to start from scratch again.
 
 ## Timings
 
@@ -29,7 +104,8 @@ used_to_date = 1146
 # Times from today
 times = [
     ('09.15', '09.20'),
-    ('09.27', '09.33')]
+    ('09.27', '09.33'),
+    ('10.56', '11.14')]
 
 calculate_times(used_to_date, times)
 ```
