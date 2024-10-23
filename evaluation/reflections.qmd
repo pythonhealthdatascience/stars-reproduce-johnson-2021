@@ -2,19 +2,59 @@
 title: "Reflections"
 ---
 
-<!-- TODO: Remove this warning once completed assessment -->
-**Please note: This is a template page and has not yet been completed**
-
 This page contains reflections on the facilitators and barriers to this reproduction, as well as a full list of the troubleshooting steps taken to reproduce this work.
+
+## What helped to facilitate this reproduction?
+
+**Run time**. In their `README`, the authors stated the model had an expected run time of 16 hours for each script, which was very handy to know ahead of time (and hence initially run with fewer agents while troubleshooting).
+
+**Including their results (in repository and via version history too)**. The analysis is run using `.Rmd` but the authors also saved the output `.md` files too (e.g. `Case_Detection_Results.md`), which means there is a record of their raw results. This was incredibly helpful - I referred to their latest results, and their older results from runs with different agent numbers - to help me figure out if my discrepancies were related to agent number or not.
+
+**Some figure code included**. For Figure 3, most of the required code for the figure was provided, which was super helpful.
 
 ## What would have helped facilitate this reproduction?
 
-<!-- TODO: Add reflections. Example:
-**Provide environment (packages and versions)**
+**Provide environment with all packages**
 
-* Not all packages needed will be listed in the imports (e.g. greenlet, pathlib)
-* Didn't work with latest package versions, had to backdate it for it to work
--->
+* Although a `DESCRIPTION` file accompanied the `epicR` package, this did not contain all the dependencies required for the scripts for this paper.
+* Unavoidably on the authors part, one of the dependencies (`rredis`) was removed from CRAN in 2022 and archived. It is possible to install it via `remotes`, but means that the recommended method for running the code in the README (installing this version of the package) fails as it tries to install `rredis` like usual, but the `DESCRIPTION` file would need to be changed to `Remotes: cran/rredis@1.7.0` to fix this. My solution was to install the `epicR` package locally, but that this required a quirky fix related to `library()`, `load_all()` and clearing the environment to ensure it actually worked correctly.
+
+**Output files**
+
+* Save results to `.csv` files.
+
+**Include code to produce all tables and figures**
+
+It took me alot of time to figure these out, including mistakes and confusion around:
+
+* Which results tables to use to produce them
+* Which columns to use
+* Which scenario to use for scenario 0
+* How to transform the columns
+* How to create other features like the efficiency frontier
+
+**Include code for the sensitivity analysis**
+
+To do this I had to:
+
+* Identify what and how to change the code to run the scenarios. Although it was handy that variable names were clear, as it made them easier to spot - although I did initially change the wrong variable for medical adherence
+* Created a `.R` script that duplicates the `.Rmd` whilst altering relevant parts of it for sensitivity analysis (this seemed the simplest solution, given the structure of the code)
+    * There was alot of **code duplication**, which made it tricky when I came to the scenario analysis, and would need to change variables in 12 locations within each of the 14 duplicate scripts for each scenario, but couldn't easily just loop and run with a single set of defined parameters. Likewise, it became tricky when troubleshooting the base case, as `Case_Detection_Results.Rmd` and `Case_Detection_Results_5yrs.Rmd`, and I had to make sure I carefully changed everything in both files.
+
+**Create releases**
+
+* The GitHub repository had commits after the publication date. It wasn’t clear which version aligned with the publication. However, the most recent commits add clear README instructions to the repository. We decided to use the latest version of the repository, but it would have beneficial to have releases/versions/a change log that would help to outline the commit history in relation to the publication and any subsequent changes.
+
+**Other**
+
+Run time - 
+
+* To reproduce results, I had to run their scripts with the full number of agents (100 million). This took a long time, and impacted the reproduction as (a) when experimenting with lower numbers, uncertain if discrepancies are due to lower agent number or not, (b) I initially thought I would need a HPC to do this (but then realised I could run them in parallel in seperate terminals on our machine in the office). However, option (b) wouldn't have been possible if I had only had my laptop, as it required leaving it running for day/s.
+* Long run time also meant it took a longer time to do this reproduction - although we excluded computation time in our timings, it just meant e.g. when I made a mistake in coding of scenario analysis and had to re-run, I had to wait another day or two for that to finish before I could resume.
+
+Seeds -
+
+* There is seed control, but I did not get the exact same results as the paper. However, when I tried re-running my analysis, I found I got the same results, so it appears that the seed control is indeed working as expected, and there is likely another reason I haven't identified behind the discrepancies.
 
 ## Full list of troubleshooting steps
 
@@ -23,12 +63,52 @@ This page contains reflections on the facilitators and barriers to this reproduc
 
 Troubleshooting steps are grouped by theme, and the day these occurred is given in brackets at the end of each bullet.
 
-<!-- TODO: Add full list of troubleshooting steps. Example:
-
 ### Environment
 
-* No environment file, and no versions for Python or Salabim in paper (2)
-* Dependencies based on PHC.py and package versions on or prior to 14th March 2021 (2)
--->
+* The README does not mention the environment, but this code has been add to a repository containing the EPIC package which itself has a `DESCRIPTION` file with packages, and so I assumed this to likewise be the environment for the reproduction (3)
+* One of the `Imports:` in the `DESCRIPTION` file is `rredis`, but I had an error: "Error: package ‘rredis’ is not available". I could see it had been [removed from CRAN](https://cran.r-project.org/web/packages/rredis/index.html) and archived on 2022-03-21, though it is possible to [access the archive](https://cran.r-project.org/src/contrib/Archive/rredis/). I had to use `remotes` to install `rredis` from the CRAN archive (including those instructions in `DESCRIPTION`: `Remotes: cran/rredis@1.7.0`) (3)
+    * Reflection: These tips and tricks for dealing with outdated packages, which is not something that can be foreseen, and could only be remedied by (a) adding these instructions, or (b) updating package versions - although both would require maintenance - and often, the focus of sharing code is more as a "state-in-time" alongside an article, rather than a "maintained" set of artefacts - although (a) would still be helpful for users wishing to access the code
+    * Worth generally being aware of this issue, that R packages can fail to install with this method, if dependency is removed from CRAN.
+* The `epicR` packages fails to install from the GitHub repository for this article as it has `rredis` listed as a dependency without `remotes`. Hence, instead loaded the local folder as a package (3)
+    * My method of importing this initially created an error where I just got 0 as results. I found that, if I ran the whole script just with the local `devtools::load_all("../epicR")`, it would appear to run but give results like 0. If however I cleared the environment and then ran `library(epicR)` below the `load_all()` statement, it would run and give actual results. I’m presuming this relates to the conflicts message that appeared. I understand that, when I clear the environment, I’m removing objects, states and data that might have come with `load_all()` but keeping the package itself, so I am just left with a “clean slate” with the package (5)
+* Identified some additional dependencies within `.Rmd` or that appeared as errors, to add to DESCRIPTION and renv (3,5)
+
+### Run time
+
+* Helpfully, the README states run time with 100 million agents is 16 hours. Code provided has 50 million agents set. While troubleshooting, I ran the scripts with fewer agentsl, and experimented to find a number of agents that was quick enough to run but sufficient for me to know if things were roughly working or not (4+)
+* Add a timer to the script (5)
+* I initially estimated that I would need an HPC to run these scripts due to long run times, but I then realised that - with access to remote machine we have - I could run them at the same time on seperate terminals, as they weren't super intensive, just long. (12+)
+    * I ran with 50 million first (like in their repository), but results looked too different, so then 100 million (12+)
+
+
+### Output files
+
+* Add code to save results to `.csv` files (5)
+
+### Tables and figures
+
+* Initially used the wrong table for table 3 (`sall` v.s. `Ceplane`) (6)
+* The results table needed to be tweaked to make table 3. There was no `S0`, so I assumed `S0` to be `S1NoCD` as the values were closest and it was the first row. However, couldn't be certain given a different name was used (5,6)
+* Initially used wrong columns (or got confused about whether I was using right columns) for table 3
+    * `CostpAgentAll` v.s. `CostpAgent`
+    * `ICER` v.s. `ICERAdj` (6)
+* The provided code output two figures which I combined to make Figure 3. This was relatively simple to combine. A little harded was to add the efficiency frontier, as I wasn't 100% certain what this was, but I did some research and based it on the description. Was really helpful having partial code for figures, but full code would have been fab (as e.g. I was uncertain if I’m implementing efficiency frontier correctly) (7)
+* No code was provided for Appendix 6, so had to write this from myself (7)
+    * I tried transforming the counts to "per 1000" but wasn't sure if I implemented it correctly. I also wasn't sure if I was using the right columns (e.g. `Mild` and `MildPY`, wasn't sure what `PY` stood for). I initially transformed based on assumed agent number of 1 million, but realised I had to use actual number (around 700k). (7)
+    * Then realised there was a table of adjusted clinical results that I should use for plot, that I just needed to multiply by 1000. It’s great that this was provided, and makes it much easier. This is partly my fault for not noticing that I should be using that table. However, as for the other parts of this reproduction, this might have been supported by more guidance on which tables produced which figures, or inclusion of code to produce that figure in the paper. And, I wasn’t sure what to multiply for these either in the end (see below). (7)
+    * I realised that multiplying by 1000 works with pAgent columns, but not for the pPYAll. It seems I’d need to multiply by about 16,000. I experimented with the others, but these were just guesses of what to multiply by, and I still found SABA results to be too low. Looking at their results from 50 million, they also have a low SABA. I looked into the code producing the SABA column, but didn't figure out what the issue was. (7)
+    * Found these transformations tricky to work out. I think part of the difficulty is that I’m really not quite sure what these columns are, and there isn’t documentation/comments to explain it, so I then don’t know how to transform them to match up with the paper. (7)
+* Had to write code to produce Figure 4 and Appendix 7 (9)
+
+### Sensitivity analysis
+
+* No code was provided to run the sensitivity analysis. Hence, to run these, I had to:
+    * Identify what and how to change the code. It’s handy that I could fairly easily identify each of these variables in the script since the variable names aligned pretty well with the concepts (i.e. good clear variable names). (8)
+    * To create scripts that ran the analysis, I created a script that duplicates the `.Rmd` whilst altering relevant parts of it (as running simpler like from a single script would require completely restructuring code) (in current set up, parameters are repeatedly provided before each scenario, and not just in one section, and so on). (8,9)
+    * I initially amended the wrong variable for medical adherence, meaning the scenarios weren't implemented correctly and I had to re-run.
+
+### Other
+
+* This is not troubleshooting, but worth mentioning is something that caused uncertainty: version history. The GitHub repository had commits after the publication date. It wasn't clear which version aligned with the publication. However, the most recent commits add clear README instructions to the repository. We decided to use the latest version of the repository, but it would have beneficial to have releases/versions/a change log that would help to outline the commit history in relation to the publication and any subsequent changes (1,2)
 
 :::
