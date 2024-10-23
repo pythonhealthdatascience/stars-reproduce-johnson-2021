@@ -212,23 +212,17 @@ div.csl-indent {
 </header>
 
 
-<!-- TODO: Remove this warning once completed assessment -->
-<p><strong>Please note: This is a template page and has not yet been completed</strong></p>
 <p>This page evaluates the extent to which the original study meets the recommendations from the STARS framework for the sharing of code and associated materials from discrete-event simulation models (<span class="citation" data-cites="monks_towards_2024">Monks, Harper, and Mustafee (<a href="#ref-monks_towards_2024" role="doc-biblioref">2024</a>)</span>).</p>
 <p>Of the <strong>8</strong> essential STARS components:</p>
-<!-- TODO: Add counts from evaluation -->
 <ul>
-<li><strong>X</strong> were met fully (✅)</li>
-<li><strong>X</strong> was met partially (🟡)</li>
-<li><strong>X</strong> was not met (❌)</li>
+<li><strong>4</strong> were met fully (✅)</li>
+<li><strong>2</strong> were met partially (🟡)</li>
+<li><strong>2</strong> were not met (❌)</li>
 </ul>
 <p>Of the <strong>5</strong> optional STARS components:</p>
-<!-- TODO: Add counts from evaluation -->
 <ul>
-<li><strong>X</strong> was met fully (✅)</li>
-<li><strong>X</strong> were not met (❌)</li>
+<li><strong>5</strong> were not met (❌)</li>
 </ul>
-<!-- TODO: Fill in the table. Options are ✅ Fully, 🟡 Partially, or ❌ Not met -->
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -254,50 +248,50 @@ div.csl-indent {
 <tr class="even">
 <td>Open license</td>
 <td>Free and open-source software (FOSS) license (e.g.&nbsp;MIT, GNU Public License (GPL))</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">✅ Fully</td>
+<td>GNU-3</td>
 </tr>
 <tr class="odd">
 <td>Dependency management</td>
 <td>Specify software libraries, version numbers and sources (e.g.&nbsp;dependency management tools like virtualenv, conda, poetry)</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">🟡 Partially</td>
+<td>Rationale for partial rating:<br>• Instructions in GitHub were to install this directly from GitHub (which would install dependencies too) but that is not possible as it depends on rredis as an Import but that has been archived and so requires remotes to install<br>• Some of the dependencies used in the <code>.Rmd</code> files for the analysis were not in DESCRIPTION (as well as some dependencies that appeared as missing import errors)<br>• Doesn’t specify all versions (which, although not necessary to run, would be helpful as a “snapshot” of what the analysis ran with for the paper).</td>
 </tr>
 <tr class="even">
 <td>FOSS model</td>
 <td>Coded in FOSS language (e.g.&nbsp;R, Julia, Python)</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">✅ Fully</td>
+<td>R</td>
 </tr>
 <tr class="odd">
 <td>Minimum documentation</td>
 <td>Minimal instructions (e.g.&nbsp;in README) that overview (a) what model does, (b) how to install and run model to obtain results, and (c) how to vary parameters to run new experiments</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">🟡 Partially</td>
+<td>README has mini description of model, and clear instructions on how to install and run model, but doesn’t explain how to vary parameters, and so have marked as partially met.</td>
 </tr>
 <tr class="even">
 <td>ORCID</td>
 <td>ORCID for each study author</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">❌ Not met</td>
+<td>-</td>
 </tr>
 <tr class="odd">
 <td>Citation information</td>
 <td>Instructions on how to cite the research artefact (e.g.&nbsp;CITATION.cff file)</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">✅ Fully</td>
+<td>Includes instructions for citation.</td>
 </tr>
 <tr class="even">
 <td>Remote code repository</td>
 <td>Code available in a remote code repository (e.g.&nbsp;GitHub, GitLab, BitBucket)</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">✅ Fully</td>
+<td><a href="https://github.com/KateJohnson/epicR/tree/closed_cohort" class="uri">https://github.com/KateJohnson/epicR/tree/closed_cohort</a></td>
 </tr>
 <tr class="odd">
 <td>Open science archive</td>
 <td>Code stored in an open science archive with FORCE11 compliant citation and guaranteed persistance of digital artefacts (e.g.&nbsp;Figshare, Zenodo, the Open Science Framework (OSF), and the Computational Modeling in the Social and Ecological Sciences Network (CoMSES Net))</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">❌ Not met</td>
+<td>As far as I am aware.</td>
 </tr>
 <tr class="even">
 <td><strong>Optional components</strong></td>
@@ -308,32 +302,32 @@ div.csl-indent {
 <tr class="odd">
 <td>Enhanced documentation</td>
 <td>Open and high quality documentation on how the model is implemented and works (e.g.&nbsp;via notebooks and markdown files, brought together using software like Quarto and Jupyter Book). Suggested content includes:<br>• Plain english summary of project and model<br>• Clarifying license<br>• Citation instructions<br>• Contribution instructions<br>• Model installation instructions<br>• Structured code walk through of model<br>• Documentation of modelling cycle using TRACE<br>• Annotated simulation reporting guidelines<br>• Clear description of model validation including its intended purpose</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">❌ Not met</td>
+<td>-</td>
 </tr>
 <tr class="even">
 <td>Documentation hosting</td>
 <td>Host documentation (e.g.&nbsp;with GitHub pages, GitLab pages, BitBucket Cloud, Quarto Pub)</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">❌ Not met</td>
+<td>-</td>
 </tr>
 <tr class="odd">
 <td>Online coding environment</td>
 <td>Provide an online environment where users can run and change code (e.g.&nbsp;BinderHub, Google Colaboratory, Deepnote)</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">❌ Not met</td>
+<td>The README mentions that the model is on PRISM but from the links, one doesn’t work and one <a href="https://resp.core.ubc.ca/software/epicR">links to a page</a> that simply has a description of the model and copy of the README. Referring to the original EPIC repository it is forked from, there is a working link to the <a href="https://resplab.github.io/prismguide/epic.html">Peer Models Network</a>, which contains several links and instructions on how to install epic from GitHub. This is great for helping bring together collections of models with relevant instructions and links but, from looking at it, is not an online coding environment (and is more relevant to the full EPIC repository than that for this study regardless), so marked as not met.</td>
 </tr>
 <tr class="even">
 <td>Model interface</td>
 <td>Provide web application interface to the model so it is accessible to less technical simulation users</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">❌ Not met</td>
+<td>-</td>
 </tr>
 <tr class="odd">
 <td>Web app hosting</td>
 <td>Host web app online (e.g.&nbsp;Streamlit Community Cloud, ShinyApps hosting)</td>
-<td style="text-align: center;"><!----></td>
-<td><!----></td>
+<td style="text-align: center;">❌ Not met</td>
+<td>-</td>
 </tr>
 </tbody>
 </table>
