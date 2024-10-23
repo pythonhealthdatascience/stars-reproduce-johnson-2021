@@ -1,0 +1,56 @@
+---
+title: "Day 18"
+author: "Amy Heather"
+date: "2024-10-23"
+categories: [evaluation]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+Created reflections paged, and evaluation of repository. Total evaluation time: 20m.
+
+:::
+
+## Untimed: Reflections
+
+Looked back over logbook to write reflections page.
+
+## 14.37-14.40, 16.08-16.19: Evaluation against STARS framework
+
+Environment. This article has code add to the epicR package which itself had a description file with packages (and some specific versions) - although:
+
+* Instructions in GitHub were to install this directly from GitHub (which would install dependencies too) but that is not possible as it depends on rredis as an Import but that has been archived and so requires remotes to install
+* Some of the dependencies used in the `.Rmd` files for the analysis were not in DESCRIPTION (as well as some dependencies that appeared as missing import errors)
+* Doesn't specify all versions (which, although not necessary to run, would be helpful as a "snapshot" of what the analysis ran with for the paper).
+
+As such, I decided to evaluate this as partially met.
+
+## 16.21-16.27: Journal badges evaluation
+
+Marked as regenerated as we managed to reproduced most things apart from one of the bars in one of the sub-plots (similar to the decision I made for Shoaib and Ramamohan (2021)).
+
+Marked as not met for structure, as (a) I found layout of repository (including files within branch of package repository) quite confusing, and (b) the layout of the code itself was not easily reused to run the sensitivity analyses.
+
+Marked as not met for documentation as - although the README was great in directing to files to run and so on - there were several dependencies for the scripts that were necessary but not aluded to in README or included in DESCRIPTION.
+
+Similar, for README criteria, marked as not met as it was tricky to (a) make figures and tables, and (b) run sensitivity analysis - although it was great for getting started with the base case.
+
+## Timings for evaluation
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 0
+
+# Times from today
+times = [
+    ('14.37', '14.40'),
+    ('16.08', '16.19'),
+    ('16.21', '16.27')]
+
+calculate_times(used_to_date, times, limit=False)
+```
