@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Amy Heather">
-<meta name="dcterms.date" content="2024-09-16">
+<meta name="dcterms.date" content="2024-10-24">
 
-<title>Day 10 – Reproducing Johnson et al.&nbsp;2021</title>
+<title>Day 19 – Reproducing Johnson et al.&nbsp;2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -56,7 +56,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -203,9 +223,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Day 10</h1>
+      <h1 class="title">Day 19</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">reproduce</div>
+                <div class="quarto-category">evaluation</div>
               </div>
                   </div>
   </div>
@@ -223,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 16, 2024</p>
+        <p class="date">October 24, 2024</p>
       </div>
     </div>
     
@@ -239,11 +259,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#running-remaining-scenarios-with-5e5" id="toc-running-remaining-scenarios-with-5e5" class="nav-link active" data-scroll-target="#running-remaining-scenarios-with-5e5">09.23-09.25, 09.57: Running remaining scenarios with 5e5</a></li>
-  <li><a href="#testing-seeds" id="toc-testing-seeds" class="nav-link" data-scroll-target="#testing-seeds">09.59-10.00: Testing seeds</a></li>
-  <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
+  <li><a href="#stress-des" id="toc-stress-des" class="nav-link active" data-scroll-target="#stress-des">09.32-09.58, 10.23-10.55: STRESS-DES</a></li>
+  <li><a href="#ispor-sdm" id="toc-ispor-sdm" class="nav-link" data-scroll-target="#ispor-sdm">11.20-11.54: ISPOR-SDM</a></li>
+  <li><a href="#timings-for-evaluation" id="toc-timings-for-evaluation" class="nav-link" data-scroll-target="#timings-for-evaluation">Timings for evaluation</a></li>
+  <li><a href="#untimed-summary-report" id="toc-untimed-summary-report" class="nav-link" data-scroll-target="#untimed-summary-report">Untimed: Summary report</a></li>
+  <li><a href="#untimed-research-compendium" id="toc-untimed-research-compendium" class="nav-link" data-scroll-target="#untimed-research-compendium">Untimed: Research compendium</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_16/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_24/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -262,59 +284,85 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ran final scenario analyses with 5e5, but as expected, not a match. Total time used: 17h 21m (43.3%)</p>
+<p>Evaluation against reporting guidelines. Total evaluation time: 1h 52m. Also, summary report and research compendium.</p>
 </div>
 </div>
-<section id="running-remaining-scenarios-with-5e5" class="level2">
-<h2 class="anchored" data-anchor-id="running-remaining-scenarios-with-5e5">09.23-09.25, 09.57: Running remaining scenarios with 5e5</h2>
-<p>Running Scenarios 6 and 7 with 5e5 base agents. Then ran my prepared <code>Process_Sensitivity_Analysis.Rmd</code>. As expected, these look very different from original, so will have to wait and see if running with 1 million base agents on the HPC resolves this issue or not.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig4-1.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 4 Reproduction</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="appendix7-1.png" class="img-fluid figure-img"></p>
-<figcaption>Appendix 7 Reproduction</figcaption>
-</figure>
-</div>
+<section id="stress-des" class="level2">
+<h2 class="anchored" data-anchor-id="stress-des">09.32-09.58, 10.23-10.55: STRESS-DES</h2>
 </section>
-<section id="testing-seeds" class="level2">
-<h2 class="anchored" data-anchor-id="testing-seeds">09.59-10.00: Testing seeds</h2>
-<p>Ran one of them for a second time, just to confirm I got the same results, and that the seed control is working as expected - and this was indeed the case, with no changes in the results observed.</p>
-<p>Try running one twice to check get same results each time</p>
+<section id="ispor-sdm" class="level2">
+<h2 class="anchored" data-anchor-id="ispor-sdm">11.20-11.54: ISPOR-SDM</h2>
+<p>Noticed in <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> that they state “EPIC is not probabilistic, meaning we could not explore parameter uncertainty”… and in <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> “Given that many parameters of EPIC are derived based on calibration techniques, this is not simply a matter of replacing fixed input parameters with their probabilistic equivalent”.</p>
+<p>Hence, then returned to STRESS-DES 4.3 Estimation approach and 5.2 Random sampling - I had marked as not met as couldn’t spot these addressed anywhere - but based on this, not assuming these would be not applicable.</p>
 </section>
-<section id="timings" class="level2">
-<h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="94a597f7" class="cell" data-execution_count="1">
+<section id="timings-for-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="timings-for-evaluation">Timings for evaluation</h2>
+<div id="6f0ee511" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">1035</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.23'</span>, <span class="st">'09.25'</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.54'</span>, <span class="st">'09.57'</span>),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.59'</span>, <span class="st">'10.00'</span>)]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'09.32'</span>, <span class="st">'09.58'</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'10.23'</span>, <span class="st">'10.55'</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'11.20'</span>, <span class="st">'11.54'</span>)]</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times, limit<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 6m, or 0h 6m
-Total used to date: 1041m, or 17h 21m
-Time remaining: 1359m, or 22h 39m
-Used 43.4% of 40 hours max</code></pre>
+<pre><code>Time spent today: 92m, or 1h 32m
+Total used to date: 112m, or 1h 52m</code></pre>
 </div>
 </div>
+</section>
+<section id="untimed-summary-report" class="level2">
+<h2 class="anchored" data-anchor-id="untimed-summary-report">Untimed: Summary report</h2>
+</section>
+<section id="untimed-research-compendium" class="level2">
+<h2 class="anchored" data-anchor-id="untimed-research-compendium">Untimed: Research compendium</h2>
+<p>Status at end of today:</p>
+<ul>
+<li>Seperate folders for data, methods and outputs ✅</li>
+<li>Tests to check if can get same results by comparing CSV files ✅
+<ul>
+<li>I copied the code for S1NoCD to make a <code>testthat</code> test, but found that the output was 0 0 0 0 - like it used to be when I had issues locally importing epicR. This is despite it running fine if I run it directly from the file (not via test command), and despite it appearing to load the module without issue.</li>
+<li>Struggling to fix this, I decided the simplest solution was to just run it as a normal <code>.R</code> script without <code>testthat</code>.</li>
+</ul></li>
+<li>Run times in each .R file and clear which parts of article it is producing ✅</li>
+<li>README ✅</li>
+<li>Dockerfile (build, check it works). ✅
+<ul>
+<li>Built local file.</li>
+<li>Ran <code>Process_Sensitivity_Analysis.Rmd</code> fine</li>
+<li>For <code>test_s1nocd.R</code>, when loading <code>epicR</code>, it said “The package”tcltk” is required.” This was in the <code>renv</code>, but if I tried to load it with <code>library()</code>, I got an error:</li>
+</ul></li>
+</ul>
+<pre><code>Error: package or namespace load failed for ‘tcltk’:
+ .onLoad failed in loadNamespace() for 'tcltk', details:
+  call: dyn.load(file, DLLpath = DLLpath, ...)
+  error: unable to load shared object '/usr/local/lib/R/library/tcltk/libs/tcltk.so':
+  libtcl8.6.so: cannot open shared object file: No such file or directory</code></pre>
+<ul>
+<li>I tried selecting yes to install it when prompted after loading EPIC, and then running the rest of the script, which ran fine and the resulting dataframes matched up.</li>
+<li>From googling the error message, it appears I just need to apt-get <code>tk</code>. I add this to the Dockerfile then re-ran and re-tested. This worked!</li>
+<li>GitHub action to push docker image to GHCR ✅</li>
+</ul>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-johnson_cost_2021" class="csl-entry" role="listitem">
+Johnson, Kate M., Mohsen Sadatsafavi, Amin Adibi, Larry Lynd, Mark Harrison, Hamid Tavakoli, Don D. Sin, and Stirling Bryan. 2021. <span>“Cost <span>Effectiveness</span> of <span>Case</span> <span>Detection</span> <span>Strategies</span> for the <span>Early</span> <span>Detection</span> of <span>COPD</span>.”</span> <em>Applied Health Economics and Health Policy</em> 19 (2): 203–15. <a href="https://doi.org/10.1007/s40258-020-00616-2">https://doi.org/10.1007/s40258-020-00616-2</a>.
+</div>
+<div id="ref-sadatsafavi_development_2019" class="csl-entry" role="listitem">
+Sadatsafavi, Mohsen, Shahzad Ghanbarian, Amin Adibi, Kate Johnson, J. Mark FitzGerald, William Flanagan, Stirling Bryan, and Don Sin. 2019. <span>“Development and <span>Validation</span> of the <span>Evaluation</span> <span>Platform</span> in <span>COPD</span> (<span>EPIC</span>): <span>A</span> <span>Population</span>-<span>Based</span> <span>Outcomes</span> <span>Model</span> of <span>COPD</span> for <span>Canada</span>.”</span> <em>Medical Decision Making</em> 39 (2): 152–67. <a href="https://doi.org/10.1177/0272989X18824098">https://doi.org/10.1177/0272989X18824098</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -759,7 +807,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_16/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_10_24/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

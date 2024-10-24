@@ -280,9 +280,12 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <pre><code>docker build --tag johnson2021 . -f ./reproduction/docker/Dockerfile</code></pre>
 <ol start="3" type="1">
-<li>Create container and open RStudio:</li>
+<li>Create container:</li>
 </ol>
-<pre><code>(sleep 2 &amp;&amp; xdg-open http://localhost:8888) &amp; sudo docker run -it -p 8888:8787 -e DISABLE_AUTH=true --name johnson2021_docker johnson2021</code></pre>
+<pre><code>sudo docker run -it -p 8888:8787 -e DISABLE_AUTH=true --name johnson2021_docker johnson2021</code></pre>
+<ol start="4" type="1">
+<li>Open RStudio by navigating to <a href="http://localhost:8888/" class="uri">http://localhost:8888/</a>.</li>
+</ol>
 </section>
 <section id="option-c.-pull-pre-built-docker-image" class="level4">
 <h4 class="anchored" data-anchor-id="option-c.-pull-pre-built-docker-image">Option C. Pull pre-built docker image</h4>
@@ -297,9 +300,12 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <pre><code>sudo docker pull ghcr.io/pythonhealthdatascience/johnson2021</code></pre>
 <ol start="4" type="1">
-<li>Create container and open RStudio:</li>
+<li>Create container:</li>
 </ol>
-<pre><code>(sleep 2 &amp;&amp; xdg-open http://localhost:8888) &amp; sudo docker run -it -p 8888:8787 -e DISABLE_AUTH=true --name johnson2021_docker ghcr.io/pythonhealthdatascience/johnson2021:latest</code></pre>
+<pre><code>sudo docker run -it -p 8888:8787 -e DISABLE_AUTH=true --name johnson2021_docker ghcr.io/pythonhealthdatascience/johnson2021:latest</code></pre>
+<ol start="5" type="1">
+<li>Open RStudio by navigating to <a href="http://localhost:8888/" class="uri">http://localhost:8888/</a>.</li>
+</ol>
 </section>
 </section>
 <section id="step-2.-running-the-model" class="level3">
