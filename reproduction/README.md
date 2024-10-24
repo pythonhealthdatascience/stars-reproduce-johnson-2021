@@ -73,11 +73,13 @@ To create the docker image and then open up RStudio:
 docker build --tag johnson2021 . -f ./reproduction/docker/Dockerfile
 ```
 
-3. Create container and open RStudio:
+3. Create container:
 
 ```
-(sleep 2 && xdg-open http://localhost:8888) & sudo docker run -it -p 8888:8787 -e DISABLE_AUTH=true --name johnson2021_docker johnson2021
+sudo docker run -it -p 8888:8787 -e DISABLE_AUTH=true --name johnson2021_docker johnson2021
 ```
+
+4. Open RStudio by navigating to <http://localhost:8888/>.
 
 #### Option C. Pull pre-built docker image
 
@@ -96,11 +98,13 @@ sudo docker login ghcr.io -u githubusername
 sudo docker pull ghcr.io/pythonhealthdatascience/johnson2021
 ```
 
-4. Create container and open RStudio:
+4. Create container:
 
 ```
-(sleep 2 && xdg-open http://localhost:8888) & sudo docker run -it -p 8888:8787 -e DISABLE_AUTH=true --name johnson2021_docker ghcr.io/pythonhealthdatascience/johnson2021:latest
+sudo docker run -it -p 8888:8787 -e DISABLE_AUTH=true --name johnson2021_docker ghcr.io/pythonhealthdatascience/johnson2021:latest
 ```
+
+5. Open RStudio by navigating to <http://localhost:8888/>.
 
 ### Step 2. Running the model
 
