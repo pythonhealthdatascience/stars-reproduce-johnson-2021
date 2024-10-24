@@ -1,0 +1,69 @@
+---
+title: "Day 19"
+author: "Amy Heather"
+date: "2024-10-24"
+categories: [evaluation]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+Evaluation against reporting guidelines. Total evaluation time: 1h 52m. Also, summary report and research compendium.
+
+:::
+
+## 09.32-09.58, 10.23-10.55: STRESS-DES
+
+## 11.20-11.54: ISPOR-SDM
+
+Noticed in @johnson_cost_2021 that they state "EPIC is not probabilistic, meaning we could not explore parameter uncertainty"... and in @sadatsafavi_development_2019 "Given that many parameters of EPIC are derived based on calibration techniques, this is not simply a matter of replacing fixed input parameters with their probabilistic equivalent".
+
+Hence, then returned to STRESS-DES 4.3 Estimation approach and 5.2 Random sampling - I had marked as not met as couldn't spot these addressed anywhere - but based on this, not assuming these would be not applicable.
+
+## Timings for evaluation
+
+```{python}
+import sys
+sys.path.append('../')
+from timings import calculate_times
+
+# Minutes used prior to today
+used_to_date = 20
+
+# Times from today
+times = [
+    ('09.32', '09.58'),
+    ('10.23', '10.55'),
+    ('11.20', '11.54')]
+
+calculate_times(used_to_date, times, limit=False)
+```
+
+## Untimed: Summary report
+
+## Untimed: Research compendium
+
+Status at end of today:
+
+* Seperate folders for data, methods and outputs ✅
+* Tests to check if can get same results by comparing CSV files ✅
+    * I copied the code for S1NoCD to make a `testthat` test, but found that the output was 0 0 0 0 - like it used to be when I had issues locally importing epicR. This is despite it running fine if I run it directly from the file (not via test command), and despite it appearing to load the module without issue.
+    * Struggling to fix this, I decided the simplest solution was to just run it as a normal `.R` script without `testthat`.
+* Run times in each .R file and clear which parts of article it is producing ✅
+* README ✅
+* Dockerfile (build, check it works). ✅
+  * Built local file.
+  * Ran `Process_Sensitivity_Analysis.Rmd` fine
+  * For `test_s1nocd.R`, when loading `epicR`, it said "The package "tcltk" is required." This was in the `renv`, but if I tried to load it with `library()`, I got an error:
+
+```
+Error: package or namespace load failed for ‘tcltk’:
+ .onLoad failed in loadNamespace() for 'tcltk', details:
+  call: dyn.load(file, DLLpath = DLLpath, ...)
+  error: unable to load shared object '/usr/local/lib/R/library/tcltk/libs/tcltk.so':
+  libtcl8.6.so: cannot open shared object file: No such file or directory
+```
+
+  * I tried selecting yes to install it when prompted after loading EPIC, and then running the rest of the script, which ran fine and the resulting dataframes matched up.
+  * From googling the error message, it appears I just need to apt-get `tk`. I add this to the Dockerfile then re-ran and re-tested. This worked!
+* GitHub action to push docker image to GHCR ✅
