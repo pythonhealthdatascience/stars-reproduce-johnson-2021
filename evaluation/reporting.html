@@ -219,8 +219,6 @@ div.csl-indent {
 </header>
 
 
-<!-- TODO: Remove this warning once completed assessment -->
-<p><strong>Please note: This is a template page and has not yet been completed</strong></p>
 <p>This page evaluates the extent to which the journal article meets the criteria from two discrete-event simulation study reporting guidelines:</p>
 <ul>
 <li><span class="citation" data-cites="monks_strengthening_2019">Monks et al. (<a href="#ref-monks_strengthening_2019" role="doc-biblioref">2019</a>)</span> - STRESS-DES: Strengthening The Reporting of Empirical Simulation Studies (Discrete-Event Simulation) (Version 1.0).</li>
@@ -229,14 +227,12 @@ div.csl-indent {
 <section id="stress-des" class="level2">
 <h2 class="anchored" data-anchor-id="stress-des">STRESS-DES</h2>
 <p>Of the <strong>24</strong> items in the checklist:</p>
-<!-- TODO: Add counts from evaluation -->
 <ul>
-<li><strong>X</strong> were met fully (✅)</li>
-<li><strong>X</strong> were partially met (🟡)</li>
-<li><strong>X</strong> were not met (❌)</li>
-<li><strong>X</strong> were not applicable (N/A)</li>
+<li><strong>16</strong> were met fully (✅)</li>
+<li><strong>1</strong> were partially met (🟡)</li>
+<li><strong>2</strong> were not met (❌)</li>
+<li><strong>5</strong> were not applicable (N/A)</li>
 </ul>
-<!-- TODO: Fill in the table. Options are ✅ Fully, 🟡 Partially, ❌ Not met, or N/A -->
 <table class="caption-top table">
 <colgroup>
 <col style="width: 12%">
@@ -262,20 +258,20 @@ div.csl-indent {
 <tr class="even">
 <td>1.1 Purpose of the model</td>
 <td>Explain the background and objectives for the model</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>1 Introduction</code> e.g.&nbsp;“The objective of this study was to determine the cost effectiveness of primary care-based case detection scenarios, which vary in terms of their ini- tial eligibility criteria, case detection technology, follow-up intervals, and subsequent disease management.”<br><br><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>1.2 Model outputs</td>
 <td>Define all quantitative performance measures that are reported, using equations where necessary. Specify how and when they are calculated during the model run along with how any measures of error such as confidence intervals are calculated.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>2.2 Evaluation Platform in COPD (EPIC)</code> lists outcomes modelled by EPIC which include demographics and risk factors, COPD occurence, lung function trajectories, COPD severity, COPD exacerbation occurence and severity, mortality related to COPD exacerbations, background mortality, and costs and quality-adjusted life years (QALYs)<br><br><code>2.5.1 Reference Case</code> - the focus of this paper in terms of outcomes: “The main outcomes of this analysis were total costs and QALYs accumulated over a 20-year time horizon”<br><br><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="even">
 <td>1.3 Experimentation aims</td>
 <td>If the model has been used for experimentation, state the objectives that it was used to investigate.<br>(A) Scenario based analysis – Provide a name and description for each scenario, providing a rationale for the choice of scenarios and ensure that item 2.3 (below) is completed.<br>(B) Design of experiments – Provide details of the overall design of the experiments with reference to performance measures and their parameters (provide further details in data below).<br>(C) Simulation Optimisation – (if appropriate) Provide full details of what is to be optimised, the parameters that were included and the algorithm(s) that was be used. Where possible provide a citation of the algorithm(s).</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Scenario based - have (a) <code>2.5.1 Reference Case</code> - with “16 case detection scenarios” which can see in <code>Table 1</code> - and then (b) <code>2.5.2 Sensitivity Analyses</code> which explore outcomes of those scenarios with varying parameters e.g.&nbsp;medication adherence, smoking cessation.<br><br><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="odd">
 <td><strong>Logic</strong></td>
@@ -286,56 +282,56 @@ div.csl-indent {
 <tr class="even">
 <td>2.1 Base model overview diagram</td>
 <td>Describe the base model using appropriate diagrams and description. This could include one or more process flow, activity cycle or equivalent diagrams sufficient to describe the model to readers. Avoid complicated diagrams in the main text. The goal is to describe the breadth and depth of the model with respect to the system being studied.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>Figure 1</code>: “Schematic illustration of the Evaluation Platforms in COPD (EPIC). Modules added to the original version of EPIC in order to simulate the case detection pathway are shown in grey”<br><br><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>2.2 Base model logic</td>
 <td>Give details of the base model logic. Give additional model logic details sufficient to communicate to the reader how the model works.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>Figure 1</code>, <code>2.1 Case Detection Scenarios</code>, <code>2.2 Evaluation Platform in COPD (EPIC)</code>, <code>2.3 Evaluation of Case Detection Scenarios</code> <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="even">
 <td>2.3 Scenario logic</td>
 <td>Give details of the logical difference between the base case model and scenarios (if any). This could be incorporated as text or where differences are substantial could be incorporated in the same manner as 2.2.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>Table 1</code>: Case detection scenarios evaluated, and <code>2.1 Case Detection Scenarios</code> <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>2.4 Algorithms</td>
 <td>Provide further detail on any algorithms in the model that (for example) mimic complex or manual processes in the real world (i.e.&nbsp;scheduling of arrivals/ appointments/ operations/ maintenance, operation of a conveyor system, machine breakdowns, etc.). Sufficient detail should be included (or referred to in other published work) for the algorithms to be reproducible. Pseudo-code may be used to describe an algorithm.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Provided in prior paper <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> - <code>Table 1</code>: “Input Parameters (βs) and Their Related Equations in Evaluation Platform in COPD (EPIC)” - and elsewhere in text e.g.&nbsp;“new individuals (incident population) enter the model in future years according to the projection of population growth and aging”, and “Time of events was generally sampled from the exponential distribution whose event rates were functions of an individual’s variables.”</td>
 </tr>
 <tr class="even">
 <td>2.5.1 Components - entities</td>
 <td>Give details of all entities within the simulation including a description of their role in the model and a description of all their attributes.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Provided in prior paper <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> - <code>Methods: Conceptual Framework</code> - “An individual is defined by a set of “variables” (such as sex, current age, current FEV1, individual-specific rate of FEV1 decline, and rate of exacerbations)”</td>
 </tr>
 <tr class="odd">
 <td>2.5.2 Components - activities</td>
 <td>Describe the activities that entities engage in within the model. Provide details of entity routing into and out of the activity.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Provided clearly in prior paper <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> in <code>Appendix 1</code> which is a table listing the events in the model, what they are affected by, and the consequence of each event. These are likewise listed in <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> <code>2.2 Evaluation Platform in COPD (EPIC)</code> - “COPD occurrence, exacerbation start and end, change in smoking status, and death due to background mortality are modelled as events in EPIC.” - along with additional events for this paper - “In order to simulate the case detection pathway, we added modules for symptoms, primary care visits, and COPD diagnosis to the original model.”</td>
 </tr>
 <tr class="even">
 <td>2.5.3 Components - resources</td>
 <td>List all the resources included within the model and which activities make use of them.</td>
-<td><!----></td>
-<td><!----></td>
+<td>N/A</td>
+<td>There doesn’t appear to be any resource use within the DES - it is not mentioned, and the lists events wouldn’t appear to require it. However, they do apply costs related to resource use - e.g.&nbsp;<code>2.4.2.1 Case Detection and Diagnosis Costs</code> lists costs for administering case detection, screening spirometry, outpatient diagnosis, inpatient diagnosis in <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> - though looking at <code>Table 1</code> in <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span>, costs are calculated based on COPD severity - hence it appears the resource use isn’t a “component” in the model.</td>
 </tr>
 <tr class="odd">
 <td>2.5.4 Components - queues</td>
 <td>Give details of the assumed queuing discipline used in the model (e.g.&nbsp;First in First Out, Last in First Out, prioritisation, etc.). Where one or more queues have a different discipline from the rest, provide a list of queues, indicating the queuing discipline used for each. If reneging, balking or jockeying occur, etc., provide details of the rules. Detail any delays or capacity constraints on the queues.</td>
-<td><!----></td>
-<td><!----></td>
+<td>N/A</td>
+<td>Doesn’t appear to be any queues.</td>
 </tr>
 <tr class="even">
 <td>2.5.5 Components - entry/exit points</td>
 <td>Give details of the model boundaries i.e.&nbsp;all arrival and exit points of entities. Detail the arrival mechanism (e.g.&nbsp;‘thinning’ to mimic a non-homogenous Poisson process or balking)</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Entry/exit points illustrated in <code>Figure 1</code> - “generate random patient representing canadians &gt;= 40 years of age” - and then, at the end, if “mortality due to the exacerbation” then “remove the individual” - <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> - or, as in <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span>, ends either at death “or end of the simulation time horizon”. Regarding arrivals, patients were either in pre-existing population or “new individuals (incident population) enter the model in future years according to the projection of population growth and aging”</td>
 </tr>
 <tr class="odd">
 <td><strong>Data</strong></td>
@@ -346,26 +342,26 @@ div.csl-indent {
 <tr class="even">
 <td>3.1 Data sources</td>
 <td>List and detail all data sources. Sources may include:<br>• Interviews with stakeholders,<br>• Samples of routinely collected data,<br>• Prospectively collected samples for the purpose of the simulation study,<br>• Public domain data published in either academic or organisational literature. Provide, where possible, the link and DOI to the data or reference to published literature.<br>All data source descriptions should include details of the sample size, sample date ranges and use within the study.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Lots of data sources mentioned throughout <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> - e.g.&nbsp;“used data from the Canadian Cohort of Obstructive Lung Disease (CanCOLD) study [26] to develop risk equations for the annual occurrence of cough, phlegm, wheeze, dyspnea…”. Also, in the prior paper <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span>, Table 1 lists input parameters and has a column with the source/reference for each.</td>
 </tr>
 <tr class="odd">
 <td>3.2 Pre-processing</td>
 <td>Provide details of any data manipulation that has taken place before its use in the simulation, e.g.&nbsp;interpolation to account for missing data or the removal of outliers.</td>
-<td><!----></td>
-<td><!----></td>
+<td>N/A</td>
+<td>Couldn’t spot any mention of this, and hence assuming there was none.</td>
 </tr>
 <tr class="even">
 <td>3.3 Input parameters</td>
 <td>List all input variables in the model. Provide a description of their use and include parameter values. For stochastic inputs provide details of any continuous, discrete or empirical distributions used along with all associated parameters. Give details of all time dependent parameters and correlation.<br>Clearly state:<br>• Base case data<br>• Data use in experimentation, where different from the base case.<br>• Where optimisation or design of experiments has been used, state the range of values that parameters can take.<br>• Where theoretical distributions are used, state how these were selected and prioritised above other candidate distributions.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> has a section <code>2.4 Parameter Inputs</code> which describes these in categories of <code>2.4.1 Treatment Effectiveness</code>, <code>2.4.2 Costs</code>, <code>2.4.3 Health Status</code>. <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> has <code>Table 1</code> which is a table of input parameters.</td>
 </tr>
 <tr class="odd">
 <td>3.4 Assumptions</td>
 <td>Where data or knowledge of the real system is unavailable what assumptions are included in the model? This might include parameter values, distributions or routing logic within the model.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>A few assumptions related to input parameters are mentioned in <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> - <code>2.4.2.1 Case Detection and Diagnosis Costs</code> - “we assumed case detection comprised the major topic of a primary care visit” - and <code>2.4.3 Health Status</code> - “we assumed a temporary false positive diagnosis of COPD was not associated with a disutility”. A few more are then also mentioned in <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> - e.g.&nbsp;“steady-state assumption: that COPD incidence is such that COPD prevalence remains stable over time within the strata of risk factors”</td>
 </tr>
 <tr class="even">
 <td><strong>Experimentation</strong></td>
@@ -376,20 +372,20 @@ div.csl-indent {
 <tr class="odd">
 <td>4.1 Initialisation</td>
 <td>Report if the system modelled is terminating or non-terminating. State if a warm-up period has been used, its length and the analysis method used to select it. For terminating systems state the stopping condition.<br>State what if any initial model conditions have been included, e.g., pre-loaded queues and activities. Report whether initialisation of these variables is deterministic or stochastic.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Although this terminology is not used, the description of the model provides this information - non-terminiating with initial model conditions - e.g.&nbsp;original paper <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> <code>Appendix 2</code>: “starts with a cross-section of the Canadian population 20 years or older in 2001… It reflects the population based of the 2001 Canadian Community Helath Survey… Once the start-up population is established, inidividual’s risk factors are dynamically updated…”</td>
 </tr>
 <tr class="even">
 <td>4.2 Run length</td>
 <td>Detail the run length of the simulation model and time units.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Run length in <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> <code>Table 2</code> - “Time horizon 20 years” - and the only mentioned time unit is “years” (with no mention of weeks, days, hours).</td>
 </tr>
 <tr class="odd">
 <td>4.3 Estimation approach</td>
 <td>State the method used to account for the stochasticity: For example, two common methods are multiple replications or batch means. Where multiple replications have been used, state the number of replications and for batch means, indicate the batch length and whether the batch means procedure is standard, spaced or overlapping. For both procedures provide a justification for the methods used and the number of replications/size of batches.</td>
-<td><!----></td>
-<td><!----></td>
+<td>N/A</td>
+<td><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> that they state “EPIC is not probabilistic, meaning we could not explore parameter uncertainty”… and in <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> “EPIC does not currently incorporate uncertainty in the underlying evidence, which is a goal for the next iteration of this platform. Given that many parameters of EPIC are derived based on calibration techniques, this is not simply a matter of replacing fixed input parameters with their probabilistic equivalent”.</td>
 </tr>
 <tr class="even">
 <td><strong>Implementation</strong></td>
@@ -400,26 +396,26 @@ div.csl-indent {
 <tr class="odd">
 <td>5.1 Software or programming language</td>
 <td>State the operating system and version and build number.<br>State the name, version and build number of commercial or open source DES software that the model is implemented in.<br>State the name and version of general-purpose programming languages used (e.g.&nbsp;Python 3.5).<br>Where frameworks and libraries have been used provide all details including version numbers.</td>
-<td><!----></td>
-<td><!----></td>
+<td>🟡 Partially</td>
+<td><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> <code>Code availability</code> - “can be run as an R package”. <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> <code>Simulation Platform</code> “EPIC was programmed in C++… an identical open-source and open-access model was developed with an interface in R (v3.5.1)”</td>
 </tr>
 <tr class="even">
 <td>5.2 Random sampling</td>
 <td>State the algorithm used to generate random samples in the software/programming language used e.g.&nbsp;Mersenne Twister.<br>If common random numbers are used, state how seeds (or random number streams) are distributed among sampling processes.</td>
-<td><!----></td>
-<td><!----></td>
+<td>N/A</td>
+<td><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> that they state “EPIC is not probabilistic, meaning we could not explore parameter uncertainty”… and in <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> “EPIC does not currently incorporate uncertainty in the underlying evidence, which is a goal for the next iteration of this platform. Given that many parameters of EPIC are derived based on calibration techniques, this is not simply a matter of replacing fixed input parameters with their probabilistic equivalent”.</td>
 </tr>
 <tr class="odd">
 <td>5.3 Model execution</td>
 <td>State the event processing mechanism used e.g.&nbsp;three phase, event, activity, process interaction.<br><em>Note that in some commercial software the event processing mechanism may not be published. In these cases authors should adhere to item 5.1 software recommendations.</em><br>State all priority rules included if entities/activities compete for resources.<br>If the model is parallel, distributed and/or use grid or cloud computing, etc., state and preferably reference the technology used. For parallel and distributed simulations the time management algorithms used. If the HLA is used then state the version of the standard, which run-time infrastructure (and version), and any supporting documents (FOMs, etc.)</td>
-<td><!----></td>
-<td><!----></td>
+<td>❌ Not met</td>
+<td>Couldn’t spot this anywhere</td>
 </tr>
 <tr class="even">
 <td>5.4 System specification</td>
 <td>State the model run time and specification of hardware used. This is particularly important for large scale models that require substantial computing power. For parallel, distributed and/or use grid or cloud computing, etc. state the details of all systems used in the implementation (processors, network, etc.)</td>
-<td><!----></td>
-<td><!----></td>
+<td>❌ Not met</td>
+<td>Couldn’t spot this anywhere</td>
 </tr>
 <tr class="odd">
 <td><strong>Code access</strong></td>
@@ -430,8 +426,8 @@ div.csl-indent {
 <tr class="even">
 <td>6.1 Computer model sharing statement</td>
 <td>Describe how someone could obtain the model described in the paper, the simulation software and any other associated software (or hardware) needed to reproduce the results. Provide, where possible, the link and DOIs to these.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>Code availability</code> “EPIC is publicly available and can be run as an R package (<a href="http://resp.core.ubc.ca/softw​are/epicR" class="uri">http://resp.core.ubc.ca/softw​are/epicR</a>​). Code for replicating these results is available at <a href="http://resp.core.ubc.ca/softw​are/caseD​etect​ion" class="uri">http://resp.core.ubc.ca/softw​are/caseD​etect​ion</a>.”</td>
 </tr>
 </tbody>
 </table>
@@ -439,20 +435,11 @@ div.csl-indent {
 <section id="des-checklist-derived-from-ispor-sdm" class="level2">
 <h2 class="anchored" data-anchor-id="des-checklist-derived-from-ispor-sdm">DES checklist derived from ISPOR-SDM</h2>
 <p>Of the <strong>18</strong> items in the checklist:</p>
-<!-- TODO: Add counts from evaluation -->
 <ul>
-<li><strong>X</strong> were met fully (✅)</li>
-<li><strong>X</strong> were partially met (🟡)</li>
-<li><strong>X</strong> were not met (❌)</li>
-<li><strong>X</strong> were not applicable (N/A)</li>
+<li><strong>15</strong> were met fully (✅)</li>
+<li><strong>2</strong> were not met (❌)</li>
+<li><strong>1</strong> was not applicable (N/A)</li>
 </ul>
-<!-- TODO: Fill in the table. Options are ✅ Fully, 🟡 Partially, ❌ Not met, or N/A
-Handy tips:
-* 3 overlaps with STRESS-DES 2.1 Base model overview diagram and 2.2 Base model logic
-* 4 overlaps with STRESS-DES 4.2 Run length
-* 5 overlaps with STRESS-DES 1.3 Experimentation aims
-* 7 overlaps with STRESS-DES 3.1 Data source
-* 8 overlaps with STRESS-DES 3.3 Input parameters -->
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -478,38 +465,38 @@ Handy tips:
 <tr class="even">
 <td>1 Is the focused health-related decision problem clarified?</td>
 <td>…the decision problem under investigation was defined. DES studies included different types of decision problems, eg, those listed in previously developed taxonomies.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>1 Introduction</code> - primary care-based case detection - e.g.&nbsp;“estimates from Canada indicate that 70% of patients with COPD are currently undiagnosed [5, 6], and up to one-third of COPD patients are initially diagnosed in hospital following an exacerbation” <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>2 Is the modeled healthcare setting/health condition clarified?</td>
 <td>…the physical context/scope (eg, a certain healthcare unit or a broader system) or disease spectrum simulated was described.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>1 Introduction</code> - aims to “project the outcomes of COPD-related policis for the general Canadian population”, who are described e.g.&nbsp;“estimates from Canada indicate that 70% of patients with COPD are currently undiagnosed [5, 6], and up to one-third of COPD patients are initially diagnosed in hospital following an exacerbation” <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="even">
 <td>3 Is the model structure described?</td>
 <td>…the model’s conceptual structure was described in the form of either graphical or text presentation.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>Figure 1</code>, <code>2.1 Case Detection Scenarios</code>, <code>2.2 Evaluation Platform in COPD (EPIC)</code>, <code>2.3 Evaluation of Case Detection Scenarios</code> <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>4 Is the time horizon given?</td>
 <td>…the time period covered by the simulation was reported.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Run length in <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> <code>Table 2</code> - “Time horizon 20 years”.</td>
 </tr>
 <tr class="even">
 <td>5 Are all simulated strategies/scenarios specified?</td>
 <td>…the comparators under test were described in terms of their components, corresponding variations, etc</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Scenario based - have (a) <code>2.5.1 Reference Case</code> - with “16 case detection scenarios” which can see in <code>Table 1</code> - and then (b) <code>2.5.2 Sensitivity Analyses</code> which explore outcomes of those scenarios with varying parameters e.g.&nbsp;medication adherence, smoking cessation.<br><br><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>6 Is the target population described?</td>
 <td>…the entities simulated and their main attributes were characterized.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> <code>1 Introduction</code> has some general information a.g. “estimates from Canada indicate that 70% of patients with COPD are currently undiagnosed [5, 6], and up to one-third of COPD patients are initially diagnosed in hospital following an exacerbation” - then <code>2.2 Evaluation Platform in COPD (EPIC)</code> states that it is focused on “general population of Canadians aged &gt;=40 years”, with description of population provided - e.g. <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> <code>Appendix 2: Summary of the demographics and risk factor module</code></td>
 </tr>
 <tr class="even">
 <td><strong>Paramaterisation and uncertainty assessment</strong></td>
@@ -520,26 +507,26 @@ Handy tips:
 <tr class="odd">
 <td>7 Are data sources informing parameter estimations provided?</td>
 <td>…the sources of all data used to inform model inputs were reported.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Lots of data sources mentioned throughout <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> - e.g.&nbsp;“used data from the Canadian Cohort of Obstructive Lung Disease (CanCOLD) study [26] to develop risk equations for the annual occurrence of cough, phlegm, wheeze, dyspnea…”. Also, in the prior paper <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span>, Table 1 lists input parameters and has a column with the source/reference for each.</td>
 </tr>
 <tr class="even">
 <td>8 Are the parameters used to populate model frameworks specified?</td>
 <td>…all relevant parameters fed into model frameworks were disclosed.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> has a section <code>2.4 Parameter Inputs</code> which describes these in categories of <code>2.4.1 Treatment Effectiveness</code>, <code>2.4.2 Costs</code>, <code>2.4.3 Health Status</code>. <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> has <code>Table 1</code> which is a table of input parameters.</td>
 </tr>
 <tr class="odd">
 <td>9 Are model uncertainties discussed?</td>
 <td>…the uncertainty surrounding parameter estimations and adopted statistical methods (eg, 95% confidence intervals or possibility distributions) were reported.</td>
-<td><!----></td>
-<td><!----></td>
+<td>N/A</td>
+<td><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> <code>4.4 Strengths and Limitations</code>: “EPIC is not probabilistic, meaning we could not explore parameter uncertainty”</td>
 </tr>
 <tr class="even">
 <td>10 Are sensitivity analyses performed and reported?</td>
 <td>…the robustness of model outputs to input uncertainties was examined, for example via deterministic (based on parameters’ plausible ranges) or probabilistic (based on a priori-defined probability distributions) sensitivity analyses, or both.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>As reported in <code>3.2 Sensitivity Analyses</code> <span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="odd">
 <td><strong>Validation</strong></td>
@@ -550,26 +537,26 @@ Handy tips:
 <tr class="even">
 <td>11 Is face validity evaluated and reported?</td>
 <td>…it was reported that the model was subjected to the examination on how well model designs correspond to the reality and intuitions. It was assumed that this type of validation should be conducted by external evaluators with no stake in the study.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Prior paper <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> - <code>Methods: Examining Face Validity and Internal Validity</code> - “Two important sets of face validity targets were the gradient of outcomes across categories of risk factors (e.g., higher COPD prevalence among ever-smokers than never-smokers) and the stability of outcomes over time within risk factor strata. Face validity results are not reported here but are available upon request.”<br><br>Although the results are not provided, I think this still meets criteria, as it was reported that it was subjected to examination.</td>
 </tr>
 <tr class="odd">
 <td>12 Is cross validation performed and reported</td>
 <td>…comparison across similar modeling studies which deal with the same decision problem was undertaken.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> <code>4.2 Comparison with Previous Research</code></td>
 </tr>
 <tr class="even">
 <td>13 Is external validation performed and reported?</td>
 <td>…the modeler(s) examined how well the model’s results match the empirical data of an actual event modeled.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td>Prior paper <span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> - <code>Methods: Examining External Validity</code> - “The external validity tests were based on the reported outcomes from the placebo arms of 2 independent clinical trials…” and <code>Results: External validation</code>.</td>
 </tr>
 <tr class="odd">
 <td>14 Is predictive validation performed or attempted?</td>
 <td>…the modeler(s) examined the consistency of a model’s predictions of a future event and the actual outcomes in the future. If this was not undertaken, it was assessed whether the reasons were discussed.</td>
-<td><!----></td>
-<td><!----></td>
+<td>❌ Not met</td>
+<td><span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> <code>Abstract</code> “Predictive validity of EPIC needs to be examined prospectively against future empirical studies.”</td>
 </tr>
 <tr class="even">
 <td><strong>Generalisability and stakeholder involvement</strong></td>
@@ -580,26 +567,26 @@ Handy tips:
 <tr class="odd">
 <td>15 Is the model generalizability issue discussed?</td>
 <td>…the modeler(s) discussed the potential of the resulting model for being applicable to other settings/populations (single/multiple application).</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span> <code>4.4 Strengths and Limitations</code> - “Given that the performance of case detection strate- gies is highly dependent on local settings and subsequent management decisions, the use of ‘whole disease’ platforms such as EPIC can result in more consistent evaluations. EPIC is open-source and code for reproducing this analysis is publicly available, meaning it can be easily updated to account for changes to ‘downstream’ technologies such as treatment.”<br><br><span class="citation" data-cites="sadatsafavi_development_2019">Sadatsafavi et al. (<a href="#ref-sadatsafavi_development_2019" role="doc-biblioref">2019</a>)</span> <code>Discussion</code> “While EPIC is developed for the Canadian context, many of its components pertain to the natural history and biology of COPD and are independent of a particular setting. Other components can be updated (mainly by changing numerical values of input parameters rather than modifying the structure of equations) with the specifics of a health care setting. As such, this platform can have applicability for other jurisdictions.”</td>
 </tr>
 <tr class="even">
 <td>16 Are decision makers or other stakeholders involved in modeling?</td>
 <td>…the modeler(s) reported in which part throughout the modeling process decision makers and other stakeholders (eg, subject experts) were engaged.</td>
-<td><!----></td>
-<td><!----></td>
+<td>❌ Not met</td>
+<td>Couldn’t spot any mention of this.</td>
 </tr>
 <tr class="odd">
 <td>17 Is the source of funding stated?</td>
 <td>…the sponsorship of the study was indicated.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>Funding</code>: “Financial support for this study was provided by the Canadian Lung Association Breathing as One Studentship Award…”<br><br><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 <tr class="even">
 <td>18 Are model limitations discussed?</td>
 <td>…limitations of the assessed model, especially limitations of interest to decision makers, were discussed.</td>
-<td><!----></td>
-<td><!----></td>
+<td>✅ Fully</td>
+<td><code>2.2 Strengths and Limitations</code> - “his study has several limitations. First, inhaled therapies are known to indirectly improve…”<br><br><span class="citation" data-cites="johnson_cost_2021">Johnson et al. (<a href="#ref-johnson_cost_2021" role="doc-biblioref">2021</a>)</span></td>
 </tr>
 </tbody>
 </table>
@@ -609,8 +596,14 @@ Handy tips:
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-johnson_cost_2021" class="csl-entry" role="listitem">
+Johnson, Kate M., Mohsen Sadatsafavi, Amin Adibi, Larry Lynd, Mark Harrison, Hamid Tavakoli, Don D. Sin, and Stirling Bryan. 2021. <span>“Cost <span>Effectiveness</span> of <span>Case</span> <span>Detection</span> <span>Strategies</span> for the <span>Early</span> <span>Detection</span> of <span>COPD</span>.”</span> <em>Applied Health Economics and Health Policy</em> 19 (2): 203–15. <a href="https://doi.org/10.1007/s40258-020-00616-2">https://doi.org/10.1007/s40258-020-00616-2</a>.
+</div>
 <div id="ref-monks_strengthening_2019" class="csl-entry" role="listitem">
 Monks, Thomas, Christine S. M. Currie, Bhakti Stephan Onggo, Stewart Robinson, Martin Kunc, and Simon J. E. Taylor. 2019. <span>“Strengthening the Reporting of Empirical Simulation Studies: <span>Introducing</span> the <span>STRESS</span> Guidelines.”</span> <em>Journal of Simulation</em> 13 (1): 55–67. <a href="https://doi.org/10.1080/17477778.2018.1442155">https://doi.org/10.1080/17477778.2018.1442155</a>.
+</div>
+<div id="ref-sadatsafavi_development_2019" class="csl-entry" role="listitem">
+Sadatsafavi, Mohsen, Shahzad Ghanbarian, Amin Adibi, Kate Johnson, J. Mark FitzGerald, William Flanagan, Stirling Bryan, and Don Sin. 2019. <span>“Development and <span>Validation</span> of the <span>Evaluation</span> <span>Platform</span> in <span>COPD</span> (<span>EPIC</span>): <span>A</span> <span>Population</span>-<span>Based</span> <span>Outcomes</span> <span>Model</span> of <span>COPD</span> for <span>Canada</span>.”</span> <em>Medical Decision Making</em> 39 (2): 152–67. <a href="https://doi.org/10.1177/0272989X18824098">https://doi.org/10.1177/0272989X18824098</a>.
 </div>
 <div id="ref-zhang_reporting_2020" class="csl-entry" role="listitem">
 Zhang, Xiange, Stefan K. Lhachimi, and Wolf H. Rogowski. 2020. <span>“Reporting <span>Quality</span> of <span>Discrete</span> <span>Event</span> <span>Simulations</span> in <span>Healthcare</span>—<span>Results</span> <span>From</span> a <span>Generic</span> <span>Reporting</span> <span>Checklist</span>.”</span> <em>Value in Health</em> 23 (4): 506–14. <a href="https://doi.org/10.1016/j.jval.2020.01.005">https://doi.org/10.1016/j.jval.2020.01.005</a>.
