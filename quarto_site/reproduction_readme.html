@@ -181,6 +181,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#repository-overview" id="toc-repository-overview" class="nav-link" data-scroll-target="#repository-overview">Repository overview</a></li>
   <li><a href="#step-1.-set-up-environment" id="toc-step-1.-set-up-environment" class="nav-link" data-scroll-target="#step-1.-set-up-environment">Step 1. Set up environment</a></li>
   <li><a href="#step-2.-running-the-model" id="toc-step-2.-running-the-model" class="nav-link" data-scroll-target="#step-2.-running-the-model">Step 2. Running the model</a></li>
+  <li><a href="#option-b-testthat" id="toc-option-b-testthat" class="nav-link" data-scroll-target="#option-b-testthat">Option B: Testthat</a></li>
   </ul></li>
   <li><a href="#reproduction-specs-and-runtime" id="toc-reproduction-specs-and-runtime" class="nav-link" data-scroll-target="#reproduction-specs-and-runtime">Reproduction specs and runtime</a></li>
   <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation</a></li>
@@ -214,47 +215,146 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="reproduction-readme" class="level1">
 <h1>Reproduction README</h1>
-<!-- TODO: Remove this warning once filled out README -->
-<p><strong>Please note: This is a template README and has not yet been completed</strong></p>
-<!-- TODO: Fill out the README -->
 <section id="model-summary" class="level2">
 <h2 class="anchored" data-anchor-id="model-summary">Model summary</h2>
-<p>TBC</p>
+<blockquote class="blockquote">
+<p>Johnson, K.M., Sadatsafavi, M., Adibi, A., Lynd, L., Harrison, M., Tavakoli, H., Sin, D., Bryan, S. <strong>Cost Effectiveness of Case Detection Strategies for the Early Detection of COPD</strong>. <em>Applied Health Economics and Health Policy</em> 19, p203-215 (2021). <a href="https://doi.org/10.1007/s40258-020-00616-2" class="uri">https://doi.org/10.1007/s40258-020-00616-2</a>.</p>
+</blockquote>
+<p>This study uses a previously validated discrete-event simulation model, EPIC: Evaluation Platform in chronic obstructive pulmonary disease (COPD). The model is written in <code>C++</code> with an <code>R</code> interface, using R scripts for execution. The model is adapted to evaluate the cost-effectiveness of 16 COPD case detection strategies in primary care, comparing costs, quality-adjusted life years (QALYs), incremental cost-effectiveness ratios (ICER), and incremental net monetary benefits (INMB) across scenarios. Sensitivity analyses are also conducted.</p>
 </section>
 <section id="scope-of-the-reproduction" class="level2">
 <h2 class="anchored" data-anchor-id="scope-of-the-reproduction">Scope of the reproduction</h2>
-<p>TBC</p>
+<p>In this assessment, we attempted to reproduce 5 items: 4 figures and 1 table.</p>
 </section>
 <section id="reproducing-these-results" class="level2">
 <h2 class="anchored" data-anchor-id="reproducing-these-results">Reproducing these results</h2>
 <section id="repository-overview" class="level3">
 <h3 class="anchored" data-anchor-id="repository-overview">Repository overview</h3>
-<p>TBC</p>
+<pre><code>├── docker
+│   └──  ...
+├── epicR
+│   └──  ...
+├── outputs
+│   └──  ...
+├── renv
+│   └──  ...
+├── scripts
+│   └──  ...
+├── tests
+│   └──  ...
+├── .Rprofile
+├── DESCRIPTION
+├── johnson2021.Rproj
+├── README.md
+└── renv.lock</code></pre>
+<ul>
+<li><code>docker/</code> - Instructions for creation of docker container.</li>
+<li><code>epicR/</code> - Package used to run the model</li>
+<li><code>outputs/</code> - Outputs files from the scripts (e.g.&nbsp;<code>.csv</code>, <code>.png</code>)</li>
+<li><code>renv/</code> - Instructions for creation of R environment</li>
+<li><code>scripts/</code> - Scripts to run the base case analysis, sensitivity analysis and generate the tables and figures</li>
+<li><code>tests/</code> - Test to check that a simple run of the model produces consistent results with our reproduction</li>
+<li><code>.Rprofile</code> - Activates R environment</li>
+<li><code>DESCRIPTION</code> - Lists packages that we installed into environment (their dependencies will have also been installed)</li>
+<li><code>johnson2021.Rproj</code> - Project settings</li>
+<li><code>README.md</code> - This file!</li>
+<li><code>renv.lock</code> - Lists R version and all packages in the R environment</li>
+</ul>
 </section>
 <section id="step-1.-set-up-environment" class="level3">
 <h3 class="anchored" data-anchor-id="step-1.-set-up-environment">Step 1. Set up environment</h3>
-<p>TBC</p>
+<p>Before you can run the model, you will need to create an R environment with the correct version of R and the specified packages.</p>
+<section id="option-a.-renv" class="level4">
+<h4 class="anchored" data-anchor-id="option-a.-renv">Option A. Renv</h4>
+<p>An <code>renv</code> environment has been provided. To create this environment locally on your machine, you should open the R project with the R environment loaded, and then run:</p>
+<pre><code>renv::restore()</code></pre>
+<p>In <code>renv.lock</code>, you will see the version of R listed. However, <code>renv</code> will not install this for you, so you will need to switch to this yourself if you wish to also use the same version of R. This reproduction has been run in R 4.4.1, and it is possible (although not definite) that later versions of R may not be compatible, or that you may encounter difficulties installing the specified package versions in later versions of R.</p>
+</section>
+<section id="option-b.-build-local-docker-image" class="level4">
+<h4 class="anchored" data-anchor-id="option-b.-build-local-docker-image">Option B. Build local docker image</h4>
+<p>A Dockerfile is provided, which you can use to build the Docker image. The docker image will include the correct version of R, the required packages and their versions, and an installation of RStudio which you can run from your browser. It will also include the scripts and outputs from this directory. For this option and option C, you’ll need to ensure that <code>docker</code> is installed on your machine.</p>
+<p>To create the docker image and then open up RStudio:</p>
+<ol type="1">
+<li>In the terminal, navigate to the parent directory of your <code>reproduction/</code> folder</li>
+<li>Build the image:</li>
+</ol>
+<pre><code>docker build --tag johnson2021 . -f ./reproduction/docker/Dockerfile</code></pre>
+<ol start="3" type="1">
+<li>Create container and open RStudio:</li>
+</ol>
+<pre><code>(sleep 2 &amp;&amp; xdg-open http://localhost:8888) &amp; sudo docker run -it -p 8888:8787 -e DISABLE_AUTH=true --name johnson2021_docker johnson2021</code></pre>
+</section>
+<section id="option-c.-pull-pre-built-docker-image" class="level4">
+<h4 class="anchored" data-anchor-id="option-c.-pull-pre-built-docker-image">Option C. Pull pre-built docker image</h4>
+<p>A pre-built image is available on the GitHub container registry. To use it:</p>
+<ol type="1">
+<li>Create a Personal Access Token (Classic) for your GitHub account with <code>write:packages</code> and <code>delete:packages</code> access</li>
+<li>On terminal, run the following command and then enter your sudo password (if prompted), followed by the token just generated (which acts as your GitHub password)</li>
+</ol>
+<pre><code>sudo docker login ghcr.io -u githubusername</code></pre>
+<ol start="3" type="1">
+<li>Download the image:</li>
+</ol>
+<pre><code>sudo docker pull ghcr.io/pythonhealthdatascience/johnson2021</code></pre>
+<ol start="4" type="1">
+<li>Create container and open RStudio:</li>
+</ol>
+<pre><code>(sleep 2 &amp;&amp; xdg-open http://localhost:8888) &amp; sudo docker run -it -p 8888:8787 -e DISABLE_AUTH=true --name johnson2021_docker ghcr.io/pythonhealthdatascience/johnson2021:latest</code></pre>
+</section>
 </section>
 <section id="step-2.-running-the-model" class="level3">
 <h3 class="anchored" data-anchor-id="step-2.-running-the-model">Step 2. Running the model</h3>
-<p>TBC</p>
+<section id="option-a-execute-the-r-scripts" class="level4">
+<h4 class="anchored" data-anchor-id="option-a-execute-the-r-scripts">Option A: Execute the R scripts</h4>
+<p>To run the base case, knit <code>Case_Detection_Results.Rmd</code> and <code>Case_Detection_Results_5yrs.Rmd</code>. To run the sensitivity analyses, likewise knit the <code>.Rmd</code> files in <code>scripts/Sensitivity_Analysis/</code>. These files were created from the base case files by running <code>Sensitivity_Analysis_Prep.R</code>.</p>
+<p>If you want to run these from the command line, you can use:</p>
+<pre><code>Rscript -e "rmarkdown::render('scripts/Case_Detection_Results.Rmd')"</code></pre>
+<p>To generate the tables and figures from the article, knit <code>Process_Model_Results.Rmd</code>.</p>
+</section>
+</section>
+<section id="option-b-testthat" class="level3">
+<h3 class="anchored" data-anchor-id="option-b-testthat">Option B: Testthat</h3>
+<p>A small version of one the model scenarios (<code>tests/test_s1nocd.R</code>) is provided. Run this from the <code>reproduction/</code> directory. If the results are consistent, you should see that <code>expect_equal(s1NoCD, exp_s1NoCD)</code> returns nothing. If the results differ, you’ll see an error message along the lines of:</p>
+<pre><code>Error: `s1NoCD` not equal to `exp_s1NoCD`.
+  Component “Agents”: Mean relative difference: 3.975744
+  Component “PatientYears”: Mean relative difference: 3.987842
+  Component “CopdPYs”: Mean relative difference: 3.749264
+  ...</code></pre>
+<p>The test should only take about <strong>18 seconds</strong> to run, depending on your machine specs. It is not set up using <code>testthat</code> since I could not manage to successfully load the <code>epicR</code> package when working with <code>testthat</code>.</p>
 </section>
 </section>
 <section id="reproduction-specs-and-runtime" class="level2">
 <h2 class="anchored" data-anchor-id="reproduction-specs-and-runtime">Reproduction specs and runtime</h2>
-<p>TBC</p>
-<!-- Hint: On Linux, you can find specs by running the following commands in the terminal:
-cat /etc/os-release  # Shows operating system and version
-lscpu  # Shows computer model
-free -g  # Shows RAM in GB (combine total column) -->
+<p>Within this reproduction, due to long run times, the model was run on a remote machine. This was an Intel Core i9-13900K with 81GB RAM running Pop!_OS 22.04 Linux. It was run from the command line via multiple terminals simultaneously - hence, the exact times are impacted by the number being ran at once.</p>
+<p>The base case scenarios were ran at the same time, and took an overall total time of <strong>20 hours 40 minutes</strong>:</p>
+<ul>
+<li>Base case 3 years: 20.65 hours - 20 hours 39 minutes</li>
+<li>Base case 5 years: 20.67 hours - 20 hours 40 minutes</li>
+</ul>
+<p>The sensitivity analysis scenario were all ran at the same time, and took an overall total of <strong>1 day 10 hours 57 minutes</strong>:</p>
+<ul>
+<li>Sen1_No_Smoking_Cessation 1.275262 days and 1.361881 days</li>
+<li>Sen2_50_Med_Adherence 1.2965 days and 1.269854 days</li>
+<li>Sen3_30_Med_Adherence 1.210629 days and 1.186785 days</li>
+<li>Sen4_01_Treat_Util 1.291363 days and 1.415365 days</li>
+<li>Sen5_0_Treat_Util 1.45615 days and 1.315001 days</li>
+<li>Sen6_0_Discount 1.148049 days and 1.163011 days</li>
+<li>Sen7_3_Discount 1.217285 days and 1.276366 days</li>
+</ul>
+<p>Four files (scenarios 2 and 3) had to be re-run seperately after fixing a mistake, and when just those were run, the total was <strong>21 hours 26 minutes</strong>:</p>
+<ul>
+<li>Sen2_50_Med_Adherence 21.09425 hours and 21.44028 hours</li>
+<li>Sen3_30_Med_Adherence 21.10292 hours and 21.09909 hours</li>
+</ul>
+<p>Based on this, if you were to run all scenarios at once in parallel in seperate terminals, you could expect a run time of <strong>at least 1 day 11 hours</strong>, but would be higher than that (since the more run at once, the lower it takes, as you can see from the scenario 2 and 3 times above).</p>
 </section>
 <section id="citation" class="level2">
 <h2 class="anchored" data-anchor-id="citation">Citation</h2>
-<p>TBC</p>
+<p>To cite the original study, please refer to the reference above. To cite this reproduction, please refer to the CITATION.cff file in the parent folder.</p>
 </section>
 <section id="license" class="level2">
 <h2 class="anchored" data-anchor-id="license">License</h2>
-<p>TBC</p>
+<p>This repository is licensed under the GNU General Public License v3.0.</p>
 
 
 </section>
