@@ -1,6 +1,6 @@
 ---
 title: "Summary report"
-subtitle: "For computational reproducibility assessment of Author et al. Year"
+subtitle: "For computational reproducibility assessment of Johnson et al. 2021"
 format:
   html:
     page-layout: full
@@ -8,43 +8,74 @@ echo: False
 bibliography: ../quarto_site/references.bib
 ---
 
-<!-- TODO: Remove this warning once filled out report -->
-**Please note: This is a template page and has not yet been completed**
-
-<!-- TODO: Use this skeleton to create a summary report -->
-
 ## Study
 
-> [Authors]. **[Title]**. *[Journal]* [Volume], [Edition] ([Year]). <[URL]>.
+> Johnson, K.M., Sadatsafavi, M., Adibi, A., Lynd, L., Harrison, M., Tavakoli, H., Sin, D., Bryan, S. **Cost Effectiveness of Case Detection Strategies for the Early Detection of COPD**. *Applied Health Economics and Health Policy* 19, p203-215 (2021). <https://doi.org/10.1007/s40258-020-00616-2>.
 
-[Paragraph summarising model]
+This study uses a previously validated discrete-event simulation model, EPIC: Evaluation Platform in chronic obstructive pulmonary disease (COPD). The model is written in `C++` with an `R` interface, using R scripts for execution. The model is adapted to evaluate the cost-effectiveness of 16 COPD case detection strategies in primary care, comparing costs, quality-adjusted life years (QALYs), incremental cost-effectiveness ratios (ICER), and incremental net monetary benefits (INMB) across scenarios. Sensitivity analyses are also conducted.
 
 ## Computational reproducibility
 
-Successfully reproduced **X out of X (X%)** of items from the scope in **Xh Xm (X%)**.
+Successfully reproduced **4 out of 5 (80%)** of items from the scope in **19h 49m (49.5%)**.
 
 Required troubleshooting:
 
-* [List of required changes to code]
+* **Environment** - identifying required packages, importing archived packages, and local import of the `epicR` package
+* **Run time** - troubleshooting with lower agent numbers due to long run times
+* **Output files** - saves results to `.csv`
+* **Tables and figures** - writing code to produce these, which required figuring out:
+  * Which results tables to use
+  * Which columns to use
+  * Which scenarios to use
+  * How to transform the columns
+  * How to create features like the efficiency frontier
+* **Sensitivity analysis** - identifying parameters to change and creating scripts
 
 ::: {.panel-tabset}
 
-## Item X
+## Table 3
 
-[One sentence description of item X]
+Cannot display original figure as do not have permission for reuse, but can view at @johnson_cost_2021
 
-[Display side-by-side]
-<!-- Example:
-![Original](../original_study/article_fig2.png){width=49% .lightbox}
-![Reproduction](../reproduction/output/patients_base_3_month.png){width=49% .lightbox} -->
+Reproduction:
 
-## Item Y
+```{python}
+import pandas as pd
 
-[Set-up as for Item X]
+pd.read_csv('../reproduction/outputs/tab3.csv')
+```
+
+## Figure 3
+
+Cannot display original figure as do not have permission for reuse, but can view at @johnson_cost_2021
+
+Reproduction:
+
+![](../reproduction/outputs/fig3-1.png){.lightbox}
 
 ## Figure 4
 
-[Set-up as for Item X]
+Cannot display original figure as do not have permission for reuse, but can view at @johnson_cost_2021
+
+Reproduction:
+
+![](../reproduction/outputs/fig4-1.png){.lightbox}
+
+## Appendix 6
+
+Cannot display original figure as do not have permission for reuse, but can view at @johnson_cost_2021
+
+Reproduction:
+
+![](../reproduction/outputs/appendix6-1.png){.lightbox}
+
+## Appendix 7
+
+Cannot display original figure as do not have permission for reuse, but can view at @johnson_cost_2021
+
+Reproduction:
+
+![](../reproduction/outputs/appendix7-1.png){.lightbox}
 
 :::
 
@@ -57,12 +88,12 @@ import plotly.express as px
 # Create dataframe of results
 col = ['fully', 'partially', 'not', 'na']
 eval_dict = {
-  'STARS (essential)': [1, 1, 1, 1],
-  'STARS (optional)': [1, 1, 1, 1],
-  'Badges (criteria)': [1, 1, 1, 1],
-  'Badges (badges)': [1, 1, 1, 1],
-  'STRESS-DES': [1, 1, 1, 1],
-  'ISPOR-SDM': [1, 1, 1, 1]
+  'STARS (essential)': [4, 2, 2, 0],
+  'STARS (optional)': [0, 0, 5, 0],
+  'Badges (criteria)': [4, 0, 8, 0],
+  'Badges (badges)': [3, 0, 9, 0],
+  'STRESS-DES': [16, 1, 2, 5],
+  'ISPOR-SDM': [15, 0, 2, 1]
 }
 eval_wide = pd.DataFrame(eval_dict, index=col).T
 eval = (eval_wide
