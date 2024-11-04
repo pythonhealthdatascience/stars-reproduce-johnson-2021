@@ -35,5 +35,5 @@ abstract: >-
   https://doi.org/10.1007/s40258-020-00616-2.
 license: GPL-3.0
 # TODO: Manually update with each GitHub release (start with 0.1.0)
-version: '0.1.0'
-date-released: '2024-08-01'
+version: '0.2.0'
+date-released: '2024-11-04'
