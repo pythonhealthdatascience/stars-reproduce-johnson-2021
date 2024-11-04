@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Amy Heather">
-<meta name="dcterms.date" content="2024-09-09">
+<meta name="dcterms.date" content="2024-11-04">
 
-<title>Day 8 – Reproducing Johnson et al.&nbsp;2021</title>
+<title>Day 20 – Reproducing Johnson et al.&nbsp;2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -203,9 +169,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Day 8</h1>
+      <h1 class="title">Day 20</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">reproduce</div>
+                <div class="quarto-category">compendium</div>
               </div>
                   </div>
   </div>
@@ -223,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 9, 2024</p>
+        <p class="date">November 4, 2024</p>
       </div>
     </div>
     
@@ -239,10 +205,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sensitivity-analysis" id="toc-sensitivity-analysis" class="nav-link active" data-scroll-target="#sensitivity-analysis">16.08-16.18, 16.23-16.40: Sensitivity analysis</a></li>
-  <li><a href="#timings" id="toc-timings" class="nav-link" data-scroll-target="#timings">Timings</a></li>
+  <li><a href="#untimed-test-run" id="toc-untimed-test-run" class="nav-link active" data-scroll-target="#untimed-test-run">Untimed: Test-run</a></li>
+  <li><a href="#untimed-email" id="toc-untimed-email" class="nav-link" data-scroll-target="#untimed-email">Untimed: Email</a></li>
+  <li><a href="#untimed-archive" id="toc-untimed-archive" class="nav-link" data-scroll-target="#untimed-archive">Untimed: Archive</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_09/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_11_04/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -261,68 +228,24 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A little bit of thinking around sensitivity analysis. Total time used: 14h 35m (36.5%)</p>
+<p>Test-run by second researcher, final email and archive.</p>
 </div>
 </div>
-<section id="sensitivity-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="sensitivity-analysis">16.08-16.18, 16.23-16.40: Sensitivity analysis</h2>
-<p>The remaining items in the scope that I’ve not yet attempted - Figure 4 and appendix 7 - are both based on the results of the sensitivity analyses. I haven’t identified any code in the GitHub repository to run this analysis. As such, I am assuming that the provided scripts were directly modified to run each of these scenarios.</p>
-<p>The contents of each figure as presented below, along with my identified snippets of code that we would likely need to alter for the scenario.</p>
-<p>Figure 4 has INMB from:</p>
+<section id="untimed-test-run" class="level2">
+<h2 class="anchored" data-anchor-id="untimed-test-run">Untimed: Test-run</h2>
+<p>On 1st November, Tom Monks conducted a test-run of the repository. Completed on the desktop machine, he found:</p>
 <ul>
-<li>Reference case analysis</li>
-<li>No smoking cessation (<code>smoking_adherence=0.7</code>) (<code>input$values$smoking$smoking_cessation_adherence &lt;- smoking_adherence</code>)</li>
-<li>50% medication adherence (<code>medication_adherence=0.7</code>)</li>
-<li>30% medication adherence (<code>medication_adherence=0.7</code>)</li>
-<li>0.01 treatment utility (<code>medication_utility=0.0367</code>)</li>
-<li>0 treatment utility (<code>medication_utility=0.0367</code>)</li>
+<li><code>renv</code> - created without problem and ran the 18 second test fine</li>
+<li><code>docker</code> - created and ran fine, ran the 18 second test fine</li>
 </ul>
-<p>Whilst appendix 7 has INMB from:</p>
-<ul>
-<li>Reference case analysis</li>
-<li>0% discount rate (<code>discount_rate=0.015</code>)</li>
-<li>3% discount rate (<code>discount_rate=0.015</code>)</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reflection
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It’s handy that I could fairly easily identify each of these variables in the script since the variable names aligned pretty well with the concepts.</p>
-</div>
-</div>
-<p>Whilst there is a global variables section at the top of the script, they then seem to be provided each time at the start of each scenario in <code>Case_Detection_Results.Rmd</code> - but I think this is just because each scenario changes something slightly in the inputs, so they repeat them all each time.</p>
-<p>I would prefer not to duplicate the .Rmd files 8 times, so I started a <code>Sensitivity_Analysis.Rmd</code> file. I what differed between all the scenarios (in reference case, time intervals, and in sensitivity analysis).</p>
-<p>On reflection, I think the simplest solution to this, instead of trying to restructure all the models to run easily from one file, would be to write a script that duplicates the Rmd file but alters one part of it.</p>
 </section>
-<section id="timings" class="level2">
-<h2 class="anchored" data-anchor-id="timings">Timings</h2>
-<div id="534e218b" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timings <span class="im">import</span> calculate_times</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Minutes used prior to today</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>used_to_date <span class="op">=</span> <span class="dv">848</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Times from today</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'16.08'</span>, <span class="st">'16.18'</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'16.23'</span>, <span class="st">'16.40'</span>)]</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>calculate_times(used_to_date, times)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Time spent today: 27m, or 0h 27m
-Total used to date: 875m, or 14h 35m
-Time remaining: 1525m, or 25h 25m
-Used 36.5% of 40 hours max</code></pre>
-</div>
-</div>
+<section id="untimed-email" class="level2">
+<h2 class="anchored" data-anchor-id="untimed-email">Untimed: Email</h2>
+<p>Sent a short follow-up email to author (but no pressure or requirement for them to reply).</p>
+</section>
+<section id="untimed-archive" class="level2">
+<h2 class="anchored" data-anchor-id="untimed-archive">Untimed: Archive</h2>
+<p>Archived the repository on Zenodo.</p>
 
 
 </section>
@@ -772,7 +695,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_09_09/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/edit/main/logbook/posts/2024_11_04/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
