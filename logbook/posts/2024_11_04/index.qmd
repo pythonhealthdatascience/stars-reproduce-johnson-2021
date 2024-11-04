@@ -1,0 +1,28 @@
+---
+title: "Day 20"
+author: "Amy Heather"
+date: "2024-11-04"
+categories: [compendium]
+bibliography: ../../../quarto_site/references.bib
+---
+
+::: {.callout-note}
+
+Test-run by second researcher, final email and archive.
+
+:::
+
+## Untimed: Test-run
+
+On 1st November, Tom Monks conducted a test-run of the repository. Completed on the desktop machine, he found:
+
+* `renv` - created without problem and ran the 18 second test fine
+* `docker` - created and ran fine, ran the 18 second test fine
+
+## Untimed: Email
+
+Sent a short follow-up email to author (but no pressure or requirement for them to reply).
+
+## Untimed: Archive
+
+Archived the repository on Zenodo.
