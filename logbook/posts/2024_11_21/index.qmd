@@ -1,0 +1,25 @@
+---
+title: "Day 21"
+author: "Amy Heather"
+date: "2024-11-21"
+categories: [evaluation]
+---
+
+::: {.callout-note}
+
+Redid badge evaluation.
+
+:::
+
+## 11.06-11.09: Revisit evaluation
+
+Revisited and revised the badge criteria to (a) make them up-to-date, and (b) make sure they are *specific* to the descriptions from each badge. Hence, redoing evaluations for all eight studies.
+
+Notes:
+
+* reproduce - no due to time + troubleshooting
+* docs1 - no as doesn't describe relationship between outputs and article, and incomplete package list with only a few minimum versions
+
+## Untimed: Update summary report
+
+With new badge evaluation results.
