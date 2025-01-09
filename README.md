@@ -1,7 +1,5 @@
-# STARS: Computational reproducibility of Johnson et al. 2021 <a href="https://github.com/pythonhealthdatascience"><img src="quarto_site/stars_logo_blue.png" align="right" height="120" alt="STARS" /></a>
+# Johnson et al. 2021 computational reproducibility assessment <a href="https://github.com/pythonhealthdatascience"><img src="quarto_site/stars_logo_blue.png" align="right" height="120" alt="STARS" /></a>
 
-<!-- Status badge from GitHub action checking validity of CITATION.cff -->
-[![Valid CITATION.cff](https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/actions/workflows/cff_validation.yaml/badge.svg)](https://github.com/pythonhealthdatascience/stars-reproduce-johnson-2021/actions/workflows/cff_validation.yaml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13832333.svg)](https://zenodo.org/doi/10.5281/zenodo.13832333)
 
 This repository forms part of work package 1 on the project STARS: Sharing Tools and Artefacts for Reproducible Simulations. It assesses the computational reproducibility of:
@@ -77,7 +75,12 @@ The protocol for this work is summarised in the diagram below and archived on Ze
 
 ## Citation
 
-If you wish to cite this repository, please refer to the citation file `CITATION.cff`, and the auto-generated alternatives `citation_apalike.apa` and `citation_bibtex.bib`.
+Please cite the archived version of this repository on Zenodo:
+
+> Heather, A., Monks, T., & Harper, A. (2025). Johnson et al. 2021 computational reproducibility assessment. Zenodo. <https://zenodo.org/doi/10.5281/zenodo.13832333>
+
+You can also cite the repository on GitHub. Please refer to the citation file `CITATION.cff`, and the auto-generated alternatives `citation_apalike.apa` and `citation_bibtex.bib`.
+
 
 ## License
 
